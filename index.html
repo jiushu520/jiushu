@@ -1,142 +1,127 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>玖数学的方程组</title>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <title>二元一次方程组</title>
     <style>
-        body { font-family: Arial, sans-serif; background-color: lightblue; }
-        #title { text-align: center; margin-top: 10px; }
-        #game-container { margin: 30px; text-align: center; }
-        #equation { font-size: 2em; text-align: center; margin: 20px; }
-        #options { text-align: center; margin: 20px; }
-        .option { display: inline-block; margin: 0 10px; padding: 10px; border: 1px solid #000; cursor: pointer;margin: 0 10px 20px; }
-        #scoreboard { text-align: center; margin: 20px; }
-        #rounds-scoreboard { text-align: center; margin: 20px; }
-    </style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+            border: 1px solid black; 
+        }
+
+        .container {
+            display: flex;
+            height: 100%;
+           
+        }
+
+
+        #left-column {
+            flex: 0 0 20%; /* 左侧栏占宽20% */
+            padding-top: 40px; /* 根据需要调整 */
+            text-align: center; /* 文字居中 */
+            line-height: 2.5; /* 设置行距为2.5倍 */
+            background-color: lightyellow; /* 背景色为浅黄色 */
+            overflow-y: auto; /* 允许垂直滚动 */
+            max-height: 100%; /* 设置最大高度为100% */
+
+           
+        }
+
+        #left-column a {
+            text-decoration: none; /* 移除链接下划线 */
+            color: black; /* 设置字体颜色为黑色 */
+            
+        }
+
+
+
+        #center-column {
+            flex: 0 0 40%; /* 中间栏占宽40% */
+            }
+
+        #right-column {
+            flex: 0 0 40%; /* 右侧栏占宽40% */
+            color: black; /* 设置字体颜色为黑色 */
+            background-color: lightyellow; /* 背景色为浅黄色 */
+            }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+        }
+
+    }
+</style>
+
 </head>
 <body>
-    <div id="title">
-        <h1>玖数学的方程组</h1>
-        <h2>解方程组A1:</h2>
-    </div>
-    <div id="game-container">
-        <div id="equation"></div>
-        <div id="options"></div>
-        <div id="scoreboard">现在得分:<span id="score">0</span>,已回答:<span id="answered">0</span></div>
-    </div>
-  
-
-    <div style="text-align: center; margin-top: 10px;">
-        <button onclick="displayEquationSystem();score = 0; questionsAnswered = 0;updateScoreboard(); ">重新开始</button>
-        <button onclick="clearScores();displayEquationSystem();score = 0; questionsAnswered = 0;updateScoreboard();">清除所有</button>
-    </div>
-     <div id="rounds-scoreboard"> <span id="rounds-scores"></span></div>
-
-    <script>
-        const maxQuestions = 10;
-        let questionsAnswered = 0;
-        let score = 0;
-        let correctOptionIndex;
-        let roundsScores = [];
-
-        function generateCoefficient1() {
-            return Math.floor(Math.random() * 2) + 1;
-        }
-        function generateCoefficient2() {
-            return Math.floor(Math.random() * 5) + 1;
-        }
-        function generateSolution() {
-            return Math.floor(Math.random() * 6) - 0;
-        }
-        function formatCoefficient(coefficient, isFirstTerm = false) {
-            if (coefficient === 1) return isFirstTerm ? '' : '+';
-            if (coefficient === -1) return '-';
-            return isFirstTerm && coefficient > 0 ? `${coefficient}` : `${coefficient > 0 ? '+' : ''}${coefficient}`;
-        }
-        function generateEquationSystem() {
-            let a, b, d, e, x, y, c, f;
-            do {
-                a = generateCoefficient1();
-                b = generateCoefficient2();
-                d = generateCoefficient1();
-                e = generateCoefficient2();
-                x = generateSolution();
-                y = generateSolution();
-                c = a * x + b * y;
-                f = d * x + e * y;
-            } while (a * e === b * d);
-            const equation1 = `${formatCoefficient(a, true)}x ${formatCoefficient(b)}y = ${c}`;
-            const equation2 = `${formatCoefficient(d, true)}x ${formatCoefficient(e)}y = ${f}`;
-            return { equationSystem: `\\[\\begin{cases} ${equation1}  \\\\ ${equation2}\\end{cases}\\quad\\genfrac{}{}{0pt}{}{①}{②} \\]`, correctX: x, correctY: y };
-        }
-        function generateOptions(correctX, correctY) {
-            let options = [{ x: correctX, y: correctY }];
-            while (options.length < 4) {
-                let incorrectAnswer = { x: generateSolution(), y: generateSolution() };
-                if (incorrectAnswer.x !== correctX || incorrectAnswer.y !== correctY) {
-                    options.push(incorrectAnswer);
-                }
-            }
-            options.sort(() => Math.random() - 0.5);
-            correctOptionIndex = options.findIndex(option => option.x === correctX && option.y === correctY);
-            return options;
-        }
-
-        function displayOptions(options) {
-            const labels = ['A', 'B', 'C', 'D'];
-            const optionsHTML = options.map((option, index) =>
-                `<div class="option" onclick="checkAnswer(${index})">${labels[index]}. \\(\\left\\{ \\begin{array}{l} x = ${option.x} \\\\ y = ${option.y} \\end{array} \\right.\\)</div>`
-            ).join('');
-            document.getElementById('options').innerHTML = optionsHTML;
-            MathJax.typesetPromise();
-        }
-        function displayEquationSystem() {
-            const { equationSystem, correctX, correctY } = generateEquationSystem();
-            document.getElementById('equation').innerHTML = equationSystem;
-            MathJax.typesetPromise();
-            const options = generateOptions(correctX, correctY);
-            displayOptions(options);
-        }
-        function updateScoreboard() {
-            document.getElementById('score').textContent = score;
-            document.getElementById('answered').textContent = questionsAnswered;
-        }
+    <div class="container">
+        <!-- 左栏内容，包括链接 -->
+        <div id="left-column" class="column">
 
 
-        function updateRoundsScoreboard() {
-            let roundsScoresText = roundsScores.map((roundScore, index) => `第${index + 1}轮: ${roundScore}分共10题`).join('<br>');
-            document.getElementById('rounds-scores').innerHTML= roundsScoresText;
-        }
+              <a href="#" onclick="loadContent('题型/分数01同分母分数加减法.html', 'http://v.leleketang.com/dat/ps/ma/k/video/24645.mp4')">分数01同分母加减法</a><br>
+              <a href="#" onclick="loadContent('题型/分数02异分母分数加减法.html', 'http://vs.leleketang.com/dat/ps/ma/k/video/24527.mp4')">分数02异分母简单加减法</a><br>
+              <a href="#" onclick="loadContent('题型/分数03异分母分数加减法混合.html', 'http://v.leleketang.com/dat/ps/ma/k/video/24528.mp4')">分数03异分母混合加减法混合</a><br>
+              <a href="#" onclick="loadContent('题型/分数04整数乘以分数.html', 'http://vs.leleketang.com/dat/ps/ma/k/video/24534.mp4')">分数04整数乘以分数</a><br>
+              <a href="#" onclick="loadContent('题型/分数05分数乘以分数.html', 'http://vs.leleketang.com/dat/ps/ma/k/video/24536.mp4')">分数05分数乘以分数</a><br>
+              <a href="#" onclick="loadContent('题型/分数06分数除以分数.html', 'http://v.leleketang.com/dat/ps/ma/k/video/24543.mp4')">分数06分数除以分数</a><br>
+              <a href="#" onclick="loadContent('题型/分数07带分数化假分数.html', 'http://v.leleketang.com/dat/ps/ma/k/video/24515.mp4')">分数07带分数化假分数</a><br>
 
 
-        function checkAnswer(selectedIndex) {
-            if (selectedIndex === correctOptionIndex) {
-                score++;
-            }
-            questionsAnswered++;
-            if (questionsAnswered >= maxQuestions) {
-                roundsScores.push(score);
-                questionsAnswered = 0;
-                score = 0;
-                displayEquationSystem();
-                updateRoundsScoreboard();
-            } else {
-                displayEquationSystem();
-            }
-            updateScoreboard();
-        }
-
-function clearScores() {
-    roundsScores = []; // 清空得分数组
-    updateRoundsScoreboard(); // 更新显示
-}
+               
+             
+                <a href="#" onclick="loadContent('题型/一元一次方程.html', 'http://vs.leleketang.com/dat/ms/ma/k/video/19384.mp4')">什么是一元一次方程</a><br>
+                <a href="#" onclick="loadContent('题型/一元一次方程题库随机.html', 'http://vs.leleketang.com/dat/ms/ma/k/video/19384.mp4')">一元一次方程随机测</a><br>
 
 
 
-        window.onload = displayEquationSystem;
-    </script>
+              <a href="#" onclick="loadContent('二元一次方程组A1-5以内的数.html', 'http://vs.leleketang.com/dat/ms/ma/k/video/18551.mp4')">二元一次方程组A1概念</a><br>
+              <a href="#" onclick="loadContent('题型/二元一次方程组A2-系数5答案9以内的数.html', 'http://v.leleketang.com/dat/ms/ma/k/video/18552.mp4')">二元一次方程组A2代入消元法</a><br>
+              <a href="#" onclick="loadContent('题型/二元一次方程组A3-系数9答案9以内的数.html', 'http://v.leleketang.com/dat/ms/ma/k/video/18553.mp4')">二元一次方程组A3加减消元法</a><br>
+             <a href="#" onclick="loadContent('题型/二元一次方程组B1-第二列系数5以内有负数常数为正.html', 'http://v.leleketang.com/dat/ms/ma/k/video/18552.mp4')">二元一次方程组B1</a><br>
+             <a href="#" onclick="loadContent('题型/二元一次方程组B2-第二列系数5以内有负数常数有负数.html', 'http://vs.leleketang.com/dat/ms/ma/k/video/27622.mp4')">二元一次方程组B2鸡兔同笼视频</a><br>
+             <a href="#" onclick="loadContent('题型/二元一次方程组B3-两列系数5以全都内有正负数.html', 'http://vs.leleketang.com/dat/ms/ma/k/video/18553.mp4')">二元一次方程组B3</a><br>
+             <a href="#" onclick="loadContent('题型/二元一次方程组C1-两列列系数10以全都内有正负数答案正5以内.html', 'https://www.bilibili.com/video/BV14g4y1o79U?t=7.7')">二元一次方程组C1行列式解法</a><br>
+             <a href="#" onclick="loadContent('题型/二元一次方程组C2-两列列系数10以全都内有正负数答案正负5以内.html', 'http://v.leleketang.com/dat/ms/ma/k/video/18562.mp4')">二元一次方程组C2含参视频</a><br>
+             <a href="#" onclick="loadContent('题型/二元一次方程组C3-两列列系数10以全都内有正负数答案正负10以内.html', 'http://v.leleketang.com/dat/ms/ma/k/video/18554.mp4')">二元一次方程组C3</a><br>
+
+             
+             <a href="#" onclick="loadContent('题型/分数二元一次方程组01正分数.html', 'http://v.leleketang.com/dat/ms/ma/k/video/18554.mp4')">分数二元一次方程组01正分数</a><br>
+            <a href="#" onclick="loadContent('题型/分数二元一次方程组02正负分数混合.html', 'http://v.leleketang.com/dat/ms/ma/k/video/18554.mp4')">分数二元一次方程组02正负分数混合</a><br>
+
+
+
+
+            <div class="resize-handle" data-target="left"></div>
+        </div>
+
+
+        <div id="center-column" class="column">
+            <iframe id="center-frame" src="题型/分数01同分母分数加减法.html" style="width:100%;height:100%;border:none;"></iframe>
+            <div class="resize-handle" data-target="center"></div>
+        </div>
+
+        <div id="right-column" class="column">
+            <iframe id="right-frame" src="http://v.leleketang.com/dat/ps/ma/k/video/24645.mp4" style="width:100%;height:100%;border:none;"></iframe>
+        </div>
+       </div>
+
+
+<script>
+     function loadContent(localUrl, remoteUrl) {
+        document.getElementById('center-frame').src = localUrl;
+        document.getElementById('right-frame').src = remoteUrl;
+       }
+
+
+
+
+
+</script>
 </body>
 </html>
