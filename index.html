@@ -3,239 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>玖数学的运算</title>
+    <title>玖数学练习</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
+        body {
+            height: 100%; /* 确保整个文档填满整个视口高度 */
+            margin: 0; /* 移除默认边距 */
+            padding: 0; /* 移除默认内边距 */
+            font-family: Arial, sans-serif;
+            background-color: lightblue;
+            display: flex;
+        }
 
-
-
-
- body {
-    margin: 0;
-    padding: 0;
-    height: 100%; /* 确保 html 和 body 占据整个视口的高度 */
-    font-family: Arial, sans-serif;
-    background-color: lightblue;
-    display: flex; /* 使用 flex 布局 */
-    flex-direction: column; /* 设置内容垂直堆叠 */
-}
-
-.main-container {
-    display: flex;
-    flex-grow: 1; /* 确保主容器填充所有可用空间 */
-    width: 100%;
-}
-
-.left-column, .right-column {
-    flex-grow: 1; /* 使两栏自适应剩余空间 */
-    border: 1px solid grey; /* 添加灰色边框 */
-    overflow: auto; /* 添加滚动条 */
-}
-
-.left-column {
-    width: 10%;
-}
-
-.right-column {
-    flex-grow: 9; /* 分配剩余空间的大部分给右栏 */
-}
-
-.left-column a {
-    display: block; /* 让链接占据整行 */
-    margin: 10px 0; /* 添加一些上下边距 */
-    color: blue; /* 可以设置链接的颜色 */
-    text-decoration: none; /* 移除下划线 */
-    text-align: center; /* 文本居中 */
-
-}
-
-.left-column a:hover {
-    text-decoration: underline; /* 鼠标悬停时添加下划线 */
-}
-
-
-
-
-
-        #title {
-            text-align: center;
-            margin-top: 10px;
+        #navigation {
+            width: 20%;
+            border-right: 1px solid #000;
+            padding: 10px;
+           text-align: center; /* 添加文本居中 */
+           line-height: 2.5;   /* 设置1.5倍行距 */
+           height: 100vh; /* 设置为视口的高度 */
         }
 
         #game-container {
-            margin: 30px;
-            text-align: center;
+            width: 80%;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        #equation {
-            font-size: 2em;
+        #equation, #options {
             text-align: center;
-            margin: 20px;
-        }
-
-        #options {
-            text-align: center;
-            margin: 20px;
+            width: 100%;
         }
 
         .option {
             display: inline-block;
             margin: 0 10px;
             padding: 10px;
-
+            border: 1px solid #000;
             cursor: pointer;
             margin: 0 10px 20px;
-            border: 1px solid grey; /* 添加灰色边框 */
         }
 
-        #scoreboard {
-            text-align: center;
-            margin: 20px;
-        }
-
-        #rounds-scoreboard {
-            text-align: center;
-            margin: 20px;
-        }
-      
-
-
-
-
+        /* 可以根据需要添加更多样式 */
     </style>
 </head>
-
 <body>
- <div class="main-container">
-        <div class="left-column">
-    <a href="https://jiushu520.github.io/jiushu/" target="_blank">目录</a><br>
-    <a href="https://jiushu520.github.io/jiushu520/" target="_blank">分数混合运算</a><br>
-    <a href="https://jiushu520.github.io/jiushu123/" target="_blank">二元一次方程</a>
-
-        </div>
-           <div class="right-column">
-
-
-
-      <div id="title">
-        <h1>玖数学的分数运算</h1>
-        <h2>分数01同分母加减法:</h2>
+    <div id="navigation">
+        <h3>选择题型</h3>
+        <button onclick="loadQuestions(fractionOperations, '分数运算')">分数运算</button><br>
+        <button onclick="loadQuestions(fractionEquations, '分数方程组')">分数方程组</button><br>
     </div>
+
     <div id="game-container">
+       <h3>玖数学测训系统</h3>
+        <div id="current-topic"></div> <!-- 新添加的元素 -->
+
         <div id="equation"></div>
         <div id="options"></div>
         <div id="scoreboard">现在得分:<span id="score">0</span>,已回答:<span id="answered">0</span></div>
+        <div id="rounds-scoreboard"></div>
     </div>
 
-     <div style="text-align: center; margin-top: 10px;">
-        <button onclick="startNewRound()">重新开始</button>
-        <button onclick="clearScores(); startNewRound();">清除所有</button>
-      </div>
-
-    <div id="rounds-scoreboard"> <span id="rounds-scores"></span></div>
-   </div>
     <script>
-        const questionBank = [
+        let currentQuestionBank;
+        let currentEquationSystem;
+        let score = 0;
+        let questionsAnswered = 0;
+        let roundsScores = [];
+        let currentTopic = '';
 
-            { equation: "\\frac{1}{6}+\\frac{2}{6}=?", correctOption: "\\frac{1}{2}", incorrectOptions: ["\\frac{2}{5}", "\\frac{2}{3}", "\\frac{1}{5}"] },
-            { equation: "\\frac{1}{3}+\\frac{1}{3}=?", correctOption: "\\frac{2}{3}", incorrectOptions: ["\\frac{1}{7}", "\\frac{2}{7}", "\\frac{1}{5}"] },
-            { equation: "\\frac{1}{4}+\\frac{2}{4}=?", correctOption: "\\frac{3}{4}", incorrectOptions: ["\\frac{1}{7}", "\\frac{2}{7}", "\\frac{1}{5}"] },
-            { equation: "\\frac{1}{5}+\\frac{2}{5}=?", correctOption: "\\frac{3}{5}", incorrectOptions: ["\\frac{1}{7}", "\\frac{2}{7}", "\\frac{1}{5}"] },
-            { equation: "\\frac{1}{6}+\\frac{2}{6}=?", correctOption: "\\frac{1}{2}", incorrectOptions: ["\\frac{2}{5}", "\\frac{2}{3}", "\\frac{1}{5}"] },
-            { equation: "\\frac{1}{7}+\\frac{2}{7}=?", correctOption: "\\frac{3}{7}", incorrectOptions: ["\\frac{2}{5}", "\\frac{2}{3}", "\\frac{1}{5}"] },
-            { equation: "\\frac{1}{8}+\\frac{2}{8}=?", correctOption: "\\frac{3}{8}", incorrectOptions: ["\\frac{1}{7}", "\\frac{2}{7}", "\\frac{1}{5}"] },
-            { equation: "\\frac{1}{9}+\\frac{2}{9}=?", correctOption: "\\frac{1}{3}", incorrectOptions: ["\\frac{2}{5}", "\\frac{2}{3}", "\\frac{1}{5}"] },
-            { equation: "\\frac{2}{3}+\\frac{1}{3}=?", correctOption: "1", incorrectOptions: ["\\frac{1}{7}", "\\frac{2}{7}", "\\frac{1}{5}"] },
-            { equation: "\\frac{2}{4}+\\frac{1}{4}=?", correctOption: "\\frac{3}{4}", incorrectOptions: ["\\frac{1}{7}", "\\frac{2}{7}", "\\frac{1}{5}"] },
-            { equation: "\\frac{2}{5}+\\frac{1}{5}=?", correctOption: "\\frac{3}{5}", incorrectOptions: ["\\frac{1}{7}", "\\frac{2}{7}", "\\frac{1}{5}"] },
-            { equation: "\\frac{1}{2}+\\frac{1}{2}=?", correctOption: "1", incorrectOptions: ["\\frac{1}{4}", "\\frac{1}{3}", "\\frac{1}{5}"] },
-            { equation: "\\frac{1}{3}+\\frac{1}{3}=?", correctOption: "\\frac{2}{3}", incorrectOptions: ["\\frac{1}{2}", "\\frac{2}{5}", "\\frac{1}{4}"] },
-            { equation: "\\frac{1}{4}+\\frac{2}{4}=?", correctOption: "\\frac{3}{4}", incorrectOptions: ["\\frac{1}{2}", "\\frac{2}{3}", "\\frac{1}{3}"] },
-            { equation: "\\frac{1}{5}+\\frac{3}{5}=?", correctOption: "\\frac{4}{5}", incorrectOptions: ["\\frac{1}{2}", "\\frac{2}{3}", "\\frac{1}{4}"] },
-            { equation: "\\frac{1}{6}+\\frac{4}{6}=?", correctOption: "\\frac{5}{6}", incorrectOptions: ["\\frac{1}{2}", "\\frac{2}{3}", "\\frac{1}{3}"] },
-            { equation: "\\frac{1}{7}+\\frac{5}{7}=?", correctOption: "\\frac{6}{7}", incorrectOptions: ["\\frac{1}{2}", "\\frac{2}{3}", "\\frac{1}{4}"] },
-            { equation: "\\frac{1}{8}+\\frac{6}{8}=?", correctOption: "\\frac{7}{8}", incorrectOptions: ["\\frac{1}{2}", "\\frac{2}{3}", "\\frac{1}{3}"] },
-            { equation: "\\frac{1}{9}+\\frac{7}{9}=?", correctOption: "\\frac{8}{9}", incorrectOptions: ["\\frac{1}{2}", "\\frac{2}{3}", "\\frac{1}{4}"] },
-            { equation: "\\frac{2}{9}+\\frac{6}{9}=?", correctOption: "\\frac{8}{9}", incorrectOptions: ["\\frac{1}{2}", "\\frac{2}{3}", "\\frac{1}{3}"] },
-            { equation: "\\frac{2}{8}+\\frac{5}{8}=?", correctOption: "\\frac{7}{8}", incorrectOptions: ["\\frac{1}{2}", "\\frac{2}{3}", "\\frac{1}{4}"] },
+        const fractionOperations = [
+           {equation:"8\\frac{1}{7}=?",correctOption:"\\frac{57}{7}",incorrectOptions:["\\frac{24}{7}","\\frac{9}{7}","\\frac{45}{7}",]},
 
- { equation: "\\frac{2}{4}-\\frac{1}{4}=?", correctOption: "\\frac{1}{4}", incorrectOptions: ["\\frac{1}{7}", "\\frac{2}{7}", "\\frac{1}{5}"] },
-  { equation: "\\frac{3}{6}-\\frac{1}{6}=?", correctOption: "\\frac{1}{3}", incorrectOptions: ["\\frac{2}{5}", "\\frac{2}{3}", "\\frac{1}{5}"] },
-  { equation: "\\frac{2}{3}-\\frac{1}{3}=?", correctOption: "\\frac{1}{3}", incorrectOptions: ["\\frac{1}{7}", "\\frac{2}{7}", "\\frac{1}{5}"] },
-  { equation: "\\frac{3}{4}-\\frac{1}{4}=?", correctOption: "\\frac{1}{2}", incorrectOptions: ["\\frac{1}{7}", "\\frac{2}{7}", "\\frac{1}{5}"] },
-  { equation: "\\frac{3}{5}-\\frac{1}{5}=?", correctOption: "\\frac{2}{5}", incorrectOptions: ["\\frac{1}{7}", "\\frac{2}{7}", "\\frac{1}{5}"] },
-  { equation: "\\frac{3}{6}-\\frac{1}{6}=?", correctOption: "\\frac{1}{3}", incorrectOptions: ["\\frac{2}{5}", "\\frac{2}{3}", "\\frac{1}{5}"] },
-  { equation: "\\frac{4}{4}-\\frac{2}{4}=?", correctOption: "\\frac{1}{2}", incorrectOptions: ["\\frac{1}{7}", "\\frac{2}{7}", "\\frac{1}{5}"] },
-  { equation: "\\frac{4}{6}-\\frac{2}{6}=?", correctOption: "\\frac{1}{3}", incorrectOptions: ["\\frac{2}{5}", "\\frac{2}{3}", "\\frac{1}{5}"] },
-  { equation: "\\frac{3}{3}-\\frac{1}{3}=?", correctOption: "\\frac{2}{3}", incorrectOptions: ["\\frac{1}{7}", "\\frac{2}{7}", "\\frac{1}{5}"] },
-  { equation: "\\frac{4}{4}-\\frac{2}{4}=?", correctOption: "\\frac{1}{2}", incorrectOptions: ["\\frac{1}{7}", "\\frac{2}{7}", "\\frac{1}{5}"] },
-  { equation: "\\frac{4}{5}-\\frac{2}{5}=?", correctOption: "\\frac{2}{5}", incorrectOptions: ["\\frac{1}{7}", "\\frac{2}{7}", "\\frac{1}{5}"] },
-  { equation: "\\frac{4}{6}-\\frac{2}{6}=?", correctOption: "\\frac{1}{3}", incorrectOptions: ["\\frac{2}{5}", "\\frac{2}{3}", "\\frac{1}{5}"] },
-  { equation: "\\frac{4}{4}-\\frac{3}{4}=?", correctOption: "\\frac{1}{4}", incorrectOptions: ["\\frac{1}{7}", "\\frac{2}{7}", "\\frac{1}{5}"] },
-  { equation: "\\frac{5}{6}-\\frac{3}{6}=?", correctOption: "\\frac{1}{3}", incorrectOptions: ["\\frac{2}{5}", "\\frac{2}{3}", "\\frac{1}{5}"] },
-  { equation: "\\frac{3}{3}-\\frac{2}{3}=?", correctOption: "\\frac{1}{3}", incorrectOptions: ["\\frac{1}{7}", "\\frac{2}{7}", "\\frac{1}{5}"] },
-  { equation: "\\frac{4}{4}-\\frac{3}{4}=?", correctOption: "\\frac{1}{4}", incorrectOptions: ["\\frac{1}{7}", "\\frac{2}{7}", "\\frac{1}{5}"] },
-  { equation: "\\frac{5}{5}-\\frac{3}{5}=?", correctOption: "\\frac{2}{5}", incorrectOptions: ["\\frac{1}{7}", "\\frac{2}{7}", "\\frac{1}{5}"] },
-  { equation: "\\frac{5}{6}-\\frac{3}{6}=?", correctOption: "\\frac{1}{3}", incorrectOptions: ["\\frac{2}{5}", "\\frac{2}{3}", "\\frac{1}{5}"] },
-  { equation: "\\frac{4}{4}-\\frac{3}{4}=?", correctOption: "\\frac{1}{4}", incorrectOptions: ["\\frac{1}{7}", "\\frac{2}{7}", "\\frac{1}{5}"] },
-  { equation: "\\frac{5}{6}-\\frac{4}{6}=?", correctOption: "\\frac{1}{6}", incorrectOptions: ["\\frac{2}{5}", "\\frac{2}{3}", "\\frac{1}{5}"] },
+{equation:"7\\frac{1}{6}=?",correctOption:"\\frac{43}{6}",incorrectOptions:["\\frac{56}{6}","\\frac{72}{6}","\\frac{5}{6}",]},
 
-
-
+{equation:"7\\frac{1}{7}=?",correctOption:"\\frac{50}{7}",incorrectOptions:["\\frac{72}{7}","\\frac{3}{7}","\\frac{42}{7}",]}, // 分数运算的题库
+            // {equation: "...", correctOption: "...", incorrectOptions: ["...", "...", "..."]},
+            // 其他题目
         ];
 
-        const maxQuestions = 10;
-        let questionsAnswered = 0;
-        let score = 0;
-        let roundsScores = [];
-        let currentEquationSystem; // 存储当前方程系统
+        const fractionEquations = [
+            {equation: "\\begin{cases} \\frac{1}{3}x+y=15 \\\\ \\frac{4}{5}x+3y=42\\end{cases}\\genfrac{}{}{0pt}{}{①}{②} ",correctOption:"\\begin{cases} x=15 \\\\ x=10\\end{cases} ",incorrectOptions:["\\begin{cases} x=8 \\\\ y=1\\end{cases}","\\begin{cases} x=12 \\\\ y=1\\end{cases}","\\begin{cases} x=1 \\\\ y=7\\end{cases}",]},
+
+{equation: "\\begin{cases} \\frac{1}{5}x+y=14 \\\\ \\frac{4}{5}x+4y=56\\end{cases}\\genfrac{}{}{0pt}{}{①}{②} ",correctOption:"\\begin{cases} x=25 \\\\ x=9\\end{cases} ",incorrectOptions:["\\begin{cases} x=7 \\\\ y=7\\end{cases}","\\begin{cases} x=9 \\\\ y=10\\end{cases}","\\begin{cases} x=3 \\\\ y=8\\end{cases}",]},
+
+{equation: "\\begin{cases} \\frac{1}{2}x+y=10 \\\\ \\frac{1}{3}x+2y=12\\end{cases}\\genfrac{}{}{0pt}{}{①}{②} ",correctOption:"\\begin{cases} x=12 \\\\ x=4\\end{cases} ",incorrectOptions:["\\begin{cases} x=13 \\\\ y=6\\end{cases}","\\begin{cases} x=5 \\\\ y=11\\end{cases}","\\begin{cases} x=5 \\\\ y=7\\end{cases}",]},// 分数方程组的题库
+            // {equation: "...", correctOption: "...", incorrectOptions: ["...", "...", "..."]},
+            // 其他题目
+        ];
+
+function loadQuestions(questionBank, topic) {
+    currentQuestionBank = questionBank;
+    currentTopic = topic;
+    score = 0;
+    questionsAnswered = 0;
+    updateScoreboard();
+    updateRoundsScoreboard();
+    document.getElementById('current-topic').textContent = `玖数学: ${currentTopic}`; // 更新题型名称
+    startNewRound();
+}
 
         function generateEquationSystem() {
-            const randomIndex = Math.floor(Math.random() * questionBank.length);
-            const { equation, correctOption, incorrectOptions } = questionBank[randomIndex];
+            const randomIndex = Math.floor(Math.random() * currentQuestionBank.length);
+            const { equation, correctOption, incorrectOptions } = currentQuestionBank[randomIndex];
 
-            // 随机化正确答案的位置
             const correctIndex = Math.floor(Math.random() * 4);
             const options = [...incorrectOptions];
             options.splice(correctIndex, 0, correctOption);
 
-            // 存储当前方程系统
             currentEquationSystem = { equationSystem: `\\[ ${equation} \\]`, correctIndex, options };
-
-            return currentEquationSystem;
         }
 
-        function generateOptions(options) {
+        function generateOptions() {
             const labels = ['A', 'B', 'C', 'D'];
-            const optionsHTML = options.map((option, index) => {
-                return `<div class="option" onclick="checkAnswer(${index})"><span>${labels[index]}. \\(${option}\\)</span></div>`;
-            }).join('');
-
-            document.getElementById('options').innerHTML = optionsHTML;
-            MathJax.typeset(); // Tell MathJax to update the rendering
-        }
-
-        function startNewRound() {
-            if (window.MathJax) {
-                // Ensure MathJax has loaded before starting a new round
-                MathJax.startup.promise.then(function() {
-                    score = 0;
-                    questionsAnswered = 0;
-                    displayEquationSystem();
-                    updateScoreboard();
-                }).catch(function(error) {
-                    console.error('Error while initializing MathJax', error);
-                });
-            } else {
-                console.error('MathJax not found');
-            }
+            return currentEquationSystem.options.map((option, index) => `<div class="option" onclick="checkAnswer(${index})"><span>${labels[index]}. \\(${option}\\)</span></div>`).join('');
         }
 
         function displayEquationSystem() {
-            const { equationSystem, options } = generateEquationSystem();
-            document.getElementById('equation').innerHTML = equationSystem;
-            generateOptions(options);
+            generateEquationSystem();
+            document.getElementById('equation').innerHTML = currentEquationSystem.equationSystem;
+            document.getElementById('options').innerHTML = generateOptions();
+            MathJax.typeset();
+        }
+
+        function startNewRound() {
+            if (questionsAnswered >= 10) {
+                roundsScores.push({ topic: currentTopic, score: score });
+                score = 0;
+                questionsAnswered = 0;
+                updateRoundsScoreboard();
+            }
+            displayEquationSystem();
+        }
+
+        function checkAnswer(selectedIndex) {
+            if (parseInt(selectedIndex) === currentEquationSystem.correctIndex) {
+                score++;
+            }
+
+            questionsAnswered++;
+            updateScoreboard();
+            startNewRound();
         }
 
         function updateScoreboard() {
@@ -244,36 +155,12 @@
         }
 
         function updateRoundsScoreboard() {
-            let roundsScoresText = roundsScores.map((roundScore, index) => `第${index + 1}轮: ${roundScore}分共10题`).join('<br>');
-            document.getElementById('rounds-scores').innerHTML = roundsScoresText;
+            let roundsScoresText = roundsScores.map((round, index) => `第${index + 1}轮 (${round.topic}): ${round.score}分共10题`).join('<br>');
+            document.getElementById('rounds-scoreboard').innerHTML = roundsScoresText;
         }
 
-        function checkAnswer(selectedIndex) {
-            const { correctIndex } = currentEquationSystem;
-
-            if (parseInt(selectedIndex) === correctIndex) {
-                score++;
-            }
-
-            questionsAnswered++;
-            if (questionsAnswered >= maxQuestions) {
-                roundsScores.push(score);
-                questionsAnswered = 0;
-                score = 0;
-                updateRoundsScoreboard();
-            }
-            displayEquationSystem();
-            updateScoreboard();
-        }
-
-        function clearScores() {
-            roundsScores = [];
-            updateRoundsScoreboard();
-        }
-
-        // Ensure MathJax is ready before starting the game
-        window.onload = startNewRound;
+        // 默认加载分数运算题库
+        window.onload = () => loadQuestions(fractionOperations, '分数运算');
     </script>
 </body>
-
 </html>
