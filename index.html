@@ -32,7 +32,6 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            background-color: lightblue;
            
         }
 
@@ -67,6 +66,7 @@
 
         
         <button onclick="loadQuestions(分数二元一次方程组01, '分数二元一次方程组01')">分数二元一次方程组01</button><br>
+        <button onclick="loadQuestions(鸡兔同笼头和差, '鸡兔同笼头和差')">鸡兔同笼头和差</button><br>
     </div>
 
     <div id="game-container">
@@ -86,6 +86,118 @@
         let questionsAnswered = 0;
         let roundsScores = [];
         let currentTopic = '';
+
+ const 鸡兔同笼头和差 = [
+{equation: "鸡兔同笼共36只;鸡比兔多4只，请问鸡有几只？兔有几只？",correctOption: "鸡=20 兔=16",incorrectOptions:[" 鸡=7 , 兔=10", "鸡=11 , 兔=15","鸡=3 , 兔=3"]},
+
+{equation: "鸡兔同笼共15只;鸡比兔少5只，请问鸡有几只？兔有几只？",correctOption: "鸡=5 兔=10",incorrectOptions:[" 鸡=14 , 兔=6", "鸡=10 , 兔=5","鸡=6 , 兔=8"]},
+
+{equation: "鸡兔同笼共19只;鸡比兔少13只，请问鸡有几只？兔有几只？",correctOption: "鸡=3 兔=16",incorrectOptions:[" 鸡=8 , 兔=8", "鸡=4 , 兔=15","鸡=4 , 兔=1"]},
+
+{equation: "鸡兔同笼共21只;鸡比兔多5只，请问鸡有几只？兔有几只？",correctOption: "鸡=13 兔=8",incorrectOptions:[" 鸡=8 , 兔=9", "鸡=11 , 兔=4","鸡=5 , 兔=4"]},
+
+{equation: "鸡兔同笼共16只;鸡和兔一样多，请问鸡有几只？兔有几只？",correctOption: "鸡=8 兔=8",incorrectOptions:[" 鸡=7 , 兔=5", "鸡=6 , 兔=9","鸡=4 , 兔=7"]},
+
+{equation: "鸡兔同笼共19只;鸡比兔少7只，请问鸡有几只？兔有几只？",correctOption: "鸡=6 兔=13",incorrectOptions:[" 鸡=9 , 兔=7", "鸡=15 , 兔=9","鸡=7 , 兔=10"]},
+
+{equation: "鸡兔同笼共34只;鸡比兔少4只，请问鸡有几只？兔有几只？",correctOption: "鸡=15 兔=19",incorrectOptions:[" 鸡=6 , 兔=14", "鸡=14 , 兔=7","鸡=4 , 兔=9"]},
+
+{equation: "鸡兔同笼共9只;鸡比兔少3只，请问鸡有几只？兔有几只？",correctOption: "鸡=3 兔=6",incorrectOptions:[" 鸡=14 , 兔=12", "鸡=10 , 兔=2","鸡=1 , 兔=7"]},
+
+{equation: "鸡兔同笼共12只;鸡比兔多10只，请问鸡有几只？兔有几只？",correctOption: "鸡=11 兔=1",incorrectOptions:[" 鸡=15 , 兔=6", "鸡=8 , 兔=4","鸡=7 , 兔=3"]},
+
+{equation: "鸡兔同笼共31只;鸡比兔多7只，请问鸡有几只？兔有几只？",correctOption: "鸡=19 兔=12",incorrectOptions:[" 鸡=2 , 兔=13", "鸡=7 , 兔=3","鸡=7 , 兔=6"]},
+
+{equation: "鸡兔同笼共27只;鸡比兔少13只，请问鸡有几只？兔有几只？",correctOption: "鸡=7 兔=20",incorrectOptions:[" 鸡=11 , 兔=1", "鸡=8 , 兔=11","鸡=2 , 兔=10"]},
+
+{equation: "鸡兔同笼共13只;鸡比兔少11只，请问鸡有几只？兔有几只？",correctOption: "鸡=1 兔=12",incorrectOptions:[" 鸡=13 , 兔=15", "鸡=11 , 兔=14","鸡=7 , 兔=4"]},
+
+{equation: "鸡兔同笼共27只;鸡比兔多3只，请问鸡有几只？兔有几只？",correctOption: "鸡=15 兔=12",incorrectOptions:[" 鸡=3 , 兔=4", "鸡=11 , 兔=14","鸡=6 , 兔=10"]},
+
+{equation: "鸡兔同笼共21只;鸡比兔多9只，请问鸡有几只？兔有几只？",correctOption: "鸡=15 兔=6",incorrectOptions:[" 鸡=10 , 兔=1", "鸡=4 , 兔=5","鸡=9 , 兔=5"]},
+
+{equation: "鸡兔同笼共3只;鸡比兔少1只，请问鸡有几只？兔有几只？",correctOption: "鸡=1 兔=2",incorrectOptions:[" 鸡=10 , 兔=6", "鸡=2 , 兔=13","鸡=8 , 兔=6"]},
+
+{equation: "鸡兔同笼共29只;鸡比兔少11只，请问鸡有几只？兔有几只？",correctOption: "鸡=9 兔=20",incorrectOptions:[" 鸡=8 , 兔=14", "鸡=7 , 兔=1","鸡=3 , 兔=7"]},
+
+{equation: "鸡兔同笼共20只;鸡和兔一样多，请问鸡有几只？兔有几只？",correctOption: "鸡=10 兔=10",incorrectOptions:[" 鸡=11 , 兔=3", "鸡=15 , 兔=7","鸡=4 , 兔=8"]},
+
+{equation: "鸡兔同笼共24只;鸡比兔少2只，请问鸡有几只？兔有几只？",correctOption: "鸡=11 兔=13",incorrectOptions:[" 鸡=8 , 兔=9", "鸡=6 , 兔=4","鸡=6 , 兔=4"]},
+
+{equation: "鸡兔同笼共31只;鸡比兔少1只，请问鸡有几只？兔有几只？",correctOption: "鸡=15 兔=16",incorrectOptions:[" 鸡=9 , 兔=5", "鸡=9 , 兔=11","鸡=9 , 兔=3"]},
+
+{equation: "鸡兔同笼共21只;鸡比兔少13只，请问鸡有几只？兔有几只？",correctOption: "鸡=4 兔=17",incorrectOptions:[" 鸡=8 , 兔=14", "鸡=15 , 兔=15","鸡=5 , 兔=9"]},
+
+{equation: "鸡兔同笼共29只;鸡比兔少5只，请问鸡有几只？兔有几只？",correctOption: "鸡=12 兔=17",incorrectOptions:[" 鸡=2 , 兔=15", "鸡=11 , 兔=3","鸡=8 , 兔=3"]},
+
+{equation: "鸡兔同笼共5只;鸡比兔少3只，请问鸡有几只？兔有几只？",correctOption: "鸡=1 兔=4",incorrectOptions:[" 鸡=5 , 兔=1", "鸡=14 , 兔=1","鸡=2 , 兔=6"]},
+
+{equation: "鸡兔同笼共14只;鸡比兔多10只，请问鸡有几只？兔有几只？",correctOption: "鸡=12 兔=2",incorrectOptions:[" 鸡=8 , 兔=13", "鸡=2 , 兔=6","鸡=1 , 兔=10"]},
+
+{equation: "鸡兔同笼共6只;鸡和兔一样多，请问鸡有几只？兔有几只？",correctOption: "鸡=3 兔=3",incorrectOptions:[" 鸡=5 , 兔=7", "鸡=15 , 兔=2","鸡=6 , 兔=1"]},
+
+{equation: "鸡兔同笼共13只;鸡比兔少11只，请问鸡有几只？兔有几只？",correctOption: "鸡=1 兔=12",incorrectOptions:[" 鸡=2 , 兔=9", "鸡=13 , 兔=1","鸡=8 , 兔=6"]},
+
+{equation: "鸡兔同笼共3只;鸡比兔多1只，请问鸡有几只？兔有几只？",correctOption: "鸡=2 兔=1",incorrectOptions:[" 鸡=7 , 兔=10", "鸡=13 , 兔=6","鸡=8 , 兔=9"]},
+
+{equation: "鸡兔同笼共21只;鸡比兔少7只，请问鸡有几只？兔有几只？",correctOption: "鸡=7 兔=14",incorrectOptions:[" 鸡=13 , 兔=13", "鸡=14 , 兔=3","鸡=1 , 兔=7"]},
+
+{equation: "鸡兔同笼共36只;鸡比兔多2只，请问鸡有几只？兔有几只？",correctOption: "鸡=19 兔=17",incorrectOptions:[" 鸡=7 , 兔=10", "鸡=15 , 兔=2","鸡=3 , 兔=1"]},
+
+{equation: "鸡兔同笼共6只;鸡比兔多2只，请问鸡有几只？兔有几只？",correctOption: "鸡=4 兔=2",incorrectOptions:[" 鸡=7 , 兔=5", "鸡=9 , 兔=10","鸡=7 , 兔=9"]},
+
+{equation: "鸡兔同笼共16只;鸡比兔少6只，请问鸡有几只？兔有几只？",correctOption: "鸡=5 兔=11",incorrectOptions:[" 鸡=12 , 兔=9", "鸡=14 , 兔=6","鸡=3 , 兔=6"]},
+
+{equation: "鸡兔同笼共40只;鸡和兔一样多，请问鸡有几只？兔有几只？",correctOption: "鸡=20 兔=20",incorrectOptions:[" 鸡=2 , 兔=4", "鸡=10 , 兔=10","鸡=7 , 兔=9"]},
+
+{equation: "鸡兔同笼共34只;鸡比兔多6只，请问鸡有几只？兔有几只？",correctOption: "鸡=20 兔=14",incorrectOptions:[" 鸡=10 , 兔=15", "鸡=8 , 兔=7","鸡=6 , 兔=2"]},
+
+{equation: "鸡兔同笼共16只;鸡比兔多10只，请问鸡有几只？兔有几只？",correctOption: "鸡=13 兔=3",incorrectOptions:[" 鸡=7 , 兔=4", "鸡=3 , 兔=9","鸡=9 , 兔=1"]},
+
+{equation: "鸡兔同笼共21只;鸡比兔少1只，请问鸡有几只？兔有几只？",correctOption: "鸡=10 兔=11",incorrectOptions:[" 鸡=8 , 兔=3", "鸡=12 , 兔=7","鸡=7 , 兔=2"]},
+
+{equation: "鸡兔同笼共12只;鸡比兔多8只，请问鸡有几只？兔有几只？",correctOption: "鸡=10 兔=2",incorrectOptions:[" 鸡=4 , 兔=9", "鸡=1 , 兔=4","鸡=9 , 兔=5"]},
+
+{equation: "鸡兔同笼共26只;鸡比兔多6只，请问鸡有几只？兔有几只？",correctOption: "鸡=16 兔=10",incorrectOptions:[" 鸡=3 , 兔=15", "鸡=2 , 兔=6","鸡=3 , 兔=3"]},
+
+{equation: "鸡兔同笼共8只;鸡比兔多6只，请问鸡有几只？兔有几只？",correctOption: "鸡=7 兔=1",incorrectOptions:[" 鸡=1 , 兔=7", "鸡=1 , 兔=5","鸡=1 , 兔=9"]},
+
+{equation: "鸡兔同笼共15只;鸡比兔多9只，请问鸡有几只？兔有几只？",correctOption: "鸡=12 兔=3",incorrectOptions:[" 鸡=4 , 兔=10", "鸡=13 , 兔=15","鸡=9 , 兔=5"]},
+
+{equation: "鸡兔同笼共9只;鸡比兔多7只，请问鸡有几只？兔有几只？",correctOption: "鸡=8 兔=1",incorrectOptions:[" 鸡=2 , 兔=15", "鸡=9 , 兔=2","鸡=10 , 兔=8"]},
+
+{equation: "鸡兔同笼共5只;鸡比兔多1只，请问鸡有几只？兔有几只？",correctOption: "鸡=3 兔=2",incorrectOptions:[" 鸡=15 , 兔=9", "鸡=13 , 兔=9","鸡=8 , 兔=10"]},
+
+{equation: "鸡兔同笼共8只;鸡比兔多2只，请问鸡有几只？兔有几只？",correctOption: "鸡=5 兔=3",incorrectOptions:[" 鸡=2 , 兔=2", "鸡=12 , 兔=2","鸡=1 , 兔=8"]},
+
+{equation: "鸡兔同笼共22只;鸡比兔少8只，请问鸡有几只？兔有几只？",correctOption: "鸡=7 兔=15",incorrectOptions:[" 鸡=10 , 兔=2", "鸡=12 , 兔=4","鸡=2 , 兔=1"]},
+
+{equation: "鸡兔同笼共21只;鸡比兔少17只，请问鸡有几只？兔有几只？",correctOption: "鸡=2 兔=19",incorrectOptions:[" 鸡=13 , 兔=14", "鸡=1 , 兔=1","鸡=6 , 兔=5"]},
+
+{equation: "鸡兔同笼共20只;鸡比兔少4只，请问鸡有几只？兔有几只？",correctOption: "鸡=8 兔=12",incorrectOptions:[" 鸡=4 , 兔=7", "鸡=4 , 兔=13","鸡=4 , 兔=3"]},
+
+{equation: "鸡兔同笼共20只;鸡比兔多18只，请问鸡有几只？兔有几只？",correctOption: "鸡=19 兔=1",incorrectOptions:[" 鸡=15 , 兔=12", "鸡=5 , 兔=4","鸡=10 , 兔=8"]},
+
+{equation: "鸡兔同笼共26只;鸡比兔多4只，请问鸡有几只？兔有几只？",correctOption: "鸡=15 兔=11",incorrectOptions:[" 鸡=5 , 兔=10", "鸡=7 , 兔=12","鸡=4 , 兔=5"]},
+
+{equation: "鸡兔同笼共16只;鸡比兔少2只，请问鸡有几只？兔有几只？",correctOption: "鸡=7 兔=9",incorrectOptions:[" 鸡=15 , 兔=14", "鸡=11 , 兔=8","鸡=2 , 兔=8"]},
+
+{equation: "鸡兔同笼共23只;鸡比兔多1只，请问鸡有几只？兔有几只？",correctOption: "鸡=12 兔=11",incorrectOptions:[" 鸡=3 , 兔=6", "鸡=5 , 兔=13","鸡=10 , 兔=2"]},
+
+{equation: "鸡兔同笼共23只;鸡比兔少13只，请问鸡有几只？兔有几只？",correctOption: "鸡=5 兔=18",incorrectOptions:[" 鸡=10 , 兔=11", "鸡=9 , 兔=2","鸡=2 , 兔=9"]},
+
+{equation: "鸡兔同笼共27只;鸡比兔多1只，请问鸡有几只？兔有几只？",correctOption: "鸡=14 兔=13",incorrectOptions:[" 鸡=6 , 兔=7", "鸡=12 , 兔=2","鸡=2 , 兔=4"]},
+
+
+
+
+
+
+        ];
+
+
+
+
  const 分数加减运算 = [
 {equation:"\\frac{4}{9}+\\frac{2}{5}=?",correctOption:"\\frac{38}{45}",incorrectOptions:["\\frac{8}{5}","\\frac{1}{8}","\\frac{9}{8}"]},
 
