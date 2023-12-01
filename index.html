@@ -53,12 +53,8 @@
 <body>
     <div id="navigation">
         <h3>选择题型</h3>
-        <button onclick="loadQuestions(分数运算,'分数运算')">分数运算</button><br>
-        <button onclick="loadQuestions(二元一次方程组,'分数方程组')">分数方程组</button><br>
-
-
-
-        
+        <button onclick="loadQuestions(fractionOperations, '分数运算')">分数运算</button><br>
+        <button onclick="loadQuestions(fractionEquations, '分数方程组')">分数方程组</button><br>
     </div>
 
     <div id="game-container">
@@ -79,7 +75,7 @@
         let roundsScores = [];
         let currentTopic = '';
 
-        const 分数运算 = [
+        const fractionOperations = [
            {equation:"8\\frac{1}{7}=?",correctOption:"\\frac{57}{7}",incorrectOptions:["\\frac{24}{7}","\\frac{9}{7}","\\frac{45}{7}",]},
 
 {equation:"7\\frac{1}{6}=?",correctOption:"\\frac{43}{6}",incorrectOptions:["\\frac{56}{6}","\\frac{72}{6}","\\frac{5}{6}",]},
@@ -89,7 +85,7 @@
             // 其他题目
         ];
 
-        const 二元一次方程组 = [
+        const fractionEquations = [
             {equation: "\\begin{cases} \\frac{1}{3}x+y=15 \\\\ \\frac{4}{5}x+3y=42\\end{cases}\\genfrac{}{}{0pt}{}{①}{②} ",correctOption:"\\begin{cases} x=15 \\\\ x=10\\end{cases} ",incorrectOptions:["\\begin{cases} x=8 \\\\ y=1\\end{cases}","\\begin{cases} x=12 \\\\ y=1\\end{cases}","\\begin{cases} x=1 \\\\ y=7\\end{cases}",]},
 
 {equation: "\\begin{cases} \\frac{1}{5}x+y=14 \\\\ \\frac{4}{5}x+4y=56\\end{cases}\\genfrac{}{}{0pt}{}{①}{②} ",correctOption:"\\begin{cases} x=25 \\\\ x=9\\end{cases} ",incorrectOptions:["\\begin{cases} x=7 \\\\ y=7\\end{cases}","\\begin{cases} x=9 \\\\ y=10\\end{cases}","\\begin{cases} x=3 \\\\ y=8\\end{cases}",]},
