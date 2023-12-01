@@ -15,89 +15,61 @@
         .container {
             display: flex;
             height: 100%;
-           
         }
 
-
         #left-column {
-            flex: 0 0 20%; /* 左侧栏占宽20% */
-            padding-top: 40px; /* 根据需要调整 */
-            text-align: center; /* 文字居中 */
-            line-height: 2.5; /* 设置行距为2.5倍 */
-            background-color: lightyellow; /* 背景色为浅黄色 */
-            overflow-y: auto; /* 允许垂直滚动 */
-            max-height: 100%; /* 设置最大高度为100% */
-
-           
+            flex: 0 0 20%;
+            padding-top: 40px;
+            text-align: center;
+            line-height: 2.5;
+            background-color: lightyellow;
+            overflow-y: auto;
+            max-height: 100%;
         }
 
         #left-column a {
-            text-decoration: none; /* 移除链接下划线 */
-            color: black; /* 设置字体颜色为黑色 */
-            
+            text-decoration: none;
+            color: black;
         }
 
-
-
         #center-column {
-            flex: 0 0 40%; /* 中间栏占宽40% */
-            }
+            flex: 0 0 40%;
+        }
 
         #right-column {
-            flex: 0 0 40%; /* 右侧栏占宽40% */
-            color: black; /* 设置字体颜色为黑色 */
-            background-color: lightyellow; /* 背景色为浅黄色 */
-            }
+            flex: 0 0 40%;
+            color: black;
+            background-color: lightyellow;
+        }
 
         iframe {
             width: 100%;
             height: 100%;
         }
-
-    }
-</style>
-
+    </style>
 </head>
 <body>
     <div class="container">
-        <!-- 左栏内容，包括链接 -->
         <div id="left-column" class="column">
-
-
-              <a href="#" oncli
-            <a href="#" onclick="loadContent('https://github.com/jiushu520/jiushu/blob/main/https://github.com/jiushu520/jiushu/blob/main/二元一次方程组A1-5以内的数.html', 'http://v.leleketang.com/dat/ps/ma/k/video/24645.mp4')">二元一次方程组A1-5以内的数</a><br>
-
-            
-            
-
-
-
-
+            <a href="#" onclick="loadContent('https://raw.githubusercontent.com/jiushu520/jiushu/main/二元一次方程组A1-5以内的数.html', 'http://v.leleketang.com/dat/ps/ma/k/video/24645.mp4')">二元一次方程组A1-5以内的数</a><br>
             <div class="resize-handle" data-target="left"></div>
         </div>
 
-
         <div id="center-column" class="column">
-            <iframe id="center-frame" src="https://github.com/jiushu520/jiushu/blob/main/https://github.com/jiushu520/jiushu/blob/main/二元一次方程组A1-5以内的数.html" style="width:100%;height:100%;border:none;"></iframe>
+            <iframe id="center-frame" src="https://raw.githubusercontent.com/jiushu520/jiushu/main/二元一次方程组A1-5以内的数.html" style="width:100%;height:100%;border:none;"></iframe>
             <div class="resize-handle" data-target="center"></div>
         </div>
 
         <div id="right-column" class="column">
             <iframe id="right-frame" src="http://v.leleketang.com/dat/ps/ma/k/video/24645.mp4" style="width:100%;height:100%;border:none;"></iframe>
         </div>
-       </div>
+    </div>
 
-
-<script>
-     function loadContent(localUrl, remoteUrl) {
-        document.getElementById('center-frame').src = localUrl;
-        document.getElementById('right-frame').src = remoteUrl;
-       }
-
-
-
-
-
-</script>
+    <script>
+        function loadContent(localUrl, remoteUrl) {
+            document.getElementById('center-frame').src = localUrl;
+            document.getElementById('right-frame').src = remoteUrl;
+        }
+    </script>
 </body>
 </html>
