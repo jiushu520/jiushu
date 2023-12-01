@@ -53,7 +53,7 @@
 <body>
     <div id="navigation">
         <h3>选择题型</h3>
-        <button onclick="loadQuestions(fractionOperations, '分数运算')">分数运算</button><br>
+        <button onclick="loadQuestions(分数运算, '分数运算')">分数运算</button><br>
         <button onclick="loadQuestions(fractionEquations, '分数方程组')">分数方程组</button><br>
     </div>
 
@@ -75,7 +75,7 @@
         let roundsScores = [];
         let currentTopic = '';
 
-        const fractionOperations = [
+        const 分数运算 = [
            {equation:"8\\frac{1}{7}=?",correctOption:"\\frac{57}{7}",incorrectOptions:["\\frac{24}{7}","\\frac{9}{7}","\\frac{45}{7}",]},
 
 {equation:"7\\frac{1}{6}=?",correctOption:"\\frac{43}{6}",incorrectOptions:["\\frac{56}{6}","\\frac{72}{6}","\\frac{5}{6}",]},
@@ -160,7 +160,7 @@ function loadQuestions(questionBank, topic) {
         }
 
         // 默认加载分数运算题库
-        window.onload = () => loadQuestions(fractionOperations, '分数运算');
+        window.onload = () => loadQuestions(分数运算, '分数运算');
     </script>
 </body>
 </html>
