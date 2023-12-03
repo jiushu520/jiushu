@@ -65,7 +65,7 @@
     <div id="navigation">
         <h3>选择题型</h3>
 
-
+        <button onclick="loadQuestions(测试图片, '测试图片')">测试图片</button><br>
         <button onclick="loadQuestions(分数加减运算, '分数加减运算')">分数加减运算</button><br>
         <button onclick="loadQuestions(分数混合运算, '分数混合运算')">分数混合运算</button><br>
         <button onclick="loadQuestions(二元一次方程组, '二元一次方程组')">二元一次方程组</button><br>
@@ -94,6 +94,12 @@
         let roundsScores = [];
         let currentTopic = '';
 
+const 图片测试 = [
+    {equation: "\\begin{gather}鸡兔同笼共23个头;有74只脚，\\\\请问有多少只鸡，有多少只兔？\\end{gather}<img src='images/01.jpg' alt='题目图片'></img>",correctOption: "鸡=9 , 兔=14",incorrectOptions:[" 鸡=10 , 兔=13", "鸡=17 , 兔=6","鸡=7 , 兔=16"]},
+
+
+     ]
+        
  const 鸡兔同笼头脚和 = [
 {equation: "\\begin{gather}鸡兔同笼共23个头;有74只脚，\\\\请问有多少只鸡，有多少只兔？\\end{gather}",correctOption: "鸡=9 , 兔=14",incorrectOptions:[" 鸡=10 , 兔=13", "鸡=17 , 兔=6","鸡=7 , 兔=16"]},
 
