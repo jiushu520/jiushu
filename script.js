@@ -1,3 +1,128 @@
+const 直角坐标系运算01两点距离=[
+ equation: "\\begin{gather}直角坐标系中有两点A(5,3)、B(8,10)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{58}",incorrectOptions:["\\sqrt{15}","3","\\sqrt{5}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(5,8)、B(6,8)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "1",incorrectOptions:["\\sqrt{5}","\\sqrt{3}","2"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(2,6)、B(2,11)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "5",incorrectOptions:["2\\sqrt{3}","1","\\sqrt{7}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(7,11)、B(11,11)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "4",incorrectOptions:["\\sqrt{10}","\\sqrt{13}","\\sqrt{5}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(6,9)、B(10,5)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "4\\sqrt{2}",incorrectOptions:["\\sqrt{3}","2\\sqrt{2}","1"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(8,11)、B(6,11)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "2",incorrectOptions:["\\sqrt{10}","\\sqrt{11}","\\sqrt{3}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(8,5)、B(9,10)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{26}",incorrectOptions:["2\\sqrt{3}","3","\\sqrt{5}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(3,5)、B(4,6)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{2}",incorrectOptions:["3","\\sqrt{7}","\\sqrt{6}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(8,10)、B(3,4)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{61}",incorrectOptions:["\\sqrt{11}","\\sqrt{3}","\\sqrt{10}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(4,9)、B(11,9)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "7",incorrectOptions:["\\sqrt{13}","\\sqrt{3}","\\sqrt{2}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(3,11)、B(11,2)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{145}",incorrectOptions:["\\sqrt{10}","\\sqrt{14}","3"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(8,10)、B(6,6)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "2\\sqrt{5}",incorrectOptions:["\\sqrt{10}","\\sqrt{7}","\\sqrt{10}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(4,11)、B(7,3)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{73}",incorrectOptions:["2","\\sqrt{11}","1"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(6,3)、B(2,2)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{17}",incorrectOptions:["\\sqrt{6}","\\sqrt{13}","\\sqrt{3}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(2,3)、B(11,10)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{130}",incorrectOptions:["\\sqrt{2}","\\sqrt{7}","\\sqrt{6}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(8,10)、B(2,5)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{61}",incorrectOptions:["3","2\\sqrt{2}","\\sqrt{7}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(9,2)、B(7,6)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "2\\sqrt{5}",incorrectOptions:["\\sqrt{3}","3","2\\sqrt{2}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(5,10)、B(9,2)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "4\\sqrt{5}",incorrectOptions:["\\sqrt{10}","\\sqrt{11}","\\sqrt{6}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(5,8)、B(6,6)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{5}",incorrectOptions:["2\\sqrt{3}","\\sqrt{6}","\\sqrt{10}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(6,8)、B(7,4)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{17}",incorrectOptions:["\\sqrt{10}","\\sqrt{15}","2"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(4,9)、B(5,5)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{17}",incorrectOptions:["\\sqrt{3}","\\sqrt{11}","1"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(5,6)、B(10,4)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{29}",incorrectOptions:["\\sqrt{2}","2\\sqrt{2}","1"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(4,10)、B(6,8)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "2\\sqrt{2}",incorrectOptions:["\\sqrt{14}","2","1"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(6,7)、B(10,5)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "2\\sqrt{5}",incorrectOptions:["\\sqrt{14}","2","\\sqrt{10}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(6,2)、B(10,5)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "5",incorrectOptions:["\\sqrt{10}","3","\\sqrt{7}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(2,7)、B(9,10)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{58}",incorrectOptions:["\\sqrt{10}","\\sqrt{3}","2\\sqrt{2}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(5,6)、B(8,10)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "5",incorrectOptions:["\\sqrt{7}","\\sqrt{2}","\\sqrt{10}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(7,5)、B(8,7)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{5}",incorrectOptions:["\\sqrt{6}","\\sqrt{2}","1"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(9,8)、B(2,8)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "7",incorrectOptions:["\\sqrt{13}","2\\sqrt{2}","\\sqrt{6}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(3,8)、B(11,4)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "4\\sqrt{5}",incorrectOptions:["\\sqrt{2}","\\sqrt{6}","2"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(4,7)、B(7,7)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "3",incorrectOptions:["2\\sqrt{3}","\\sqrt{13}","\\sqrt{6}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(3,2)、B(8,6)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{41}",incorrectOptions:["2\\sqrt{3}","\\sqrt{10}","\\sqrt{7}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(6,7)、B(7,4)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{10}",incorrectOptions:["1","3","\\sqrt{3}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(5,10)、B(5,8)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "2",incorrectOptions:["\\sqrt{13}","1","\\sqrt{2}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(4,3)、B(11,8)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{74}",incorrectOptions:["\\sqrt{7}","\\sqrt{5}","\\sqrt{7}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(4,10)、B(7,11)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{10}",incorrectOptions:["\\sqrt{7}","3","\\sqrt{7}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(9,7)、B(10,9)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{5}",incorrectOptions:["\\sqrt{2}","2\\sqrt{3}","\\sqrt{7}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(8,7)、B(5,6)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{10}",incorrectOptions:["\\sqrt{14}","3","2\\sqrt{2}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(5,8)、B(2,8)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "3",incorrectOptions:["\\sqrt{5}","\\sqrt{2}","2"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(7,3)、B(3,9)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "2\\sqrt{13}",incorrectOptions:["1","\\sqrt{10}","2\\sqrt{2}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(7,6)、B(11,10)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "4\\sqrt{2}",incorrectOptions:["\\sqrt{11}","\\sqrt{5}","3"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(6,10)、B(2,11)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{17}",incorrectOptions:["\\sqrt{3}","2","\\sqrt{2}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(7,5)、B(11,11)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "2\\sqrt{13}",incorrectOptions:["\\sqrt{14}","\\sqrt{10}","\\sqrt{7}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(9,7)、B(7,11)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "2\\sqrt{5}",incorrectOptions:["\\sqrt{11}","\\sqrt{14}","2"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(9,6)、B(9,10)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "4",incorrectOptions:["1","2\\sqrt{2}","\\sqrt{6}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(4,6)、B(2,8)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "2\\sqrt{2}",incorrectOptions:["2\\sqrt{3}","\\sqrt{13}","1"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(2,3)、B(7,2)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{26}",incorrectOptions:["\\sqrt{11}","2\\sqrt{2}","\\sqrt{10}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(6,7)、B(10,9)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "2\\sqrt{5}",incorrectOptions:["\\sqrt{15}","2","\\sqrt{6}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(8,10)、B(2,9)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{37}",incorrectOptions:["2\\sqrt{2}","\\sqrt{5}","\\sqrt{2}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(8,2)、B(3,6)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{41}",incorrectOptions:["\\sqrt{2}","\\sqrt{3}","\\sqrt{6}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(8,10)、B(7,10)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "1",incorrectOptions:["\\sqrt{5}","\\sqrt{7}","\\sqrt{5}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(7,11)、B(2,4)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{74}",incorrectOptions:["2\\sqrt{2}","\\sqrt{13}","\\sqrt{6}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(6,4)、B(2,11)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{65}",incorrectOptions:["\\sqrt{11}","\\sqrt{5}","2\\sqrt{2}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(3,2)、B(8,10)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{89}",incorrectOptions:["3","2\\sqrt{3}","\\sqrt{3}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(2,3)、B(8,2)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{37}",incorrectOptions:["\\sqrt{10}","3","\\sqrt{5}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(5,3)、B(4,10)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "5\\sqrt{2}",incorrectOptions:["\\sqrt{7}","2\\sqrt{3}","2"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(4,10)、B(2,9)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{5}",incorrectOptions:["3","\\sqrt{15}","3"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(5,9)、B(7,10)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{5}",incorrectOptions:["\\sqrt{11}","3","1"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(9,8)、B(7,5)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{13}",incorrectOptions:["3","1","\\sqrt{2}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(9,11)、B(11,2)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{85}",incorrectOptions:["\\sqrt{13}","\\sqrt{15}","2\\sqrt{2}"]},
+
+
+
+]
+
+
 
  const 根式运算01简单有理化 = [
 {equation: "\\[{\\sqrt{14}=?}\\]",correctOption: "\\sqrt{14}",incorrectOptions:["\\sqrt{7}","2\\sqrt{14}","3\\sqrt{2}"]},
