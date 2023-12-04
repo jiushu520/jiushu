@@ -1,123 +1,122 @@
 const 直角坐标系运算01两点距离 = [
-{equation: "\\begin{gather}直角坐标系中有两点A(-2,2)、B(-4,6)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "2\\sqrt{5}",incorrectOptions:["\\sqrt{39}","\\sqrt{86}","\\sqrt{91}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(-10,-2)、B(7,-1)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "\\sqrt{290}",incorrectOptions:["\\sqrt{19}","\\sqrt{3}","2"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(-3,6)、B(6,1)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{106}",incorrectOptions:["\\sqrt{38}","\\sqrt{118}","2\\sqrt{3}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(-1,-3)、B(-1,-4)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "1",incorrectOptions:["3\\sqrt{2}","\\sqrt{97}","3\\sqrt{2}"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(5,0)、B(-2,-9)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{130}",incorrectOptions:["4\\sqrt{3}","\\sqrt{94}","\\sqrt{61}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(-9,3)、B(5,3)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "14",incorrectOptions:["3\\sqrt{13}","\\sqrt{119}","\\sqrt{14}"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(-8,7)、B(-3,7)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "5",incorrectOptions:["\\sqrt{87}","2\\sqrt{29}","\\sqrt{102}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(0,-2)、B(2,-4)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "2\\sqrt{2}",incorrectOptions:["\\sqrt{2}","\\sqrt{83}","\\sqrt{91}"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(-2,2)、B(-5,-10)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "3\\sqrt{17}",incorrectOptions:["\\sqrt{87}","\\sqrt{83}","\\sqrt{57}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(-9,6)、B(-8,8)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "\\sqrt{5}",incorrectOptions:["\\sqrt{13}","\\sqrt{115}","7\\sqrt{2}"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(-6,2)、B(-9,-5)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{58}",incorrectOptions:["\\sqrt{62}","\\sqrt{93}","\\sqrt{43}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(1,-7)、B(-7,7)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "2\\sqrt{65}",incorrectOptions:["5\\sqrt{3}","\\sqrt{10}","\\sqrt{74}"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(2,-1)、B(-5,-1)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "7",incorrectOptions:["\\sqrt{113}","\\sqrt{62}","\\sqrt{22}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(-1,0)、B(-9,1)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "\\sqrt{65}",incorrectOptions:["2\\sqrt{2}","\\sqrt{102}","3\\sqrt{13}"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(-5,-2)、B(-1,-6)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "4\\sqrt{2}",incorrectOptions:["\\sqrt{41}","\\sqrt{57}","\\sqrt{67}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(6,-4)、B(1,1)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "5\\sqrt{2}",incorrectOptions:["\\sqrt{95}","3","\\sqrt{31}"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(-10,3)、B(-1,-1)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{97}",incorrectOptions:["\\sqrt{113}","\\sqrt{55}","\\sqrt{103}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(5,2)、B(-9,-3)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "\\sqrt{221}",incorrectOptions:["2\\sqrt{23}","\\sqrt{35}","\\sqrt{114}"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(2,-1)、B(-1,-1)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "3",incorrectOptions:["\\sqrt{34}","\\sqrt{14}","\\sqrt{33}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(-5,4)、B(-4,4)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "1",incorrectOptions:["2\\sqrt{29}","\\sqrt{61}","2\\sqrt{2}"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(3,-3)、B(-9,-7)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "4\\sqrt{10}",incorrectOptions:["9","\\sqrt{59}","3"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(-2,-1)、B(-4,-7)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "2\\sqrt{10}",incorrectOptions:["\\sqrt{17}","3\\sqrt{10}","3"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(-9,8)、B(-6,-9)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{298}",incorrectOptions:["\\sqrt{3}","3\\sqrt{11}","2\\sqrt{2}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(-7,-1)、B(8,-4)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "3\\sqrt{26}",incorrectOptions:["\\sqrt{95}","\\sqrt{86}","4\\sqrt{5}"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(5,-5)、B(-5,2)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{149}",incorrectOptions:["5\\sqrt{3}","\\sqrt{87}","\\sqrt{101}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(-10,2)、B(0,1)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "\\sqrt{101}",incorrectOptions:["\\sqrt{5}","\\sqrt{74}","\\sqrt{46}"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(-3,7)、B(4,7)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "7",incorrectOptions:["\\sqrt{102}","3\\sqrt{11}","2\\sqrt{11}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(-2,2)、B(2,-8)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "2\\sqrt{29}",incorrectOptions:["\\sqrt{85}","\\sqrt{114}","\\sqrt{95}"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(-6,-2)、B(8,-5)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{205}",incorrectOptions:["3\\sqrt{13}","2\\sqrt{3}","\\sqrt{5}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(7,-8)、B(-6,7)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "\\sqrt{394}",incorrectOptions:["3\\sqrt{13}","\\sqrt{37}","\\sqrt{106}"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(-1,-7)、B(8,4)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{202}",incorrectOptions:["3\\sqrt{3}","\\sqrt{58}","3\\sqrt{10}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(-3,0)、B(7,-7)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "\\sqrt{149}",incorrectOptions:["\\sqrt{79}","3\\sqrt{5}","\\sqrt{66}"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(1,-8)、B(0,3)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{122}",incorrectOptions:["2\\sqrt{23}","4\\sqrt{2}","\\sqrt{29}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(0,-9)、B(-3,-1)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "\\sqrt{73}",incorrectOptions:["\\sqrt{82}","\\sqrt{65}","\\sqrt{14}"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(-1,-8)、B(-9,-3)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{89}",incorrectOptions:["7\\sqrt{2}","3\\sqrt{13}","\\sqrt{77}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(-4,0)、B(8,-7)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "\\sqrt{193}",incorrectOptions:["\\sqrt{87}","\\sqrt{79}","\\sqrt{93}"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(-8,-1)、B(-9,-9)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{65}",incorrectOptions:["\\sqrt{113}","\\sqrt{39}","\\sqrt{73}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(6,-3)、B(6,-4)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "1",incorrectOptions:["\\sqrt{30}","\\sqrt{79}","2\\sqrt{22}"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(-7,-5)、B(5,8)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{313}",incorrectOptions:["\\sqrt{115}","\\sqrt{22}","3\\sqrt{13}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(4,-2)、B(-3,2)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "\\sqrt{65}",incorrectOptions:["3\\sqrt{2}","2\\sqrt{14}","\\sqrt{101}"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(3,0)、B(8,-7)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{74}",incorrectOptions:["5","2\\sqrt{23}","\\sqrt{87}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(4,-2)、B(4,-3)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "1",incorrectOptions:["\\sqrt{106}","\\sqrt{93}","5\\sqrt{3}"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(-1,7)、B(-4,-5)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "3\\sqrt{17}",incorrectOptions:["\\sqrt{103}","2\\sqrt{22}","2\\sqrt{26}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(-10,3)、B(-7,-1)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "5",incorrectOptions:["2\\sqrt{3}","3\\sqrt{10}","2\\sqrt{14}"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(-3,-1)、B(-6,-3)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{13}",incorrectOptions:["\\sqrt{115}","\\sqrt{26}","\\sqrt{97}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(-4,-2)、B(-10,4)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "6\\sqrt{2}",incorrectOptions:["\\sqrt{93}","\\sqrt{14}","\\sqrt{47}"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(6,-4)、B(-10,3)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{305}",incorrectOptions:["\\sqrt{51}","\\sqrt{37}","\\sqrt{42}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(-7,-9)、B(3,6)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "5\\sqrt{13}",incorrectOptions:["\\sqrt{70}","\\sqrt{74}","\\sqrt{23}"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(-4,8)、B(-4,7)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "1",incorrectOptions:["\\sqrt{29}","\\sqrt{106}","\\sqrt{38}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(-7,2)、B(-1,1)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "\\sqrt{37}",incorrectOptions:["4\\sqrt{3}","3\\sqrt{11}","\\sqrt{87}"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(5,-8)、B(3,-7)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{5}",incorrectOptions:["\\sqrt{29}","\\sqrt{47}","8"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(-5,-9)、B(2,-5)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "\\sqrt{65}",incorrectOptions:["\\sqrt{29}","2\\sqrt{10}","\\sqrt{74}"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(8,8)、B(-9,-2)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{389}",incorrectOptions:["\\sqrt{103}","3\\sqrt{5}","6"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(-3,6)、B(-7,4)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "2\\sqrt{5}",incorrectOptions:["5\\sqrt{2}","3\\sqrt{7}","\\sqrt{38}"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(0,2)、B(-9,0)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{85}",incorrectOptions:["\\sqrt{31}","\\sqrt{78}","2\\sqrt{11}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(7,-4)、B(6,3)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "5\\sqrt{2}",incorrectOptions:["\\sqrt{83}","3\\sqrt{3}","\\sqrt{69}"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(8,7)、B(3,4)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{34}",incorrectOptions:["\\sqrt{55}","\\sqrt{107}","2\\sqrt{6}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(-6,-9)、B(-2,0)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "\\sqrt{97}",incorrectOptions:["\\sqrt{41}","2","6\\sqrt{2}"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(-8,8)、B(4,-7)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "3\\sqrt{41}",incorrectOptions:["2\\sqrt{7}","\\sqrt{93}","\\sqrt{106}"]},
- {equation: "\\begin{gather}直角坐标系中有两点A(4,-1)、B(-4,-10)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{145}",incorrectOptions:["\\sqrt{69}","2\\sqrt{26}","\\sqrt{34}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(3,3)、B(-5,4)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "\\sqrt{65}",incorrectOptions:["9","\\sqrt{78}","\\sqrt{58}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(6,0)、B(-7,-6)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "\\sqrt{205}",incorrectOptions:["\\sqrt{95}","\\sqrt{71}","9"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(-10,7)、B(-2,-1)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "8\\sqrt{2}",incorrectOptions:["\\sqrt{43}","4\\sqrt{3}","\\sqrt{89}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(-10,3)、B(-2,0)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "\\sqrt{73}",incorrectOptions:["\\sqrt{35}","3","\\sqrt{19}"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(7,-3)、B(-9,0)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{265}",incorrectOptions:["3\\sqrt{5}","\\sqrt{62}","\\sqrt{87}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(-10,-2)、B(-7,-9)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "\\sqrt{58}",incorrectOptions:["\\sqrt{33}","\\sqrt{106}","4"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(-8,6)、B(1,6)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "9",incorrectOptions:["\\sqrt{78}","\\sqrt{86}","3\\sqrt{2}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(-1,-1)、B(1,1)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "2\\sqrt{2}",incorrectOptions:["2\\sqrt{5}","\\sqrt{87}","\\sqrt{51}"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(3,-5)、B(-7,6)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{221}",incorrectOptions:["2\\sqrt{3}","\\sqrt{71}","\\sqrt{2}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(-3,-1)、B(-10,1)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "\\sqrt{53}",incorrectOptions:["\\sqrt{30}","7","\\sqrt{118}"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(-9,0)、B(2,-7)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{170}",incorrectOptions:["\\sqrt{23}","\\sqrt{103}","2\\sqrt{22}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(5,-9)、B(7,6)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "\\sqrt{229}",incorrectOptions:["3\\sqrt{10}","\\sqrt{51}","10"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(-2,2)、B(-10,3)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{65}",incorrectOptions:["\\sqrt{77}","\\sqrt{10}","\\sqrt{51}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(-9,-7)、B(-6,-5)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "\\sqrt{13}",incorrectOptions:["\\sqrt{21}","\\sqrt{33}","\\sqrt{77}"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(7,5)、B(-5,7)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "2\\sqrt{37}",incorrectOptions:["7","10","2\\sqrt{22}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(-4,2)、B(8,-10)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "12\\sqrt{2}",incorrectOptions:["\\sqrt{94}","\\sqrt{87}","2\\sqrt{15}"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(1,3)、B(8,-9)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{193}",incorrectOptions:["\\sqrt{87}","\\sqrt{77}","\\sqrt{106}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(7,-1)、B(-10,-6)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "\\sqrt{314}",incorrectOptions:["\\sqrt{42}","4\\sqrt{5}","\\sqrt{39}"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(-8,-2)、B(8,-2)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "16",incorrectOptions:["\\sqrt{42}","3\\sqrt{7}","2\\sqrt{29}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(-7,4)、B(1,5)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "\\sqrt{65}",incorrectOptions:["\\sqrt{94}","\\sqrt{118}","\\sqrt{7}"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(-9,-5)、B(-5,-8)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "5",incorrectOptions:["3\\sqrt{11}","0","\\sqrt{91}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(-2,-6)、B(0,-7)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "\\sqrt{5}",incorrectOptions:["\\sqrt{74}","\\sqrt{21}","\\sqrt{94}"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(4,4)、B(5,4)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "1",incorrectOptions:["\\sqrt{22}","\\sqrt{87}","6\\sqrt{3}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(-3,2)、B(4,5)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "\\sqrt{58}",incorrectOptions:["\\sqrt{86}","\\sqrt{71}","2\\sqrt{15}"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(-2,2)、B(3,3)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{26}",incorrectOptions:["4","\\sqrt{11}","\\sqrt{31}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(3,-1)、B(6,5)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "3\\sqrt{5}",incorrectOptions:["\\sqrt{115}","\\sqrt{41}","2"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(-8,-9)、B(-10,6)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{229}",incorrectOptions:["\\sqrt{103}","\\sqrt{53}","\\sqrt{71}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(-10,-3)、B(-6,2)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "\\sqrt{41}",incorrectOptions:["2\\sqrt{19}","2\\sqrt{10}","4"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(-7,-7)、B(-7,-3)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "4",incorrectOptions:["\\sqrt{19}","\\sqrt{21}","\\sqrt{22}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(-2,-1)、B(-1,7)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "\\sqrt{65}",incorrectOptions:["\\sqrt{53}","3\\sqrt{2}","\\sqrt{26}"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(4,-5)、B(5,1)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{37}",incorrectOptions:["\\sqrt{107}","\\sqrt{79}","\\sqrt{53}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(-2,0)、B(-3,1)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "\\sqrt{2}",incorrectOptions:["\\sqrt{55}","\\sqrt{38}","\\sqrt{14}"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(7,0)、B(2,0)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "5",incorrectOptions:["\\sqrt{7}","\\sqrt{119}","\\sqrt{59}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(1,0)、B(-5,-6)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "6\\sqrt{2}",incorrectOptions:["\\sqrt{97}","2\\sqrt{22}","\\sqrt{19}"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(8,-7)、B(-3,-5)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "5\\sqrt{5}",incorrectOptions:["3\\sqrt{7}","\\sqrt{110}","\\sqrt{87}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(8,3)、B(1,4)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "5\\sqrt{2}",incorrectOptions:["\\sqrt{6}","\\sqrt{5}","3"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(-9,2)、B(3,-5)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{193}",incorrectOptions:["\\sqrt{93}","3\\sqrt{13}","\\sqrt{101}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(4,-6)、B(0,-1)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "\\sqrt{41}",incorrectOptions:["\\sqrt{5}","\\sqrt{2}","3\\sqrt{11}"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(7,1)、B(-7,-3)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "2\\sqrt{53}",incorrectOptions:["\\sqrt{97}","1","8"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(-2,-3)、B(-1,-4)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "\\sqrt{2}",incorrectOptions:["0","2\\sqrt{5}","\\sqrt{105}"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(-4,-9)、B(-4,-8)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "1",incorrectOptions:["\\sqrt{26}","7\\sqrt{2}","2\\sqrt{21}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(2,-1)、B(4,-3)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "2\\sqrt{2}",incorrectOptions:["2\\sqrt{26}","2\\sqrt{7}","\\sqrt{101}"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(-5,0)、B(-1,-9)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{97}",incorrectOptions:["4\\sqrt{2}","\\sqrt{47}","2\\sqrt{15}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(8,5)、B(-9,-9)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "\\sqrt{485}",incorrectOptions:["\\sqrt{77}","\\sqrt{119}","4\\sqrt{2}"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(-3,-2)、B(0,-10)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{73}",incorrectOptions:["\\sqrt{119}","2\\sqrt{7}","\\sqrt{85}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(7,2)、B(8,8)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "\\sqrt{37}",incorrectOptions:["\\sqrt{11}","\\sqrt{89}","2\\sqrt{19}"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(5,-7)、B(-9,-9)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "10\\sqrt{2}",incorrectOptions:["\\sqrt{69}","2\\sqrt{23}","\\sqrt{47}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(-2,-1)、B(-10,-10)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "\\sqrt{145}",incorrectOptions:["\\sqrt{57}","\\sqrt{91}","\\sqrt{70}"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(-6,-10)、B(7,7)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{458}",incorrectOptions:["\\sqrt{2}","1","2\\sqrt{6}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(4,-7)、B(-9,2)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "5\\sqrt{10}",incorrectOptions:["\\sqrt{105}","8","\\sqrt{30}"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(-7,0)、B(-8,-2)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{5}",incorrectOptions:["2\\sqrt{7}","7\\sqrt{2}","2\\sqrt{11}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(1,7)、B(8,-3)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "\\sqrt{149}",incorrectOptions:["\\sqrt{14}","\\sqrt{47}","\\sqrt{115}"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(-5,-7)、B(8,-5)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{173}",incorrectOptions:["\\sqrt{38}","2\\sqrt{10}","\\sqrt{33}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(-7,-5)、B(-7,-8)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "3",incorrectOptions:["\\sqrt{46}","\\sqrt{15}","\\sqrt{114}"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(3,-6)、B(5,1)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{53}",incorrectOptions:["3\\sqrt{3}","2\\sqrt{29}","\\sqrt{61}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(7,-10)、B(-9,-9)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "\\sqrt{257}",incorrectOptions:["\\sqrt{37}","7\\sqrt{2}","\\sqrt{97}"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(-3,-8)、B(6,-7)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{82}",incorrectOptions:["\\sqrt{61}","\\sqrt{13}","7\\sqrt{2}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(1,4)、B(6,3)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "\\sqrt{26}",incorrectOptions:["2\\sqrt{3}","2\\sqrt{5}","\\sqrt{46}"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(-8,-8)、B(-7,-10)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{5}",incorrectOptions:["2\\sqrt{14}","\\sqrt{110}","\\sqrt{10}"]},
-
+{equation: "\\begin{gather}直角坐标系中有两点A(1,5)、B(3,1)\\textup{;}\\\\则AB的距离=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "2\\sqrt{5}",incorrectOptions:["\\sqrt{69}","3\\sqrt{10}","\\sqrt{95}"]},
  
 ]
 
