@@ -118,6 +118,7 @@ const 直角坐标系运算01两点距离 = [
 
 {equation: "\\begin{gather}直角坐标系中有两点A(-8,-8)、B(-7,-10)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{5}",incorrectOptions:["2\\sqrt{14}","\\sqrt{110}","\\sqrt{10}"]},
 
+ 
 ]
 
 
