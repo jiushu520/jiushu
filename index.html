@@ -75,6 +75,11 @@
         <button onclick="loadQuestions(分数二元一次方程组01, '分数二元一次方程组01')">分数二元一次方程组01</button><br>
         <button onclick="loadQuestions(鸡兔同笼头和差, '鸡兔同笼头和差')">鸡兔同笼头和差</button><br>
         <button onclick="loadQuestions(鸡兔同笼头脚和, '鸡兔同笼头脚和')">鸡兔同笼头脚和</button><br>
+
+        <button onclick="loadQuestions(根式运算01简单有理化, '根式运算01简单有理化')">根式运算01简单有理化</button><br>
+
+
+        
     </div>
 
     <div id="game-container">
@@ -95,6 +100,69 @@
         let roundsScores = [];
         let currentTopic = '';
 
+ const 根式运算01简单有理化 = [
+{equation: "\\[{\\sqrt{4}=?}\\]",correctOption: "2",incorrectOptions:["2\\sqrt{11}","2\\sqrt{10}","\\sqrt{35}"]},
+
+{equation: "\\[{\\sqrt{40}=?}\\]",correctOption: "2\\sqrt{10}",incorrectOptions:["\\sqrt{11}","3\\sqrt{14}","\\sqrt{6}"]},
+
+{equation: "\\[{\\sqrt{28}=?}\\]",correctOption: "2\\sqrt{7}",incorrectOptions:["10","4\\sqrt{2}","2\\sqrt{15}"]},
+
+{equation: "\\[{\\sqrt{50}=?}\\]",correctOption: "5\\sqrt{2}",incorrectOptions:["\\sqrt{7}","6","2\\sqrt{10}"]},
+
+{equation: "\\[{\\sqrt{8}=?}\\]",correctOption: "2\\sqrt{2}",incorrectOptions:["6\\sqrt{5}","6","4\\sqrt{2}"]},
+
+{equation: "\\[{\\sqrt{15}=?}\\]",correctOption: "\\sqrt{15}",incorrectOptions:["\\sqrt{30}","4\\sqrt{2}","\\sqrt{6}"]},
+
+{equation: "\\[{\\sqrt{50}=?}\\]",correctOption: "5\\sqrt{2}",incorrectOptions:["2\\sqrt{14}","\\sqrt{6}","\\sqrt{3}"]},
+
+{equation: "\\[{\\sqrt{21}=?}\\]",correctOption: "\\sqrt{21}",incorrectOptions:["\\sqrt{210}","\\sqrt{78}","\\sqrt{70}"]},
+
+{equation: "\\[{\\sqrt{24}=?}\\]",correctOption: "2\\sqrt{6}",incorrectOptions:["3\\sqrt{13}","\\sqrt{6}","2\\sqrt{14}"]},
+
+{equation: "\\[{\\sqrt{4}=?}\\]",correctOption: "2",incorrectOptions:["\\sqrt{39}","2\\sqrt{6}","3\\sqrt{3}"]},
+
+{equation: "\\[{\\sqrt{33}=?}\\]",correctOption: "\\sqrt{33}",incorrectOptions:["2\\sqrt{6}","\\sqrt{195}","3\\sqrt{2}"]},
+
+{equation: "\\[{\\sqrt{8}=?}\\]",correctOption: "2\\sqrt{2}",incorrectOptions:["3\\sqrt{14}","2\\sqrt{14}","\\sqrt{35}"]},
+
+{equation: "\\[{\\sqrt{36}=?}\\]",correctOption: "6",incorrectOptions:["\\sqrt{78}","3\\sqrt{2}","3\\sqrt{3}"]},
+
+{equation: "\\[{\\sqrt{12}=?}\\]",correctOption: "2\\sqrt{3}",incorrectOptions:["\\sqrt{6}","\\sqrt{15}","\\sqrt{10}"]},
+
+{equation: "\\[{\\sqrt{14}=?}\\]",correctOption: "\\sqrt{14}",incorrectOptions:["2\\sqrt{5}","2\\sqrt{15}","\\sqrt{42}"]},
+
+{equation: "\\[{\\sqrt{4}=?}\\]",correctOption: "2",incorrectOptions:["2\\sqrt{7}","2\\sqrt{21}","3\\sqrt{3}"]},
+
+{equation: "\\[{\\sqrt{30}=?}\\]",correctOption: "\\sqrt{30}",incorrectOptions:["\\sqrt{11}","\\sqrt{15}","2\\sqrt{7}"]},
+
+{equation: "\\[{\\sqrt{45}=?}\\]",correctOption: "3\\sqrt{5}",incorrectOptions:["7","6\\sqrt{2}","2\\sqrt{10}"]},
+
+{equation: "\\[{\\sqrt{32}=?}\\]",correctOption: "4\\sqrt{2}",incorrectOptions:["2\\sqrt{30}","2\\sqrt{3}","\\sqrt{30}"]},
+
+{equation: "\\[{\\sqrt{63}=?}\\]",correctOption: "3\\sqrt{7}",incorrectOptions:["4","\\sqrt{154}","2\\sqrt{5}"]},
+
+{equation: "\\[{\\sqrt{88}=?}\\]",correctOption: "2\\sqrt{22}",incorrectOptions:["2\\sqrt{33}","6\\sqrt{3}","\\sqrt{14}"]},
+
+{equation: "\\[{\\sqrt{35}=?}\\]",correctOption: "\\sqrt{35}",incorrectOptions:["2\\sqrt{14}","\\sqrt{130}","3"]},
+
+{equation: "\\[{\\sqrt{12}=?}\\]",correctOption: "2\\sqrt{3}",incorrectOptions:["2\\sqrt{6}","2\\sqrt{5}","8"]},
+
+{equation: "\\[{\\sqrt{42}=?}\\]",correctOption: "\\sqrt{42}",incorrectOptions:["3\\sqrt{14}","2\\sqrt{39}","3\\sqrt{5}"]},
+
+{equation: "\\[{\\sqrt{32}=?}\\]",correctOption: "4\\sqrt{2}",incorrectOptions:["\\sqrt{39}","2\\sqrt{2}","\\sqrt{14}"]},
+
+{equation: "\\[{\\sqrt{20}=?}\\]",correctOption: "2\\sqrt{5}",incorrectOptions:["6\\sqrt{3}","3\\sqrt{15}","3\\sqrt{3}"]},
+
+{equation: "\\[{\\sqrt{70}=?}\\]",correctOption: "\\sqrt{70}",incorrectOptions:["3\\sqrt{15}","7\\sqrt{2}","2\\sqrt{5}"]},
+
+{equation: "\\[{\\sqrt{49}=?}\\]",correctOption: "7",incorrectOptions:["2\\sqrt{11}","2\\sqrt{7}","4\\sqrt{2}"]},
+
+{equation: "\\[{\\sqrt{60}=?}\\]",correctOption: "2\\sqrt{15}",incorrectOptions:["2\\sqrt{21}","2\\sqrt{6}","4"]},
+
+{equation: "\\[{\\sqrt{24}=?}\\]",correctOption: "2\\sqrt{6}",incorrectOptions:["3\\sqrt{2}","2\\sqrt{22}","2\\sqrt{3}"]},
+
+
+        ]
    
  const 鸡兔同笼头脚和 = [
 {equation: "\\begin{gather}鸡兔同笼共23个头;有74只脚，\\\\请问有多少只鸡，有多少只兔？\\end{gather}",correctOption: "鸡=9 , 兔=14",incorrectOptions:[" 鸡=10 , 兔=13", "鸡=17 , 兔=6","鸡=7 , 兔=16"]},
