@@ -1,5 +1,5 @@
 const 直角坐标系运算01两点距离=[
- equation: "\\begin{gather}直角坐标系中有两点A(5,3)、B(8,10)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{58}",incorrectOptions:["\\sqrt{15}","3","\\sqrt{5}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(5,3)、B(8,10)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{58}",incorrectOptions:["\\sqrt{15}","3","\\sqrt{5}"]},
 
 {equation: "\\begin{gather}直角坐标系中有两点A(5,8)、B(6,8)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "1",incorrectOptions:["\\sqrt{5}","\\sqrt{3}","2"]},
 
