@@ -119,7 +119,6 @@ const 直角坐标系运算01两点距离=[
 {equation: "\\begin{gather}直角坐标系中有两点A(9,11)、B(11,2)\\textup{;}\\\\则AB的距离=\\textup{?}\\end{gather}",correctOption: "\\sqrt{85}",incorrectOptions:["\\sqrt{13}","\\sqrt{15}","2\\sqrt{2}"]},
 
 
-
 ]
 
 
