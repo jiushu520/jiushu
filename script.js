@@ -1738,22 +1738,20 @@ function myFunction(id) {
 }
 
 
-#equation, #options {
-            text-align: center;
-            width: 100%;
-            font-size: 20px; /* 这里设置了字体大小 */
-            
-                    }
+        // 默认不显示网页窗口点击才显示
+function showFrame(url) {
+  var frame = document.getElementById('myframe');
+  frame.style.display = 'block';
+  frame.src = url;
+}
 
-.option {
-            display: inline-block;
-            margin: 0 10px;
-            padding: 10px;
-            border: 1px solid #000;
-            cursor: pointer;
-            margin: 0 10px 20px;
-             font-size: 20px; /* 这里设置了字体大小 */
-          }
+
+
+ // 网页关闭窗口按钮
+function hideFrame() {
+  var frame = document.getElementById('myframe');
+  frame.style.display = 'none';
+}
 
 
 
