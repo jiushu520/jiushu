@@ -20,11 +20,11 @@
 
         }
 #navigation1 {
-    border: 1px solid #grey;
+    border: 2px solid #grey;
     padding: 10px;
    
     line-height: 1.5;   /* 设置1.5倍行距 */
-    background-color: #AFEEEE; /* 背景色为浅红色 */
+    background-color: #B0C4DE; /* 背景色为浅红色 */
 }
 
 
