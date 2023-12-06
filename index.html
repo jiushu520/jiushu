@@ -6,33 +6,101 @@
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <title>玖数学练习</title>
     
-    
+
    
 </head>
 <body>
+
+
+
     <div id="navigation">
-        <h3><a href="https://jiushu520.github.io/jiushu/">玖数学运算</a></h3>
+ <h3><a href="https://jiushu520.github.io/jiushu/">玖数学运算</a></h3>
+
+       <div id="navigation1">
+
+<a href="#" onclick="myFunction('分数'); return false;">分数</a>
+<a href="#" onclick="myFunction('方程'); return false;">方程</a>
+<a href="#" onclick="myFunction('坐标系'); return false;">坐标系</a>
+
+         </div>
+
+<div id="分数" style="display:none">
+         
 
 
     
-        <button onclick="loadQuestions(分数加减运算, '分数加减运算')">分数加减运算<br><br><a href="https://search.bilibili.com/all?keyword=分数的加减运算"target="_blank">视频讲解</a></button><br>
-        <button onclick="loadQuestions(分数混合运算, '分数混合运算')">分数混合运算<br><br><a href="https://search.bilibili.com/all?keyword=分数的混合运算"target="_blank">视频讲解</a></button><br>
-        <button onclick="loadQuestions(二元一次方程组, '二元一次方程组')">二元一次方程组<br><br><a href="https://search.bilibili.com/all?keyword=二元一次方程组的各种解法"target="_blank">视频讲解</a></button><br>
+        <button onclick="loadQuestions(分数加减运算, '分数加减运算')">分数加减运算</button><br>
+       <a href="https://search.bilibili.com/all?keyword=分数的加减运算"target="_blank">分数的加减运算视频讲解</a><br>
+        <button onclick="loadQuestions(分数混合运算, '分数混合运算')">分数混合运算</button><br>
+       <a href="https://search.bilibili.com/all?keyword=分数的四则运算"target="_blank">分数的四则运算视频讲解</a><br>
 
-        
-        <button onclick="loadQuestions(分数二元一次方程组01, '分数二元一次方程组01')">分数二元一次方程组01<br><br><a href="https://search.bilibili.com/all?keyword=二元一次方程组的各种解法"target="_blank">视频讲解</a></button><br>
-        <button onclick="loadQuestions(鸡兔同笼头和差, '鸡兔同笼头和差')">鸡兔同笼头和差<br><br><a href="https://search.bilibili.com/all?keyword=鸡兔同笼与和差问题"target="_blank">视频讲解</a></button><br>
-        <button onclick="loadQuestions(鸡兔同笼头脚和, '鸡兔同笼头脚和')">鸡兔同笼头脚和<br><br><a href="https://search.bilibili.com/all?keyword=鸡兔同笼与和差问题"target="_blank">视频讲解</a></button><br>
 
-        <button onclick="loadQuestions(根式运算01简单有理化, '根式运算01简单有理化')">根式运算01简单有理化<br><br><a href="https://search.bilibili.com/all?keyword=二次根式的化简"target="_blank">视频讲解</a></button><br>
-         <button onclick="loadQuestions(直角坐标系运算01两点距离, '直角坐标系运算01两点距离')">直角坐标系运算01两点距离<br><br><a href="https://search.bilibili.com/all?keyword=直角坐标系中两点的距离公式"target="_blank">视频讲解</a></button><br>
+
+
 
 
         
     </div>
 
-    <div id="game-container">
+
+
+
+
+<div id="方程" style="display:none">
+
+
+
+
+        <button onclick="loadQuestions(二元一次方程组, '二元一次方程组')">二元一次方程组</button><br>
+       <a href="https://search.bilibili.com/all?keyword=二元一次方程组解法行列式玖数学"target="_blank">二元一次方程组解法视频讲解</a><br>
+       <button onclick="loadQuestions(分数二元一次方程组01, '分数二元一次方程组01')">分数二元一次方程组01</button><br>
+       <a href="https://search.bilibili.com/all?keyword=二元一次方程组各种解法行列式"target="_blank">二元一次方程组解法视频讲解</a><br>
+        <button onclick="loadQuestions(鸡兔同笼头和差, '鸡兔同笼头和差')">鸡兔同笼头和差</button><br>
+       <a href="https://search.bilibili.com/all?keyword=二元一次方程鸡兔同笼的解法"target="_blank">二元一次方程鸡兔同笼的解法视频讲解</a><br>
+        <button onclick="loadQuestions(鸡兔同笼头脚和, '鸡兔同笼头脚和')">鸡兔同笼头脚和</button><br>
+       <a href="https://search.bilibili.com/all?keyword=二元一次方程鸡兔同笼的解法"target="_blank">鸡兔同笼的解法视频讲解</a>
+
+      
+
+        
+    </div>
+
+             
+
+
+
+<div id="坐标系" style="display:none">
+           
+
+
+
+    
+             <button onclick="loadQuestions(根式运算01简单有理化, '根式运算01简单有理化')">根式运算01简单有理化<br></button><br>
+          <a href="https://search.bilibili.com/all?keyword=根式运算的简单有理化"target="_blank">根式运算视频讲解</a><br>
+         <button onclick="loadQuestions(直角坐标系运算01两点距离, '直角坐标系运算01两点距离')">直角坐标系运算01两点距离</button><br>
+          <a href="https://search.bilibili.com/all?keyword=直角坐标系中两点的距离公式"target="_blank">两点的距离公式视频讲解</a><br>
+
+
+        
+
+             
+           
+</div>
+
+    
+
+
+        
+    </div>
+
+ <div id="game-container">
+
+
+
+
        <h3>玖数学测训系统</h3>
+
+
         <div id="current-topic"></div> <!-- 新添加的元素 -->
 
         <div id="equation"></div>
@@ -125,3 +193,7 @@ function loadQuestions(questionBank, topic) {
     </script>
 </body>
 </html>
+
+
+
+
