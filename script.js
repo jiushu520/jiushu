@@ -1511,6 +1511,28 @@ function loadQuestions(questionBank, topic) {
             document.getElementById('rounds-scoreboard').innerHTML = roundsScoresText;
         }
 
+
+function myFunction(id) {
+  var x = document.getElementById('分数');
+  var y = document.getElementById('方程');
+  var z = document.getElementById('坐标系');
+  
+  if (id === '分数') {
+    x.style.display = "block";
+    y.style.display = "none";
+    z.style.display = "none";
+  } else if (id === '方程') {
+    x.style.display = "none";
+    y.style.display = "block";
+    z.style.display = "none";
+  } else if (id === '坐标系') {
+    x.style.display = "none";
+    y.style.display = "none";
+    z.style.display = "block";
+  }
+}
+
+
         // 默认加载分数混合运算题库
         window.onload = () => loadQuestions(分数加减运算, '分数加减运算');
     
