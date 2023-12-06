@@ -1,65 +1,63 @@
 const 线性代数01行列式求值 = [
-{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}7&8\\\\4&6\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(7,8); B(4,6)。S△OAB和行列式有什么关联呢。 \\end{gather}",correctOption: "10",incorrectOptions:["19","-1","-8"]},
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}7&8\\\\4&6\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(7,8); B(4,6)。\\\\S△OAB\\times2和行列式有什么关联呢? \\end{gather}",correctOption: "10",incorrectOptions:["19","-1","-8"]},
 
-{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}2&2\\\\6&5\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(2,2); B(6,5)。S△OAB和行列式有什么关联呢。 \\end{gather}",correctOption: "-2",incorrectOptions:["3","-18","-12"]},
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}2&2\\\\6&5\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(2,2); B(6,5)。\\\\S△OAB\\times2和行列式有什么关联呢? \\end{gather}",correctOption: "-2",incorrectOptions:["3","-18","-12"]},
 
-{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-3&-7\\\\-5&3\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(-3,-7); B(-5,3)。S△OAB和行列式有什么关联呢。 \\end{gather}",correctOption: "-44",incorrectOptions:["-15","-5","17"]},
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-3&-7\\\\-5&3\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(-3,-7); B(-5,3)。\\\\S△OAB\\times2和行列式有什么关联呢? \\end{gather}",correctOption: "-44",incorrectOptions:["-15","-5","17"]},
 
-{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-2&-1\\\\7&-8\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(-2,-1); B(7,-8)。S△OAB和行列式有什么关联呢。 \\end{gather}",correctOption: "23",incorrectOptions:["11","-17","-9"]},
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-2&-1\\\\7&-8\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(-2,-1); B(7,-8)。\\\\S△OAB\\times2和行列式有什么关联呢? \\end{gather}",correctOption: "23",incorrectOptions:["11","-17","-9"]},
 
-{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-7&7\\\\1&6\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(-7,7); B(1,6)。S△OAB和行列式有什么关联呢。 \\end{gather}",correctOption: "-49",incorrectOptions:["-5","-2","-19"]},
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-7&7\\\\1&6\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(-7,7); B(1,6)。\\\\S△OAB\\times2和行列式有什么关联呢? \\end{gather}",correctOption: "-49",incorrectOptions:["-5","-2","-19"]},
 
-{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-10&-6\\\\-5&8\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(-10,-6); B(-5,8)。S△OAB和行列式有什么关联呢。 \\end{gather}",correctOption: "-110",incorrectOptions:["-9","-1","-15"]},
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-10&-6\\\\-5&8\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(-10,-6); B(-5,8)。\\\\S△OAB\\times2和行列式有什么关联呢? \\end{gather}",correctOption: "-110",incorrectOptions:["-9","-1","-15"]},
 
-{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-1&-5\\\\-4&-1\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(-1,-5); B(-4,-1)。S△OAB和行列式有什么关联呢。 \\end{gather}",correctOption: "-19",incorrectOptions:["-8","9","-17"]},
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-1&-5\\\\-4&-1\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(-1,-5); B(-4,-1)。\\\\S△OAB\\times2和行列式有什么关联呢? \\end{gather}",correctOption: "-19",incorrectOptions:["-8","9","-17"]},
 
-{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-2&5\\\\3&5\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(-2,5); B(3,5)。S△OAB和行列式有什么关联呢。 \\end{gather}",correctOption: "-25",incorrectOptions:["-5","-6","10"]},
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-2&5\\\\3&5\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(-2,5); B(3,5)。\\\\S△OAB\\times2和行列式有什么关联呢? \\end{gather}",correctOption: "-25",incorrectOptions:["-5","-6","10"]},
 
-{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}6&6\\\\7&-3\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(6,6); B(7,-3)。S△OAB和行列式有什么关联呢。 \\end{gather}",correctOption: "-60",incorrectOptions:["-12","-3","-17"]},
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}6&6\\\\7&-3\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(6,6); B(7,-3)。\\\\S△OAB\\times2和行列式有什么关联呢? \\end{gather}",correctOption: "-60",incorrectOptions:["-12","-3","-17"]},
 
-{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-1&-6\\\\-2&-8\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(-1,-6); B(-2,-8)。S△OAB和行列式有什么关联呢。 \\end{gather}",correctOption: "-4",incorrectOptions:["2","-3","-6"]},
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-1&-6\\\\-2&-8\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(-1,-6); B(-2,-8)。\\\\S△OAB\\times2和行列式有什么关联呢? \\end{gather}",correctOption: "-4",incorrectOptions:["2","-3","-6"]},
 
-{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}1&-2\\\\7&-1\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(1,-2); B(7,-1)。S△OAB和行列式有什么关联呢。 \\end{gather}",correctOption: "13",incorrectOptions:["-14","-16","19"]},
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}1&-2\\\\7&-1\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(1,-2); B(7,-1)。\\\\S△OAB\\times2和行列式有什么关联呢? \\end{gather}",correctOption: "13",incorrectOptions:["-14","-16","19"]},
 
-{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-6&2\\\\2&0\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(-6,2); B(2,0)。S△OAB和行列式有什么关联呢。 \\end{gather}",correctOption: "-4",incorrectOptions:["18","-13","7"]},
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-6&2\\\\2&0\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(-6,2); B(2,0)。\\\\S△OAB\\times2和行列式有什么关联呢? \\end{gather}",correctOption: "-4",incorrectOptions:["18","-13","7"]},
 
-{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-8&5\\\\6&-9\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(-8,5); B(6,-9)。S△OAB和行列式有什么关联呢。 \\end{gather}",correctOption: "42",incorrectOptions:["1","-18","-5"]},
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-8&5\\\\6&-9\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(-8,5); B(6,-9)。\\\\S△OAB\\times2和行列式有什么关联呢? \\end{gather}",correctOption: "42",incorrectOptions:["1","-18","-5"]},
 
-{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-6&2\\\\-1&4\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(-6,2); B(-1,4)。S△OAB和行列式有什么关联呢。 \\end{gather}",correctOption: "-22",incorrectOptions:["-19","-15","-11"]},
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-6&2\\\\-1&4\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(-6,2); B(-1,4)。\\\\S△OAB\\times2和行列式有什么关联呢? \\end{gather}",correctOption: "-22",incorrectOptions:["-19","-15","-11"]},
 
-{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}5&-6\\\\-7&-7\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(5,-6); B(-7,-7)。S△OAB和行列式有什么关联呢。 \\end{gather}",correctOption: "-77",incorrectOptions:["19","0","-1"]},
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}5&-6\\\\-7&-7\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(5,-6); B(-7,-7)。\\\\S△OAB\\times2和行列式有什么关联呢? \\end{gather}",correctOption: "-77",incorrectOptions:["19","0","-1"]},
 
-{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}5&-9\\\\-2&8\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(5,-9); B(-2,8)。S△OAB和行列式有什么关联呢。 \\end{gather}",correctOption: "22",incorrectOptions:["0","2","-13"]},
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}5&-9\\\\-2&8\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(5,-9); B(-2,8)。\\\\S△OAB\\times2和行列式有什么关联呢? \\end{gather}",correctOption: "22",incorrectOptions:["0","2","-13"]},
 
-{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-3&-4\\\\2&-1\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(-3,-4); B(2,-1)。S△OAB和行列式有什么关联呢。 \\end{gather}",correctOption: "11",incorrectOptions:["2","7","-7"]},
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-3&-4\\\\2&-1\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(-3,-4); B(2,-1)。\\\\S△OAB\\times2和行列式有什么关联呢? \\end{gather}",correctOption: "11",incorrectOptions:["2","7","-7"]},
 
-{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-9&-9\\\\5&7\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(-9,-9); B(5,7)。S△OAB和行列式有什么关联呢。 \\end{gather}",correctOption: "-18",incorrectOptions:["10","-12","19"]},
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-9&-9\\\\5&7\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(-9,-9); B(5,7)。\\\\S△OAB\\times2和行列式有什么关联呢? \\end{gather}",correctOption: "-18",incorrectOptions:["10","-12","19"]},
 
-{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-6&4\\\\3&-5\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(-6,4); B(3,-5)。S△OAB和行列式有什么关联呢。 \\end{gather}",correctOption: "18",incorrectOptions:["-11","-14","-3"]},
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-6&4\\\\3&-5\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(-6,4); B(3,-5)。\\\\S△OAB\\times2和行列式有什么关联呢? \\end{gather}",correctOption: "18",incorrectOptions:["-11","-14","-3"]},
 
-{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-9&-9\\\\-5&2\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(-9,-9); B(-5,2)。S△OAB和行列式有什么关联呢。 \\end{gather}",correctOption: "-63",incorrectOptions:["-17","17","13"]},
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-9&-9\\\\-5&2\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(-9,-9); B(-5,2)。\\\\S△OAB\\times2和行列式有什么关联呢? \\end{gather}",correctOption: "-63",incorrectOptions:["-17","17","13"]},
 
-{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}8&-5\\\\-5&-3\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(8,-5); B(-5,-3)。S△OAB和行列式有什么关联呢。 \\end{gather}",correctOption: "-49",incorrectOptions:["-12","-7","-9"]},
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}8&-5\\\\-5&-3\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(8,-5); B(-5,-3)。\\\\S△OAB\\times2和行列式有什么关联呢? \\end{gather}",correctOption: "-49",incorrectOptions:["-12","-7","-9"]},
 
-{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-8&-3\\\\-4&-7\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(-8,-3); B(-4,-7)。S△OAB和行列式有什么关联呢。 \\end{gather}",correctOption: "44",incorrectOptions:["-5","16","-19"]},
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-8&-3\\\\-4&-7\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(-8,-3); B(-4,-7)。\\\\S△OAB\\times2和行列式有什么关联呢? \\end{gather}",correctOption: "44",incorrectOptions:["-5","16","-19"]},
 
-{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-7&1\\\\-10&-3\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(-7,1); B(-10,-3)。S△OAB和行列式有什么关联呢。 \\end{gather}",correctOption: "31",incorrectOptions:["-11","-3","-1"]},
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-7&1\\\\-10&-3\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(-7,1); B(-10,-3)。\\\\S△OAB\\times2和行列式有什么关联呢? \\end{gather}",correctOption: "31",incorrectOptions:["-11","-3","-1"]},
 
-{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}0&8\\\\3&-2\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(0,8); B(3,-2)。S△OAB和行列式有什么关联呢。 \\end{gather}",correctOption: "-24",incorrectOptions:["4","-5","17"]},
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}0&8\\\\3&-2\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(0,8); B(3,-2)。\\\\S△OAB\\times2和行列式有什么关联呢? \\end{gather}",correctOption: "-24",incorrectOptions:["4","-5","17"]},
 
-{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}6&-9\\\\-6&-4\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(6,-9); B(-6,-4)。S△OAB和行列式有什么关联呢。 \\end{gather}",correctOption: "-78",incorrectOptions:["-10","-6","-9"]},
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}6&-9\\\\-6&-4\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(6,-9); B(-6,-4)。\\\\S△OAB\\times2和行列式有什么关联呢? \\end{gather}",correctOption: "-78",incorrectOptions:["-10","-6","-9"]},
 
-{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-1&-6\\\\-3&-6\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(-1,-6); B(-3,-6)。S△OAB和行列式有什么关联呢。 \\end{gather}",correctOption: "-12",incorrectOptions:["19","13","17"]},
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-1&-6\\\\-3&-6\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(-1,-6); B(-3,-6)。\\\\S△OAB\\times2和行列式有什么关联呢? \\end{gather}",correctOption: "-12",incorrectOptions:["19","13","17"]},
 
-{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}0&-4\\\\-3&-9\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(0,-4); B(-3,-9)。S△OAB和行列式有什么关联呢。 \\end{gather}",correctOption: "-12",incorrectOptions:["11","19","-16"]},
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}0&-4\\\\-3&-9\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(0,-4); B(-3,-9)。\\\\S△OAB\\times2和行列式有什么关联呢? \\end{gather}",correctOption: "-12",incorrectOptions:["11","19","-16"]},
 
-{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}5&-3\\\\-6&-6\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(5,-3); B(-6,-6)。S△OAB和行列式有什么关联呢。 \\end{gather}",correctOption: "-48",incorrectOptions:["-10","-8","17"]},
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}5&-3\\\\-6&-6\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(5,-3); B(-6,-6)。\\\\S△OAB\\times2和行列式有什么关联呢? \\end{gather}",correctOption: "-48",incorrectOptions:["-10","-8","17"]},
 
-{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}6&4\\\\-3&-9\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(6,4); B(-3,-9)。S△OAB和行列式有什么关联呢。 \\end{gather}",correctOption: "-42",incorrectOptions:["1","-4","-12"]},
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}6&4\\\\-3&-9\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(6,4); B(-3,-9)。\\\\S△OAB\\times2和行列式有什么关联呢? \\end{gather}",correctOption: "-42",incorrectOptions:["1","-4","-12"]},
 
-{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-7&8\\\\-1&1\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(-7,8); B(-1,1)。S△OAB和行列式有什么关联呢。 \\end{gather}",correctOption: "1",incorrectOptions:["-19","18","-15"]},
-
-
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-7&8\\\\-1&1\\end{vmatrix} =? \\\\在坐标系中画出O(0,0);A(-7,8); B(-1,1)。\\\\S△OAB\\times2和行列式有什么关联呢? \\end{gather}",correctOption: "1",incorrectOptions:["-19","18","-15"]},
 
 
 ]
