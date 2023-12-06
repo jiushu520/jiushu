@@ -1,3 +1,12 @@
+const 线性代数01行列式求值 = [
+{equation: "\\begin{gather}直角坐标系中有两点A(8,-1)、B(-7,4)\\textup{;}\\\\则直线AB的斜率=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "-\\frac{1}{3}",incorrectOptions:["1","-1","-3"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(8,2)、B(1,-9)\\textup{;}\\\\则直线AB的斜率=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "\\frac{11}{7}",incorrectOptions:["-\\frac{3}{2}","\\frac{1}{5}","-\\frac{2}{3}"]},
+]
+
+
+
+
 const 直角坐标系运算02两点求斜率 = [
 {equation: "\\begin{gather}直角坐标系中有两点A(8,-1)、B(-7,4)\\textup{;}\\\\则直线AB的斜率=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "-\\frac{1}{3}",incorrectOptions:["1","-1","-3"]},
 
@@ -1636,23 +1645,37 @@ function loadQuestions(questionBank, topic) {
 
 
 function myFunction(id) {
-  var x = document.getElementById('分数');
-  var y = document.getElementById('方程');
-  var z = document.getElementById('坐标系');
+  var x = document.getElementById('分数运算');
+  var y = document.getElementById('方程运算');
+  var z = document.getElementById('直角坐标');
+  var a = document.getElementById('线性代数');
   
-  if (id === '分数') {
+  if (id === '分数运算') {
     x.style.display = "block";
     y.style.display = "none";
     z.style.display = "none";
-  } else if (id === '方程') {
+    a.style.display = "none";
+    
+  } else if (id === '方程运算') {
     x.style.display = "none";
     y.style.display = "block";
     z.style.display = "none";
-  } else if (id === '坐标系') {
+    a.style.display = "none";
+  } else if (id === '直角坐标') {
     x.style.display = "none";
     y.style.display = "none";
     z.style.display = "block";
-  }
+    a.style.display = "none";
+
+  } else if (id === '线性代数') {
+    x.style.display = "none";
+    y.style.display = "none";
+    z.style.display = "none";
+    a.style.display = "block";
+  
+
+
+}
 }
 
 
