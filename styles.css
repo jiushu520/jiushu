@@ -19,17 +19,14 @@
            overflow-y: scroll;  /* 添加此行以使内容可滚动 */
 
         }
-        #navigation1 {
+#navigation1 {
+    border: 1px solid #grey;
+    padding: 10px;
+   
+    line-height: 1.5;   /* 设置1.5倍行距 */
+    background-color: #FFB6C1; /* 背景色为浅红色 */
+}
 
-            border: 2px solid #grey;
-            padding: 10px;
-           text-align: center; /* 添加文本居中 */
-           line-height: 1.5;   /* 设置1.5倍行距 */
-
-           background-color: #lightblue;
-           
-
-        }
 
 
 
