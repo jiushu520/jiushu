@@ -1,4 +1,4 @@
-const 直角坐标系运算01两点求斜率 = [
+const 直角坐标系运算02两点求斜率 = [
 {equation: "\\begin{gather}直角坐标系中有两点A(-8,6)、B(5,4)\\textup{;}\\\\则直线AB的斜率=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "-\\frac{2}{13}",incorrectOptions:["2","\\frac{7}{4}","1"]},
 
 {equation: "\\begin{gather}直角坐标系中有两点A(0,2)、B(2,-8)\\textup{;}\\\\则直线AB的斜率=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "-5",incorrectOptions:["5","\\frac{1}{8}","5"]},
