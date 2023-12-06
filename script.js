@@ -1,8 +1,129 @@
 const 线性代数01行列式求值 = [
-{equation: "\\begin{gather}直角坐标系中有两点A(8,-1)、B(-7,4)\\textup{;}\\\\则直线AB的斜率=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "-\\frac{1}{3}",incorrectOptions:["1","-1","-3"]},
 
-{equation: "\\begin{gather}直角坐标系中有两点A(8,2)、B(1,-9)\\textup{;}\\\\则直线AB的斜率=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "\\frac{11}{7}",incorrectOptions:["-\\frac{3}{2}","\\frac{1}{5}","-\\frac{2}{3}"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-6&3\\\\-5&4\\end{vmatrix} =?\\end{gather}",correctOption: "-9",incorrectOptions:["14","-15","-5"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-3&7\\\\2&-4\\end{vmatrix} =?\\end{gather}",correctOption: "-2",incorrectOptions:["-8","17","-11"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-4&-3\\\\2&-8\\end{vmatrix} =?\\end{gather}",correctOption: "38",incorrectOptions:["1","4","7"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}4&5\\\\-10&-2\\end{vmatrix} =?\\end{gather}",correctOption: "42",incorrectOptions:["-12","-8","10"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-3&8\\\\-6&0\\end{vmatrix} =?\\end{gather}",correctOption: "48",incorrectOptions:["5","-2","12"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}7&1\\\\3&2\\end{vmatrix} =?\\end{gather}",correctOption: "11",incorrectOptions:["16","6","-4"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-5&-10\\\\4&1\\end{vmatrix} =?\\end{gather}",correctOption: "35",incorrectOptions:["-9","14","-12"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-5&2\\\\-1&-1\\end{vmatrix} =?\\end{gather}",correctOption: "7",incorrectOptions:["6","16","14"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}3&8\\\\-9&-4\\end{vmatrix} =?\\end{gather}",correctOption: "60",incorrectOptions:["-8","14","-1"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}0&-10\\\\1&0\\end{vmatrix} =?\\end{gather}",correctOption: "10",incorrectOptions:["-14","-2","-19"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-5&-9\\\\-4&4\\end{vmatrix} =?\\end{gather}",correctOption: "-56",incorrectOptions:["9","-17","8"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-10&-6\\\\4&8\\end{vmatrix} =?\\end{gather}",correctOption: "-56",incorrectOptions:["-12","7","-19"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-2&3\\\\7&-6\\end{vmatrix} =?\\end{gather}",correctOption: "-9",incorrectOptions:["-7","-8","-4"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}3&2\\\\5&7\\end{vmatrix} =?\\end{gather}",correctOption: "11",incorrectOptions:["-11","-6","2"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}4&-1\\\\-6&1\\end{vmatrix} =?\\end{gather}",correctOption: "-2",incorrectOptions:["-16","17","-18"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-7&-3\\\\6&-4\\end{vmatrix} =?\\end{gather}",correctOption: "46",incorrectOptions:["18","8","-7"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-5&7\\\\-9&-10\\end{vmatrix} =?\\end{gather}",correctOption: "113",incorrectOptions:["10","-15","3"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-1&-4\\\\8&-6\\end{vmatrix} =?\\end{gather}",correctOption: "38",incorrectOptions:["-19","12","-18"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-5&6\\\\5&-6\\end{vmatrix} =?\\end{gather}",correctOption: "0",incorrectOptions:["-10","-12","-2"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-10&6\\\\5&5\\end{vmatrix} =?\\end{gather}",correctOption: "-80",incorrectOptions:["6","-17","-6"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}7&-8\\\\1&-7\\end{vmatrix} =?\\end{gather}",correctOption: "-41",incorrectOptions:["-5","14","15"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-7&-4\\\\6&-4\\end{vmatrix} =?\\end{gather}",correctOption: "52",incorrectOptions:["-17","-3","18"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-10&-6\\\\-5&8\\end{vmatrix} =?\\end{gather}",correctOption: "-110",incorrectOptions:["15","-1","19"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}0&-10\\\\-9&-1\\end{vmatrix} =?\\end{gather}",correctOption: "-90",incorrectOptions:["14","17","1"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}7&3\\\\6&1\\end{vmatrix} =?\\end{gather}",correctOption: "-11",incorrectOptions:["-8","-2","-17"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}6&-7\\\\-7&5\\end{vmatrix} =?\\end{gather}",correctOption: "-19",incorrectOptions:["9","6","3"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}7&1\\\\-8&-5\\end{vmatrix} =?\\end{gather}",correctOption: "-27",incorrectOptions:["-10","19","15"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-9&-2\\\\4&-5\\end{vmatrix} =?\\end{gather}",correctOption: "53",incorrectOptions:["13","-16","7"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}4&-2\\\\6&3\\end{vmatrix} =?\\end{gather}",correctOption: "24",incorrectOptions:["-7","-11","16"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}4&-2\\\\-10&4\\end{vmatrix} =?\\end{gather}",correctOption: "-4",incorrectOptions:["1","-9","6"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-9&4\\\\-10&-6\\end{vmatrix} =?\\end{gather}",correctOption: "94",incorrectOptions:["8","-6","-19"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}3&5\\\\7&-2\\end{vmatrix} =?\\end{gather}",correctOption: "-41",incorrectOptions:["-10","-6","18"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-3&-6\\\\-2&-8\\end{vmatrix} =?\\end{gather}",correctOption: "12",incorrectOptions:["-2","6","3"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-5&-6\\\\-3&-1\\end{vmatrix} =?\\end{gather}",correctOption: "-13",incorrectOptions:["-4","-16","10"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}1&6\\\\-10&-1\\end{vmatrix} =?\\end{gather}",correctOption: "59",incorrectOptions:["16","5","-5"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-2&-8\\\\-10&-6\\end{vmatrix} =?\\end{gather}",correctOption: "-68",incorrectOptions:["13","-11","-2"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}8&2\\\\-5&0\\end{vmatrix} =?\\end{gather}",correctOption: "10",incorrectOptions:["9","13","-12"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-7&4\\\\-4&-8\\end{vmatrix} =?\\end{gather}",correctOption: "72",incorrectOptions:["15","-10","17"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-6&6\\\\8&-4\\end{vmatrix} =?\\end{gather}",correctOption: "-24",incorrectOptions:["-4","1","8"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}3&-5\\\\8&0\\end{vmatrix} =?\\end{gather}",correctOption: "40",incorrectOptions:["-14","15","1"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}1&-10\\\\0&-3\\end{vmatrix} =?\\end{gather}",correctOption: "-3",incorrectOptions:["5","8","15"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-3&3\\\\-5&-8\\end{vmatrix} =?\\end{gather}",correctOption: "39",incorrectOptions:["2","-18","9"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}6&4\\\\4&7\\end{vmatrix} =?\\end{gather}",correctOption: "26",incorrectOptions:["7","9","-10"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-6&6\\\\-3&6\\end{vmatrix} =?\\end{gather}",correctOption: "-18",incorrectOptions:["-11","19","-14"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-2&-2\\\\-8&7\\end{vmatrix} =?\\end{gather}",correctOption: "-30",incorrectOptions:["-17","-7","2"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-3&-1\\\\-7&-5\\end{vmatrix} =?\\end{gather}",correctOption: "8",incorrectOptions:["-7","-16","14"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}2&-3\\\\-1&-7\\end{vmatrix} =?\\end{gather}",correctOption: "-17",incorrectOptions:["6","-12","-6"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}6&1\\\\3&-9\\end{vmatrix} =?\\end{gather}",correctOption: "-57",incorrectOptions:["9","0","4"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}8&-10\\\\-4&-4\\end{vmatrix} =?\\end{gather}",correctOption: "-72",incorrectOptions:["2","1","4"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}8&7\\\\3&3\\end{vmatrix} =?\\end{gather}",correctOption: "3",incorrectOptions:["-8","-10","15"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}4&-7\\\\-9&-10\\end{vmatrix} =?\\end{gather}",correctOption: "-103",incorrectOptions:["-16","15","-13"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-9&7\\\\8&-8\\end{vmatrix} =?\\end{gather}",correctOption: "16",incorrectOptions:["14","2","-12"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}0&4\\\\-9&7\\end{vmatrix} =?\\end{gather}",correctOption: "36",incorrectOptions:["5","2","11"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-1&6\\\\7&4\\end{vmatrix} =?\\end{gather}",correctOption: "-46",incorrectOptions:["-16","4","-11"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-1&8\\\\-2&5\\end{vmatrix} =?\\end{gather}",correctOption: "11",incorrectOptions:["-11","-17","19"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-2&4\\\\4&-10\\end{vmatrix} =?\\end{gather}",correctOption: "4",incorrectOptions:["-5","14","-10"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-8&-3\\\\0&-6\\end{vmatrix} =?\\end{gather}",correctOption: "48",incorrectOptions:["-12","19","0"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-1&-2\\\\3&-8\\end{vmatrix} =?\\end{gather}",correctOption: "14",incorrectOptions:["5","-11","-5"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-2&-8\\\\-6&6\\end{vmatrix} =?\\end{gather}",correctOption: "-60",incorrectOptions:["16","-8","-19"]},
+
+{equation: "\\begin{gather}行列式是代数的关键; \\\\ \\begin{vmatrix}x_1&y_1\\\\x_2&y_2\\end{vmatrix} =x_1 \\times y_2- y_1\\times x_2 \\\\ \\begin{vmatrix}-10&2\\\\-8&-6\\end{vmatrix} =?\\end{gather}",correctOption: "76",incorrectOptions:["8","-7","-10"]},
+
+
 ]
+
 
 
 
