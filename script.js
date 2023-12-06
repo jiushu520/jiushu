@@ -58,7 +58,65 @@ const 直角坐标系运算01两点求斜率 = [
 {equation: "\\begin{gather}直角坐标系中有两点A(1,-7)、B(7,6)\\textup{;}\\\\则直线AB的斜率=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "\\frac{13}{6}",incorrectOptions:["\\frac{1}{7}","-2","-\\frac{5}{9}"]},
 
 {equation: "\\begin{gather}直角坐标系中有两点A(-7,5)、B(3,0)\\textup{;}\\\\则直线AB的斜率=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "-\\frac{1}{2}",incorrectOptions:["-\\frac{2}{5}","7","-\\frac{4}{5}"]},
+{equation: "\\begin{gather}直角坐标系中有两点A(-8,-6)、B(-9,1)\\textup{;}\\\\则直线AB的斜率=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "-7",incorrectOptions:["3","-\\frac{1}{7}","-\\frac{8}{7}"]},
 
+{equation: "\\begin{gather}直角坐标系中有两点A(-10,-2)、B(2,-2)\\textup{;}\\\\则直线AB的斜率=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "0",incorrectOptions:["-5","-2","\\frac{9}{10}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(-9,-7)、B(-4,-5)\\textup{;}\\\\则直线AB的斜率=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "\\frac{2}{5}",incorrectOptions:["-\\frac{7}{3}","-\\frac{7}{2}","-\\frac{1}{2}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(-6,2)、B(-5,0)\\textup{;}\\\\则直线AB的斜率=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "-2",incorrectOptions:["\\frac{1}{6}","8","-\\frac{7}{4}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(5,7)、B(0,-4)\\textup{;}\\\\则直线AB的斜率=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "\\frac{11}{5}",incorrectOptions:["\\frac{2}{5}","-\\frac{3}{2}","-\\frac{1}{2}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(-1,8)、B(-9,-6)\\textup{;}\\\\则直线AB的斜率=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "\\frac{7}{4}",incorrectOptions:["0","-8","0"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(3,-3)、B(0,-6)\\textup{;}\\\\则直线AB的斜率=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "1",incorrectOptions:["-\\frac{3}{2}","\\frac{3}{4}","-\\frac{7}{4}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(8,-3)、B(0,-6)\\textup{;}\\\\则直线AB的斜率=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "\\frac{3}{8}",incorrectOptions:["-\\frac{1}{6}","\\frac{3}{5}","-\\frac{2}{5}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(-6,-3)、B(7,-8)\\textup{;}\\\\则直线AB的斜率=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "-\\frac{5}{13}",incorrectOptions:["-\\frac{2}{3}","-\\frac{7}{2}","\\frac{5}{4}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(6,-1)、B(-3,-5)\\textup{;}\\\\则直线AB的斜率=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "\\frac{4}{9}",incorrectOptions:["-\\frac{9}{8}","-\\frac{2}{3}","-8"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(6,7)、B(-5,1)\\textup{;}\\\\则直线AB的斜率=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "\\frac{6}{11}",incorrectOptions:["\\frac{7}{5}","-\\frac{3}{2}","-\\frac{1}{2}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(3,3)、B(-10,-2)\\textup{;}\\\\则直线AB的斜率=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "\\frac{5}{13}",incorrectOptions:["3","-\\frac{5}{4}","-6"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(1,4)、B(-1,2)\\textup{;}\\\\则直线AB的斜率=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "1",incorrectOptions:["0","-\\frac{3}{2}","\\frac{5}{2}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(3,4)、B(-5,3)\\textup{;}\\\\则直线AB的斜率=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "\\frac{1}{8}",incorrectOptions:["-\\frac{3}{7}","2","-\\frac{3}{10}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(7,-10)、B(8,1)\\textup{;}\\\\则直线AB的斜率=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "11",incorrectOptions:["-\\frac{5}{3}","\\frac{5}{8}","-1"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(7,-9)、B(2,-7)\\textup{;}\\\\则直线AB的斜率=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "-\\frac{2}{5}",incorrectOptions:["-\\frac{3}{10}","-\\frac{3}{8}","\\frac{3}{5}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(-1,-8)、B(1,-7)\\textup{;}\\\\则直线AB的斜率=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "\\frac{1}{2}",incorrectOptions:["\\frac{3}{2}","-2","-\\frac{10}{7}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(-7,-5)、B(4,6)\\textup{;}\\\\则直线AB的斜率=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "1",incorrectOptions:["-\\frac{9}{4}","-\\frac{8}{7}","\\frac{6}{7}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(-1,-5)、B(-5,6)\\textup{;}\\\\则直线AB的斜率=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "-\\frac{11}{4}",incorrectOptions:["\\frac{1}{8}","-10","\\frac{3}{5}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(-5,1)、B(-9,3)\\textup{;}\\\\则直线AB的斜率=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "-\\frac{1}{2}",incorrectOptions:["\\frac{1}{10}","-\\frac{7}{6}","-\\frac{1}{7}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(3,-7)、B(1,-3)\\textup{;}\\\\则直线AB的斜率=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "-2",incorrectOptions:["-\\frac{1}{9}","1","\\frac{8}{3}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(-3,-6)、B(-9,-9)\\textup{;}\\\\则直线AB的斜率=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "\\frac{1}{2}",incorrectOptions:["-\\frac{4}{5}","\\frac{3}{2}","\\frac{10}{3}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(-5,-5)、B(4,-10)\\textup{;}\\\\则直线AB的斜率=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "-\\frac{5}{9}",incorrectOptions:["\\frac{2}{3}","1","5"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(-3,-5)、B(-8,6)\\textup{;}\\\\则直线AB的斜率=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "-\\frac{11}{5}",incorrectOptions:["\\frac{5}{3}","9","-\\frac{1}{4}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(6,-5)、B(-2,-2)\\textup{;}\\\\则直线AB的斜率=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "-\\frac{3}{8}",incorrectOptions:["\\frac{6}{5}","-\\frac{5}{3}","-\\frac{9}{8}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(8,-5)、B(7,2)\\textup{;}\\\\则直线AB的斜率=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "-7",incorrectOptions:["-\\frac{7}{8}","0","\\frac{10}{9}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(-3,6)、B(3,8)\\textup{;}\\\\则直线AB的斜率=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "\\frac{1}{3}",incorrectOptions:["-\\frac{3}{5}","-\\frac{1}{6}","\\frac{1}{3}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(-7,-6)、B(8,0)\\textup{;}\\\\则直线AB的斜率=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "\\frac{2}{5}",incorrectOptions:["-\\frac{1}{2}","\\frac{7}{2}","-\\frac{7}{2}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(-8,2)、B(0,-10)\\textup{;}\\\\则直线AB的斜率=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "-\\frac{3}{2}",incorrectOptions:["\\frac{1}{6}","-2","4"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(5,-2)、B(-5,7)\\textup{;}\\\\则直线AB的斜率=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\end{gather}",correctOption: "-\\frac{9}{10}",incorrectOptions:["-\\frac{8}{3}","\\frac{5}{8}","\\frac{7}{5}"]},
 
  
 ]
