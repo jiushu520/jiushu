@@ -1738,6 +1738,25 @@ function myFunction(id) {
 }
 
 
+#equation, #options {
+            text-align: center;
+            width: 100%;
+            font-size: 20px; /* 这里设置了字体大小 */
+            
+                    }
+
+.option {
+            display: inline-block;
+            margin: 0 10px;
+            padding: 10px;
+            border: 1px solid #000;
+            cursor: pointer;
+            margin: 0 10px 20px;
+             font-size: 20px; /* 这里设置了字体大小 */
+          }
+
+
+
         // 默认加载分数混合运算题库
         window.onload = () => loadQuestions(分数加减运算, '分数加减运算');
     
