@@ -13,20 +13,23 @@
             border-right: 1px solid #000;
             padding: 10px;
            text-align: center; /* 添加文本居中 */
-           line-height: 1;   /* 设置1倍行距 */
+           line-height: 2.5;   /* 设置1.5倍行距 */
            height: 100vh; /* 设置为视口的高度 */
            background-color: #FAF9DE;
            overflow-y: scroll;  /* 添加此行以使内容可滚动 */
 
         }
-#navigation1 {
-    border: 2px solid #grey;
-    padding: 10px;
-   
-    line-height: 1.5;   /* 设置1.5倍行距 */
-    background-color: #B0C4DE; /* 背景色为浅红色 */
-}
+        #navigation1 {
 
+            border: 2px solid #grey;
+            padding: 10px;
+           text-align: center; /* 添加文本居中 */
+           line-height: 1.5;   /* 设置1.5倍行距 */
+
+           background-color: #lightblue;
+           
+
+        }
 
 
 
