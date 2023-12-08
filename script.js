@@ -1,123 +1,122 @@
 const 乘法公式01整式乘法 = [
-{equation: "\\begin{gather}(x+4)(x+6)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "10;24",incorrectOptions:["6;8","9;20","12;32"]},
+{equation: "\\[ {(x+6)(x-5)=?}\\]",correctOption: "x^2+x-30",incorrectOptions:["x^2-7x+6","x^2-10x+21","x^2-9x+20"]},
 
-{equation: "\\begin{gather}(x+8)(x+4)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "12;32",incorrectOptions:["11;18","2;1","14;45"]},
+{equation: "\\[ {x(x-6)=?}\\]",correctOption: "x^2-6x",incorrectOptions:["x^2-5x+4","x^2-16","x^2-4x-45"]},
 
-{equation: "\\begin{gather}(x+6)(x+8)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "14;48",incorrectOptions:["10;16","7;10","10;24"]},
+{equation: "\\[ {(x-8)(x-1)=?}\\]",correctOption: "x^2-9x+8",incorrectOptions:["x^2-15x+54","x^2+11x+28","x^2-16x+60"]},
 
-{equation: "\\begin{gather}(x+3)(x+1)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "4;3",incorrectOptions:["10;21","8;15","3;2"]},
+{equation: "\\[ {(x+7)(x-8)=?}\\]",correctOption: "x^2-x-56",incorrectOptions:["x^2+10x+21","x^2-5x","x^2+5x+4"]},
 
-{equation: "\\begin{gather}(x+6)(x+9)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "15;54",incorrectOptions:["14;48","7;12","18;80"]},
+{equation: "\\[ {(x-6)(x-5)=?}\\]",correctOption: "x^2-11x+30",incorrectOptions:["x^2-2x-8","x^2+14x+49","x^2+3x-28"]},
 
-{equation: "\\begin{gather}(x+10)(x+5)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "15;50",incorrectOptions:["7;6","16;60","13;42"]},
+{equation: "\\[ {(x-10)(x+8)=?}\\]",correctOption: "x^2-2x-80",incorrectOptions:["x^2+3x-18","x^2-14x+48","x^2+2x-48"]},
 
-{equation: "\\begin{gather}(x+9)(x+3)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "12;27",incorrectOptions:["14;49","13;40","5;6"]},
+{equation: "\\[ {(x-2)(x-6)=?}\\]",correctOption: "x^2-8x+12",incorrectOptions:["x^2-18x+81","x^2+2x-24","x^2-x-30"]},
 
-{equation: "\\begin{gather}(x+10)(x+8)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "18;80",incorrectOptions:["13;42","11;30","12;32"]},
+{equation: "\\[ {(x+4)(x-7)=?}\\]",correctOption: "x^2-3x-28",incorrectOptions:["x^2-4x-5","x^2+10x+21","x^2+3x-10"]},
 
-{equation: "\\begin{gather}(x+9)(x+7)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "16;63",incorrectOptions:["20;100","15;54","10;9"]},
+{equation: "\\[ {(x-10)(x-2)=?}\\]",correctOption: "x^2-12x+20",incorrectOptions:["x^2+3x-28","x^2+2x-15","x^2+5x-24"]},
 
-{equation: "\\begin{gather}(x+8)(x+7)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "15;56",incorrectOptions:["11;30","20;100","8;7"]},
+{equation: "\\[ {(x-5)(x+5)=?}\\]",correctOption: "x^2-25",incorrectOptions:["x^2-4x-5","x^2+9x+18","x^2+5x+4"]},
 
-{equation: "\\begin{gather}(x+9)(x+4)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "13;36",incorrectOptions:["6;8","15;50","2;1"]},
+{equation: "\\[ {(x+8)(x-7)=?}\\]",correctOption: "x^2+x-56",incorrectOptions:["x^2+9x+14","x^2-5x","x^2+10x+16"]},
 
-{equation: "\\begin{gather}(x+2)(x+1)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "3;2",incorrectOptions:["8;12","13;36","8;16"]},
+{equation: "\\[ {(x+3)(x-9)=?}\\]",correctOption: "x^2-6x-27",incorrectOptions:["x^2+4x-32","x^2-2x","x^2+x-12"]},
 
-{equation: "\\begin{gather}(x+7)(x+8)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "15;56",incorrectOptions:["11;24","19;90","14;49"]},
+{equation: "\\[ {(x-1)(x-9)=?}\\]",correctOption: "x^2-10x+9",incorrectOptions:["x^2+x-12","x^2+16x+64","x^2-13x+30"]},
 
-{equation: "\\begin{gather}(x+4)(x+4)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "8;16",incorrectOptions:["6;9","11;28","9;18"]},
+{equation: "\\[ {(x-3)(x-7)=?}\\]",correctOption: "x^2-10x+21",incorrectOptions:["x^2+x-2","x^2-11x+24","x^2-7x+10"]},
 
-{equation: "\\begin{gather}(x+3)(x+5)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "8;15",incorrectOptions:["4;4","9;8","4;4"]},
+{equation: "\\[ {(x+1)(x-8)=?}\\]",correctOption: "x^2-7x-8",incorrectOptions:["x^2+13x+42","x^2+x-56","x^2-9x-10"]},
 
-{equation: "\\begin{gather}(x+6)(x+10)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "16;60",incorrectOptions:["13;42","12;32","17;72"]},
+{equation: "\\[ {(x+5)(x+7)=?}\\]",correctOption: "x^2+12x+35",incorrectOptions:["x^2+2x-15","x^2-2x-35","x^2-10x+25"]},
 
-{equation: "\\begin{gather}(x+10)(x+4)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "14;40",incorrectOptions:["7;12","3;2","19;90"]},
+{equation: "\\[ {(x+1)(x+1)=?}\\]",correctOption: "x^2+2x+1",incorrectOptions:["x^2+9x+14","x^2-2x-80","x^2+8x+15"]},
 
-{equation: "\\begin{gather}(x+3)(x+3)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "6;9",incorrectOptions:["12;27","14;40","15;56"]},
+{equation: "\\[ {(x-5)(x+4)=?}\\]",correctOption: "x^2-x-20",incorrectOptions:["x^2-12x+27","x^2+8x+7","x^2-13x+36"]},
 
-{equation: "\\begin{gather}(x+6)(x+7)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "13;42",incorrectOptions:["12;27","15;50","18;81"]},
+{equation: "\\[ {(x+8)(x+4)=?}\\]",correctOption: "x^2+12x+32",incorrectOptions:["x^2-x-12","x^2-4x+3","x^2-x-42"]},
 
-{equation: "\\begin{gather}(x+5)(x+2)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "7;10",incorrectOptions:["8;7","12;35","8;12"]},
+{equation: "\\[ {(x+6)(x-3)=?}\\]",correctOption: "x^2+3x-18",incorrectOptions:["x^2-8x-20","x^2+9x+18","x^2+11x+30"]},
 
-{equation: "\\begin{gather}(x+4)(x+8)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "12;32",incorrectOptions:["9;18","10;21","7;12"]},
+{equation: "\\[ {(x+7)(x+5)=?}\\]",correctOption: "x^2+12x+35",incorrectOptions:["x^2-12x+20","x^2-8x","x^2-x-20"]},
 
-{equation: "\\begin{gather}(x+7)(x+10)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "17;70",incorrectOptions:["20;100","19;90","15;54"]},
+{equation: "\\[ {(x+6)(x+3)=?}\\]",correctOption: "x^2+9x+18",incorrectOptions:["x^2-x-42","x^2-3x-40","x^2+7x-8"]},
 
-{equation: "\\begin{gather}(x+5)(x+10)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "15;50",incorrectOptions:["9;18","8;12","7;6"]},
+{equation: "\\[ {(x+8)(x-10)=?}\\]",correctOption: "x^2-2x-80",incorrectOptions:["x^2+3x-18","x^2-9x+20","x^2+3x-40"]},
 
-{equation: "\\begin{gather}(x+9)(x+5)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "14;45",incorrectOptions:["18;80","12;32","10;24"]},
+{equation: "\\[ {(x-10)(x-3)=?}\\]",correctOption: "x^2-13x+30",incorrectOptions:["x^2+9x+18","x^2+x-56","x^2-9"]},
 
-{equation: "\\begin{gather}(x+10)(x+2)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "12;20",incorrectOptions:["4;3","11;24","13;30"]},
+{equation: "\\[ {(x+7)(x+2)=?}\\]",correctOption: "x^2+9x+14",incorrectOptions:["x^2-9x+20","x^2-12x+32","x^2+10x+24"]},
 
-{equation: "\\begin{gather}(x+4)(x+2)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "6;8",incorrectOptions:["11;30","8;16","16;63"]},
+{equation: "\\[ {(x+3)(x+5)=?}\\]",correctOption: "x^2+8x+15",incorrectOptions:["x^2-x-42","x^2-18x+81","x^2+2x-48"]},
 
-{equation: "\\begin{gather}(x+5)(x+6)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "11;30",incorrectOptions:["10;21","7;10","18;81"]},
+{equation: "\\[ {(x+2)(x-2)=?}\\]",correctOption: "x^2-4",incorrectOptions:["x^2+6x+8","x^2+2x-35","x^2+5x+6"]},
 
-{equation: "\\begin{gather}(x+9)(x+9)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "18;81",incorrectOptions:["19;90","8;16","15;56"]},
+{equation: "\\[ {(x+2)(x-2)=?}\\]",correctOption: "x^2-4",incorrectOptions:["x^2+5x+6","x^2-2x-80","x^2-6x+9"]},
 
-{equation: "\\begin{gather}(x+2)(x+10)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "12;20",incorrectOptions:["13;30","4;4","10;24"]},
+{equation: "\\[ {(x-6)(x-10)=?}\\]",correctOption: "x^2-16x+60",incorrectOptions:["x^2+7x+6","x^2-15x+54","x^2-x-42"]},
 
-{equation: "\\begin{gather}(x+10)(x+9)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "19;90",incorrectOptions:["12;27","6;8","10;9"]},
-{equation: "\\begin{gather}(x+4)(x+10)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "14;40",incorrectOptions:["13;30","16;63","19;90"]},
+{equation: "\\[ {(x-10)(x-9)=?}\\]",correctOption: "x^2-19x+90",incorrectOptions:["x^2-4x-21","x^2-11x+30","x^2+2x-24"]},
+{equation: "\\[ {(x+3)(x+2)=?}\\]",correctOption: "x^2+5x+6",incorrectOptions:["x^2-x-42","x^2-11x+24","x^2-5x+4"]},
 
-{equation: "\\begin{gather}(x+9)(x+5)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "14;45",incorrectOptions:["8;15","19;90","7;12"]},
+{equation: "\\[ {(x-7)(x+7)=?}\\]",correctOption: "x^2-49",incorrectOptions:["x^2-11x+30","x^2-4x+3","x^2-x-30"]},
 
-{equation: "\\begin{gather}(x+2)(x+2)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "4;4",incorrectOptions:["15;54","14;48","15;50"]},
+{equation: "\\[ {(x+6)(x-3)=?}\\]",correctOption: "x^2+3x-18",incorrectOptions:["x^2+6x+9","x^2-14x+40","x^2-7x-30"]},
 
-{equation: "\\begin{gather}(x+10)(x+6)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "16;60",incorrectOptions:["10;21","8;15","10;21"]},
+{equation: "\\[ {(x-6)(x-8)=?}\\]",correctOption: "x^2-14x+48",incorrectOptions:["x^2-2x","x^2-10x+16","x^2-x-6"]},
 
-{equation: "\\begin{gather}(x+3)(x+5)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "8;15",incorrectOptions:["18;80","12;27","17;70"]},
+{equation: "\\[ {(x-9)(x+8)=?}\\]",correctOption: "x^2-x-72",incorrectOptions:["x^2+6x","x^2+7x-8","x^2+14x+49"]},
 
-{equation: "\\begin{gather}(x+5)(x+1)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "6;5",incorrectOptions:["20;100","8;16","5;4"]},
+{equation: "\\[ {(x-1)(x-6)=?}\\]",correctOption: "x^2-7x+6",incorrectOptions:["x^2-5x-50","x^2-3x-28","x^2+2x-35"]},
 
-{equation: "\\begin{gather}(x+10)(x+10)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "20;100",incorrectOptions:["11;30","18;80","10;24"]},
+{equation: "\\[ {(x-1)(x-6)=?}\\]",correctOption: "x^2-7x+6",incorrectOptions:["x^2+9x+14","x^2-16x+60","x^2-8x-20"]},
 
-{equation: "\\begin{gather}(x+3)(x+1)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "4;3",incorrectOptions:["8;12","11;30","12;20"]},
+{equation: "\\[ {(x+1)(x-2)=?}\\]",correctOption: "x^2-x-2",incorrectOptions:["x^2-4x-45","x^2-5x-36","x^2+x-30"]},
 
-{equation: "\\begin{gather}(x+4)(x+2)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "6;8",incorrectOptions:["16;60","13;40","10;24"]},
+{equation: "\\[ {(x+2)(x+5)=?}\\]",correctOption: "x^2+7x+10",incorrectOptions:["x^2-9x+20","x^2-20x+100","x^2-8x-20"]},
 
-{equation: "\\begin{gather}(x+10)(x+6)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "16;60",incorrectOptions:["14;40","15;56","13;36"]},
+{equation: "\\[ {(x-5)(x-6)=?}\\]",correctOption: "x^2-11x+30",incorrectOptions:["x^2+4x-5","x^2+3x-28","x^2-10x+21"]},
 
-{equation: "\\begin{gather}(x+4)(x+3)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "7;12",incorrectOptions:["11;28","4;3","9;20"]},
+{equation: "\\[ {(x-2)(x+6)=?}\\]",correctOption: "x^2+4x-12",incorrectOptions:["x^2+6x+8","x^2+x-56","x^2-7x+12"]},
 
-{equation: "\\begin{gather}(x+9)(x+8)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "17;72",incorrectOptions:["5;4","13;40","14;45"]},
+{equation: "\\[ {(x+7)(x-2)=?}\\]",correctOption: "x^2+5x-14",incorrectOptions:["x^2+14x+48","x^2-19x+90","x^2+7x+10"]},
 
-{equation: "\\begin{gather}(x+1)(x+8)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "9;8",incorrectOptions:["13;36","2;1","13;36"]},
+{equation: "\\[ {(x-8)(x+6)=?}\\]",correctOption: "x^2-2x-48",incorrectOptions:["x^2+x-20","x^2-12x+35","x^2-25"]},
 
-{equation: "\\begin{gather}(x+7)(x+1)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "8;7",incorrectOptions:["10;21","16;63","5;4"]},
+{equation: "\\[ {(x+1)(x+7)=?}\\]",correctOption: "x^2+8x+7",incorrectOptions:["x^2-11x+28","x^2-6x+8","x^2-9x"]},
 
-{equation: "\\begin{gather}(x+8)(x+6)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "14;48",incorrectOptions:["7;6","18;81","12;35"]},
+{equation: "\\[ {(x-6)(x-1)=?}\\]",correctOption: "x^2-7x+6",incorrectOptions:["x^2-9x+20","x^2-13x+30","x^2-9x-10"]},
 
-{equation: "\\begin{gather}(x+3)(x+7)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "10;21",incorrectOptions:["11;30","8;7","11;28"]},
+{equation: "\\[ {(x+1)(x+4)=?}\\]",correctOption: "x^2+5x+4",incorrectOptions:["x^2-14x+45","x^2-7x+6","x^2-9"]},
 
-{equation: "\\begin{gather}(x+10)(x+5)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "15;50",incorrectOptions:["6;5","16;63","19;90"]},
+{equation: "\\[ {(x+6)(x-1)=?}\\]",correctOption: "x^2+5x-6",incorrectOptions:["x^2+10x+24","x^2-16x+60","x^2-10x"]},
 
-{equation: "\\begin{gather}(x+2)(x+2)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "4;4",incorrectOptions:["10;24","9;20","13;30"]},
+{equation: "\\[ {(x-9)(x+5)=?}\\]",correctOption: "x^2-4x-45",incorrectOptions:["x^2-x-56","x^2+2x-15","x^2-9x+14"]},
 
-{equation: "\\begin{gather}(x+3)(x+5)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "8;15",incorrectOptions:["12;27","14;40","11;28"]},
+{equation: "\\[ {(x-5)(x-2)=?}\\]",correctOption: "x^2-7x+10",incorrectOptions:["x^2+4x-21","x^2+14x+48","x^2-64"]},
 
-{equation: "\\begin{gather}(x+10)(x+4)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "14;40",incorrectOptions:["7;12","10;24","16;63"]},
+{equation: "\\[ {(x+7)(x+8)=?}\\]",correctOption: "x^2+15x+56",incorrectOptions:["x^2+5x-6","x^2+2x-24","x^2-64"]},
 
-{equation: "\\begin{gather}(x+2)(x+9)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "11;18",incorrectOptions:["8;15","14;48","13;30"]},
+{equation: "\\[ {(x-5)(x-2)=?}\\]",correctOption: "x^2-7x+10",incorrectOptions:["x^2-2x-80","x^2+7x+6","x^2+2x-35"]},
 
-{equation: "\\begin{gather}(x+7)(x+3)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "10;21",incorrectOptions:["13;30","6;8","2;1"]},
+{equation: "\\[ {(x-9)(x+7)=?}\\]",correctOption: "x^2-2x-63",incorrectOptions:["x^2+6x","x^2-7x+12","x^2-4x"]},
 
-{equation: "\\begin{gather}(x+4)(x+8)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "12;32",incorrectOptions:["11;28","8;16","14;49"]},
+{equation: "\\[ {(x-1)(x-4)=?}\\]",correctOption: "x^2-5x+4",incorrectOptions:["x^2-36","x^2-15x+54","x^2-7x+6"]},
 
-{equation: "\\begin{gather}(x+2)(x+6)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "8;12",incorrectOptions:["11;24","7;6","12;20"]},
+{equation: "\\[ {(x+1)(x-3)=?}\\]",correctOption: "x^2-2x-3",incorrectOptions:["x^2+2x-15","x^2-10x+9","x^2-8x+7"]},
 
-{equation: "\\begin{gather}(x+8)(x+1)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "9;8",incorrectOptions:["20;100","7;10","10;9"]},
+{equation: "\\[ {(x-4)(x-8)=?}\\]",correctOption: "x^2-12x+32",incorrectOptions:["x^2+9x+14","x^2-4x-21","x^2-5x-24"]},
 
-{equation: "\\begin{gather}(x+10)(x+7)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "17;70",incorrectOptions:["18;80","10;9","12;27"]},
+{equation: "\\[ {(x+4)(x-9)=?}\\]",correctOption: "x^2-5x-36",incorrectOptions:["x^2-14x+45","x^2+13x+40","x^2+5x+6"]},
 
-{equation: "\\begin{gather}(x+3)(x+8)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "11;24",incorrectOptions:["19;90","10;16","15;50"]},
+{equation: "\\[ {(x-3)(x-6)=?}\\]",correctOption: "x^2-9x+18",incorrectOptions:["x^2-13x+30","x^2-16x+63","x^2-10x+9"]},
 
-{equation: "\\begin{gather}(x+6)(x+6)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "12;36",incorrectOptions:["18;81","11;30","17;72"]},
+{equation: "\\[ {(x-2)(x-1)=?}\\]",correctOption: "x^2-3x+2",incorrectOptions:["x^2-5x-14","x^2-10x","x^2-2x-35"]},
 
-{equation: "\\begin{gather}(x+9)(x+5)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "14;45",incorrectOptions:["9;14","18;81","12;20"]},
+{equation: "\\[ {(x-3)(x-7)=?}\\]",correctOption: "x^2-10x+21",incorrectOptions:["x^2+5x-6","x^2-7x","x^2+x-12"]},
 
-{equation: "\\begin{gather}(x+5)(x+3)=?\\\\x^2+\\_\\_x+\\_\\_\\end{gather}",correctOption: "8;15",incorrectOptions:["10;25","19;90","7;10"]},
-
+{equation: "\\[ {(x+5)(x+3)=?}\\]",correctOption: "x^2+8x+15",incorrectOptions:["x^2-6x","x^2-18x+81","x^2-25"]},
 
 
 ]
