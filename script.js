@@ -1,3 +1,134 @@
+const 乘法公式02整式乘法 = [
+
+{equation: "\\[ {(x-4y)(-5x-5y)=?}\\]",correctOption: "-5x^2+15xy+20y^2",incorrectOptions:["15x^2-24xy+9y^2","-5x^2+5xy+10y^2","-15x^2+8xy+16y^2"]},
+
+{equation: "\\[ {(x-5y)(x-2y)=?}\\]",correctOption: "x^2-7xy+10y^2",incorrectOptions:["-2x^2-xy+3y^2","-10x^2+26xy-12y^2","4x^2+4xy-3y^2"]},
+
+{equation: "\\[ {(3x-3y)(-2x-2y)=?}\\]",correctOption: "-6x^2+6y^2",incorrectOptions:["15x^2+14xy+3y^2","5x^2+14xy-3y^2","3x^2-12xy-15y^2"]},
+
+{equation: "\\[ {(-4x-4y)(-2x-2y)=?}\\]",correctOption: "8x^2+16xy+8y^2",incorrectOptions:["-6x^2-8xy+8y^2","3x^2-16xy+5y^2","2x^2+9xy+10y^2"]},
+
+{equation: "\\[ {(-4x-4y)(-3x-3y)=?}\\]",correctOption: "12x^2+24xy+12y^2",incorrectOptions:["3x^2+12xy-15y^2","10x^2+xy-2y^2","-3x^2+2xy+5y^2"]},
+
+{equation: "\\[ {(-4x-3y)(x-4y)=?}\\]",correctOption: "-4x^2+13xy+12y^2",incorrectOptions:["-9x^2+15xy-4y^2","2x^2+5xy+3y^2","10x^2+12xy+2y^2"]},
+
+{equation: "\\[ {(-4x+3y)(3x-4y)=?}\\]",correctOption: "-12x^2+25xy-12y^2",incorrectOptions:["-3x^2-xy+2y^2","-4x^2+15xy+4y^2","12x^2+13xy+3y^2"]},
+
+{equation: "\\[ {(-x+3y)(-x+2y)=?}\\]",correctOption: "x^2-5xy+6y^2",incorrectOptions:["-12x^2+3xy+9y^2","20x^2+26xy+8y^2","-15x^2+xy+2y^2"]},
+
+{equation: "\\[ {(3x+y)(-3x+3y)=?}\\]",correctOption: "-9x^2+6xy+3y^2",incorrectOptions:["9x^2-12xy+3y^2","-x^2-3xy-2y^2","-2x^2+4xy-2y^2"]},
+
+{equation: "\\[ {(-x+2y)(-2x-4y)=?}\\]",correctOption: "2x^2-8y^2",incorrectOptions:["6x^2+7xy-5y^2","-x^2-2xy-y^2","9x^2+15xy+6y^2"]},
+
+{equation: "\\[ {(-3x-3y)(-5x+3y)=?}\\]",correctOption: "15x^2+6xy-9y^2",incorrectOptions:["-5x^2+11xy+12y^2","-3x^2+10xy+8y^2","3x^2-3y^2"]},
+
+{equation: "\\[ {(-3x-3y)(-x+2y)=?}\\]",correctOption: "3x^2-3xy-6y^2",incorrectOptions:["4x^2+17xy+4y^2","20x^2-13xy+2y^2","-6x^2-4xy+2y^2"]},
+
+{equation: "\\[ {(-5x+3y)(-3x-2y)=?}\\]",correctOption: "15x^2+xy-6y^2",incorrectOptions:["-9x^2-12xy+5y^2","-4x^2+12xy+16y^2","-15x^2+31xy-10y^2"]},
+
+{equation: "\\[ {(-3x-y)(-2x+3y)=?}\\]",correctOption: "6x^2-7xy-3y^2",incorrectOptions:["3x^2+6xy-9y^2","-15x^2-10xy+5y^2","-12x^2-xy+y^2"]},
+
+{equation: "\\[ {(-3x+2y)(-2x-y)=?}\\]",correctOption: "6x^2-xy-2y^2",incorrectOptions:["5x^2+23xy+12y^2","x^2-3xy-4y^2","-6x^2+3xy+3y^2"]},
+
+{equation: "\\[ {(2x-y)(-4x-2y)=?}\\]",correctOption: "-8x^2+2y^2",incorrectOptions:["-2x^2-4xy+6y^2","-4x^2+8xy+12y^2","25x^2-y^2"]},
+
+{equation: "\\[ {(-3x-y)(x+2y)=?}\\]",correctOption: "-3x^2-7xy-2y^2",incorrectOptions:["6x^2+xy-y^2","15x^2+7xy-4y^2","10x^2-11xy+3y^2"]},
+
+{equation: "\\[ {(x-4y)(-3x-2y)=?}\\]",correctOption: "-3x^2+10xy+8y^2",incorrectOptions:["9x^2+6xy-3y^2","4x^2-4xy-15y^2","-4x^2+4xy+3y^2"]},
+
+{equation: "\\[ {(3x-2y)(-4x+y)=?}\\]",correctOption: "-12x^2+11xy-2y^2",incorrectOptions:["10x^2+21xy-10y^2","3x^2+5xy-2y^2","8x^2+18xy+4y^2"]},
+
+{equation: "\\[ {(-x-3y)(2x+y)=?}\\]",correctOption: "-2x^2-7xy-3y^2",incorrectOptions:["6x^2-13xy+5y^2","16x^2-4y^2","-6x^2+3xy+3y^2"]},
+
+{equation: "\\[ {(-x-y)(x+3y)=?}\\]",correctOption: "-x^2-4xy-3y^2",incorrectOptions:["2x^2+3xy+y^2","-x^2-5xy-6y^2","-3x^2-16xy-5y^2"]},
+
+{equation: "\\[ {(x-y)(-2x-3y)=?}\\]",correctOption: "-2x^2-xy+3y^2",incorrectOptions:["x^2+xy-6y^2","-6x^2+6y^2","-6x^2+3xy+9y^2"]},
+
+{equation: "\\[ {(3x-4y)(-x+2y)=?}\\]",correctOption: "-3x^2+10xy-8y^2",incorrectOptions:["4x^2+5xy-6y^2","-3x^2-8xy-4y^2","2x^2+3xy-2y^2"]},
+
+{equation: "\\[ {(-2x-4y)(-x-4y)=?}\\]",correctOption: "2x^2+12xy+16y^2",incorrectOptions:["-x^2+16y^2","-3x^2+11xy+20y^2","6x^2-11xy+3y^2"]},
+
+{equation: "\\[ {(-2x+y)(x-2y)=?}\\]",correctOption: "-2x^2+5xy-2y^2",incorrectOptions:["-x^2-5xy-6y^2","4x^2+16xy+12y^2","4x^2+10xy+4y^2"]},
+
+{equation: "\\[ {(-5x-3y)(-3x-2y)=?}\\]",correctOption: "15x^2+19xy+6y^2",incorrectOptions:["5x^2+24xy+16y^2","10x^2+22xy+4y^2","2x^2-7xy+6y^2"]},
+
+{equation: "\\[ {(-4x-y)(-x-2y)=?}\\]",correctOption: "4x^2+9xy+2y^2",incorrectOptions:["-12x^2-24xy-12y^2","4x^2+21xy+20y^2","3x^2+12xy-15y^2"]},
+
+{equation: "\\[ {(2x-3y)(-2x-y)=?}\\]",correctOption: "-4x^2+4xy+3y^2",incorrectOptions:["-15x^2-10xy+5y^2","4x^2-5xy-6y^2","6x^2-14xy+4y^2"]},
+
+{equation: "\\[ {(-x+3y)(-x-3y)=?}\\]",correctOption: "x^2-9y^2",incorrectOptions:["5x^2-13xy+6y^2","6x^2+16xy+8y^2","-9x^2+15xy-4y^2"]},
+
+{equation: "\\[ {(-x-5y)(-3x-4y)=?}\\]",correctOption: "3x^2+19xy+20y^2",incorrectOptions:["-12x^2+11xy-2y^2","6x^2-2xy-4y^2","4x^2+19xy+12y^2"]},
+
+{equation: "\\[ {(-2x+y)(-5x-y)=?}\\]",correctOption: "10x^2-3xy-y^2",incorrectOptions:["-x^2+2xy-y^2","-x^2+3xy+10y^2","x^2+xy-2y^2"]},
+
+{equation: "\\[ {(-2x-4y)(-2x+y)=?}\\]",correctOption: "4x^2+6xy-4y^2",incorrectOptions:["-12x^2+11xy-2y^2","-5x^2+4xy+y^2","-4x^2+12xy-8y^2"]},
+
+{equation: "\\[ {(-2x+2y)(2x+y)=?}\\]",correctOption: "-4x^2+2xy+2y^2",incorrectOptions:["20x^2+18xy+4y^2","4x^2+12xy+8y^2","5x^2-7xy+2y^2"]},
+
+{equation: "\\[ {(-3x-3y)(2x-4y)=?}\\]",correctOption: "-6x^2+6xy+12y^2",incorrectOptions:["3x^2+4xy+y^2","16x^2+32xy+15y^2","5x^2-13xy+6y^2"]},
+
+{equation: "\\[ {(2x-y)(3x+2y)=?}\\]",correctOption: "6x^2+xy-2y^2",incorrectOptions:["-3x^2+5xy+2y^2","4x^2-2xy-6y^2","-15x^2+9xy+6y^2"]},
+
+{equation: "\\[ {(-2x+2y)(-2x+3y)=?}\\]",correctOption: "4x^2-10xy+6y^2",incorrectOptions:["6x^2-4xy-2y^2","-x^2+3xy+4y^2","8x^2-2xy-6y^2"]},
+
+{equation: "\\[ {(2x+3y)(-5x+2y)=?}\\]",correctOption: "-10x^2-11xy+6y^2",incorrectOptions:["-5x^2-12xy+9y^2","2x^2-7xy+3y^2","12x^2+13xy+3y^2"]},
+
+{equation: "\\[ {(2x-3y)(3x+y)=?}\\]",correctOption: "6x^2-7xy-3y^2",incorrectOptions:["15x^2-11xy+2y^2","8x^2-14xy+3y^2","5x^2+17xy+6y^2"]},
+
+{equation: "\\[ {(-5x+y)(-2x-4y)=?}\\]",correctOption: "10x^2+18xy-4y^2",incorrectOptions:["-3x^2-2xy+8y^2","-15x^2-16xy-4y^2","6x^2+2xy-4y^2"]},
+
+{equation: "\\[ {(-3x-3y)(-4x-2y)=?}\\]",correctOption: "12x^2+18xy+6y^2",incorrectOptions:["x^2+6xy+5y^2","6x^2-20xy+16y^2","-4x^2-9xy+9y^2"]},
+
+{equation: "\\[ {(-5x+3y)(-x-5y)=?}\\]",correctOption: "5x^2+22xy-15y^2",incorrectOptions:["15x^2-8xy+y^2","-4x^2+16xy+20y^2","20x^2-2xy-4y^2"]},
+
+{equation: "\\[ {(2x+y)(x+2y)=?}\\]",correctOption: "2x^2+5xy+2y^2",incorrectOptions:["-9x^2+16y^2","6x^2-10xy-4y^2","-2x^2+5xy-2y^2"]},
+
+{equation: "\\[ {(x-4y)(-4x-4y)=?}\\]",correctOption: "-4x^2+12xy+16y^2",incorrectOptions:["-9x^2+y^2","3x^2-8xy+4y^2","-2x^2-8xy+10y^2"]},
+
+{equation: "\\[ {(2x+3y)(-3x-y)=?}\\]",correctOption: "-6x^2-11xy-3y^2",incorrectOptions:["-8x^2-6xy-y^2","-5x^2-8xy+4y^2","-15x^2+8xy-y^2"]},
+
+{equation: "\\[ {(x-5y)(-3x+y)=?}\\]",correctOption: "-3x^2+16xy-5y^2",incorrectOptions:["-4x^2-14xy-12y^2","-3x^2+11xy+4y^2","3x^2+xy-4y^2"]},
+
+{equation: "\\[ {(-4x+y)(2x-2y)=?}\\]",correctOption: "-8x^2+10xy-2y^2",incorrectOptions:["4x^2-4y^2","-8x^2-4xy+4y^2","-4x^2+8xy-3y^2"]},
+
+{equation: "\\[ {(2x-y)(-5x-4y)=?}\\]",correctOption: "-10x^2-3xy+4y^2",incorrectOptions:["16x^2-20xy+6y^2","-15x^2-20xy-5y^2","20x^2+25xy+5y^2"]},
+
+{equation: "\\[ {(-3x-2y)(x-2y)=?}\\]",correctOption: "-3x^2+4xy+4y^2",incorrectOptions:["3x^2-11xy+6y^2","9x^2+18xy+5y^2","-12x^2+5xy+3y^2"]},
+
+{equation: "\\[ {(-3x-3y)(3x-3y)=?}\\]",correctOption: "-9x^2+9y^2",incorrectOptions:["-2x^2+5xy+3y^2","-9x^2+24xy-15y^2","4x^2-7xy-2y^2"]},
+
+{equation: "\\[ {(-3x-3y)(3x-3y)=?}\\]",correctOption: "-9x^2+9y^2",incorrectOptions:["-6x^2-10xy-4y^2","-x^2-5xy-6y^2","4x^2+xy-3y^2"]},
+
+{equation: "\\[ {(2x-4y)(-3x-2y)=?}\\]",correctOption: "-6x^2+8xy+8y^2",incorrectOptions:["-2x^2+11xy-12y^2","4x^2+4xy+y^2","15x^2+35xy+20y^2"]},
+
+{equation: "\\[ {(-2x-2y)(x-5y)=?}\\]",correctOption: "-2x^2+8xy+10y^2",incorrectOptions:["8x^2+28xy+20y^2","-4x^2+10xy-4y^2","-3x^2-10xy+8y^2"]},
+
+{equation: "\\[ {(3x+3y)(2x-4y)=?}\\]",correctOption: "6x^2-6xy-12y^2",incorrectOptions:["-2x^2-7xy+15y^2","2x^2-15xy+25y^2","-4x^2-6xy+10y^2"]},
+
+{equation: "\\[ {(-x-2y)(-3x+y)=?}\\]",correctOption: "3x^2+5xy-2y^2",incorrectOptions:["-x^2+xy+2y^2","-5x^2+16xy+16y^2","-4x^2-15xy-9y^2"]},
+
+{equation: "\\[ {(-5x-4y)(-5x+3y)=?}\\]",correctOption: "25x^2+5xy-12y^2",incorrectOptions:["3x^2-10xy-8y^2","9x^2+15xy+6y^2","25x^2+5xy-2y^2"]},
+
+{equation: "\\[ {(x-2y)(-x-y)=?}\\]",correctOption: "-x^2+xy+2y^2",incorrectOptions:["-4x^2-2xy+2y^2","20x^2-2xy-4y^2","-4x^2+11xy+3y^2"]},
+
+{equation: "\\[ {(3x-3y)(x-4y)=?}\\]",correctOption: "3x^2-15xy+12y^2",incorrectOptions:["-x^2+3xy+4y^2","6x^2+8xy-8y^2","16x^2+24xy+8y^2"]},
+
+{equation: "\\[ {(-5x-y)(-4x-4y)=?}\\]",correctOption: "20x^2+24xy+4y^2",incorrectOptions:["6x^2+20xy+16y^2","8x^2+6xy-9y^2","9x^2+15xy+6y^2"]},
+
+{equation: "\\[ {(x-2y)(-2x-4y)=?}\\]",correctOption: "-2x^2+8y^2",incorrectOptions:["-4x^2-4xy+8y^2","3x^2+12xy+9y^2","-4x^2-6xy+10y^2"]},
+
+{equation: "\\[ {(-2x+3y)(x+3y)=?}\\]",correctOption: "-2x^2-3xy+9y^2",incorrectOptions:["2x^2+3xy-5y^2","-5x^2+16xy-3y^2","-2x^2-8xy+10y^2"]},
+
+
+]
+
+
+
+
+
+
+
 const 乘法公式01整式乘法 = [
 {equation: "\\[ {(x+6)(x-5)=?}\\]",correctOption: "x^2+x-30",incorrectOptions:["x^2-7x+6","x^2-10x+21","x^2-9x+20"]},
 
