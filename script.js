@@ -1,3 +1,131 @@
+const 函数01二次最值01 =[
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+2x+1;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-1时;f(x)最小值=-4",incorrectOptions:["当x=-2时;f(x)最小值=-9","当x=0时;f(x)最小值=8","当x=-9时;f(x)最小值=3"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+2x+2;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-1时;f(x)最小值=1",incorrectOptions:["当x=-8时;f(x)最小值=-7","当x=7时;f(x)最小值=-10","当x=-5时;f(x)最小值=0"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+8x-2;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-4时;f(x)最小值=-18",incorrectOptions:["当x=-10时;f(x)最小值=1","当x=-7时;f(x)最小值=-2","当x=1时;f(x)最小值=8"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+8x;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-4时;f(x)最小值=-16",incorrectOptions:["当x=-10时;f(x)最小值=-7","当x=-7时;f(x)最小值=-2","当x=8时;f(x)最小值=8"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+8x-3;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-4时;f(x)最小值=-19",incorrectOptions:["当x=-5时;f(x)最小值=-1","当x=6时;f(x)最小值=4","当x=7时;f(x)最小值=-8"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+6x+1;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-3时;f(x)最小值=-12",incorrectOptions:["当x=0时;f(x)最小值=-7","当x=1时;f(x)最小值=-9","当x=6时;f(x)最小值=-5"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+6x+1;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-3时;f(x)最小值=-8",incorrectOptions:["当x=0时;f(x)最小值=8","当x=-2时;f(x)最小值=-10","当x=-9时;f(x)最小值=-3"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+2x;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-1时;f(x)最小值=-1",incorrectOptions:["当x=3时;f(x)最小值=8","当x=7时;f(x)最小值=8","当x=-6时;f(x)最小值=1"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+10x-2;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-5时;f(x)最小值=-27",incorrectOptions:["当x=3时;f(x)最小值=-10","当x=-4时;f(x)最小值=-10","当x=-7时;f(x)最小值=8"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+2x-5;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-1时;f(x)最小值=-6",incorrectOptions:["当x=0时;f(x)最小值=-7","当x=6时;f(x)最小值=0","当x=-5时;f(x)最小值=6"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+6x;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-3时;f(x)最小值=-9",incorrectOptions:["当x=-8时;f(x)最小值=7","当x=-5时;f(x)最小值=-7","当x=-4时;f(x)最小值=-5"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+2x+1;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-1时;f(x)最小值=0",incorrectOptions:["当x=8时;f(x)最小值=-8","当x=7时;f(x)最小值=7","当x=-9时;f(x)最小值=2"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+8x;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-4时;f(x)最小值=-16",incorrectOptions:["当x=-2时;f(x)最小值=8","当x=-6时;f(x)最小值=-6","当x=-8时;f(x)最小值=7"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+2x+1;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-1时;f(x)最小值=0",incorrectOptions:["当x=7时;f(x)最小值=-5","当x=-3时;f(x)最小值=-6","当x=2时;f(x)最小值=-8"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+10x-4;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-5时;f(x)最小值=-29",incorrectOptions:["当x=-1时;f(x)最小值=-6","当x=-4时;f(x)最小值=4","当x=-10时;f(x)最小值=-9"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+4x-5;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-2时;f(x)最小值=-9",incorrectOptions:["当x=0时;f(x)最小值=-5","当x=-4时;f(x)最小值=0","当x=-5时;f(x)最小值=-2"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+10x+3;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-5时;f(x)最小值=-22",incorrectOptions:["当x=7时;f(x)最小值=-7","当x=-3时;f(x)最小值=1","当x=2时;f(x)最小值=6"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+4x+1;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-2时;f(x)最小值=-5",incorrectOptions:["当x=5时;f(x)最小值=-4","当x=7时;f(x)最小值=-5","当x=6时;f(x)最小值=-3"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+6x-5;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-3时;f(x)最小值=-14",incorrectOptions:["当x=4时;f(x)最小值=3","当x=5时;f(x)最小值=4","当x=6时;f(x)最小值=1"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+6x+1;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-3时;f(x)最小值=-8",incorrectOptions:["当x=-10时;f(x)最小值=0","当x=7时;f(x)最小值=6","当x=-9时;f(x)最小值=-1"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+8x-2;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-4时;f(x)最小值=-18",incorrectOptions:["当x=-10时;f(x)最小值=-6","当x=-5时;f(x)最小值=-7","当x=-1时;f(x)最小值=-9"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+6x+1;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-3时;f(x)最小值=-11",incorrectOptions:["当x=-1时;f(x)最小值=-6","当x=-2时;f(x)最小值=-3","当x=7时;f(x)最小值=2"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+4x+3;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-2时;f(x)最小值=-1",incorrectOptions:["当x=-7时;f(x)最小值=-4","当x=-9时;f(x)最小值=-3","当x=0时;f(x)最小值=-10"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+4x-3;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-2时;f(x)最小值=-7",incorrectOptions:["当x=0时;f(x)最小值=-1","当x=5时;f(x)最小值=2","当x=6时;f(x)最小值=-4"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+10x+1;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-5时;f(x)最小值=-29",incorrectOptions:["当x=-4时;f(x)最小值=6","当x=-7时;f(x)最小值=1","当x=1时;f(x)最小值=1"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+6x+3;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-3时;f(x)最小值=-6",incorrectOptions:["当x=-2时;f(x)最小值=-5","当x=5时;f(x)最小值=-2","当x=-8时;f(x)最小值=-1"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+10x+1;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-5时;f(x)最小值=-26",incorrectOptions:["当x=-7时;f(x)最小值=8","当x=8时;f(x)最小值=8","当x=0时;f(x)最小值=6"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+6x+1;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-3时;f(x)最小值=-13",incorrectOptions:["当x=-1时;f(x)最小值=7","当x=-5时;f(x)最小值=7","当x=4时;f(x)最小值=1"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+4x-1;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-2时;f(x)最小值=-5",incorrectOptions:["当x=-4时;f(x)最小值=-3","当x=4时;f(x)最小值=8","当x=-3时;f(x)最小值=-6"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+2x+2;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-1时;f(x)最小值=1",incorrectOptions:["当x=6时;f(x)最小值=-8","当x=0时;f(x)最小值=-2","当x=-10时;f(x)最小值=0"]},
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+10x-3;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-5时;f(x)最小值=-28",incorrectOptions:["当x=-3时;f(x)最小值=7","当x=6时;f(x)最小值=5","当x=-1时;f(x)最小值=1"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+2x+2;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-1时;f(x)最小值=1",incorrectOptions:["当x=-1时;f(x)最小值=-2","当x=-5时;f(x)最小值=-4","当x=2时;f(x)最小值=6"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+8x-5;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-4时;f(x)最小值=-21",incorrectOptions:["当x=-2时;f(x)最小值=3","当x=3时;f(x)最小值=-3","当x=7时;f(x)最小值=3"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+4x+1;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-2时;f(x)最小值=-3",incorrectOptions:["当x=6时;f(x)最小值=-5","当x=-6时;f(x)最小值=4","当x=-10时;f(x)最小值=1"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+8x+1;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-4时;f(x)最小值=-14",incorrectOptions:["当x=-1时;f(x)最小值=-10","当x=-4时;f(x)最小值=2","当x=0时;f(x)最小值=-2"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+6x-1;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-3时;f(x)最小值=-10",incorrectOptions:["当x=-6时;f(x)最小值=-8","当x=-1时;f(x)最小值=-8","当x=8时;f(x)最小值=4"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+6x-2;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-3时;f(x)最小值=-11",incorrectOptions:["当x=6时;f(x)最小值=-4","当x=-1时;f(x)最小值=1","当x=7时;f(x)最小值=3"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+4x+1;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-2时;f(x)最小值=-3",incorrectOptions:["当x=-7时;f(x)最小值=-2","当x=-6时;f(x)最小值=-10","当x=-3时;f(x)最小值=6"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+8x-4;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-4时;f(x)最小值=-20",incorrectOptions:["当x=-2时;f(x)最小值=0","当x=6时;f(x)最小值=2","当x=8时;f(x)最小值=-10"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+2x;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-1时;f(x)最小值=-1",incorrectOptions:["当x=-10时;f(x)最小值=4","当x=-3时;f(x)最小值=-2","当x=-8时;f(x)最小值=1"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+6x-2;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-3时;f(x)最小值=-11",incorrectOptions:["当x=1时;f(x)最小值=2","当x=-10时;f(x)最小值=-5","当x=-7时;f(x)最小值=6"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+4x-2;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-2时;f(x)最小值=-6",incorrectOptions:["当x=-4时;f(x)最小值=3","当x=-5时;f(x)最小值=-3","当x=3时;f(x)最小值=-8"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+8x-2;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-4时;f(x)最小值=-18",incorrectOptions:["当x=-4时;f(x)最小值=3","当x=-7时;f(x)最小值=1","当x=2时;f(x)最小值=-9"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+10x-5;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-5时;f(x)最小值=-30",incorrectOptions:["当x=8时;f(x)最小值=8","当x=-5时;f(x)最小值=-10","当x=4时;f(x)最小值=1"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+10x-3;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-5时;f(x)最小值=-28",incorrectOptions:["当x=-3时;f(x)最小值=2","当x=-1时;f(x)最小值=7","当x=1时;f(x)最小值=-8"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+10x-5;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-5时;f(x)最小值=-30",incorrectOptions:["当x=7时;f(x)最小值=-9","当x=6时;f(x)最小值=-4","当x=-3时;f(x)最小值=2"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+4x+1;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-2时;f(x)最小值=-4",incorrectOptions:["当x=-5时;f(x)最小值=3","当x=6时;f(x)最小值=6","当x=1时;f(x)最小值=-7"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+8x-5;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-4时;f(x)最小值=-21",incorrectOptions:["当x=-8时;f(x)最小值=-4","当x=-9时;f(x)最小值=-1","当x=3时;f(x)最小值=7"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+6x+1;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-3时;f(x)最小值=-9",incorrectOptions:["当x=-6时;f(x)最小值=1","当x=0时;f(x)最小值=3","当x=-7时;f(x)最小值=-6"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+6x+1;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-3时;f(x)最小值=-10",incorrectOptions:["当x=6时;f(x)最小值=6","当x=0时;f(x)最小值=-2","当x=-10时;f(x)最小值=-2"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+6x+1;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-3时;f(x)最小值=-9",incorrectOptions:["当x=8时;f(x)最小值=-7","当x=-4时;f(x)最小值=7","当x=-2时;f(x)最小值=-3"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+2x+1;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-1时;f(x)最小值=0",incorrectOptions:["当x=-1时;f(x)最小值=-2","当x=0时;f(x)最小值=1","当x=7时;f(x)最小值=1"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+6x+1;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-3时;f(x)最小值=-12",incorrectOptions:["当x=5时;f(x)最小值=-10","当x=-5时;f(x)最小值=3","当x=6时;f(x)最小值=3"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+2x+2;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-1时;f(x)最小值=1",incorrectOptions:["当x=-1时;f(x)最小值=7","当x=-7时;f(x)最小值=6","当x=-2时;f(x)最小值=-5"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+8x-1;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-4时;f(x)最小值=-17",incorrectOptions:["当x=3时;f(x)最小值=6","当x=-4时;f(x)最小值=-7","当x=-1时;f(x)最小值=3"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+2x-4;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-1时;f(x)最小值=-5",incorrectOptions:["当x=-1时;f(x)最小值=5","当x=-8时;f(x)最小值=-3","当x=-4时;f(x)最小值=2"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+4x-5;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-2时;f(x)最小值=-9",incorrectOptions:["当x=5时;f(x)最小值=-8","当x=-10时;f(x)最小值=0","当x=-9时;f(x)最小值=6"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+10x+2;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-5时;f(x)最小值=-23",incorrectOptions:["当x=-1时;f(x)最小值=5","当x=3时;f(x)最小值=1","当x=-6时;f(x)最小值=-10"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+10x-4;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-5时;f(x)最小值=-29",incorrectOptions:["当x=7时;f(x)最小值=-1","当x=-3时;f(x)最小值=-1","当x=-5时;f(x)最小值=-6"]},
+
+{equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2+10x+1;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=-5时;f(x)最小值=-27",incorrectOptions:["当x=7时;f(x)最小值=6","当x=-2时;f(x)最小值=-9","当x=2时;f(x)最小值=-4"]},
+
+
+
+]
+
+
+
+
+
 const     乘法公式02整式乘法2乘3项02 = [
 
 {equation: "\\[ {(-2x-3)(-3x^2-3x+1)=?}\\]",correctOption: "6x^3+15x^2+7x-3",incorrectOptions:["6x^3+9x^2-2x-3","6x^3+3x^2-11x-3","6x^3+29x^2+28x-3"]},
@@ -2588,7 +2716,7 @@ function loadQuestions(questionBank, topic) {
 function myFunction(id) {
   var x = document.getElementById('分数运算');
   var y = document.getElementById('方程运算');
-  var z = document.getElementById('直角坐标');
+  var z = document.getElementById('微分积分');
   var a = document.getElementById('线性代数');
   
   if (id === '分数运算') {
@@ -2602,7 +2730,7 @@ function myFunction(id) {
     y.style.display = "block";
     z.style.display = "none";
     a.style.display = "none";
-  } else if (id === '直角坐标') {
+  } else if (id === '微分积分') {
     x.style.display = "none";
     y.style.display = "none";
     z.style.display = "block";
