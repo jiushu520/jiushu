@@ -1,3 +1,129 @@
+const 线性代数02向量点乘内积 =[
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(-5,3),B(8,6); \\\\ 计算:(\\overrightarrow{-5,3})\\cdot (\\overrightarrow{8,6})=? \\\\在坐标系中画出O(0,0);A(-5,3); D(8,6);C(-6,8)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "-22",incorrectOptions:["-70","98","-41"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(0,-5),B(-7,4); \\\\ 计算:(\\overrightarrow{0,-5})\\cdot (\\overrightarrow{-7,4})=? \\\\在坐标系中画出O(0,0);A(0,-5); D(-7,4);C(-4,-7)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "-20",incorrectOptions:["-82","2","73"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(-8,8),B(-3,-4); \\\\ 计算:(\\overrightarrow{-8,8})\\cdot (\\overrightarrow{-3,-4})=? \\\\在坐标系中画出O(0,0);A(-8,8); D(-3,-4);C(4,-3)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "-8",incorrectOptions:["77","-40","94"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(1,3),B(-10,3); \\\\ 计算:(\\overrightarrow{1,3})\\cdot (\\overrightarrow{-10,3})=? \\\\在坐标系中画出O(0,0);A(1,3); D(-10,3);C(-3,-10)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "-1",incorrectOptions:["-73","-77","-78"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(-5,-2),B(1,-4); \\\\ 计算:(\\overrightarrow{-5,-2})\\cdot (\\overrightarrow{1,-4})=? \\\\在坐标系中画出O(0,0);A(-5,-2); D(1,-4);C(4,1)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "3",incorrectOptions:["-33","-87","-68"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(5,-2),B(-6,-9); \\\\ 计算:(\\overrightarrow{5,-2})\\cdot (\\overrightarrow{-6,-9})=? \\\\在坐标系中画出O(0,0);A(5,-2); D(-6,-9);C(9,-6)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "-12",incorrectOptions:["-33","67","-4"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(4,-2),B(3,2); \\\\ 计算:(\\overrightarrow{4,-2})\\cdot (\\overrightarrow{3,2})=? \\\\在坐标系中画出O(0,0);A(4,-2); D(3,2);C(-2,3)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "8",incorrectOptions:["89","-18","-87"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(-9,1),B(0,0); \\\\ 计算:(\\overrightarrow{-9,1})\\cdot (\\overrightarrow{0,0})=? \\\\在坐标系中画出O(0,0);A(-9,1); D(0,0);C(0,0)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "0",incorrectOptions:["15","7","30"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(3,3),B(7,4); \\\\ 计算:(\\overrightarrow{3,3})\\cdot (\\overrightarrow{7,4})=? \\\\在坐标系中画出O(0,0);A(3,3); D(7,4);C(-4,7)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "33",incorrectOptions:["78","-41","-40"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(8,-5),B(6,7); \\\\ 计算:(\\overrightarrow{8,-5})\\cdot (\\overrightarrow{6,7})=? \\\\在坐标系中画出O(0,0);A(8,-5); D(6,7);C(-7,6)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "13",incorrectOptions:["33","95","-16"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(-4,8),B(6,8); \\\\ 计算:(\\overrightarrow{-4,8})\\cdot (\\overrightarrow{6,8})=? \\\\在坐标系中画出O(0,0);A(-4,8); D(6,8);C(-8,6)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "40",incorrectOptions:["29","-49","22"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(-2,-5),B(3,-2); \\\\ 计算:(\\overrightarrow{-2,-5})\\cdot (\\overrightarrow{3,-2})=? \\\\在坐标系中画出O(0,0);A(-2,-5); D(3,-2);C(2,3)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "4",incorrectOptions:["31","-75","-39"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(2,-10),B(7,-6); \\\\ 计算:(\\overrightarrow{2,-10})\\cdot (\\overrightarrow{7,-6})=? \\\\在坐标系中画出O(0,0);A(2,-10); D(7,-6);C(6,7)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "74",incorrectOptions:["-57","-28","-88"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(-10,-6),B(4,0); \\\\ 计算:(\\overrightarrow{-10,-6})\\cdot (\\overrightarrow{4,0})=? \\\\在坐标系中画出O(0,0);A(-10,-6); D(4,0);C(0,4)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "-40",incorrectOptions:["-91","-22","72"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(-3,-7),B(-5,-10); \\\\ 计算:(\\overrightarrow{-3,-7})\\cdot (\\overrightarrow{-5,-10})=? \\\\在坐标系中画出O(0,0);A(-3,-7); D(-5,-10);C(10,-5)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "85",incorrectOptions:["-62","75","-36"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(-2,-10),B(-1,-2); \\\\ 计算:(\\overrightarrow{-2,-10})\\cdot (\\overrightarrow{-1,-2})=? \\\\在坐标系中画出O(0,0);A(-2,-10); D(-1,-2);C(2,-1)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "22",incorrectOptions:["98","-29","55"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(-2,-2),B(2,-8); \\\\ 计算:(\\overrightarrow{-2,-2})\\cdot (\\overrightarrow{2,-8})=? \\\\在坐标系中画出O(0,0);A(-2,-2); D(2,-8);C(8,2)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "12",incorrectOptions:["38","11","74"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(8,-3),B(-6,-9); \\\\ 计算:(\\overrightarrow{8,-3})\\cdot (\\overrightarrow{-6,-9})=? \\\\在坐标系中画出O(0,0);A(8,-3); D(-6,-9);C(9,-6)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "-21",incorrectOptions:["-15","74","-76"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(-2,-10),B(-6,0); \\\\ 计算:(\\overrightarrow{-2,-10})\\cdot (\\overrightarrow{-6,0})=? \\\\在坐标系中画出O(0,0);A(-2,-10); D(-6,0);C(0,-6)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "12",incorrectOptions:["83","26","81"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(1,-6),B(2,2); \\\\ 计算:(\\overrightarrow{1,-6})\\cdot (\\overrightarrow{2,2})=? \\\\在坐标系中画出O(0,0);A(1,-6); D(2,2);C(-2,2)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "-10",incorrectOptions:["-71","76","-90"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(1,-4),B(7,1); \\\\ 计算:(\\overrightarrow{1,-4})\\cdot (\\overrightarrow{7,1})=? \\\\在坐标系中画出O(0,0);A(1,-4); D(7,1);C(-1,7)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "3",incorrectOptions:["78","68","-5"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(6,7),B(-10,3); \\\\ 计算:(\\overrightarrow{6,7})\\cdot (\\overrightarrow{-10,3})=? \\\\在坐标系中画出O(0,0);A(6,7); D(-10,3);C(-3,-10)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "-39",incorrectOptions:["-93","-55","-1"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(-1,-7),B(5,-7); \\\\ 计算:(\\overrightarrow{-1,-7})\\cdot (\\overrightarrow{5,-7})=? \\\\在坐标系中画出O(0,0);A(-1,-7); D(5,-7);C(7,5)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "44",incorrectOptions:["23","-51","-95"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(-10,-5),B(-1,-7); \\\\ 计算:(\\overrightarrow{-10,-5})\\cdot (\\overrightarrow{-1,-7})=? \\\\在坐标系中画出O(0,0);A(-10,-5); D(-1,-7);C(7,-1)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "45",incorrectOptions:["-93","-76","59"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(-2,6),B(7,4); \\\\ 计算:(\\overrightarrow{-2,6})\\cdot (\\overrightarrow{7,4})=? \\\\在坐标系中画出O(0,0);A(-2,6); D(7,4);C(-4,7)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "10",incorrectOptions:["-93","51","53"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(-5,5),B(2,-3); \\\\ 计算:(\\overrightarrow{-5,5})\\cdot (\\overrightarrow{2,-3})=? \\\\在坐标系中画出O(0,0);A(-5,5); D(2,-3);C(3,2)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "-25",incorrectOptions:["32","-24","98"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(-10,-6),B(-2,7); \\\\ 计算:(\\overrightarrow{-10,-6})\\cdot (\\overrightarrow{-2,7})=? \\\\在坐标系中画出O(0,0);A(-10,-6); D(-2,7);C(-7,-2)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "-22",incorrectOptions:["-70","70","-50"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(1,-6),B(6,4); \\\\ 计算:(\\overrightarrow{1,-6})\\cdot (\\overrightarrow{6,4})=? \\\\在坐标系中画出O(0,0);A(1,-6); D(6,4);C(-4,6)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "-18",incorrectOptions:["-1","-79","3"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(1,5),B(-3,0); \\\\ 计算:(\\overrightarrow{1,5})\\cdot (\\overrightarrow{-3,0})=? \\\\在坐标系中画出O(0,0);A(1,5); D(-3,0);C(0,-3)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "-3",incorrectOptions:["29","-17","-49"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(8,-3),B(7,-7); \\\\ 计算:(\\overrightarrow{8,-3})\\cdot (\\overrightarrow{7,-7})=? \\\\在坐标系中画出O(0,0);A(8,-3); D(7,-7);C(7,7)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "77",incorrectOptions:["-81","84","22"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(-5,8),B(0,-10); \\\\ 计算:(\\overrightarrow{-5,8})\\cdot (\\overrightarrow{0,-10})=? \\\\在坐标系中画出O(0,0);A(-5,8); D(0,-10);C(10,0)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "-80",incorrectOptions:["-55","-92","12"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(-2,-10),B(-8,-1); \\\\ 计算:(\\overrightarrow{-2,-10})\\cdot (\\overrightarrow{-8,-1})=? \\\\在坐标系中画出O(0,0);A(-2,-10); D(-8,-1);C(1,-8)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "26",incorrectOptions:["28","-83","-85"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(1,1),B(-3,-7); \\\\ 计算:(\\overrightarrow{1,1})\\cdot (\\overrightarrow{-3,-7})=? \\\\在坐标系中画出O(0,0);A(1,1); D(-3,-7);C(7,-3)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "-10",incorrectOptions:["50","66","42"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(5,5),B(-1,-1); \\\\ 计算:(\\overrightarrow{5,5})\\cdot (\\overrightarrow{-1,-1})=? \\\\在坐标系中画出O(0,0);A(5,5); D(-1,-1);C(1,-1)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "-10",incorrectOptions:["-76","-50","-65"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(0,-7),B(4,-1); \\\\ 计算:(\\overrightarrow{0,-7})\\cdot (\\overrightarrow{4,-1})=? \\\\在坐标系中画出O(0,0);A(0,-7); D(4,-1);C(1,4)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "7",incorrectOptions:["-3","-71","36"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(-6,-4),B(-9,4); \\\\ 计算:(\\overrightarrow{-6,-4})\\cdot (\\overrightarrow{-9,4})=? \\\\在坐标系中画出O(0,0);A(-6,-4); D(-9,4);C(-4,-9)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "38",incorrectOptions:["-25","-42","-98"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(6,3),B(5,-6); \\\\ 计算:(\\overrightarrow{6,3})\\cdot (\\overrightarrow{5,-6})=? \\\\在坐标系中画出O(0,0);A(6,3); D(5,-6);C(6,5)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "12",incorrectOptions:["-42","-24","-6"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(7,-8),B(-10,-1); \\\\ 计算:(\\overrightarrow{7,-8})\\cdot (\\overrightarrow{-10,-1})=? \\\\在坐标系中画出O(0,0);A(7,-8); D(-10,-1);C(1,-10)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "-62",incorrectOptions:["80","-83","4"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(-5,4),B(0,-1); \\\\ 计算:(\\overrightarrow{-5,4})\\cdot (\\overrightarrow{0,-1})=? \\\\在坐标系中画出O(0,0);A(-5,4); D(0,-1);C(1,0)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "-4",incorrectOptions:["18","26","96"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(2,-10),B(-4,7); \\\\ 计算:(\\overrightarrow{2,-10})\\cdot (\\overrightarrow{-4,7})=? \\\\在坐标系中画出O(0,0);A(2,-10); D(-4,7);C(-7,-4)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "-78",incorrectOptions:["2","14","-13"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(-1,2),B(8,-5); \\\\ 计算:(\\overrightarrow{-1,2})\\cdot (\\overrightarrow{8,-5})=? \\\\在坐标系中画出O(0,0);A(-1,2); D(8,-5);C(5,8)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "-18",incorrectOptions:["86","-11","-79"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(2,7),B(3,-9); \\\\ 计算:(\\overrightarrow{2,7})\\cdot (\\overrightarrow{3,-9})=? \\\\在坐标系中画出O(0,0);A(2,7); D(3,-9);C(9,3)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "-57",incorrectOptions:["95","-98","78"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(-6,-7),B(2,4); \\\\ 计算:(\\overrightarrow{-6,-7})\\cdot (\\overrightarrow{2,4})=? \\\\在坐标系中画出O(0,0);A(-6,-7); D(2,4);C(-4,2)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "-40",incorrectOptions:["4","-14","93"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(-8,3),B(-3,4); \\\\ 计算:(\\overrightarrow{-8,3})\\cdot (\\overrightarrow{-3,4})=? \\\\在坐标系中画出O(0,0);A(-8,3); D(-3,4);C(-4,-3)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "36",incorrectOptions:["-70","47","41"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(-4,-8),B(-5,-7); \\\\ 计算:(\\overrightarrow{-4,-8})\\cdot (\\overrightarrow{-5,-7})=? \\\\在坐标系中画出O(0,0);A(-4,-8); D(-5,-7);C(7,-5)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "76",incorrectOptions:["5","-81","-64"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(5,-9),B(6,-9); \\\\ 计算:(\\overrightarrow{5,-9})\\cdot (\\overrightarrow{6,-9})=? \\\\在坐标系中画出O(0,0);A(5,-9); D(6,-9);C(9,6)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "111",incorrectOptions:["-69","-78","30"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(0,-1),B(1,3); \\\\ 计算:(\\overrightarrow{0,-1})\\cdot (\\overrightarrow{1,3})=? \\\\在坐标系中画出O(0,0);A(0,-1); D(1,3);C(-3,1)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "-3",incorrectOptions:["-26","-23","14"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(3,-6),B(-3,4); \\\\ 计算:(\\overrightarrow{3,-6})\\cdot (\\overrightarrow{-3,4})=? \\\\在坐标系中画出O(0,0);A(3,-6); D(-3,4);C(-4,-3)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "-33",incorrectOptions:["83","-25","-21"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(1,-6),B(-2,6); \\\\ 计算:(\\overrightarrow{1,-6})\\cdot (\\overrightarrow{-2,6})=? \\\\在坐标系中画出O(0,0);A(1,-6); D(-2,6);C(-6,-2)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "-38",incorrectOptions:["52","81","-78"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(-2,6),B(6,0); \\\\ 计算:(\\overrightarrow{-2,6})\\cdot (\\overrightarrow{6,0})=? \\\\在坐标系中画出O(0,0);A(-2,6); D(6,0);C(0,6)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "-12",incorrectOptions:["-97","50","75"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(5,-3),B(1,-6); \\\\ 计算:(\\overrightarrow{5,-3})\\cdot (\\overrightarrow{1,-6})=? \\\\在坐标系中画出O(0,0);A(5,-3); D(1,-6);C(6,1)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "23",incorrectOptions:["35","57","97"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(-10,-3),B(5,4); \\\\ 计算:(\\overrightarrow{-10,-3})\\cdot (\\overrightarrow{5,4})=? \\\\在坐标系中画出O(0,0);A(-10,-3); D(5,4);C(-4,5)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "-62",incorrectOptions:["69","-35","57"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(2,8),B(1,-8); \\\\ 计算:(\\overrightarrow{2,8})\\cdot (\\overrightarrow{1,-8})=? \\\\在坐标系中画出O(0,0);A(2,8); D(1,-8);C(8,1)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "-62",incorrectOptions:["79","-87","-26"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(-10,8),B(-1,-1); \\\\ 计算:(\\overrightarrow{-10,8})\\cdot (\\overrightarrow{-1,-1})=? \\\\在坐标系中画出O(0,0);A(-10,8); D(-1,-1);C(1,-1)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "2",incorrectOptions:["59","13","46"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(-2,-10),B(5,7); \\\\ 计算:(\\overrightarrow{-2,-10})\\cdot (\\overrightarrow{5,7})=? \\\\在坐标系中画出O(0,0);A(-2,-10); D(5,7);C(-7,5)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "-80",incorrectOptions:["29","-84","-82"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(-7,5),B(7,1); \\\\ 计算:(\\overrightarrow{-7,5})\\cdot (\\overrightarrow{7,1})=? \\\\在坐标系中画出O(0,0);A(-7,5); D(7,1);C(-1,7)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "-44",incorrectOptions:["37","94","-6"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(1,-6),B(6,-7); \\\\ 计算:(\\overrightarrow{1,-6})\\cdot (\\overrightarrow{6,-7})=? \\\\在坐标系中画出O(0,0);A(1,-6); D(6,-7);C(7,6)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "48",incorrectOptions:["91","-62","-8"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(0,7),B(3,7); \\\\ 计算:(\\overrightarrow{0,7})\\cdot (\\overrightarrow{3,7})=? \\\\在坐标系中画出O(0,0);A(0,7); D(3,7);C(-7,3)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "49",incorrectOptions:["-70","79","-47"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(0,-5),B(8,4); \\\\ 计算:(\\overrightarrow{0,-5})\\cdot (\\overrightarrow{8,4})=? \\\\在坐标系中画出O(0,0);A(0,-5); D(8,4);C(-4,8)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "-20",incorrectOptions:["2","-78","-15"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(8,-6),B(-9,-4); \\\\ 计算:(\\overrightarrow{8,-6})\\cdot (\\overrightarrow{-9,-4})=? \\\\在坐标系中画出O(0,0);A(8,-6); D(-9,-4);C(4,-9)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系?! \\end{gather}",correctOption: "-48",incorrectOptions:["-66","70","-98"]},
+
+]
+
+ 
+
+
 const 函数01二次最值01 =[
 {equation: "\\begin{gather}拿出纸笔;\\\\用配方法或画函数图象探究;\\\\ f(x)=x^2-6x-1;\\\\当x=？f(x)有最小值=？\\end{gather}",correctOption: "当x=3时;f(x)最小值=-10",incorrectOptions:["当x=2时;f(x)最小值=-6","当x=6时;f(x)最小值=1","当x=4时;f(x)最小值=-9"]},
 
