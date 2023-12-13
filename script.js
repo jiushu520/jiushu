@@ -1,3 +1,110 @@
+const   方程应用空瓶与水杯  =[
+
+{equation: "\\[{\\begin{gather} 现在有一空瓶加入7杯水后重66千克;\\\\如果空瓶加入10杯水后重87千克;\\\\请问空瓶有多重,一杯水又有多重呢？\\\\你可以有多少种方法来分析呢?\\end{gather}}\\] ",correctOption:"\\begin{cases} 空瓶=17千克 \\\\ 一杯水重=7千克\\end{cases} ",incorrectOptions:["\\begin{cases} 空瓶=19千克 \\\\ 一杯水重=3千克\\end{cases}","\\begin{cases} 空瓶=31 千克\\\\ 一杯水重=2千克\\end{cases}","\\begin{cases} 空瓶=13千克 \\\\ 一杯水重=8千克\\end{cases}",]},
+
+{equation: "\\[{\\begin{gather} 现在有一空瓶加入3杯水后重47千克;\\\\如果空瓶加入10杯水后重68千克;\\\\请问空瓶有多重,一杯水又有多重呢？\\\\你可以有多少种方法来分析呢?\\end{gather}}\\] ",correctOption:"\\begin{cases} 空瓶=38千克 \\\\ 一杯水重=3千克\\end{cases} ",incorrectOptions:["\\begin{cases} 空瓶=14千克 \\\\ 一杯水重=7千克\\end{cases}","\\begin{cases} 空瓶=39 千克\\\\ 一杯水重=2千克\\end{cases}","\\begin{cases} 空瓶=16千克 \\\\ 一杯水重=1千克\\end{cases}",]},
+
+{equation: "\\[{\\begin{gather} 现在有一空瓶加入3杯水后重40千克;\\\\如果空瓶加入8杯水后重50千克;\\\\请问空瓶有多重,一杯水又有多重呢？\\\\你可以有多少种方法来分析呢?\\end{gather}}\\] ",correctOption:"\\begin{cases} 空瓶=34千克 \\\\ 一杯水重=2千克\\end{cases} ",incorrectOptions:["\\begin{cases} 空瓶=33千克 \\\\ 一杯水重=3千克\\end{cases}","\\begin{cases} 空瓶=33 千克\\\\ 一杯水重=8千克\\end{cases}","\\begin{cases} 空瓶=16千克 \\\\ 一杯水重=3千克\\end{cases}",]},
+
+{equation: "\\[{\\begin{gather} 现在有一空瓶加入2杯水后重29千克;\\\\如果空瓶加入9杯水后重50千克;\\\\请问空瓶有多重,一杯水又有多重呢？\\\\你可以有多少种方法来分析呢?\\end{gather}}\\] ",correctOption:"\\begin{cases} 空瓶=23千克 \\\\ 一杯水重=3千克\\end{cases} ",incorrectOptions:["\\begin{cases} 空瓶=15千克 \\\\ 一杯水重=2千克\\end{cases}","\\begin{cases} 空瓶=13 千克\\\\ 一杯水重=8千克\\end{cases}","\\begin{cases} 空瓶=13千克 \\\\ 一杯水重=4千克\\end{cases}",]},
+
+{equation: "\\[{\\begin{gather} 现在有一空瓶加入4杯水后重42千克;\\\\如果空瓶加入7杯水后重66千克;\\\\请问空瓶有多重,一杯水又有多重呢？\\\\你可以有多少种方法来分析呢?\\end{gather}}\\] ",correctOption:"\\begin{cases} 空瓶=10千克 \\\\ 一杯水重=8千克\\end{cases} ",incorrectOptions:["\\begin{cases} 空瓶=29千克 \\\\ 一杯水重=6千克\\end{cases}","\\begin{cases} 空瓶=34 千克\\\\ 一杯水重=5千克\\end{cases}","\\begin{cases} 空瓶=27千克 \\\\ 一杯水重=3千克\\end{cases}",]},
+
+{equation: "\\[{\\begin{gather} 现在有一空瓶加入7杯水后重70千克;\\\\如果空瓶加入10杯水后重88千克;\\\\请问空瓶有多重,一杯水又有多重呢？\\\\你可以有多少种方法来分析呢?\\end{gather}}\\] ",correctOption:"\\begin{cases} 空瓶=28千克 \\\\ 一杯水重=6千克\\end{cases} ",incorrectOptions:["\\begin{cases} 空瓶=29千克 \\\\ 一杯水重=3千克\\end{cases}","\\begin{cases} 空瓶=39 千克\\\\ 一杯水重=7千克\\end{cases}","\\begin{cases} 空瓶=12千克 \\\\ 一杯水重=3千克\\end{cases}",]},
+
+{equation: "\\[{\\begin{gather} 现在有一空瓶加入1杯水后重34千克;\\\\如果空瓶加入9杯水后重66千克;\\\\请问空瓶有多重,一杯水又有多重呢？\\\\你可以有多少种方法来分析呢?\\end{gather}}\\] ",correctOption:"\\begin{cases} 空瓶=30千克 \\\\ 一杯水重=4千克\\end{cases} ",incorrectOptions:["\\begin{cases} 空瓶=29千克 \\\\ 一杯水重=7千克\\end{cases}","\\begin{cases} 空瓶=22 千克\\\\ 一杯水重=9千克\\end{cases}","\\begin{cases} 空瓶=18千克 \\\\ 一杯水重=6千克\\end{cases}",]},
+
+{equation: "\\[{\\begin{gather} 现在有一空瓶加入5杯水后重20千克;\\\\如果空瓶加入8杯水后重26千克;\\\\请问空瓶有多重,一杯水又有多重呢？\\\\你可以有多少种方法来分析呢?\\end{gather}}\\] ",correctOption:"\\begin{cases} 空瓶=10千克 \\\\ 一杯水重=2千克\\end{cases} ",incorrectOptions:["\\begin{cases} 空瓶=21千克 \\\\ 一杯水重=4千克\\end{cases}","\\begin{cases} 空瓶=38 千克\\\\ 一杯水重=7千克\\end{cases}","\\begin{cases} 空瓶=11千克 \\\\ 一杯水重=5千克\\end{cases}",]},
+
+{equation: "\\[{\\begin{gather} 现在有一空瓶加入4杯水后重65千克;\\\\如果空瓶加入5杯水后重75千克;\\\\请问空瓶有多重,一杯水又有多重呢？\\\\你可以有多少种方法来分析呢?\\end{gather}}\\] ",correctOption:"\\begin{cases} 空瓶=25千克 \\\\ 一杯水重=10千克\\end{cases} ",incorrectOptions:["\\begin{cases} 空瓶=10千克 \\\\ 一杯水重=6千克\\end{cases}","\\begin{cases} 空瓶=20 千克\\\\ 一杯水重=6千克\\end{cases}","\\begin{cases} 空瓶=29千克 \\\\ 一杯水重=4千克\\end{cases}",]},
+
+{equation: "\\[{\\begin{gather} 现在有一空瓶加入3杯水后重34千克;\\\\如果空瓶加入7杯水后重42千克;\\\\请问空瓶有多重,一杯水又有多重呢？\\\\你可以有多少种方法来分析呢?\\end{gather}}\\] ",correctOption:"\\begin{cases} 空瓶=28千克 \\\\ 一杯水重=2千克\\end{cases} ",incorrectOptions:["\\begin{cases} 空瓶=20千克 \\\\ 一杯水重=6千克\\end{cases}","\\begin{cases} 空瓶=31 千克\\\\ 一杯水重=3千克\\end{cases}","\\begin{cases} 空瓶=35千克 \\\\ 一杯水重=7千克\\end{cases}",]},
+
+{equation: "\\[{\\begin{gather} 现在有一空瓶加入3杯水后重46千克;\\\\如果空瓶加入8杯水后重96千克;\\\\请问空瓶有多重,一杯水又有多重呢？\\\\你可以有多少种方法来分析呢?\\end{gather}}\\] ",correctOption:"\\begin{cases} 空瓶=16千克 \\\\ 一杯水重=10千克\\end{cases} ",incorrectOptions:["\\begin{cases} 空瓶=30千克 \\\\ 一杯水重=4千克\\end{cases}","\\begin{cases} 空瓶=28 千克\\\\ 一杯水重=3千克\\end{cases}","\\begin{cases} 空瓶=39千克 \\\\ 一杯水重=5千克\\end{cases}",]},
+
+{equation: "\\[{\\begin{gather} 现在有一空瓶加入1杯水后重24千克;\\\\如果空瓶加入9杯水后重64千克;\\\\请问空瓶有多重,一杯水又有多重呢？\\\\你可以有多少种方法来分析呢?\\end{gather}}\\] ",correctOption:"\\begin{cases} 空瓶=19千克 \\\\ 一杯水重=5千克\\end{cases} ",incorrectOptions:["\\begin{cases} 空瓶=36千克 \\\\ 一杯水重=2千克\\end{cases}","\\begin{cases} 空瓶=26 千克\\\\ 一杯水重=2千克\\end{cases}","\\begin{cases} 空瓶=14千克 \\\\ 一杯水重=7千克\\end{cases}",]},
+
+{equation: "\\[{\\begin{gather} 现在有一空瓶加入9杯水后重60千克;\\\\如果空瓶加入10杯水后重63千克;\\\\请问空瓶有多重,一杯水又有多重呢？\\\\你可以有多少种方法来分析呢?\\end{gather}}\\] ",correctOption:"\\begin{cases} 空瓶=33千克 \\\\ 一杯水重=3千克\\end{cases} ",incorrectOptions:["\\begin{cases} 空瓶=28千克 \\\\ 一杯水重=4千克\\end{cases}","\\begin{cases} 空瓶=21 千克\\\\ 一杯水重=7千克\\end{cases}","\\begin{cases} 空瓶=38千克 \\\\ 一杯水重=8千克\\end{cases}",]},
+
+{equation: "\\[{\\begin{gather} 现在有一空瓶加入1杯水后重48千克;\\\\如果空瓶加入2杯水后重58千克;\\\\请问空瓶有多重,一杯水又有多重呢？\\\\你可以有多少种方法来分析呢?\\end{gather}}\\] ",correctOption:"\\begin{cases} 空瓶=38千克 \\\\ 一杯水重=10千克\\end{cases} ",incorrectOptions:["\\begin{cases} 空瓶=15千克 \\\\ 一杯水重=4千克\\end{cases}","\\begin{cases} 空瓶=33 千克\\\\ 一杯水重=9千克\\end{cases}","\\begin{cases} 空瓶=14千克 \\\\ 一杯水重=1千克\\end{cases}",]},
+
+{equation: "\\[{\\begin{gather} 现在有一空瓶加入5杯水后重46千克;\\\\如果空瓶加入6杯水后重49千克;\\\\请问空瓶有多重,一杯水又有多重呢？\\\\你可以有多少种方法来分析呢?\\end{gather}}\\] ",correctOption:"\\begin{cases} 空瓶=31千克 \\\\ 一杯水重=3千克\\end{cases} ",incorrectOptions:["\\begin{cases} 空瓶=16千克 \\\\ 一杯水重=9千克\\end{cases}","\\begin{cases} 空瓶=14 千克\\\\ 一杯水重=4千克\\end{cases}","\\begin{cases} 空瓶=27千克 \\\\ 一杯水重=6千克\\end{cases}",]},
+
+{equation: "\\[{\\begin{gather} 现在有一空瓶加入3杯水后重59千克;\\\\如果空瓶加入4杯水后重68千克;\\\\请问空瓶有多重,一杯水又有多重呢？\\\\你可以有多少种方法来分析呢?\\end{gather}}\\] ",correctOption:"\\begin{cases} 空瓶=32千克 \\\\ 一杯水重=9千克\\end{cases} ",incorrectOptions:["\\begin{cases} 空瓶=35千克 \\\\ 一杯水重=1千克\\end{cases}","\\begin{cases} 空瓶=15 千克\\\\ 一杯水重=5千克\\end{cases}","\\begin{cases} 空瓶=27千克 \\\\ 一杯水重=10千克\\end{cases}",]},
+
+{equation: "\\[{\\begin{gather} 现在有一空瓶加入3杯水后重40千克;\\\\如果空瓶加入7杯水后重56千克;\\\\请问空瓶有多重,一杯水又有多重呢？\\\\你可以有多少种方法来分析呢?\\end{gather}}\\] ",correctOption:"\\begin{cases} 空瓶=28千克 \\\\ 一杯水重=4千克\\end{cases} ",incorrectOptions:["\\begin{cases} 空瓶=33千克 \\\\ 一杯水重=3千克\\end{cases}","\\begin{cases} 空瓶=16 千克\\\\ 一杯水重=1千克\\end{cases}","\\begin{cases} 空瓶=26千克 \\\\ 一杯水重=8千克\\end{cases}",]},
+
+{equation: "\\[{\\begin{gather} 现在有一空瓶加入1杯水后重20千克;\\\\如果空瓶加入4杯水后重29千克;\\\\请问空瓶有多重,一杯水又有多重呢？\\\\你可以有多少种方法来分析呢?\\end{gather}}\\] ",correctOption:"\\begin{cases} 空瓶=17千克 \\\\ 一杯水重=3千克\\end{cases} ",incorrectOptions:["\\begin{cases} 空瓶=13千克 \\\\ 一杯水重=8千克\\end{cases}","\\begin{cases} 空瓶=22 千克\\\\ 一杯水重=8千克\\end{cases}","\\begin{cases} 空瓶=24千克 \\\\ 一杯水重=8千克\\end{cases}",]},
+
+{equation: "\\[{\\begin{gather} 现在有一空瓶加入9杯水后重54千克;\\\\如果空瓶加入10杯水后重58千克;\\\\请问空瓶有多重,一杯水又有多重呢？\\\\你可以有多少种方法来分析呢?\\end{gather}}\\] ",correctOption:"\\begin{cases} 空瓶=18千克 \\\\ 一杯水重=4千克\\end{cases} ",incorrectOptions:["\\begin{cases} 空瓶=16千克 \\\\ 一杯水重=8千克\\end{cases}","\\begin{cases} 空瓶=30 千克\\\\ 一杯水重=9千克\\end{cases}","\\begin{cases} 空瓶=26千克 \\\\ 一杯水重=5千克\\end{cases}",]},
+
+{equation: "\\[{\\begin{gather} 现在有一空瓶加入1杯水后重36千克;\\\\如果空瓶加入10杯水后重90千克;\\\\请问空瓶有多重,一杯水又有多重呢？\\\\你可以有多少种方法来分析呢?\\end{gather}}\\] ",correctOption:"\\begin{cases} 空瓶=30千克 \\\\ 一杯水重=6千克\\end{cases} ",incorrectOptions:["\\begin{cases} 空瓶=37千克 \\\\ 一杯水重=1千克\\end{cases}","\\begin{cases} 空瓶=33 千克\\\\ 一杯水重=8千克\\end{cases}","\\begin{cases} 空瓶=27千克 \\\\ 一杯水重=5千克\\end{cases}",]},
+
+{equation: "\\[{\\begin{gather} 现在有一空瓶加入6杯水后重78千克;\\\\如果空瓶加入7杯水后重86千克;\\\\请问空瓶有多重,一杯水又有多重呢？\\\\你可以有多少种方法来分析呢?\\end{gather}}\\] ",correctOption:"\\begin{cases} 空瓶=30千克 \\\\ 一杯水重=8千克\\end{cases} ",incorrectOptions:["\\begin{cases} 空瓶=23千克 \\\\ 一杯水重=7千克\\end{cases}","\\begin{cases} 空瓶=33 千克\\\\ 一杯水重=1千克\\end{cases}","\\begin{cases} 空瓶=31千克 \\\\ 一杯水重=6千克\\end{cases}",]},
+
+{equation: "\\[{\\begin{gather} 现在有一空瓶加入4杯水后重48千克;\\\\如果空瓶加入7杯水后重63千克;\\\\请问空瓶有多重,一杯水又有多重呢？\\\\你可以有多少种方法来分析呢?\\end{gather}}\\] ",correctOption:"\\begin{cases} 空瓶=28千克 \\\\ 一杯水重=5千克\\end{cases} ",incorrectOptions:["\\begin{cases} 空瓶=33千克 \\\\ 一杯水重=9千克\\end{cases}","\\begin{cases} 空瓶=18 千克\\\\ 一杯水重=3千克\\end{cases}","\\begin{cases} 空瓶=21千克 \\\\ 一杯水重=3千克\\end{cases}",]},
+
+{equation: "\\[{\\begin{gather} 现在有一空瓶加入7杯水后重19千克;\\\\如果空瓶加入10杯水后重22千克;\\\\请问空瓶有多重,一杯水又有多重呢？\\\\你可以有多少种方法来分析呢?\\end{gather}}\\] ",correctOption:"\\begin{cases} 空瓶=12千克 \\\\ 一杯水重=1千克\\end{cases} ",incorrectOptions:["\\begin{cases} 空瓶=20千克 \\\\ 一杯水重=9千克\\end{cases}","\\begin{cases} 空瓶=34 千克\\\\ 一杯水重=8千克\\end{cases}","\\begin{cases} 空瓶=18千克 \\\\ 一杯水重=5千克\\end{cases}",]},
+
+{equation: "\\[{\\begin{gather} 现在有一空瓶加入5杯水后重79千克;\\\\如果空瓶加入6杯水后重88千克;\\\\请问空瓶有多重,一杯水又有多重呢？\\\\你可以有多少种方法来分析呢?\\end{gather}}\\] ",correctOption:"\\begin{cases} 空瓶=34千克 \\\\ 一杯水重=9千克\\end{cases} ",incorrectOptions:["\\begin{cases} 空瓶=26千克 \\\\ 一杯水重=3千克\\end{cases}","\\begin{cases} 空瓶=36 千克\\\\ 一杯水重=2千克\\end{cases}","\\begin{cases} 空瓶=13千克 \\\\ 一杯水重=4千克\\end{cases}",]},
+
+{equation: "\\[{\\begin{gather} 现在有一空瓶加入7杯水后重31千克;\\\\如果空瓶加入10杯水后重37千克;\\\\请问空瓶有多重,一杯水又有多重呢？\\\\你可以有多少种方法来分析呢?\\end{gather}}\\] ",correctOption:"\\begin{cases} 空瓶=17千克 \\\\ 一杯水重=2千克\\end{cases} ",incorrectOptions:["\\begin{cases} 空瓶=39千克 \\\\ 一杯水重=10千克\\end{cases}","\\begin{cases} 空瓶=31 千克\\\\ 一杯水重=10千克\\end{cases}","\\begin{cases} 空瓶=15千克 \\\\ 一杯水重=4千克\\end{cases}",]},
+
+{equation: "\\[{\\begin{gather} 现在有一空瓶加入3杯水后重32千克;\\\\如果空瓶加入7杯水后重52千克;\\\\请问空瓶有多重,一杯水又有多重呢？\\\\你可以有多少种方法来分析呢?\\end{gather}}\\] ",correctOption:"\\begin{cases} 空瓶=17千克 \\\\ 一杯水重=5千克\\end{cases} ",incorrectOptions:["\\begin{cases} 空瓶=12千克 \\\\ 一杯水重=8千克\\end{cases}","\\begin{cases} 空瓶=16 千克\\\\ 一杯水重=1千克\\end{cases}","\\begin{cases} 空瓶=16千克 \\\\ 一杯水重=1千克\\end{cases}",]},
+
+{equation: "\\[{\\begin{gather} 现在有一空瓶加入5杯水后重52千克;\\\\如果空瓶加入7杯水后重60千克;\\\\请问空瓶有多重,一杯水又有多重呢？\\\\你可以有多少种方法来分析呢?\\end{gather}}\\] ",correctOption:"\\begin{cases} 空瓶=32千克 \\\\ 一杯水重=4千克\\end{cases} ",incorrectOptions:["\\begin{cases} 空瓶=38千克 \\\\ 一杯水重=1千克\\end{cases}","\\begin{cases} 空瓶=17 千克\\\\ 一杯水重=6千克\\end{cases}","\\begin{cases} 空瓶=31千克 \\\\ 一杯水重=6千克\\end{cases}",]},
+
+{equation: "\\[{\\begin{gather} 现在有一空瓶加入7杯水后重70千克;\\\\如果空瓶加入8杯水后重78千克;\\\\请问空瓶有多重,一杯水又有多重呢？\\\\你可以有多少种方法来分析呢?\\end{gather}}\\] ",correctOption:"\\begin{cases} 空瓶=14千克 \\\\ 一杯水重=8千克\\end{cases} ",incorrectOptions:["\\begin{cases} 空瓶=39千克 \\\\ 一杯水重=3千克\\end{cases}","\\begin{cases} 空瓶=21 千克\\\\ 一杯水重=5千克\\end{cases}","\\begin{cases} 空瓶=39千克 \\\\ 一杯水重=2千克\\end{cases}",]},
+
+{equation: "\\[{\\begin{gather} 现在有一空瓶加入5杯水后重79千克;\\\\如果空瓶加入9杯水后重111千克;\\\\请问空瓶有多重,一杯水又有多重呢？\\\\你可以有多少种方法来分析呢?\\end{gather}}\\] ",correctOption:"\\begin{cases} 空瓶=39千克 \\\\ 一杯水重=8千克\\end{cases} ",incorrectOptions:["\\begin{cases} 空瓶=37千克 \\\\ 一杯水重=6千克\\end{cases}","\\begin{cases} 空瓶=22 千克\\\\ 一杯水重=9千克\\end{cases}","\\begin{cases} 空瓶=13千克 \\\\ 一杯水重=6千克\\end{cases}",]},
+
+{equation: "\\[{\\begin{gather} 现在有一空瓶加入8杯水后重37千克;\\\\如果空瓶加入9杯水后重39千克;\\\\请问空瓶有多重,一杯水又有多重呢？\\\\你可以有多少种方法来分析呢?\\end{gather}}\\] ",correctOption:"\\begin{cases} 空瓶=21千克 \\\\ 一杯水重=2千克\\end{cases} ",incorrectOptions:["\\begin{cases} 空瓶=25千克 \\\\ 一杯水重=1千克\\end{cases}","\\begin{cases} 空瓶=15 千克\\\\ 一杯水重=9千克\\end{cases}","\\begin{cases} 空瓶=23千克 \\\\ 一杯水重=10千克\\end{cases}",]},
+
+{equation: "\\[{\\begin{gather} 现在有一空瓶加入3杯水后重41千克;\\\\如果空瓶加入7杯水后重73千克;\\\\请问空瓶有多重,一杯水又有多重呢？\\\\你可以有多少种方法来分析呢?\\end{gather}}\\] ",correctOption:"\\begin{cases} 空瓶=17千克 \\\\ 一杯水重=8千克\\end{cases} ",incorrectOptions:["\\begin{cases} 空瓶=31千克 \\\\ 一杯水重=3千克\\end{cases}","\\begin{cases} 空瓶=27 千克\\\\ 一杯水重=5千克\\end{cases}","\\begin{cases} 空瓶=38千克 \\\\ 一杯水重=10千克\\end{cases}",]},
+
+{equation: "\\[{\\begin{gather} 现在有一空瓶加入2杯水后重45千克;\\\\如果空瓶加入9杯水后重115千克;\\\\请问空瓶有多重,一杯水又有多重呢？\\\\你可以有多少种方法来分析呢?\\end{gather}}\\] ",correctOption:"\\begin{cases} 空瓶=25千克 \\\\ 一杯水重=10千克\\end{cases} ",incorrectOptions:["\\begin{cases} 空瓶=36千克 \\\\ 一杯水重=7千克\\end{cases}","\\begin{cases} 空瓶=29 千克\\\\ 一杯水重=1千克\\end{cases}","\\begin{cases} 空瓶=36千克 \\\\ 一杯水重=4千克\\end{cases}",]},
+
+{equation: "\\[{\\begin{gather} 现在有一空瓶加入3杯水后重29千克;\\\\如果空瓶加入4杯水后重34千克;\\\\请问空瓶有多重,一杯水又有多重呢？\\\\你可以有多少种方法来分析呢?\\end{gather}}\\] ",correctOption:"\\begin{cases} 空瓶=14千克 \\\\ 一杯水重=5千克\\end{cases} ",incorrectOptions:["\\begin{cases} 空瓶=22千克 \\\\ 一杯水重=10千克\\end{cases}","\\begin{cases} 空瓶=38 千克\\\\ 一杯水重=1千克\\end{cases}","\\begin{cases} 空瓶=28千克 \\\\ 一杯水重=1千克\\end{cases}",]},
+
+{equation: "\\[{\\begin{gather} 现在有一空瓶加入1杯水后重47千克;\\\\如果空瓶加入5杯水后重79千克;\\\\请问空瓶有多重,一杯水又有多重呢？\\\\你可以有多少种方法来分析呢?\\end{gather}}\\] ",correctOption:"\\begin{cases} 空瓶=39千克 \\\\ 一杯水重=8千克\\end{cases} ",incorrectOptions:["\\begin{cases} 空瓶=30千克 \\\\ 一杯水重=2千克\\end{cases}","\\begin{cases} 空瓶=38 千克\\\\ 一杯水重=5千克\\end{cases}","\\begin{cases} 空瓶=14千克 \\\\ 一杯水重=10千克\\end{cases}",]},
+
+{equation: "\\[{\\begin{gather} 现在有一空瓶加入5杯水后重39千克;\\\\如果空瓶加入8杯水后重54千克;\\\\请问空瓶有多重,一杯水又有多重呢？\\\\你可以有多少种方法来分析呢?\\end{gather}}\\] ",correctOption:"\\begin{cases} 空瓶=14千克 \\\\ 一杯水重=5千克\\end{cases} ",incorrectOptions:["\\begin{cases} 空瓶=39千克 \\\\ 一杯水重=1千克\\end{cases}","\\begin{cases} 空瓶=10 千克\\\\ 一杯水重=4千克\\end{cases}","\\begin{cases} 空瓶=34千克 \\\\ 一杯水重=3千克\\end{cases}",]},
+
+{equation: "\\[{\\begin{gather} 现在有一空瓶加入3杯水后重29千克;\\\\如果空瓶加入10杯水后重36千克;\\\\请问空瓶有多重,一杯水又有多重呢？\\\\你可以有多少种方法来分析呢?\\end{gather}}\\] ",correctOption:"\\begin{cases} 空瓶=26千克 \\\\ 一杯水重=1千克\\end{cases} ",incorrectOptions:["\\begin{cases} 空瓶=12千克 \\\\ 一杯水重=10千克\\end{cases}","\\begin{cases} 空瓶=35 千克\\\\ 一杯水重=10千克\\end{cases}","\\begin{cases} 空瓶=22千克 \\\\ 一杯水重=7千克\\end{cases}",]},
+
+{equation: "\\[{\\begin{gather} 现在有一空瓶加入2杯水后重48千克;\\\\如果空瓶加入9杯水后重118千克;\\\\请问空瓶有多重,一杯水又有多重呢？\\\\你可以有多少种方法来分析呢?\\end{gather}}\\] ",correctOption:"\\begin{cases} 空瓶=28千克 \\\\ 一杯水重=10千克\\end{cases} ",incorrectOptions:["\\begin{cases} 空瓶=38千克 \\\\ 一杯水重=7千克\\end{cases}","\\begin{cases} 空瓶=14 千克\\\\ 一杯水重=4千克\\end{cases}","\\begin{cases} 空瓶=37千克 \\\\ 一杯水重=6千克\\end{cases}",]},
+
+{equation: "\\[{\\begin{gather} 现在有一空瓶加入5杯水后重29千克;\\\\如果空瓶加入6杯水后重32千克;\\\\请问空瓶有多重,一杯水又有多重呢？\\\\你可以有多少种方法来分析呢?\\end{gather}}\\] ",correctOption:"\\begin{cases} 空瓶=14千克 \\\\ 一杯水重=3千克\\end{cases} ",incorrectOptions:["\\begin{cases} 空瓶=19千克 \\\\ 一杯水重=9千克\\end{cases}","\\begin{cases} 空瓶=21 千克\\\\ 一杯水重=9千克\\end{cases}","\\begin{cases} 空瓶=30千克 \\\\ 一杯水重=2千克\\end{cases}",]},
+
+{equation: "\\[{\\begin{gather} 现在有一空瓶加入5杯水后重32千克;\\\\如果空瓶加入7杯水后重36千克;\\\\请问空瓶有多重,一杯水又有多重呢？\\\\你可以有多少种方法来分析呢?\\end{gather}}\\] ",correctOption:"\\begin{cases} 空瓶=22千克 \\\\ 一杯水重=2千克\\end{cases} ",incorrectOptions:["\\begin{cases} 空瓶=13千克 \\\\ 一杯水重=4千克\\end{cases}","\\begin{cases} 空瓶=32 千克\\\\ 一杯水重=3千克\\end{cases}","\\begin{cases} 空瓶=26千克 \\\\ 一杯水重=6千克\\end{cases}",]},
+
+{equation: "\\[{\\begin{gather} 现在有一空瓶加入1杯水后重26千克;\\\\如果空瓶加入2杯水后重36千克;\\\\请问空瓶有多重,一杯水又有多重呢？\\\\你可以有多少种方法来分析呢?\\end{gather}}\\] ",correctOption:"\\begin{cases} 空瓶=16千克 \\\\ 一杯水重=10千克\\end{cases} ",incorrectOptions:["\\begin{cases} 空瓶=23千克 \\\\ 一杯水重=7千克\\end{cases}","\\begin{cases} 空瓶=24 千克\\\\ 一杯水重=5千克\\end{cases}","\\begin{cases} 空瓶=23千克 \\\\ 一杯水重=5千克\\end{cases}",]},
+
+{equation: "\\[{\\begin{gather} 现在有一空瓶加入5杯水后重57千克;\\\\如果空瓶加入7杯水后重69千克;\\\\请问空瓶有多重,一杯水又有多重呢？\\\\你可以有多少种方法来分析呢?\\end{gather}}\\] ",correctOption:"\\begin{cases} 空瓶=27千克 \\\\ 一杯水重=6千克\\end{cases} ",incorrectOptions:["\\begin{cases} 空瓶=21千克 \\\\ 一杯水重=10千克\\end{cases}","\\begin{cases} 空瓶=37 千克\\\\ 一杯水重=10千克\\end{cases}","\\begin{cases} 空瓶=15千克 \\\\ 一杯水重=1千克\\end{cases}",]},
+
+{equation: "\\[{\\begin{gather} 现在有一空瓶加入7杯水后重100千克;\\\\如果空瓶加入8杯水后重110千克;\\\\请问空瓶有多重,一杯水又有多重呢？\\\\你可以有多少种方法来分析呢?\\end{gather}}\\] ",correctOption:"\\begin{cases} 空瓶=30千克 \\\\ 一杯水重=10千克\\end{cases} ",incorrectOptions:["\\begin{cases} 空瓶=35千克 \\\\ 一杯水重=1千克\\end{cases}","\\begin{cases} 空瓶=15 千克\\\\ 一杯水重=7千克\\end{cases}","\\begin{cases} 空瓶=17千克 \\\\ 一杯水重=9千克\\end{cases}",]},
+
+{equation: "\\[{\\begin{gather} 现在有一空瓶加入1杯水后重42千克;\\\\如果空瓶加入7杯水后重96千克;\\\\请问空瓶有多重,一杯水又有多重呢？\\\\你可以有多少种方法来分析呢?\\end{gather}}\\] ",correctOption:"\\begin{cases} 空瓶=33千克 \\\\ 一杯水重=9千克\\end{cases} ",incorrectOptions:["\\begin{cases} 空瓶=21千克 \\\\ 一杯水重=8千克\\end{cases}","\\begin{cases} 空瓶=21 千克\\\\ 一杯水重=6千克\\end{cases}","\\begin{cases} 空瓶=16千克 \\\\ 一杯水重=2千克\\end{cases}",]},
+
+{equation: "\\[{\\begin{gather} 现在有一空瓶加入3杯水后重39千克;\\\\如果空瓶加入10杯水后重67千克;\\\\请问空瓶有多重,一杯水又有多重呢？\\\\你可以有多少种方法来分析呢?\\end{gather}}\\] ",correctOption:"\\begin{cases} 空瓶=27千克 \\\\ 一杯水重=4千克\\end{cases} ",incorrectOptions:["\\begin{cases} 空瓶=30千克 \\\\ 一杯水重=8千克\\end{cases}","\\begin{cases} 空瓶=20 千克\\\\ 一杯水重=8千克\\end{cases}","\\begin{cases} 空瓶=36千克 \\\\ 一杯水重=9千克\\end{cases}",]},
+
+{equation: "\\[{\\begin{gather} 现在有一空瓶加入2杯水后重25千克;\\\\如果空瓶加入3杯水后重29千克;\\\\请问空瓶有多重,一杯水又有多重呢？\\\\你可以有多少种方法来分析呢?\\end{gather}}\\] ",correctOption:"\\begin{cases} 空瓶=17千克 \\\\ 一杯水重=4千克\\end{cases} ",incorrectOptions:["\\begin{cases} 空瓶=29千克 \\\\ 一杯水重=5千克\\end{cases}","\\begin{cases} 空瓶=35 千克\\\\ 一杯水重=6千克\\end{cases}","\\begin{cases} 空瓶=18千克 \\\\ 一杯水重=5千克\\end{cases}",]},
+
+{equation: "\\[{\\begin{gather} 现在有一空瓶加入3杯水后重31千克;\\\\如果空瓶加入7杯水后重59千克;\\\\请问空瓶有多重,一杯水又有多重呢？\\\\你可以有多少种方法来分析呢?\\end{gather}}\\] ",correctOption:"\\begin{cases} 空瓶=10千克 \\\\ 一杯水重=7千克\\end{cases} ",incorrectOptions:["\\begin{cases} 空瓶=39千克 \\\\ 一杯水重=9千克\\end{cases}","\\begin{cases} 空瓶=19 千克\\\\ 一杯水重=8千克\\end{cases}","\\begin{cases} 空瓶=28千克 \\\\ 一杯水重=6千克\\end{cases}",]},
+
+{equation: "\\[{\\begin{gather} 现在有一空瓶加入2杯水后重40千克;\\\\如果空瓶加入9杯水后重47千克;\\\\请问空瓶有多重,一杯水又有多重呢？\\\\你可以有多少种方法来分析呢?\\end{gather}}\\] ",correctOption:"\\begin{cases} 空瓶=38千克 \\\\ 一杯水重=1千克\\end{cases} ",incorrectOptions:["\\begin{cases} 空瓶=39千克 \\\\ 一杯水重=6千克\\end{cases}","\\begin{cases} 空瓶=31 千克\\\\ 一杯水重=9千克\\end{cases}","\\begin{cases} 空瓶=15千克 \\\\ 一杯水重=3千克\\end{cases}",]},
+
+{equation: "\\[{\\begin{gather} 现在有一空瓶加入5杯水后重54千克;\\\\如果空瓶加入8杯水后重72千克;\\\\请问空瓶有多重,一杯水又有多重呢？\\\\你可以有多少种方法来分析呢?\\end{gather}}\\] ",correctOption:"\\begin{cases} 空瓶=24千克 \\\\ 一杯水重=6千克\\end{cases} ",incorrectOptions:["\\begin{cases} 空瓶=18千克 \\\\ 一杯水重=5千克\\end{cases}","\\begin{cases} 空瓶=25 千克\\\\ 一杯水重=7千克\\end{cases}","\\begin{cases} 空瓶=23千克 \\\\ 一杯水重=1千克\\end{cases}",]},
+
+{equation: "\\[{\\begin{gather} 现在有一空瓶加入1杯水后重36千克;\\\\如果空瓶加入6杯水后重51千克;\\\\请问空瓶有多重,一杯水又有多重呢？\\\\你可以有多少种方法来分析呢?\\end{gather}}\\] ",correctOption:"\\begin{cases} 空瓶=33千克 \\\\ 一杯水重=3千克\\end{cases} ",incorrectOptions:["\\begin{cases} 空瓶=28千克 \\\\ 一杯水重=7千克\\end{cases}","\\begin{cases} 空瓶=15 千克\\\\ 一杯水重=5千克\\end{cases}","\\begin{cases} 空瓶=30千克 \\\\ 一杯水重=4千克\\end{cases}",]},
+
+{equation: "\\[{\\begin{gather} 现在有一空瓶加入5杯水后重53千克;\\\\如果空瓶加入8杯水后重62千克;\\\\请问空瓶有多重,一杯水又有多重呢？\\\\你可以有多少种方法来分析呢?\\end{gather}}\\] ",correctOption:"\\begin{cases} 空瓶=38千克 \\\\ 一杯水重=3千克\\end{cases} ",incorrectOptions:["\\begin{cases} 空瓶=28千克 \\\\ 一杯水重=1千克\\end{cases}","\\begin{cases} 空瓶=21 千克\\\\ 一杯水重=10千克\\end{cases}","\\begin{cases} 空瓶=15千克 \\\\ 一杯水重=4千克\\end{cases}",]},
+
+]
+
+
+
+
 const  根式运算03根式完全平方公式  =[
 
 
