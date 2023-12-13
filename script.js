@@ -179,6 +179,65 @@ const  根式运算03根式完全平方公式  =[
 {equation: "\\[{(-\\sqrt{3}-\\sqrt{10})^2=?}\\]",correctOption: "13+2\\sqrt{30}",incorrectOptions:["13+2\\sqrt{6}","13-2\\sqrt{2}","13+2\\sqrt{5}"]},
 
 {equation: "\\[{(-\\sqrt{5}-\\sqrt{7})^2=?}\\]",correctOption: "12+2\\sqrt{35}",incorrectOptions:["12+2\\sqrt{7}","12-2\\sqrt{15}","12+2\\sqrt{14}"]},
+{equation: "\\[{(\\sqrt{6}-\\sqrt{2})^2=?}\\]",correctOption: "8-4\\sqrt{3}",incorrectOptions:["4-4\\sqrt{3}","8-6\\sqrt{2}","8+2\\sqrt{35}"]},
+
+{equation: "\\[{(\\sqrt{7}-\\sqrt{2})^2=?}\\]",correctOption: "9-2\\sqrt{14}",incorrectOptions:["5-2\\sqrt{14}","9-2\\sqrt{3}","9+2\\sqrt{42}"]},
+
+{equation: "\\[{(\\sqrt{5}-\\sqrt{3})^2=?}\\]",correctOption: "8-2\\sqrt{15}",incorrectOptions:["2-2\\sqrt{15}","8-2\\sqrt{21}","8+2\\sqrt{35}"]},
+
+{equation: "\\[{(\\sqrt{10}-\\sqrt{3})^2=?}\\]",correctOption: "13-2\\sqrt{30}",incorrectOptions:["7-2\\sqrt{30}","13-2\\sqrt{2}","13+2\\sqrt{5}"]},
+
+{equation: "\\[{(\\sqrt{6}-\\sqrt{5})^2=?}\\]",correctOption: "11-2\\sqrt{30}",incorrectOptions:["1-2\\sqrt{30}","11-2\\sqrt{10}","11+2\\sqrt{7}"]},
+
+{equation: "\\[{(\\sqrt{3}-\\sqrt{6})^2=?}\\]",correctOption: "9-6\\sqrt{2}",incorrectOptions:["3-6\\sqrt{2}","9-2\\sqrt{42}","9+2\\sqrt{7}"]},
+
+{equation: "\\[{(\\sqrt{5}-\\sqrt{11})^2=?}\\]",correctOption: "16-2\\sqrt{55}",incorrectOptions:["6-2\\sqrt{55}","16-2\\sqrt{35}","16+2\\sqrt{42}"]},
+
+{equation: "\\[{(\\sqrt{7}-\\sqrt{6})^2=?}\\]",correctOption: "13-2\\sqrt{42}",incorrectOptions:["1-2\\sqrt{42}","13-2\\sqrt{6}","13+2\\sqrt{5}"]},
+
+{equation: "\\[{(\\sqrt{7}-\\sqrt{10})^2=?}\\]",correctOption: "17-2\\sqrt{70}",incorrectOptions:["3-2\\sqrt{70}","17-2\\sqrt{3}","17+4\\sqrt{3}"]},
+
+{equation: "\\[{(\\sqrt{6}-\\sqrt{3})^2=?}\\]",correctOption: "9-6\\sqrt{2}",incorrectOptions:["3-6\\sqrt{2}","9-2\\sqrt{6}","9+2\\sqrt{15}"]},
+
+{equation: "\\[{(\\sqrt{11}-\\sqrt{2})^2=?}\\]",correctOption: "13-2\\sqrt{22}",incorrectOptions:["9-2\\sqrt{22}","13-2\\sqrt{5}","13+2\\sqrt{6}"]},
+
+{equation: "\\[{(\\sqrt{11}-\\sqrt{3})^2=?}\\]",correctOption: "14-2\\sqrt{33}",incorrectOptions:["8-2\\sqrt{33}","14-2\\sqrt{6}","14+2\\sqrt{7}"]},
+
+{equation: "\\[{(\\sqrt{2}-\\sqrt{6})^2=?}\\]",correctOption: "8-4\\sqrt{3}",incorrectOptions:["4-4\\sqrt{3}","8-2\\sqrt{15}","8+2\\sqrt{21}"]},
+
+{equation: "\\[{(\\sqrt{10}-\\sqrt{11})^2=?}\\]",correctOption: "21-2\\sqrt{110}",incorrectOptions:["1-2\\sqrt{110}","21-2\\sqrt{10}","21+4\\sqrt{3}"]},
+
+{equation: "\\[{(\\sqrt{7}-\\sqrt{2})^2=?}\\]",correctOption: "9-2\\sqrt{14}",incorrectOptions:["5-2\\sqrt{14}","9-2\\sqrt{15}","9+2\\sqrt{6}"]},
+
+{equation: "\\[{(\\sqrt{10}-\\sqrt{11})^2=?}\\]",correctOption: "21-2\\sqrt{110}",incorrectOptions:["1-2\\sqrt{110}","21-2\\sqrt{35}","21+4\\sqrt{3}"]},
+
+{equation: "\\[{(\\sqrt{11}-\\sqrt{2})^2=?}\\]",correctOption: "13-2\\sqrt{22}",incorrectOptions:["9-2\\sqrt{22}","13-2\\sqrt{2}","13+2\\sqrt{14}"]},
+
+{equation: "\\[{(\\sqrt{2}-\\sqrt{5})^2=?}\\]",correctOption: "7-2\\sqrt{10}",incorrectOptions:["3-2\\sqrt{10}","7-6\\sqrt{2}","7+2\\sqrt{35}"]},
+
+{equation: "\\[{(\\sqrt{2}-\\sqrt{3})^2=?}\\]",correctOption: "5-2\\sqrt{6}",incorrectOptions:["1-2\\sqrt{6}","5-2\\sqrt{7}","5+2\\sqrt{30}"]},
+
+{equation: "\\[{(\\sqrt{5}-\\sqrt{3})^2=?}\\]",correctOption: "8-2\\sqrt{15}",incorrectOptions:["2-2\\sqrt{15}","8-2\\sqrt{14}","8+6\\sqrt{2}"]},
+
+{equation: "\\[{(\\sqrt{2}-\\sqrt{6})^2=?}\\]",correctOption: "8-4\\sqrt{3}",incorrectOptions:["4-4\\sqrt{3}","8-2\\sqrt{3}","8+2\\sqrt{15}"]},
+
+{equation: "\\[{(\\sqrt{11}-\\sqrt{5})^2=?}\\]",correctOption: "16-2\\sqrt{55}",incorrectOptions:["6-2\\sqrt{55}","16-2\\sqrt{35}","16+2\\sqrt{10}"]},
+
+{equation: "\\[{(\\sqrt{11}-\\sqrt{7})^2=?}\\]",correctOption: "18-2\\sqrt{77}",incorrectOptions:["4-2\\sqrt{77}","18-2\\sqrt{10}","18+2\\sqrt{2}"]},
+
+{equation: "\\[{(\\sqrt{7}-\\sqrt{5})^2=?}\\]",correctOption: "12-2\\sqrt{35}",incorrectOptions:["2-2\\sqrt{35}","12-6\\sqrt{2}","12+2\\sqrt{10}"]},
+
+{equation: "\\[{(\\sqrt{11}-\\sqrt{5})^2=?}\\]",correctOption: "16-2\\sqrt{55}",incorrectOptions:["6-2\\sqrt{55}","16-4\\sqrt{3}","16+2\\sqrt{10}"]},
+
+{equation: "\\[{(\\sqrt{3}-\\sqrt{10})^2=?}\\]",correctOption: "13-2\\sqrt{30}",incorrectOptions:["7-2\\sqrt{30}","13-2\\sqrt{10}","13+2\\sqrt{21}"]},
+
+{equation: "\\[{(\\sqrt{2}-\\sqrt{7})^2=?}\\]",correctOption: "9-2\\sqrt{14}",incorrectOptions:["5-2\\sqrt{14}","9-2\\sqrt{15}","9+6\\sqrt{2}"]},
+
+{equation: "\\[{(\\sqrt{6}-\\sqrt{10})^2=?}\\]",correctOption: "16-4\\sqrt{15}",incorrectOptions:["4-4\\sqrt{15}","16-2\\sqrt{6}","16+4\\sqrt{3}"]},
+
+{equation: "\\[{(\\sqrt{6}-\\sqrt{11})^2=?}\\]",correctOption: "17-2\\sqrt{66}",incorrectOptions:["5-2\\sqrt{66}","17-2\\sqrt{10}","17+2\\sqrt{6}"]},
+
+{equation: "\\[{(\\sqrt{5}-\\sqrt{10})^2=?}\\]",correctOption: "15-10\\sqrt{2}",incorrectOptions:["5-10\\sqrt{2}","15-6\\sqrt{2}","15+2\\sqrt{6}"]},
 
 
 
