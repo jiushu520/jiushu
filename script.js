@@ -3342,5 +3342,5 @@ function hideFrame() {
 
 
         // 默认加载分数混合运算题库
-        window.onload = () => loadQuestions(乘法公式03因式分解02, '乘法公式03因式分解02');
+        window.onload = () => loadQuestions( 函数01二次最值01, ' 函数01二次最值01');
     
