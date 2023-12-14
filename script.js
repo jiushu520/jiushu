@@ -3292,7 +3292,7 @@ function generateEquationSystem() {
 
 function myFunction(id) {
   var x = document.getElementById('分数运算');
-  var y = document.getElementById('方程运算');
+  var y = document.getElementById('方程应用');
   var z = document.getElementById('微分积分');
   var a = document.getElementById('线性代数');
   
@@ -3302,7 +3302,7 @@ function myFunction(id) {
     z.style.display = "none";
     a.style.display = "none";
     
-  } else if (id === '方程运算') {
+  } else if (id === '方程应用') {
     x.style.display = "none";
     y.style.display = "block";
     z.style.display = "none";
