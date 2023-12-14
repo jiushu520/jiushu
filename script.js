@@ -1086,7 +1086,7 @@ const 乘法公式03因式分解02= [
 
 {equation: "\\[ {x^2-5xy+4y^2=?}\\]",correctOption: "(x-y)(x-4y)",incorrectOptions:["(x+3y)(x-y)","(x+3y)(x-5y)","(x+3y)(x-5y)"]},
 
-{equation: "\\[ {x^2-y^2=?}\\]",correctOption: "(x-y)(x+y)",incorrectOptions:["(x+y)(x-y)","(x-y)(x-3y)","(x-y)(x-y)"]},
+{equation: "\\[ {x^2-y^2=?}\\]",correctOption: "(x-y)(x+y)",incorrectOptions:["(x+2y)(x-2y)","(x-y)(x-3y)","(x-y)(x-y)"]},
 
 {equation: "\\[ {x^2+4xy+3y^2=?}\\]",correctOption: "(x+y)(x+3y)",incorrectOptions:["(x+3y)(x-3y)","(x-3y)(x+3y)","(x+2y)(x-5y)"]},
 
@@ -3222,7 +3222,7 @@ function generateEquationSystem() {
     const randomIndex = Math.floor(Math.random() * currentQuestionBank.length);
     const { equation, img, correctOption, incorrectOptions } = currentQuestionBank[randomIndex];
 
-    const correctIndex = Math.floor(Math.random() * 6);
+    const correctIndex = Math.floor(Math.random() * 4);
     const options = [...incorrectOptions];
     options.splice(correctIndex, 0, correctOption);
 
@@ -3248,7 +3248,7 @@ function generateEquationSystem() {
 
 
         function generateOptions() {
-            const labels = ['A', 'B', 'C', 'D','E','F'];
+            const labels = ['A', 'B', 'C', 'D',];
             return currentEquationSystem.options.map((option, index) => `<div class="option" onclick="checkAnswer(${index})"><span>${labels[index]}. \\(${option}\\)</span></div>`).join('');
         }
 
@@ -3292,7 +3292,7 @@ function generateEquationSystem() {
 
 function myFunction(id) {
   var x = document.getElementById('分数运算');
-  var y = document.getElementById('方程应用');
+  var y = document.getElementById('方程运算');
   var z = document.getElementById('微分积分');
   var a = document.getElementById('线性代数');
   
@@ -3302,7 +3302,7 @@ function myFunction(id) {
     z.style.display = "none";
     a.style.display = "none";
     
-  } else if (id === '方程应用') {
+  } else if (id === '方程运算') {
     x.style.display = "none";
     y.style.display = "block";
     z.style.display = "none";
@@ -3342,5 +3342,5 @@ function hideFrame() {
 
 
         // 默认加载分数混合运算题库
-        window.onload = () => loadQuestions( 函数01二次最值01, ' 函数01二次最值01');
+        window.onload = () => loadQuestions(乘法公式03因式分解02, '乘法公式03因式分解02');
     
