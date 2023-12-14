@@ -1,3 +1,7 @@
+const 图片  =[
+{ equation: "\\[ {A} \\]", img: "images/1.jpg",correctOption: "A",incorrectOptions: ["B", "C", "D"]}
+
+]
 
 
 const   方程应用空瓶与水杯  =[
@@ -3212,16 +3216,36 @@ function loadQuestions(questionBank, topic) {
     startNewRound();
 }
 
-        function generateEquationSystem() {
-            const randomIndex = Math.floor(Math.random() * currentQuestionBank.length);
-            const { equation, correctOption, incorrectOptions } = currentQuestionBank[randomIndex];
 
-            const correctIndex = Math.floor(Math.random() * 6);
-            const options = [...incorrectOptions];
-            options.splice(correctIndex, 0, correctOption);
 
-            currentEquationSystem = { equationSystem: equation, correctIndex, options };
-        }
+function generateEquationSystem() {
+    const randomIndex = Math.floor(Math.random() * currentQuestionBank.length);
+    const { equation, img, correctOption, incorrectOptions } = currentQuestionBank[randomIndex];
+
+    const correctIndex = Math.floor(Math.random() * 6);
+    const options = [...incorrectOptions];
+    options.splice(correctIndex, 0, correctOption);
+
+    let equationHTML = equation;
+
+    // 检查是否存在图片路径，如果存在则添加图片的 HTML
+    if (img && img.trim() !== '') {
+        equationHTML += `<br><img src="${img}" alt="题目图片">`;
+    }
+
+    currentEquationSystem = {
+        equationSystem: equationHTML,
+        correctIndex,
+        options
+    };
+}
+
+
+
+
+
+
+
 
         function generateOptions() {
             const labels = ['A', 'B', 'C', 'D','E','F'];
