@@ -3222,7 +3222,7 @@ function generateEquationSystem() {
     const randomIndex = Math.floor(Math.random() * currentQuestionBank.length);
     const { equation, img, correctOption, incorrectOptions } = currentQuestionBank[randomIndex];
 
-    const correctIndex = Math.floor(Math.random() * 6);
+    const correctIndex = Math.floor(Math.random() * 4);
     const options = [...incorrectOptions];
     options.splice(correctIndex, 0, correctOption);
 
@@ -3248,7 +3248,7 @@ function generateEquationSystem() {
 
 
         function generateOptions() {
-            const labels = ['A', 'B', 'C', 'D','E','F'];
+            const labels = ['A', 'B', 'C', 'D',];
             return currentEquationSystem.options.map((option, index) => `<div class="option" onclick="checkAnswer(${index})"><span>${labels[index]}. \\(${option}\\)</span></div>`).join('');
         }
 
