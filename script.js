@@ -1,4 +1,107 @@
-const  方程应用简单行程相遇追及 =[
+const  方程应用行程02变速到达 =[
+{equation: "\\[{\\begin{array}{c}汽车从A地向B地出发。\\\\汽车速度如果每小时提升3千米，则16小时到达。\\\\如果每小时减少7千米，则26小时到达。。\\\\请问如果按原速度几小时到达？\\end{array}}\\]",correctOption: "3",incorrectOptions:["4 ","8","9"]},
+
+{equation: "\\[{\\begin{array}{c}汽车从A地向B地出发。\\\\汽车速度如果每小时提升7千米，则14小时到达。\\\\如果每小时减少3千米，则24小时到达。。\\\\请问如果按原速度几小时到达？\\end{array}}\\]",correctOption: "7",incorrectOptions:["3 ","5","8"]},
+
+{equation: "\\[{\\begin{array}{c}汽车从A地向B地出发。\\\\汽车速度如果每小时提升2千米，则21小时到达。\\\\如果每小时减少5千米，则42小时到达。。\\\\请问如果按原速度几小时到达？\\end{array}}\\]",correctOption: "2",incorrectOptions:["8 ","9","3"]},
+
+{equation: "\\[{\\begin{array}{c}汽车从A地向B地出发。\\\\汽车速度如果每小时提升3千米，则9小时到达。\\\\如果每小时减少2千米，则14小时到达。。\\\\请问如果按原速度几小时到达？\\end{array}}\\]",correctOption: "3",incorrectOptions:["1 ","4","6"]},
+
+{equation: "\\[{\\begin{array}{c}汽车从A地向B地出发。\\\\汽车速度如果每小时提升3千米，则42小时到达。\\\\如果每小时减少2千米，则52小时到达。。\\\\请问如果按原速度几小时到达？\\end{array}}\\]",correctOption: "3",incorrectOptions:["2 ","4","1"]},
+
+{equation: "\\[{\\begin{array}{c}汽车从A地向B地出发。\\\\汽车速度如果每小时提升6千米，则7小时到达。\\\\如果每小时减少5千米，则18小时到达。。\\\\请问如果按原速度几小时到达？\\end{array}}\\]",correctOption: "6",incorrectOptions:["9 ","8","3"]},
+
+{equation: "\\[{\\begin{array}{c}汽车从A地向B地出发。\\\\汽车速度如果每小时提升7千米，则13小时到达。\\\\如果每小时减少4千米，则24小时到达。。\\\\请问如果按原速度几小时到达？\\end{array}}\\]",correctOption: "7",incorrectOptions:["3 ","6","4"]},
+
+{equation: "\\[{\\begin{array}{c}汽车从A地向B地出发。\\\\汽车速度如果每小时提升7千米，则24小时到达。\\\\如果每小时减少4千米，则35小时到达。。\\\\请问如果按原速度几小时到达？\\end{array}}\\]",correctOption: "7",incorrectOptions:["9 ","6","5"]},
+
+{equation: "\\[{\\begin{array}{c}汽车从A地向B地出发。\\\\汽车速度如果每小时提升2千米，则12小时到达。\\\\如果每小时减少7千米，则21小时到达。。\\\\请问如果按原速度几小时到达？\\end{array}}\\]",correctOption: "2",incorrectOptions:["3 ","5","7"]},
+
+{equation: "\\[{\\begin{array}{c}汽车从A地向B地出发。\\\\汽车速度如果每小时提升4千米，则44小时到达。\\\\如果每小时减少3千米，则58小时到达。。\\\\请问如果按原速度几小时到达？\\end{array}}\\]",correctOption: "4",incorrectOptions:["9 ","8","2"]},
+
+{equation: "\\[{\\begin{array}{c}汽车从A地向B地出发。\\\\汽车速度如果每小时提升4千米，则36小时到达。\\\\如果每小时减少3千米，则50小时到达。。\\\\请问如果按原速度几小时到达？\\end{array}}\\]",correctOption: "4",incorrectOptions:["5 ","2","9"]},
+
+{equation: "\\[{\\begin{array}{c}汽车从A地向B地出发。\\\\汽车速度如果每小时提升6千米，则21小时到达。\\\\如果每小时减少5千米，则32小时到达。。\\\\请问如果按原速度几小时到达？\\end{array}}\\]",correctOption: "6",incorrectOptions:["7 ","2","1"]},
+
+{equation: "\\[{\\begin{array}{c}汽车从A地向B地出发。\\\\汽车速度如果每小时提升7千米，则6小时到达。\\\\如果每小时减少4千米，则17小时到达。。\\\\请问如果按原速度几小时到达？\\end{array}}\\]",correctOption: "7",incorrectOptions:["5 ","3","4"]},
+
+{equation: "\\[{\\begin{array}{c}汽车从A地向B地出发。\\\\汽车速度如果每小时提升6千米，则32小时到达。\\\\如果每小时减少5千米，则54小时到达。。\\\\请问如果按原速度几小时到达？\\end{array}}\\]",correctOption: "6",incorrectOptions:["7 ","5","2"]},
+
+{equation: "\\[{\\begin{array}{c}汽车从A地向B地出发。\\\\汽车速度如果每小时提升6千米，则42小时到达。\\\\如果每小时减少5千米，则75小时到达。。\\\\请问如果按原速度几小时到达？\\end{array}}\\]",correctOption: "6",incorrectOptions:["2 ","1","5"]},
+
+{equation: "\\[{\\begin{array}{c}汽车从A地向B地出发。\\\\汽车速度如果每小时提升6千米，则24小时到达。\\\\如果每小时减少5千米，则57小时到达。。\\\\请问如果按原速度几小时到达？\\end{array}}\\]",correctOption: "6",incorrectOptions:["5 ","8","7"]},
+
+{equation: "\\[{\\begin{array}{c}汽车从A地向B地出发。\\\\汽车速度如果每小时提升6千米，则19小时到达。\\\\如果每小时减少7千米，则32小时到达。。\\\\请问如果按原速度几小时到达？\\end{array}}\\]",correctOption: "6",incorrectOptions:["3 ","8","1"]},
+
+{equation: "\\[{\\begin{array}{c}汽车从A地向B地出发。\\\\汽车速度如果每小时提升5千米，则30小时到达。\\\\如果每小时减少3千米，则46小时到达。。\\\\请问如果按原速度几小时到达？\\end{array}}\\]",correctOption: "5",incorrectOptions:["1 ","8","4"]},
+
+{equation: "\\[{\\begin{array}{c}汽车从A地向B地出发。\\\\汽车速度如果每小时提升7千米，则16小时到达。\\\\如果每小时减少2千米，则34小时到达。。\\\\请问如果按原速度几小时到达？\\end{array}}\\]",correctOption: "7",incorrectOptions:["3 ","9","2"]},
+
+{equation: "\\[{\\begin{array}{c}汽车从A地向B地出发。\\\\汽车速度如果每小时提升5千米，则13小时到达。\\\\如果每小时减少4千米，则22小时到达。。\\\\请问如果按原速度几小时到达？\\end{array}}\\]",correctOption: "5",incorrectOptions:["6 ","4","1"]},
+
+{equation: "\\[{\\begin{array}{c}汽车从A地向B地出发。\\\\汽车速度如果每小时提升4千米，则21小时到达。\\\\如果每小时减少5千米，则30小时到达。。\\\\请问如果按原速度几小时到达？\\end{array}}\\]",correctOption: "4",incorrectOptions:["7 ","2","8"]},
+
+{equation: "\\[{\\begin{array}{c}汽车从A地向B地出发。\\\\汽车速度如果每小时提升4千米，则11小时到达。\\\\如果每小时减少7千米，则22小时到达。。\\\\请问如果按原速度几小时到达？\\end{array}}\\]",correctOption: "4",incorrectOptions:["9 ","6","2"]},
+
+{equation: "\\[{\\begin{array}{c}汽车从A地向B地出发。\\\\汽车速度如果每小时提升2千米，则6小时到达。\\\\如果每小时减少7千米，则15小时到达。。\\\\请问如果按原速度几小时到达？\\end{array}}\\]",correctOption: "2",incorrectOptions:["7 ","1","4"]},
+
+{equation: "\\[{\\begin{array}{c}汽车从A地向B地出发。\\\\汽车速度如果每小时提升3千米，则4小时到达。\\\\如果每小时减少7千米，则14小时到达。。\\\\请问如果按原速度几小时到达？\\end{array}}\\]",correctOption: "3",incorrectOptions:["2 ","8","7"]},
+
+{equation: "\\[{\\begin{array}{c}汽车从A地向B地出发。\\\\汽车速度如果每小时提升5千米，则45小时到达。\\\\如果每小时减少2千米，则66小时到达。。\\\\请问如果按原速度几小时到达？\\end{array}}\\]",correctOption: "5",incorrectOptions:["7 ","6","3"]},
+
+{equation: "\\[{\\begin{array}{c}汽车从A地向B地出发。\\\\汽车速度如果每小时提升5千米，则25小时到达。\\\\如果每小时减少4千米，则34小时到达。。\\\\请问如果按原速度几小时到达？\\end{array}}\\]",correctOption: "5",incorrectOptions:["4 ","9","7"]},
+
+{equation: "\\[{\\begin{array}{c}汽车从A地向B地出发。\\\\汽车速度如果每小时提升3千米，则21小时到达。\\\\如果每小时减少7千米，则31小时到达。。\\\\请问如果按原速度几小时到达？\\end{array}}\\]",correctOption: "3",incorrectOptions:["7 ","2","9"]},
+
+{equation: "\\[{\\begin{array}{c}汽车从A地向B地出发。\\\\汽车速度如果每小时提升7千米，则46小时到达。\\\\如果每小时减少5千米，则70小时到达。。\\\\请问如果按原速度几小时到达？\\end{array}}\\]",correctOption: "7",incorrectOptions:["3 ","8","5"]},
+
+{equation: "\\[{\\begin{array}{c}汽车从A地向B地出发。\\\\汽车速度如果每小时提升7千米，则22小时到达。\\\\如果每小时减少2千米，则31小时到达。。\\\\请问如果按原速度几小时到达？\\end{array}}\\]",correctOption: "7",incorrectOptions:["9 ","8","6"]},
+
+{equation: "\\[{\\begin{array}{c}汽车从A地向B地出发。\\\\汽车速度如果每小时提升5千米，则36小时到达。\\\\如果每小时减少4千米，则54小时到达。。\\\\请问如果按原速度几小时到达？\\end{array}}\\]",correctOption: "5",incorrectOptions:["7 ","2","1"]},
+
+{equation: "\\[{\\begin{array}{c}汽车从A地向B地出发。\\\\汽车速度如果每小时提升4千米，则22小时到达。\\\\如果每小时减少5千米，则31小时到达。。\\\\请问如果按原速度几小时到达？\\end{array}}\\]",correctOption: "4",incorrectOptions:["5 ","8","1"]},
+
+{equation: "\\[{\\begin{array}{c}汽车从A地向B地出发。\\\\汽车速度如果每小时提升6千米，则13小时到达。\\\\如果每小时减少5千米，则24小时到达。。\\\\请问如果按原速度几小时到达？\\end{array}}\\]",correctOption: "6",incorrectOptions:["7 ","9","8"]},
+
+{equation: "\\[{\\begin{array}{c}汽车从A地向B地出发。\\\\汽车速度如果每小时提升3千米，则11小时到达。\\\\如果每小时减少2千米，则16小时到达。。\\\\请问如果按原速度几小时到达？\\end{array}}\\]",correctOption: "3",incorrectOptions:["1 ","4","9"]},
+
+{equation: "\\[{\\begin{array}{c}汽车从A地向B地出发。\\\\汽车速度如果每小时提升3千米，则20小时到达。\\\\如果每小时减少5千米，则28小时到达。。\\\\请问如果按原速度几小时到达？\\end{array}}\\]",correctOption: "3",incorrectOptions:["9 ","5","2"]},
+
+{equation: "\\[{\\begin{array}{c}汽车从A地向B地出发。\\\\汽车速度如果每小时提升3千米，则25小时到达。\\\\如果每小时减少2千米，则30小时到达。。\\\\请问如果按原速度几小时到达？\\end{array}}\\]",correctOption: "3",incorrectOptions:["4 ","2","6"]},
+
+{equation: "\\[{\\begin{array}{c}汽车从A地向B地出发。\\\\汽车速度如果每小时提升5千米，则30小时到达。\\\\如果每小时减少7千米，则54小时到达。。\\\\请问如果按原速度几小时到达？\\end{array}}\\]",correctOption: "5",incorrectOptions:["2 ","7","9"]},
+
+{equation: "\\[{\\begin{array}{c}汽车从A地向B地出发。\\\\汽车速度如果每小时提升6千米，则20小时到达。\\\\如果每小时减少7千米，则33小时到达。。\\\\请问如果按原速度几小时到达？\\end{array}}\\]",correctOption: "6",incorrectOptions:["8 ","9","2"]},
+
+{equation: "\\[{\\begin{array}{c}汽车从A地向B地出发。\\\\汽车速度如果每小时提升4千米，则13小时到达。\\\\如果每小时减少3千米，则20小时到达。。\\\\请问如果按原速度几小时到达？\\end{array}}\\]",correctOption: "4",incorrectOptions:["5 ","9","6"]},
+
+{equation: "\\[{\\begin{array}{c}汽车从A地向B地出发。\\\\汽车速度如果每小时提升5千米，则25小时到达。\\\\如果每小时减少3千米，则33小时到达。。\\\\请问如果按原速度几小时到达？\\end{array}}\\]",correctOption: "5",incorrectOptions:["6 ","7","1"]},
+
+{equation: "\\[{\\begin{array}{c}汽车从A地向B地出发。\\\\汽车速度如果每小时提升4千米，则6小时到达。\\\\如果每小时减少7千米，则17小时到达。。\\\\请问如果按原速度几小时到达？\\end{array}}\\]",correctOption: "4",incorrectOptions:["8 ","5","7"]},
+
+{equation: "\\[{\\begin{array}{c}汽车从A地向B地出发。\\\\汽车速度如果每小时提升3千米，则11小时到达。\\\\如果每小时减少4千米，则18小时到达。。\\\\请问如果按原速度几小时到达？\\end{array}}\\]",correctOption: "3",incorrectOptions:["7 ","4","5"]},
+
+{equation: "\\[{\\begin{array}{c}汽车从A地向B地出发。\\\\汽车速度如果每小时提升7千米，则66小时到达。\\\\如果每小时减少5千米，则102小时到达。。\\\\请问如果按原速度几小时到达？\\end{array}}\\]",correctOption: "7",incorrectOptions:["6 ","5","1"]},
+
+{equation: "\\[{\\begin{array}{c}汽车从A地向B地出发。\\\\汽车速度如果每小时提升5千米，则26小时到达。\\\\如果每小时减少4千米，则44小时到达。。\\\\请问如果按原速度几小时到达？\\end{array}}\\]",correctOption: "5",incorrectOptions:["1 ","7","4"]},
+
+{equation: "\\[{\\begin{array}{c}汽车从A地向B地出发。\\\\汽车速度如果每小时提升3千米，则22小时到达。\\\\如果每小时减少5千米，则30小时到达。。\\\\请问如果按原速度几小时到达？\\end{array}}\\]",correctOption: "3",incorrectOptions:["6 ","5","1"]},
+
+{equation: "\\[{\\begin{array}{c}汽车从A地向B地出发。\\\\汽车速度如果每小时提升2千米，则23小时到达。\\\\如果每小时减少3千米，则28小时到达。。\\\\请问如果按原速度几小时到达？\\end{array}}\\]",correctOption: "2",incorrectOptions:["8 ","4","7"]},
+
+{equation: "\\[{\\begin{array}{c}汽车从A地向B地出发。\\\\汽车速度如果每小时提升5千米，则15小时到达。\\\\如果每小时减少6千米，则26小时到达。。\\\\请问如果按原速度几小时到达？\\end{array}}\\]",correctOption: "5",incorrectOptions:["7 ","6","2"]},
+
+{equation: "\\[{\\begin{array}{c}汽车从A地向B地出发。\\\\汽车速度如果每小时提升3千米，则66小时到达。\\\\如果每小时减少2千米，则81小时到达。。\\\\请问如果按原速度几小时到达？\\end{array}}\\]",correctOption: "3",incorrectOptions:["2 ","7","5"]},
+
+{equation: "\\[{\\begin{array}{c}汽车从A地向B地出发。\\\\汽车速度如果每小时提升4千米，则5小时到达。\\\\如果每小时减少7千米，则16小时到达。。\\\\请问如果按原速度几小时到达？\\end{array}}\\]",correctOption: "4",incorrectOptions:["8 ","1","9"]},
+
+{equation: "\\[{\\begin{array}{c}汽车从A地向B地出发。\\\\汽车速度如果每小时提升2千米，则21小时到达。\\\\如果每小时减少3千米，则26小时到达。。\\\\请问如果按原速度几小时到达？\\end{array}}\\]",correctOption: "2",incorrectOptions:["8 ","6","5"]},
+
+{equation: "\\[{\\begin{array}{c}汽车从A地向B地出发。\\\\汽车速度如果每小时提升2千米，则13小时到达。\\\\如果每小时减少3千米，则18小时到达。。\\\\请问如果按原速度几小时到达？\\end{array}}\\]",correctOption: "2",incorrectOptions:["6 ","5","3"]},
+]
+
+
+const  方程应用行程01简单相遇追及 =[
 {equation: "\\[{\\begin{array}{c}AB两相距126千米。\\\\甲车在后，乙车在前。同向而行。\\\\甲车速度为每小时39千米，\\\\乙车速度为每小时18千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "6",incorrectOptions:["5 ","8","4"]},
 
 {equation: "\\[{\\begin{array}{c}AB两相距34千米。\\\\甲车在后，乙车在前。同向而行。\\\\甲车速度为每小时29千米，\\\\乙车速度为每小时12千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "2",incorrectOptions:["4 ","6","7"]},
