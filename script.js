@@ -1,3 +1,73 @@
+const  线性代数04内外积与正切=[
+{equation: "\\begin{gather}直角坐标系中有两点A(-8,-2)、B(-3,2)\\textup{;}\\\\则tan∠AOB=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\\\ tan∠AOB=\\frac{(-8,-2)\\otimes(-3,2)}{(-8,-2)\\cdot(-3,2)}\\\\向量法,复数法,解析法,面积法(有推导才有用)...... \\end{gather}",correctOption: "\\frac{11}{10}",incorrectOptions:["\\frac{7}{5}","4","-\\frac{1}{4}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(0,6)、B(-3,-8)\\textup{;}\\\\则tan∠AOB=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\\\ tan∠AOB=\\frac{(0,6)\\otimes(-3,-8)}{(0,6)\\cdot(-3,-8)}\\\\向量法,复数法,解析法,面积法(有推导才有用)...... \\end{gather}",correctOption: "-\\frac{3}{8}",incorrectOptions:["-\\frac{3}{2}","0","-\\frac{7}{5}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(5,-3)、B(0,-10)\\textup{;}\\\\则tan∠AOB=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\\\ tan∠AOB=\\frac{(5,-3)\\otimes(0,-10)}{(5,-3)\\cdot(0,-10)}\\\\向量法,复数法,解析法,面积法(有推导才有用)...... \\end{gather}",correctOption: "\\frac{5}{3}",incorrectOptions:["\\frac{3}{10}","-\\frac{1}{2}","-3"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(1,1)、B(0,-3)\\textup{;}\\\\则tan∠AOB=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\\\ tan∠AOB=\\frac{(1,1)\\otimes(0,-3)}{(1,1)\\cdot(0,-3)}\\\\向量法,复数法,解析法,面积法(有推导才有用)...... \\end{gather}",correctOption: "-1",incorrectOptions:["-\\frac{3}{2}","6","-\\frac{4}{3}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(-7,0)、B(6,0)\\textup{;}\\\\则tan∠AOB=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\\\ tan∠AOB=\\frac{(-7,0)\\otimes(6,0)}{(-7,0)\\cdot(6,0)}\\\\向量法,复数法,解析法,面积法(有推导才有用)...... \\end{gather}",correctOption: "0",incorrectOptions:["\\frac{3}{10}","-2","\\frac{7}{3}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(0,-9)、B(-8,-6)\\textup{;}\\\\则tan∠AOB=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\\\ tan∠AOB=\\frac{(0,-9)\\otimes(-8,-6)}{(0,-9)\\cdot(-8,-6)}\\\\向量法,复数法,解析法,面积法(有推导才有用)...... \\end{gather}",correctOption: "\\frac{4}{3}",incorrectOptions:["0","2","-\\frac{8}{9}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(-10,-3)、B(-10,3)\\textup{;}\\\\则tan∠AOB=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\\\ tan∠AOB=\\frac{(-10,-3)\\otimes(-10,3)}{(-10,-3)\\cdot(-10,3)}\\\\向量法,复数法,解析法,面积法(有推导才有用)...... \\end{gather}",correctOption: "\\frac{60}{91}",incorrectOptions:["-1","-\\frac{4}{7}","4"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(2,-9)、B(-3,-9)\\textup{;}\\\\则tan∠AOB=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\\\ tan∠AOB=\\frac{(2,-9)\\otimes(-3,-9)}{(2,-9)\\cdot(-3,-9)}\\\\向量法,复数法,解析法,面积法(有推导才有用)...... \\end{gather}",correctOption: "\\frac{3}{5}",incorrectOptions:["0","0","1"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(3,-4)、B(-4,-2)\\textup{;}\\\\则tan∠AOB=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\\\ tan∠AOB=\\frac{(3,-4)\\otimes(-4,-2)}{(3,-4)\\cdot(-4,-2)}\\\\向量法,复数法,解析法,面积法(有推导才有用)...... \\end{gather}",correctOption: "-\\frac{11}{2}",incorrectOptions:["\\frac{4}{3}","\\frac{1}{4}","\\frac{5}{9}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(-2,-7)、B(-4,-3)\\textup{;}\\\\则tan∠AOB=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\\\ tan∠AOB=\\frac{(-2,-7)\\otimes(-4,-3)}{(-2,-7)\\cdot(-4,-3)}\\\\向量法,复数法,解析法,面积法(有推导才有用)...... \\end{gather}",correctOption: "\\frac{22}{29}",incorrectOptions:["-2","\\frac{2}{3}","-\\frac{7}{8}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(-8,1)、B(-10,-2)\\textup{;}\\\\则tan∠AOB=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\\\ tan∠AOB=\\frac{(-8,1)\\otimes(-10,-2)}{(-8,1)\\cdot(-10,-2)}\\\\向量法,复数法,解析法,面积法(有推导才有用)...... \\end{gather}",correctOption: "\\frac{1}{3}",incorrectOptions:["-8","\\frac{5}{3}","\\frac{1}{2}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(4,5)、B(-4,7)\\textup{;}\\\\则tan∠AOB=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\\\ tan∠AOB=\\frac{(4,5)\\otimes(-4,7)}{(4,5)\\cdot(-4,7)}\\\\向量法,复数法,解析法,面积法(有推导才有用)...... \\end{gather}",correctOption: "\\frac{48}{19}",incorrectOptions:["-\\frac{1}{6}","\\frac{1}{7}","\\frac{3}{7}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(2,-10)、B(-5,3)\\textup{;}\\\\则tan∠AOB=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\\\ tan∠AOB=\\frac{(2,-10)\\otimes(-5,3)}{(2,-10)\\cdot(-5,3)}\\\\向量法,复数法,解析法,面积法(有推导才有用)...... \\end{gather}",correctOption: "-\\frac{11}{10}",incorrectOptions:["\\frac{2}{3}","1","\\frac{5}{2}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(4,8)、B(-5,-5)\\textup{;}\\\\则tan∠AOB=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\\\ tan∠AOB=\\frac{(4,8)\\otimes(-5,-5)}{(4,8)\\cdot(-5,-5)}\\\\向量法,复数法,解析法,面积法(有推导才有用)...... \\end{gather}",correctOption: "-\\frac{1}{3}",incorrectOptions:["\\frac{5}{2}","-\\frac{9}{4}","\\frac{1}{10}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(-2,1)、B(8,-3)\\textup{;}\\\\则tan∠AOB=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\\\ tan∠AOB=\\frac{(-2,1)\\otimes(8,-3)}{(-2,1)\\cdot(8,-3)}\\\\向量法,复数法,解析法,面积法(有推导才有用)...... \\end{gather}",correctOption: "-\\frac{2}{19}",incorrectOptions:["5","\\frac{3}{5}","\\frac{2}{5}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(-10,-8)、B(6,8)\\textup{;}\\\\则tan∠AOB=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\\\ tan∠AOB=\\frac{(-10,-8)\\otimes(6,8)}{(-10,-8)\\cdot(6,8)}\\\\向量法,复数法,解析法,面积法(有推导才有用)...... \\end{gather}",correctOption: "-\\frac{8}{31}",incorrectOptions:["2","\\frac{1}{7}","1"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(-10,-8)、B(6,0)\\textup{;}\\\\则tan∠AOB=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\\\ tan∠AOB=\\frac{(-10,-8)\\otimes(6,0)}{(-10,-8)\\cdot(6,0)}\\\\向量法,复数法,解析法,面积法(有推导才有用)...... \\end{gather}",correctOption: "-\\frac{4}{5}",incorrectOptions:["1","\\frac{2}{9}","-\\frac{1}{8}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(-5,-5)、B(-3,1)\\textup{;}\\\\则tan∠AOB=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\\\ tan∠AOB=\\frac{(-5,-5)\\otimes(-3,1)}{(-5,-5)\\cdot(-3,1)}\\\\向量法,复数法,解析法,面积法(有推导才有用)...... \\end{gather}",correctOption: "2",incorrectOptions:["-\\frac{2}{5}","0","-\\frac{5}{7}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(-9,0)、B(-1,-8)\\textup{;}\\\\则tan∠AOB=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\\\ tan∠AOB=\\frac{(-9,0)\\otimes(-1,-8)}{(-9,0)\\cdot(-1,-8)}\\\\向量法,复数法,解析法,面积法(有推导才有用)...... \\end{gather}",correctOption: "8",incorrectOptions:["0","-\\frac{9}{8}","-\\frac{9}{2}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(-3,0)、B(-7,4)\\textup{;}\\\\则tan∠AOB=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\\\ tan∠AOB=\\frac{(-3,0)\\otimes(-7,4)}{(-3,0)\\cdot(-7,4)}\\\\向量法,复数法,解析法,面积法(有推导才有用)...... \\end{gather}",correctOption: "\\frac{4}{7}",incorrectOptions:["-8","-8","-4"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(-3,2)、B(1,-9)\\textup{;}\\\\则tan∠AOB=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\\\ tan∠AOB=\\frac{(-3,2)\\otimes(1,-9)}{(-3,2)\\cdot(1,-9)}\\\\向量法,复数法,解析法,面积法(有推导才有用)...... \\end{gather}",correctOption: "-\\frac{25}{21}",incorrectOptions:["-\\frac{7}{2}","\\frac{7}{4}","\\frac{1}{3}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(-10,-2)、B(1,-7)\\textup{;}\\\\则tan∠AOB=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\\\ tan∠AOB=\\frac{(-10,-2)\\otimes(1,-7)}{(-10,-2)\\cdot(1,-7)}\\\\向量法,复数法,解析法,面积法(有推导才有用)...... \\end{gather}",correctOption: "18",incorrectOptions:["-1","9","1"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(-8,-4)、B(6,-2)\\textup{;}\\\\则tan∠AOB=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\\\ tan∠AOB=\\frac{(-8,-4)\\otimes(6,-2)}{(-8,-4)\\cdot(6,-2)}\\\\向量法,复数法,解析法,面积法(有推导才有用)...... \\end{gather}",correctOption: "-1",incorrectOptions:["-\\frac{7}{4}","-\\frac{6}{7}","-3"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(3,-7)、B(-6,-3)\\textup{;}\\\\则tan∠AOB=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\\\ tan∠AOB=\\frac{(3,-7)\\otimes(-6,-3)}{(3,-7)\\cdot(-6,-3)}\\\\向量法,复数法,解析法,面积法(有推导才有用)...... \\end{gather}",correctOption: "17",incorrectOptions:["-3","-\\frac{5}{4}","\\frac{1}{8}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(-8,0)、B(-6,3)\\textup{;}\\\\则tan∠AOB=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\\\ tan∠AOB=\\frac{(-8,0)\\otimes(-6,3)}{(-8,0)\\cdot(-6,3)}\\\\向量法,复数法,解析法,面积法(有推导才有用)...... \\end{gather}",correctOption: "\\frac{1}{2}",incorrectOptions:["\\frac{4}{3}","-\\frac{4}{9}","\\frac{5}{2}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(-2,5)、B(6,-2)\\textup{;}\\\\则tan∠AOB=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\\\ tan∠AOB=\\frac{(-2,5)\\otimes(6,-2)}{(-2,5)\\cdot(6,-2)}\\\\向量法,复数法,解析法,面积法(有推导才有用)...... \\end{gather}",correctOption: "-\\frac{13}{11}",incorrectOptions:["\\frac{7}{8}","-3","\\frac{2}{5}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(-6,-8)、B(-1,-7)\\textup{;}\\\\则tan∠AOB=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\\\ tan∠AOB=\\frac{(-6,-8)\\otimes(-1,-7)}{(-6,-8)\\cdot(-1,-7)}\\\\向量法,复数法,解析法,面积法(有推导才有用)...... \\end{gather}",correctOption: "\\frac{17}{31}",incorrectOptions:["0","1","0"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(-6,7)、B(-8,0)\\textup{;}\\\\则tan∠AOB=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\\\ tan∠AOB=\\frac{(-6,7)\\otimes(-8,0)}{(-6,7)\\cdot(-8,0)}\\\\向量法,复数法,解析法,面积法(有推导才有用)...... \\end{gather}",correctOption: "\\frac{7}{6}",incorrectOptions:["-\\frac{7}{4}","1","\\frac{4}{5}"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(-2,5)、B(-10,7)\\textup{;}\\\\则tan∠AOB=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\\\ tan∠AOB=\\frac{(-2,5)\\otimes(-10,7)}{(-2,5)\\cdot(-10,7)}\\\\向量法,复数法,解析法,面积法(有推导才有用)...... \\end{gather}",correctOption: "\\frac{36}{55}",incorrectOptions:["1","-3","-2"]},
+
+{equation: "\\begin{gather}直角坐标系中有两点A(8,6)、B(-6,-2)\\textup{;}\\\\则tan∠AOB=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\\\ tan∠AOB=\\frac{(8,6)\\otimes(-6,-2)}{(8,6)\\cdot(-6,-2)}\\\\向量法,复数法,解析法,面积法(有推导才有用)...... \\end{gather}",correctOption: "-\\frac{1}{3}",incorrectOptions:["-\\frac{4}{5}","\\frac{3}{7}","-\\frac{1}{2}"]},
+
+]
+
+
+
+
+
+
+
+
 const 方程应用牛吃草最多能放几头牛=[
 {equation: "有一片牧场,每天都在均匀地生长草,每头牛每天吃1份草。如果在牧场上放养16头牛,那么56天能把草吃完；如果只放养18头牛,那么48天能把草吃完。如果要想一直有草吃,那么最多放几头牛？",correctOption: "4",incorrectOptions:["11 ","9","6"]},
 
