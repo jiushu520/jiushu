@@ -1,3 +1,23 @@
+const 燕尾模型01基本概念=[
+{equation: "如图，三角形ABC中，BD:DC=5:6，S△ABO=10，求S△AOC。", img: "images/052401001.png",correctOption:"12 ",incorrectOptions:["20","15","19",]},
+{equation: "如图，三角形ABC中，AD:DC=2:3，S△ABO=10，求S△BCO。", img: "images/052401002.png",correctOption:"15 ",incorrectOptions:["20","16","12",]},
+{equation: "如图，三角形ABC中，AD:DB=3:5，S△AOC=12，求S△BCO。", img: "images/052401003.png",correctOption:"25 ",incorrectOptions:["15","18","17",]},
+{equation: "如图，三角形ABC中，BC=30，S△ABO=10，S△AOC=15，求DC。", img: "images/052401004.png",correctOption:"18 ",incorrectOptions:["19","12","16",]},
+{equation: "如图，三角形ABC中，AC=40，S△ABO=30，S△BCO=50，求DC。", img: "images/052401005.png",correctOption:"25 ",incorrectOptions:["18","12","15",]},
+{equation: "如图，三角形ABC中，AB=35，S△AOC=20，S△BCO=50，求AD。", img: "images/052401006.png",correctOption:"10 ",incorrectOptions:["16","12","19",]},
+{equation: "如图，三角形ABC中，S△ABO=10，S△AOC=15，S△BCO=20,求S△BDO。", img: "images/052401007.png",correctOption:"8 ",incorrectOptions:["20","12","18",]},
+{equation: "如图，三角形ABC中，S△ABO=30，S△BCO=50，S△AOC=32,求S△AOD。", img: "images/052401008.png",correctOption:"8 ",incorrectOptions:["15","18","17",]},
+{equation: "如图，三角形ABC中，S△AOC=20，S△BCO=50，S△ABO=28,求S△ADO。", img: "images/052401009.png",correctOption:"8 ",incorrectOptions:["16","20","17",]},
+{equation: "如图，三角形ABC中，AE:EB=1:2，BD=DC，S△AOC=15,求S△DCO。", img: "images/052401010.png",correctOption:"15 ",incorrectOptions:["18","12","16",]},
+{equation: "如图，三角形ABC中，AE:EC=1:2，BD=DC，S△ABO=15,求S△BDO。", img: "images/052401011.png",correctOption:"15 ",incorrectOptions:["16","12","20",]},
+{equation: "如图，三角形ABC中，AE:EB=1:2，AD：DC=1:2，S△BCO=30,求S△AEO。", img: "images/052401012.png",correctOption:"5 ",incorrectOptions:["17","18","20",]},
+
+
+
+]
+
+
+
 const 盈亏问题05一个对象的特殊问题=[
 {equation: "老师给同学们分糖果，如果第一个同学分到4颗糖果，其他同学每人分到3颗糖果，就会剩下115颗糖果；如果每个同学都分到11颗糖果，就会缺4颗糖果．那么共有多少位同学？",correctOption:"15 ",incorrectOptions:["17","12","20",]},
 {equation: "老师给同学们分糖果，如果第一个同学分到3颗糖果，其他同学每人分到2颗糖果，就会剩下22颗糖果；如果每个同学都分到5颗糖果，就会缺4颗糖果．那么共有多少位同学？",correctOption:"9 ",incorrectOptions:["18","15","16",]},
