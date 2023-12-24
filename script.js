@@ -19,18 +19,18 @@ const 燕尾模型05两内比的应用=[
 
 
 const 燕尾模型04一外一内比的应用下=[
-{equation: "如图，三角形ABC中，AE:EC=1:2，AO:OD=2:1，S△AOB=10平方厘米。则S△CDO为多少平方厘米？", img: "images/052404001.png",correctOption:"15 ",incorrectOptions:["12","18","35",]},
-{equation: "如图，三角形ABC中，BD:DC=3:1，BO:OE=5:1，S△ABO=30平方厘米。则S△CEO为多少平方厘米？", img: "images/052404002.png",correctOption:"4 ",incorrectOptions:["5","9","8",]},
-{equation: " 如图，三角形ABC中，BE:EC=2:3，BO:OD=1:1，S△ABO=40平方厘米。则S△CDO为多少平方厘米？", img: "images/052404003.png",correctOption:"20 ",incorrectOptions:["54","12","27",]},
-{equation: "如图，三角形ABC中，BD:DC=3:1，BO:OE=5:1，S△ABO=30平方厘米。则S△BCO为多少平方厘米？", img: "images/052404004.png",correctOption:"20 ",incorrectOptions:["12","24","9",]},
-{equation: " 如图，三角形ABC中，BD:DC=2:3，BO:OE=1:1，S△ABO=20平方厘米。则S△BCO为多少平方厘米？", img: "images/052404005.png",correctOption:"10 ",incorrectOptions:["2","8","6",]},
-{equation: "如图，三角形ABC中，BD:DC=1:2，BO:OE=1:1，S△ABO=10平方厘米。则S△BCO为多少平方厘米？", img: "images/052404006.png",correctOption:"10 ",incorrectOptions:["19","15","12",]},
-{equation: "如图，三角形ABC中，BD:DC=3:1，BO:OE=5:1，S△ABO=120平方厘米。则S四边形DCEO为多少平方厘米？", img: "images/052404007.png",correctOption:"36 ",incorrectOptions:["23","21","25",]},
-{equation: " 如图，三角形ABC中，BD:DC=3:1，BO:OE=5:1，S△ABO=60平方厘米。则S四边形DCEO为多少平方厘米？", img: "images/052404008.png",correctOption:"18 ",incorrectOptions:["15","20","19",]},
-{equation: "如图，三角形ABC中，BD:DC=3:1，BO:OE=5:1，S△ABO=30平方厘米。则S四边形DCEO为多少平方厘米？", img: "images/052404009.png",correctOption:"9 ",incorrectOptions:["11","8","12",]},
-{equation: "如图，三角形ABC中，AE:EB=1:2，AO:OD=2:1，S△ABC=120平方厘米。则S四边形BDOE为多少平方厘米？", img: "images/052404010.png",correctOption:"70 ",incorrectOptions:["25","32","40",]},
-{equation: "如图，三角形ABC中，BD:DC=3:1，BO:OE=5:1，S△ABC=120平方厘米。则S四边形DCEO为多少平方厘米？", img: "images/052404011.png",correctOption:"20 ",incorrectOptions:["32","15","40",]},
-{equation: "如图，三角形ABC中，AE:EC=3:2，DO:OC=1:1，S△ABC=120平方厘米。则S四边形ADOE为多少平方厘米？", img: "images/052404012.png",correctOption:"32 ",incorrectOptions:["18","26","35",]},
+{equation: "\\begin{gather}如图，三角形ABC中，\\\\AE:EC=1:2，AO:OD=2:1，\\\\S△AOB=10平方厘米。\\\\则S△CDO为多少平方厘米？\\end{gather}", img: "images/052404001.png",correctOption:"15 ",incorrectOptions:["12","18","35",]},
+{equation: "\\begin{gather}如图，三角形ABC中，\\\\BD:DC=3:1，BO:OE=5:1，\\\\S△ABO=30平方厘米。\\\\则S△CEO为多少平方厘米？\\end{gather}", img: "images/052404002.png",correctOption:"4 ",incorrectOptions:["5","9","8",]},
+{equation: " \\begin{gather}如图，三角形ABC中，\\\\BE:EC=2:3，BO:OD=1:1，\\\\S△ABO=40平方厘米。\\\\则S△CDO为多少平方厘米？\\end{gather}", img: "images/052404003.png",correctOption:"20 ",incorrectOptions:["54","12","27",]},
+{equation: "\\begin{gather}如图，三角形ABC中，\\\\BD:DC=3:1，BO:OE=5:1，\\\\S△ABO=30平方厘米。\\\\则S△BCO为多少平方厘米？\\end{gather}", img: "images/052404004.png",correctOption:"20 ",incorrectOptions:["12","24","9",]},
+{equation: " \\begin{gather}如图，三角形ABC中，\\\\BD:DC=2:3，BO:OE=1:1，\\\\S△ABO=20平方厘米。\\\\则S△BCO为多少平方厘米？\\end{gather}", img: "images/052404005.png",correctOption:"10 ",incorrectOptions:["2","8","6",]},
+{equation: "\\begin{gather}如图，三角形ABC中，\\\\BD:DC=1:2，BO:OE=1:1，\\\\S△ABO=10平方厘米。\\\\则S△BCO为多少平方厘米？\\end{gather}", img: "images/052404006.png",correctOption:"10 ",incorrectOptions:["19","15","12",]},
+{equation: "\\begin{gather}如图，三角形ABC中，\\\\BD:DC=3:1，BO:OE=5:1，\\\\S△ABO=120平方厘米。\\\\则S四边形DCEO为多少平方厘米？\\end{gather}", img: "images/052404007.png",correctOption:"36 ",incorrectOptions:["23","21","25",]},
+{equation: " \\begin{gather}如图，三角形ABC中，\\\\BD:DC=3:1，BO:OE=5:1，\\\\S△ABO=60平方厘米。\\\\则S四边形DCEO为多少平方厘米？\\end{gather}", img: "images/052404008.png",correctOption:"18 ",incorrectOptions:["15","20","19",]},
+{equation: "\\begin{gather}如图，三角形ABC中，\\\\BD:DC=3:1，BO:OE=5:1，\\\\S△ABO=30平方厘米。\\\\则S四边形DCEO为多少平方厘米？\\end{gather}", img: "images/052404009.png",correctOption:"9 ",incorrectOptions:["11","8","12",]},
+{equation: "\\begin{gather}如图，三角形ABC中，\\\\AE:EB=1:2，AO:OD=2:1，\\\\S△ABC=120平方厘米。\\\\则S四边形BDOE为多少平方厘米？\\end{gather}", img: "images/052404010.png",correctOption:"70 ",incorrectOptions:["25","32","40",]},
+{equation: "\\begin{gather}如图，三角形ABC中，\\\\BD:DC=3:1，BO:OE=5:1，\\\\S△ABC=120平方厘米。\\\\则S四边形DCEO为多少平方厘米？\\end{gather}", img: "images/052404011.png",correctOption:"20 ",incorrectOptions:["32","15","40",]},
+{equation: "\\begin{gather}如图，三角形ABC中，\\\\AE:EC=3:2，DO:OC=1:1，\\\\S△ABC=120平方厘米。\\\\则S四边形ADOE为多少平方厘米？\\end{gather}", img: "images/052404012.png",correctOption:"32 ",incorrectOptions:["18","26","35",]},
 ]
 
 
@@ -39,54 +39,54 @@ const 燕尾模型04一外一内比的应用下=[
 
 const 燕尾模型03一外一内比的应用上=[
 
-{equation: "如图，三角形ABC中，AE:EB=1:2，EO=OC，S△AOC=10平方厘米。则S△ABC为多少平方厘米？", img: "images/052403001.png",correctOption:"60 ",incorrectOptions:["80","28","70",]},
-{equation: "如图，三角形ABC中，BD:DC=3:1，AO:OD=2:1，S△ABO=30平方厘米。则S△ABC为多少平方厘米？", img: "images/052403002.png",correctOption:"60 ",incorrectOptions:["20","40","24",]},
-{equation: "如图，三角形ABC中，AE:EC=3:2，BO:OE=5:1，S△BOC=40平方厘米。则S△ABC为多少平方厘米？", img: "images/052403003.png",correctOption:"120 ",incorrectOptions:["42","50","40",]},
-{equation: "如图，三角形ABC中，AE:EB=1:2，EO=OC，S△AOC=10平方厘米。则S△BDO为多少平方厘米？", img: "images/052403004.png",correctOption:"15 ",incorrectOptions:["18","14","11",]},
-{equation: "如图，三角形ABC中，BD:DC=3:1，AO:OD=2:1，S△ABO=30平方厘米。则S△CEO为多少平方厘米？", img: "images/052403005.png",correctOption:"4 ",incorrectOptions:["8","14","6",]},
-{equation: "如图，三角形ABC中，AE:EC=3:2，BO:OE=5:1，S△BOC=40平方厘米。则S△ADO为多少平方厘米？", img: "images/052403006.png",correctOption:"20 ",incorrectOptions:["16","13","18",]},
-{equation: "如图，三角形ABC中，AE:EB=1:2，EO=OC，S△AOC=10平方厘米。则BD:DC=___:___ 。", img: "images/052403007.png",correctOption:"3:1 ",incorrectOptions:["3:2","4:3","5:2",]},
-{equation: "如图，三角形ABC中，BD:DC=3:1，AO:OD=2:1，S△ABO=30平方厘米。则AE:EC=___:___ 。", img: "images/052403008.png",correctOption:"3:2 ",incorrectOptions:["3:5","4:3","5:2",]},
-{equation: "如图，三角形ABC中，AE:EC=3:2，BO:OE=5:1，S△BOC=40平方厘米。则AD:DB= ___:___ 。", img: "images/052403009.png",correctOption:"1:2 ",incorrectOptions:["3:4","1:3","2:3",]},
-{equation: "如图所示，在△ABC中，BD:DC=3:1，点O是AD的中点，那么AE:EC=___:___ 。", img: "images/052403010.png",correctOption:"3:4 ",incorrectOptions:["3:5","4:3","3:2",]},
-{equation: "如图所示，在△ABC中，AE:EC=3:1，BO:OE=2:1，那么BD:DC= ___:___ 。", img: "images/052403011.png",correctOption:"3:2 ",incorrectOptions:["6:5","4:3","3:2",]},
-{equation: "如图所示，在△ABC中，AE:EC =1:3，BO:OE=8:1，那么BD:DC= ___:___ 。", img: "images/052403012.png",correctOption:"2:1 ",incorrectOptions:["5:4","4:3","3:2",]},
+{equation: "\\begin{gather}如图，三角形ABC中，\\\\AE:EB=1:2，EO=OC，\\\\S△AOC=10平方厘米。\\\\则S△ABC为多少平方厘米？\\end{gather}", img: "images/052403001.png",correctOption:"60 ",incorrectOptions:["80","28","70",]},
+{equation: "\\begin{gather}如图，三角形ABC中，\\\\BD:DC=3:1，AO:OD=2:1，\\\\S△ABO=30平方厘米。\\\\则S△ABC为多少平方厘米？\\\end{gather}", img: "images/052403002.png",correctOption:"60 ",incorrectOptions:["20","40","24",]},
+{equation: "\\begin{gather}如图，三角形ABC中，\\\\AE:EC=3:2，BO:OE=5:1，\\\\S△BOC=40平方厘米。\\\\则S△ABC为多少平方厘米？\\end{gather}", img: "images/052403003.png",correctOption:"120 ",incorrectOptions:["42","50","40",]},
+{equation: "\\begin{gather}如图，三角形ABC中，\\\\AE:EB=1:2，EO=OC，\\\\S△AOC=10平方厘米。\\\\则S△BDO为多少平方厘米？\\end{gather}", img: "images/052403004.png",correctOption:"15 ",incorrectOptions:["18","14","11",]},
+{equation: "\\begin{gather}如图，三角形ABC中，\\\\BD:DC=3:1，AO:OD=2:1，\\\\S△ABO=30平方厘米。\\\\则S△CEO为多少平方厘米？\\end{gather}", img: "images/052403005.png",correctOption:"4 ",incorrectOptions:["8","14","6",]},
+{equation: "\\begin{gather}如图，三角形ABC中，\\\\AE:EC=3:2，BO:OE=5:1，\\\\S△BOC=40平方厘米。\\\\则S△ADO为多少平方厘米？\\end{gather}", img: "images/052403006.png",correctOption:"20 ",incorrectOptions:["16","13","18",]},
+{equation: "\\begin{gather}如图，三角形ABC中，\\\\AE:EB=1:2，EO=OC，\\\\S△AOC=10平方厘米。\\\\则BD:DC=\\_ :\\_  。\\end{gather}", img: "images/052403007.png",correctOption:"3:1 ",incorrectOptions:["3:2","4:3","5:2",]},
+{equation: "\\begin{gather}如图，三角形ABC中，\\\\BD:DC=3:1，AO:OD=2:1，\\\\S△ABO=30平方厘米。\\\\则AE:EC=\\_:\\_。\\end{gather}", img: "images/052403008.png",correctOption:"3:2 ",incorrectOptions:["3:5","4:3","5:2",]},
+{equation: "\\begin{gather}如图，三角形ABC中，\\\\AE:EC=3:2，BO:OE=5:1，\\\\S△BOC=40平方厘米。\\\\则AD:DB= \\_:\\_ 。\\end{gather}", img: "images/052403009.png",correctOption:"1:2 ",incorrectOptions:["3:4","1:3","2:3",]},
+{equation: "\\begin{gather}如图所示，在△ABC中，\\\\BD:DC=3:1，点O是AD的中点，\\\\那么AE:EC=\\_:\\_ 。\\end{gather}", img: "images/052403010.png",correctOption:"3:4 ",incorrectOptions:["3:5","4:3","3:2",]},
+{equation: "\\begin{gather}如图所示，在△ABC中，\\\\AE:EC=3:1，BO:OE=2:1，\\\\那么BD:DC= \\_:\\_ 。\\end{gather}", img: "images/052403011.png",correctOption:"3:2 ",incorrectOptions:["6:5","4:3","3:2",]},
+{equation: "\\begin{gather}如图所示，在△ABC中，\\\\AE:EC =1:3，BO:OE=8:1，\\\\那么BD:DC= \\_:\\_ 。\\end{gather}", img: "images/052403012.png",correctOption:"2:1 ",incorrectOptions:["5:4","4:3","3:2",]},
 
 ]
 
 
 
 const 燕尾模型02两外比的应用=[
-{equation: "如图，三角形ABC中，AE:EC=1:2，BD=DC，S△AOB=6平方厘米。那么S△AOE是多少平方厘米？", img: "images/052402001.png",correctOption:"2 ",incorrectOptions:["6","8","7",]},
-{equation: "如图，三角形ABC中，AF:FB=1:2，BD=DC，S△AOC=10平方厘米。那么S△BOD是多少平方厘米？", img: "images/052402002.png",correctOption:"10 ",incorrectOptions:["20","16","17",]},
-{equation: "如图，三角形ABC中，AF:FB=1:2，AE:EC=1:2，S△BOC=6平方厘米。那么S△AOE是多少平方厘米？", img: "images/052402003.png",correctOption:"1 ",incorrectOptions:["5","3","4",]},
-{equation: "如图，三角形ABC中，AE:EC=1:2，BD=DC，S△AOB=10平方厘米。那么S△ABC是多少平方厘米？", img: "images/052402004.png",correctOption:"40 ",incorrectOptions:["21","20","15",]},
-{equation: "如图，三角形ABC中，AF:FB=1:2，BD=DC，S△AOC=20平方厘米。那么S△ABC是多少平方厘米？", img: "images/052402005.png",correctOption:"80 ",incorrectOptions:["95","90","60",]},
-{equation: "如图，三角形ABC中，AF:FB=1:2，AE:EC=1:2，S△BOC=10平方厘米。那么S△ABC是多少平方厘米？", img: "images/052402006.png",correctOption:"20 ",incorrectOptions:["16","18","15",]},
-{equation: "如图，三角形ABC中，AE:EC=1:2，CD=DB。若S△ABC=120。求S四边形EODC。", img: "images/052402007.png",correctOption:"50 ",incorrectOptions:["65","55","100",]},
-{equation: "如图，三角形ABC中，AE:EC=1:2，BD=DC。若S△ABC=60。求S四边形EODC。", img: "images/052402008.png",correctOption:"25 ",incorrectOptions:["20","19","17",]},
-{equation: "如图，三角形ABC中，已知AD:DC=2:1，BE:EC=2:1。若S△ABC=60。求S四边形EODC。", img: "images/052402009.png",correctOption:"10 ",incorrectOptions:["18","20","16",]},
-{equation: "如图，三角形ABC中，AG:GB=1:2，BD:DC=3:4，则AE:EC=___:___。", img: "images/052402010.png",correctOption:"3:8 ",incorrectOptions:["3:5","4:3","3:2",]},
-{equation: "如图，三角形ABC中，AE:EC=1:2，BD:DC=4:3，则AG:GB=___:___。", img: "images/052402011.png",correctOption:"3:8 ",incorrectOptions:["3:5","4:3","3:2",]},
-{equation: "如图，三角形ABC中，AG:GB=1:2，AE:EC=3:4，则BD:DC=___:___。", img: "images/052402012.png",correctOption:"3:2 ",incorrectOptions:["3:4","4:3","2:3",]},
+{equation: "\\begin{gather}如图，三角形ABC中，\\\\AE:EC=1:2，BD=DC，S△AOB=6平方厘米。\\\\那么S△AOE是多少平方厘米？\\end{gather}", img: "images/052402001.png",correctOption:"2 ",incorrectOptions:["6","8","7",]},
+{equation: "\\begin{gather}如图，三角形ABC中，\\\\AF:FB=1:2，BD=DC，S△AOC=10平方厘米。\\\\那么S△BOD是多少平方厘米？\\end{gather}", img: "images/052402002.png",correctOption:"10 ",incorrectOptions:["20","16","17",]},
+{equation: "\\begin{gather}如图，三角形ABC中，\\\\AF:FB=1:2，AE:EC=1:2，S△BOC=6平方厘米。\\\\那么S△AOE是多少平方厘米？\\end{gather}", img: "images/052402003.png",correctOption:"1 ",incorrectOptions:["5","3","4",]},
+{equation: "\\begin{gather}如图，三角形ABC中，\\\\AE:EC=1:2，BD=DC，S△AOB=10平方厘米。\\\\那么S△ABC是多少平方厘米？\\end{gather}", img: "images/052402004.png",correctOption:"40 ",incorrectOptions:["21","20","15",]},
+{equation: "\\begin{gather}如图，三角形ABC中，\\\\AF:FB=1:2，BD=DC，S△AOC=20平方厘米。\\\\那么S△ABC是多少平方厘米？\\end{gather}", img: "images/052402005.png",correctOption:"80 ",incorrectOptions:["95","90","60",]},
+{equation: "\\begin{gather}如图，三角形ABC中，\\\\AF:FB=1:2，AE:EC=1:2，S△BOC=10平方厘米。\\\\那么S△ABC是多少平方厘米？\\end{gather}", img: "images/052402006.png",correctOption:"20 ",incorrectOptions:["16","18","15",]},
+{equation: "\\begin{gather}如图，三角形ABC中，\\\\AE:EC=1:2，CD=DB。若S△ABC=120。\\\\求S四边形EODC。\\end{gather}", img: "images/052402007.png",correctOption:"50 ",incorrectOptions:["65","55","100",]},
+{equation: "\\begin{gather}如图，三角形ABC中，\\\\AE:EC=1:2，BD=DC。若S△ABC=60。\\\\求S四边形EODC。\\end{gather}", img: "images/052402008.png",correctOption:"25 ",incorrectOptions:["20","19","17",]},
+{equation: "\\begin{gather}如图，三角形ABC中，\\\\已知AD:DC=2:1，BE:EC=2:1。若S△ABC=60。求S四边形EODC。\\end{gather}", img: "images/052402009.png",correctOption:"10 ",incorrectOptions:["18","20","16",]},
+{equation: "\\begin{gather}如图，三角形ABC中，\\\\AG:GB=1:2，BD:DC=3:4，\\\\则AE:EC=\\_:\\_ 。\\end{gather}", img: "images/052402010.png",correctOption:"3:8 ",incorrectOptions:["3:5","4:3","3:2",]},
+{equation: "\\begin{gather}如图，三角形ABC中，\\\\AE:EC=1:2，BD:DC=4:3，\\\\则AG:GB=\\_:\\_ 。\\end{gather}", img: "images/052402011.png",correctOption:"3:8 ",incorrectOptions:["3:5","4:3","3:2",]},
+{equation: "\\begin{gather}如图，三角形ABC中，\\\\AG:GB=1:2，AE:EC=3:4，\\\\则BD:DC=\\_:\\_ 。\\end{gather}", img: "images/052402012.png",correctOption:"3:2 ",incorrectOptions:["3:4","4:3","2:3",]},
 ]
 
 
 
 
 const 燕尾模型01基本概念=[
-{equation: "如图，三角形ABC中，BD:DC=5:6，S△ABO=10，求S△AOC。", img: "images/052401001.png",correctOption:"12 ",incorrectOptions:["20","15","19",]},
-{equation: "如图，三角形ABC中，AD:DC=2:3，S△ABO=10，求S△BCO。", img: "images/052401002.png",correctOption:"15 ",incorrectOptions:["20","16","12",]},
-{equation: "如图，三角形ABC中，AD:DB=3:5，S△AOC=12，求S△BCO。", img: "images/052401003.png",correctOption:"20 ",incorrectOptions:["15","18","17",]},
-{equation: "如图，三角形ABC中，BC=30，S△ABO=10，S△AOC=15，求DC。", img: "images/052401004.png",correctOption:"18 ",incorrectOptions:["19","12","16",]},
-{equation: "如图，三角形ABC中，AC=40，S△ABO=30，S△BCO=50，求DC。", img: "images/052401005.png",correctOption:"25 ",incorrectOptions:["18","12","15",]},
-{equation: "如图，三角形ABC中，AB=35，S△AOC=20，S△BCO=50，求AD。", img: "images/052401006.png",correctOption:"10 ",incorrectOptions:["16","12","19",]},
-{equation: "如图，三角形ABC中，S△ABO=10，S△AOC=15，S△BCO=20,求S△BDO。", img: "images/052401007.png",correctOption:"8 ",incorrectOptions:["20","12","18",]},
-{equation: "如图，三角形ABC中，S△ABO=30，S△BCO=50，S△AOC=32,求S△AOD。", img: "images/052401008.png",correctOption:"12 ",incorrectOptions:["15","18","17",]},
-{equation: "如图，三角形ABC中，S△AOC=20，S△BCO=50，S△ABO=28,求S△ADO。", img: "images/052401009.png",correctOption:"8 ",incorrectOptions:["16","20","17",]},
-{equation: "如图，三角形ABC中，AE:EB=1:2，BD=DC，S△AOC=15,求S△DCO。", img: "images/052401010.png",correctOption:"15 ",incorrectOptions:["18","12","16",]},
-{equation: "如图，三角形ABC中，AE:EC=1:2，BD=DC，S△ABO=15,求S△BDO。", img: "images/052401011.png",correctOption:"15 ",incorrectOptions:["16","12","20",]},
-{equation: "如图，三角形ABC中，AE:EB=1:2，AD：DC=1:2，S△BCO=30,求S△AEO。", img: "images/052401012.png",correctOption:"5 ",incorrectOptions:["17","18","20",]},
+{equation: "\\begin{gather}如图，三角形ABC中，\\\\BD:DC=5:6，S△ABO=10，\\\\求S△AOC。\\end{gather}", img: "images/052401001.png",correctOption:"12 ",incorrectOptions:["20","15","19",]},
+{equation: "\\begin{gather}如图，三角形ABC中，\\\\AD:DC=2:3，S△ABO=10，\\\\求S△BCO。\\end{gather}", img: "images/052401002.png",correctOption:"15 ",incorrectOptions:["20","16","12",]},
+{equation: "\\begin{gather}如图，三角形ABC中，\\\\AD:DB=3:5，S△AOC=12，\\\\求S△BCO。\\end{gather}", img: "images/052401003.png",correctOption:"20 ",incorrectOptions:["15","18","17",]},
+{equation: "\\begin{gather}如图，三角形ABC中，\\\\BC=30，S△ABO=10，S△AOC=15，\\\\求DC。\\end{gather}", img: "images/052401004.png",correctOption:"18 ",incorrectOptions:["19","12","16",]},
+{equation: "\\begin{gather}如图，三角形ABC中，\\\\AC=40，S△ABO=30，S△BCO=50，\\\\求DC。\\end{gather}", img: "images/052401005.png",correctOption:"25 ",incorrectOptions:["18","12","15",]},
+{equation: "\\begin{gather}如图，三角形ABC中，\\\\AB=35，S△AOC=20，S△BCO=50，\\\\求AD。\\end{gather}", img: "images/052401006.png",correctOption:"10 ",incorrectOptions:["16","12","19",]},
+{equation: "\\begin{gather}如图，三角形ABC中，\\\\S△ABO=10，S△AOC=15，S△BCO=20,\\\\求S△BDO。\\end{gather}", img: "images/052401007.png",correctOption:"8 ",incorrectOptions:["20","12","18",]},
+{equation: "\\begin{gather}如图，三角形ABC中，\\\\S△ABO=30，S△BCO=50，S△AOC=32,\\\\求S△AOD。\\end{gather}", img: "images/052401008.png",correctOption:"12 ",incorrectOptions:["15","18","17",]},
+{equation: "\\begin{gather}如图，三角形ABC中，\\\\S△AOC=20，S△BCO=50，S△ABO=28,\\\\求S△ADO。\\end{gather}", img: "images/052401009.png",correctOption:"8 ",incorrectOptions:["16","20","17",]},
+{equation: "\\begin{gather}如图，三角形ABC中，\\\\AE:EB=1:2，BD=DC，S△AOC=15,\\\\求S△DCO。\\end{gather}", img: "images/052401010.png",correctOption:"15 ",incorrectOptions:["18","12","16",]},
+{equation: "\\begin{gather}如图，三角形ABC中，\\\\AE:EC=1:2，BD=DC，S△ABO=15,\\\\求S△BDO。\\end{gather}", img: "images/052401011.png",correctOption:"15 ",incorrectOptions:["16","12","20",]},
+{equation: "\\begin{gather}如图，三角形ABC中，\\\\AE:EB=1:2，AD：DC=1:2，S△BCO=30,\\\\求S△AEO。\\end{gather}", img: "images/052401012.png",correctOption:"5 ",incorrectOptions:["17","18","20",]},
 
 
 ]
