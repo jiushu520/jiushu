@@ -1,3 +1,42 @@
+
+const 燕尾模型05两内比的应用=[
+{equation: "如图，三角形ABC中，AO:OD=2:1，BO:OE=5:1，S△ABO=30平方厘米，S△OCE=4平方厘米。则S△DCO为多少平方厘米？", img: "images/052404001.png",correctOption:"5 ",incorrectOptions:["9","6","2",]},
+{equation: "如图，三角形ABC中，AO:OD=2:1，BO:OE=5:1，S△ABO=60平方厘米，S△OCE=8平方厘米。则S△DCO为多少平方厘米？", img: "images/052404002.png",correctOption:"10 ",incorrectOptions:["8","3","14",]},
+{equation: "如图，三角形ABC中，AO:OD=2:1，BO:OE=5:1，S△ABO=90平方厘米，S△OCE=12平方厘米。则S△DCO为多少平方厘米？", img: "images/052404003.png",correctOption:"15 ",incorrectOptions:["7","29","13",]},
+{equation: "如图，三角形ABC中，AO:OD=2:1，BO:OE=5:1，S△ABO=30平方厘米。设S△CEO=x平方厘米，S△DCO=y平方厘米，则S四边形DCEO为多少平方厘米？", img: "images/052404004.png",correctOption:"9 ",incorrectOptions:["12","18","21",]},
+{equation: "如图，三角形ABC中，AO:OD=2:1，BO:OE=5:1，S△ABO=60平方厘米。设S△CEO=x平方厘米，S△DCO=y平方厘米，则S四边形DCEO为多少平方厘米？", img: "images/052404005.png",correctOption:"18 ",incorrectOptions:["12","9","30",]},
+{equation: "如图，三角形ABC中，AO:OD=2:1，BO:OE=5:1，S△ABO=90平方厘米。设S△CEO=x平方厘米，S△DCO=y平方厘米，则S四边形DCEO为多少平方厘米？", img: "images/052404006.png",correctOption:"27 ",incorrectOptions:["20","12","16",]},
+{equation: " 如图，三角形ABC中，BO:OE=1:1，AO:OD=2:1，S△ABO=10平方厘米。则S四边形DCEO为多少平方厘米？", img: "images/052404007.png",correctOption:"35 ",incorrectOptions:["23","26","19",]},
+{equation: " 如图，三角形ABC中，BO:OE=1:1，AO:OD=2:1，S△ABO=20平方厘米。则S四边形DCEO为多少平方厘米？", img: "images/052404008.png",correctOption:"70 ",incorrectOptions:["50","80","63",]},
+{equation: "如图，三角形ABC中，BO:OE=1:1，AO:OD=2:1，S△ABO=8平方厘米。则S四边形DCEO为多少平方厘米？", img: "images/052404009.png",correctOption:"28 ",incorrectOptions:["50","48","54",]},
+{equation: "如图，三角形ABC中，BO:OE=1:1，AO:OD=3:1，S△ABC=24平方厘米。则S四边形DCEO为多少平方厘米？", img: "images/052404010.png",correctOption:"10 ",incorrectOptions:["12","9","8",]},
+{equation: "如图，三角形ABC中，BO:OE=1:1，AO:OD=3:1，S△ABC=36平方厘米。则S四边形DCEO为多少平方厘米？", img: "images/052404011.png",correctOption:"15 ",incorrectOptions:["24","26","37",]},
+{equation: " 如图，三角形ABC中，BO:OE=1:1，AO:OD=3:1，S△ABC=48平方厘米。则S四边形DCEO为多少平方厘米？", img: "images/052404012.png",correctOption:"20 ",incorrectOptions:["32","37","25",]},
+]
+
+
+
+
+
+const 燕尾模型04一外一内比的应用下=[
+{equation: "如图，三角形ABC中，AE:EC=1:2，AO:OD=2:1，S△AOB=10平方厘米。则S△CDO为多少平方厘米？", img: "images/052404001.png",correctOption:"15 ",incorrectOptions:["12","18","35",]},
+{equation: "如图，三角形ABC中，BD:DC=3:1，BO:OE=5:1，S△ABO=30平方厘米。则S△CEO为多少平方厘米？", img: "images/052404002.png",correctOption:"4 ",incorrectOptions:["5","9","8",]},
+{equation: " 如图，三角形ABC中，BE:EC=2:3，BO:OD=1:1，S△ABO=40平方厘米。则S△CDO为多少平方厘米？", img: "images/052404003.png",correctOption:"20 ",incorrectOptions:["54","12","27",]},
+{equation: "如图，三角形ABC中，BD:DC=3:1，BO:OE=5:1，S△ABO=30平方厘米。则S△BCO为多少平方厘米？", img: "images/052404004.png",correctOption:"20 ",incorrectOptions:["12","24","9",]},
+{equation: " 如图，三角形ABC中，BD:DC=2:3，BO:OE=1:1，S△ABO=20平方厘米。则S△BCO为多少平方厘米？", img: "images/052404005.png",correctOption:"10 ",incorrectOptions:["2","8","6",]},
+{equation: "如图，三角形ABC中，BD:DC=1:2，BO:OE=1:1，S△ABO=10平方厘米。则S△BCO为多少平方厘米？", img: "images/052404006.png",correctOption:"10 ",incorrectOptions:["19","15","12",]},
+{equation: "如图，三角形ABC中，BD:DC=3:1，BO:OE=5:1，S△ABO=120平方厘米。则S四边形DCEO为多少平方厘米？", img: "images/052404007.png",correctOption:"36 ",incorrectOptions:["23","21","25",]},
+{equation: " 如图，三角形ABC中，BD:DC=3:1，BO:OE=5:1，S△ABO=60平方厘米。则S四边形DCEO为多少平方厘米？", img: "images/052404008.png",correctOption:"18 ",incorrectOptions:["15","20","19",]},
+{equation: "如图，三角形ABC中，BD:DC=3:1，BO:OE=5:1，S△ABO=30平方厘米。则S四边形DCEO为多少平方厘米？", img: "images/052404009.png",correctOption:"9 ",incorrectOptions:["11","8","12",]},
+{equation: "如图，三角形ABC中，AE:EB=1:2，AO:OD=2:1，S△ABC=120平方厘米。则S四边形BDOE为多少平方厘米？", img: "images/052404010.png",correctOption:"70 ",incorrectOptions:["25","32","40",]},
+{equation: "如图，三角形ABC中，BD:DC=3:1，BO:OE=5:1，S△ABC=120平方厘米。则S四边形DCEO为多少平方厘米？", img: "images/052404011.png",correctOption:"20 ",incorrectOptions:["32","15","40",]},
+{equation: "如图，三角形ABC中，AE:EC=3:2，DO:OC=1:1，S△ABC=120平方厘米。则S四边形ADOE为多少平方厘米？", img: "images/052404012.png",correctOption:"32 ",incorrectOptions:["18","26","35",]},
+]
+
+
+
+
+
 const 燕尾模型03一外一内比的应用上=[
 
 {equation: "如图，三角形ABC中，AE:EB=1:2，EO=OC，S△AOC=10平方厘米。则S△ABC为多少平方厘米？", img: "images/052403001.png",correctOption:"60 ",incorrectOptions:["80","28","70",]},
