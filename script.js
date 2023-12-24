@@ -1,3 +1,23 @@
+
+
+const 燕尾模型02两外比的应用=[
+{equation: "如图，三角形ABC中，AE:EC=1:2，BD=DC，S△AOB=6平方厘米。那么S△AOE是多少平方厘米？", img: "images/052402001.png",correctOption:"2 ",incorrectOptions:["6","8","7",]},
+{equation: "如图，三角形ABC中，AF:FB=1:2，BD=DC，S△AOC=10平方厘米。那么S△BOD是多少平方厘米？", img: "images/052402002.png",correctOption:"10 ",incorrectOptions:["20","16","17",]},
+{equation: "如图，三角形ABC中，AF:FB=1:2，AE:EC=1:2，S△BOC=6平方厘米。那么S△AOE是多少平方厘米？", img: "images/052402003.png",correctOption:"1 ",incorrectOptions:["5","3","4",]},
+{equation: "如图，三角形ABC中，AE:EC=1:2，BD=DC，S△AOB=10平方厘米。那么S△ABC是多少平方厘米？", img: "images/052402004.png",correctOption:"40 ",incorrectOptions:["21","20","15",]},
+{equation: "如图，三角形ABC中，AF:FB=1:2，BD=DC，S△AOC=20平方厘米。那么S△ABC是多少平方厘米？", img: "images/052402005.png",correctOption:"80 ",incorrectOptions:["95","90","60",]},
+{equation: "如图，三角形ABC中，AF:FB=1:2，AE:EC=1:2，S△BOC=10平方厘米。那么S△ABC是多少平方厘米？", img: "images/052402006.png",correctOption:"20 ",incorrectOptions:["16","18","15",]},
+{equation: "如图，三角形ABC中，AE:EC=1:2，CD=DB。若S△ABC=120。求S四边形EODC。", img: "images/052402007.png",correctOption:"50 ",incorrectOptions:["65","55","100",]},
+{equation: "如图，三角形ABC中，AE:EC=1:2，BD=DC。若S△ABC=60。求S四边形EODC。", img: "images/052402008.png",correctOption:"25 ",incorrectOptions:["20","19","17",]},
+{equation: "如图，三角形ABC中，已知AD:DC=2:1，BE:EC=2:1。若S△ABC=60。求S四边形EODC。", img: "images/052402009.png",correctOption:"10 ",incorrectOptions:["18","20","16",]},
+{equation: "如图，三角形ABC中，AG:GB=1:2，BD:DC=3:4，则AE:EC=___:___。", img: "images/052402010.png",correctOption:"3:8 ",incorrectOptions:["3:5","4:3","3:2",]},
+{equation: "如图，三角形ABC中，AE:EC=1:2，BD:DC=4:3，则AG:GB=___:___。", img: "images/052402011.png",correctOption:"3:8 ",incorrectOptions:["3:5","4:3","3:2",]},
+{equation: "如图，三角形ABC中，AG:GB=1:2，AE:EC=3:4，则BD:DC=___:___。", img: "images/052402012.png",correctOption:"3:2 ",incorrectOptions:["3:4","4:3","2:3",]},
+]
+
+
+
+
 const 燕尾模型01基本概念=[
 {equation: "如图，三角形ABC中，BD:DC=5:6，S△ABO=10，求S△AOC。", img: "images/052401001.png",correctOption:"12 ",incorrectOptions:["20","15","19",]},
 {equation: "如图，三角形ABC中，AD:DC=2:3，S△ABO=10，求S△BCO。", img: "images/052401002.png",correctOption:"15 ",incorrectOptions:["20","16","12",]},
@@ -11,7 +31,6 @@ const 燕尾模型01基本概念=[
 {equation: "如图，三角形ABC中，AE:EB=1:2，BD=DC，S△AOC=15,求S△DCO。", img: "images/052401010.png",correctOption:"15 ",incorrectOptions:["18","12","16",]},
 {equation: "如图，三角形ABC中，AE:EC=1:2，BD=DC，S△ABO=15,求S△BDO。", img: "images/052401011.png",correctOption:"15 ",incorrectOptions:["16","12","20",]},
 {equation: "如图，三角形ABC中，AE:EB=1:2，AD：DC=1:2，S△BCO=30,求S△AEO。", img: "images/052401012.png",correctOption:"5 ",incorrectOptions:["17","18","20",]},
-
 
 
 ]
