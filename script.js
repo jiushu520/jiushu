@@ -1,3 +1,20 @@
+const 燕尾模型03一外一内比的应用上=[
+
+{equation: "如图，三角形ABC中，AE:EB=1:2，EO=OC，S△AOC=10平方厘米。则S△ABC为多少平方厘米？", img: "images/052403001.png",correctOption:"60 ",incorrectOptions:["80","28","70",]},
+{equation: "如图，三角形ABC中，BD:DC=3:1，AO:OD=2:1，S△ABO=30平方厘米。则S△ABC为多少平方厘米？", img: "images/052403002.png",correctOption:"60 ",incorrectOptions:["20","40","24",]},
+{equation: "如图，三角形ABC中，AE:EC=3:2，BO:OE=5:1，S△BOC=40平方厘米。则S△ABC为多少平方厘米？", img: "images/052403003.png",correctOption:"120 ",incorrectOptions:["42","50","40",]},
+{equation: "如图，三角形ABC中，AE:EB=1:2，EO=OC，S△AOC=10平方厘米。则S△BDO为多少平方厘米？", img: "images/052403004.png",correctOption:"15 ",incorrectOptions:["18","14","11",]},
+{equation: "如图，三角形ABC中，BD:DC=3:1，AO:OD=2:1，S△ABO=30平方厘米。则S△CEO为多少平方厘米？", img: "images/052403005.png",correctOption:"4 ",incorrectOptions:["8","14","6",]},
+{equation: "如图，三角形ABC中，AE:EC=3:2，BO:OE=5:1，S△BOC=40平方厘米。则S△ADO为多少平方厘米？", img: "images/052403006.png",correctOption:"20 ",incorrectOptions:["16","13","18",]},
+{equation: "如图，三角形ABC中，AE:EB=1:2，EO=OC，S△AOC=10平方厘米。则BD:DC=___:___ 。", img: "images/052403007.png",correctOption:"3:1 ",incorrectOptions:["3:2","4:3","5:2",]},
+{equation: "如图，三角形ABC中，BD:DC=3:1，AO:OD=2:1，S△ABO=30平方厘米。则AE:EC=___:___ 。", img: "images/052403008.png",correctOption:"3:2 ",incorrectOptions:["3:5","4:3","5:2",]},
+{equation: "如图，三角形ABC中，AE:EC=3:2，BO:OE=5:1，S△BOC=40平方厘米。则AD:DB= ___:___ 。", img: "images/052403009.png",correctOption:"1:2 ",incorrectOptions:["3:4","1:3","2:3",]},
+{equation: "如图所示，在△ABC中，BD:DC=3:1，点O是AD的中点，那么AE:EC=___:___ 。", img: "images/052403010.png",correctOption:"3:4 ",incorrectOptions:["3:5","4:3","3:2",]},
+{equation: "如图所示，在△ABC中，AE:EC=3:1，BO:OE=2:1，那么BD:DC= ___:___ 。", img: "images/052403011.png",correctOption:"3:2 ",incorrectOptions:["6:5","4:3","3:2",]},
+{equation: "如图所示，在△ABC中，AE:EC =1:3，BO:OE=8:1，那么BD:DC= ___:___ 。", img: "images/052403012.png",correctOption:"2:1 ",incorrectOptions:["5:4","4:3","3:2",]},
+
+]
+
 
 
 const 燕尾模型02两外比的应用=[
