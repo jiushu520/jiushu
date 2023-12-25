@@ -51,6 +51,35 @@ const 直角坐标系运算05定比分点=[
 {equation: "\\begin{gather}已知数轴上点A=9,B=15,\\\\点C在A、B之间,\\\\且AC：CB=1:1.\\\\则点C=\\_\\_。\\end{gather}",correctOption:"12 ",incorrectOptions:["2","-6","-4",]},
 ]
 
+const 沙漏与金字塔01认识沙漏=[
+
+{equation: "\\begin{gather}如图，DC平行AB，AC和DB交于点O，\\\\AB:DC=2:1，则DO:OB=\\_: \\_.\\end{gather}", img: "images/053701001.png",correctOption:"1:2 ",incorrectOptions:["3:2","1:3","2:1",]},
+{equation: "\\begin{gather}如图，DC平行AB，AC和DB交于点O，\\\\AB:DC=3:1，则DO:OB=\\_:\\_\\end{gather}", img: "images/053701001.png",correctOption:"3:1 ",incorrectOptions:["3:3","1:3","2:1",]},
+{equation: ".\\begin{gather}如图，DC平行AB，AC和DB交于点O，\\\\AB:DC=3:2，则DO:OB=\\_:\\_.\\end{gather}", img: "images/053701001.png",correctOption:"2:3 ",incorrectOptions:["3:2","1:3","2:1",]},
+{equation: "\\begin{gather}如图，DC平行AB，AC和DB交于点O，\\\\DC长5厘米，AB长10厘米，DO长3厘米，\\\\那么OB长多少厘米？\\end{gather}", img: "images/053701001.png",correctOption:"6 ",incorrectOptions:["8","4","9",]},
+{equation: "\\begin{gather}如图，DC平行AB，AC和DB交于点O，\\\\DC长6厘米，AB长10厘米，DO长3厘米，\\\\那么OB长多少厘米？\\end{gather}", img: "images/053701001.png",correctOption:"5 ",incorrectOptions:["3","6","4",]},
+{equation: "\\begin{gather}如图，DC平行AB，AC和DB交于点O，\\\\DO长4厘米，OB长10厘米，AO长15厘米，\\\\那么OC长多少厘米？\\end{gather}", img: "images/053701002.png",correctOption:"6 ",incorrectOptions:["9","8","5",]},
+{equation: "\\begin{gather}如图，AD平行BC，AC与BD交于点O，\\\\AD长6厘米，BC长10厘米，BO比OD长2厘米，\\\\那么BD长多少厘米？\\end{gather}", img: "images/053701002.png",correctOption:"8 ",incorrectOptions:["4","9","3",]},
+{equation: "\\begin{gather}如图，AD平行BC，AC与BD交于点O，\\\\AD长9厘米，BC长15厘米，BO比OD长4厘米，\\\\那么BD长多少厘米？\\end{gather}", img: "images/053701002.png",correctOption:"16 ",incorrectOptions:["9","18","15",]},
+
+]
+
+const 沙漏与金字塔02梯形中的沙漏=[
+{equation: "\\begin{gather}如图，梯形ABCD中，DC平行AB，且AB:DC=2:1，\\\\请问图中4块小三角形的面积比，\\\\即S1:S2:S3:S4=\\_:\\_:\\_:\\_.\\end{gather}", img: "images/053702001.png",correctOption:"1:2:2:4 ",incorrectOptions:["1:2:2:8","1:2:2:6","1:3:3:6",]},
+{equation: "\\begin{gather}如图，梯形ABCD中，DC平行AB，且DC:AB=1:3，\\\\请问图中4块小三角形的面积比，\\\\即S1:S2:S3:S4=\\_:\\_:\\_:\\_.\\end{gather}", img: "images/053702002.png",correctOption:"1:3:3:9 ",incorrectOptions:["1:2:2:8","1:2:2:6","1:3:3:6",]},
+{equation: "\\begin{gather}如图，梯形ABCD中，DC平行AB，且DC:AB=2:3，\\\\请问图中4块小三角形的面积比，\\\\即S1:S2:S3:S4=\\_:\\_:\\_:\\_.\\end{gather}", img: "images/053702003.png",correctOption:"4:6:6:9 ",incorrectOptions:["1:2:2:8","1:2:2:6","1:3:3:4",]},
+{equation: "\\begin{gather}如图所示，梯形ABCD的面积是36平方厘米，OB=2DO，\\\\则阴影三角形的面积是多少平方厘米？\\end{gather}", img: "images/053702004.png",correctOption:"16 ",incorrectOptions:["9","13","4",]},
+{equation: "\\begin{gather}5.如图所示，梯形ABCD的面积是32平方厘米，AO=3OC，\\\\则阴影三角形的面积是多少平方厘米？\\end{gather}", img: "images/053702005.png",correctOption:"18 ",incorrectOptions:["4","10","20",]},
+{equation: "\\begin{gather}如图所示，梯形ABCD的面积是50平方厘米，DO:OB=2:3，\\\\则阴影三角形的面积是多少平方厘米？\\end{gather}", img: "images/053702006.png",correctOption:"18 ",incorrectOptions:["8","12","9",]},
+{equation: "\\begin{gather}如图，在梯形ABCD中，三角形ABO的面积是6平方厘米，\\\\且BC的长度是AD的2倍．\\\\请问：梯形ABCD的面积是多少平方厘米？\\end{gather}", img: "images/053702007.png",correctOption:"27 ",incorrectOptions:["15","12","35",]},
+{equation: "\\begin{gather}如图，在梯形ABCD中，三角形ABO的面积是6平方厘米，\\\\且BC的长度是AD的3倍．\\\\请问：梯形ABCD的面积是多少平方厘米？\\end{gather}", img: "images/053702008.png",correctOption:"32 ",incorrectOptions:["21","25","35",]},
+{equation: "\\begin{gather}如图，在梯形ABCD中，三角形OCD的面积是4平方厘米，\\\\且BC的长度是AD的2倍．\\\\请问：梯形ABCD的面积是多少平方厘米？\\end{gather}", img: "images/053702009.png",correctOption:"18 ",incorrectOptions:["28","32","36",]},
+{equation: "\\begin{gather}如图，在梯形ABCD中，\\\\三角形ABO的面积是6平方厘米，\\\\三角形AOD的面积是3平方厘米，\\\\那么梯形ABCD的面积是多少平方厘米？\\end{gather}", img: "images/053702010.png",correctOption:"27 ",incorrectOptions:["24","48","18",]},
+{equation: "\\begin{gather}如图，在梯形ABCD中，\\\\三角形ABO的面积是6平方厘米，\\\\三角形AOD的面积是4平方厘米，\\\\那么梯形ABCD的面积是多少平方厘米？\\end{gather}", img: "images/053702011.png",correctOption:"25 ",incorrectOptions:["48","9","27",]},
+{equation: "\\begin{gather}如图，在梯形ABCD中，\\\\三角形BCO的面积是18平方厘米，\\\\三角形OCD的面积是12平方厘米，\\\\那么梯形ABCD的面积是多少平方厘米？\\end{gather}", img: "images/053702012.png",correctOption:"60 ",incorrectOptions:["29","29","15",]},
+
+]
+
 
 
 const 燕尾模型05两内比的应用=[
