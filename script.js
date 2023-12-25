@@ -78,7 +78,68 @@ const 沙漏与金字塔02梯形中的沙漏=[
 {equation: "\\begin{gather}如图，在梯形ABCD中，\\\\三角形ABO的面积是6平方厘米，\\\\三角形AOD的面积是4平方厘米，\\\\那么梯形ABCD的面积是多少平方厘米？\\end{gather}", img: "images/053702011.png",correctOption:"25 ",incorrectOptions:["48","9","27",]},
 {equation: "\\begin{gather}如图，在梯形ABCD中，\\\\三角形BCO的面积是18平方厘米，\\\\三角形OCD的面积是12平方厘米，\\\\那么梯形ABCD的面积是多少平方厘米？\\end{gather}", img: "images/053702012.png",correctOption:"60 ",incorrectOptions:["29","29","15",]},
 
+
+
+
+
+
 ]
+
+const 沙漏与金字塔03平行线中的沙漏=[
+{equation: "\\begin{gather}1.如图，DC平行AB，那么在图中存在几个沙漏？\\end{gather}", img: "images/053703001.png",correctOption:"4 ",incorrectOptions:["2","3","5",]},
+{equation: "\\begin{gather}2.如图，DC平行AB，那么在图中存在几个沙漏？\\end{gather}", img: "images/053703002.png",correctOption:"4 ",incorrectOptions:["2","3","5",]},
+{equation: "\\begin{gather}3.如图，DC平行AB，那么在图中存在几个沙漏？\\end{gather}", img: "images/053703003.png",correctOption:"4 ",incorrectOptions:["2","3","5",]},
+{equation: "\\begin{gather}4.如图，已知平行四边形ABCD的面积为70，\\\\E点是BC上靠近B点的三等分点，\\\\则图中阴影部分的面积是多少？\\end{gather}", img: "images/053703004.png",correctOption:"14 ",incorrectOptions:["21","15","8",]},
+{equation: "\\begin{gather}5.如图，已知平行四边形ABCD的面积为110，\\\\E点是BC上靠近B点的六等分点，\\\\则图中阴影部分的面积是多少？ \\end{gather}", img: "images/053703005.png",correctOption:"25 ",incorrectOptions:["42","35","20",]},
+{equation: "\\begin{gather}6.如图，已知平行四边形ABCD的面积为70，\\\\E点是BC上靠近B点的四等分点，\\\\则图中阴影部分的面积是多少？ \\end{gather}", img: "images/053703006.png",correctOption:"15 ",incorrectOptions:["64","16","54",]},
+{equation: "\\begin{gather}7.如图所示，边长为8厘米和12厘米的两个正方形并排放在一起，\\\\则图中阴影部分的面积是多少平方厘米？ \\end{gather}", img: "images/053703007.png",correctOption:"45 ",incorrectOptions:["36","28","27",]},
+{equation: "\\begin{gather}8.如图所示，边长为8厘米和12厘米的两个正方形并排放在一起，\\\\则图中阴影部分的面积是多少平方厘米？ \\end{gather}", img: "images/053703008.png",correctOption:"27 ",incorrectOptions:["35","24","20",]},
+{equation: "\\begin{gather}9.如图所示，边长为8厘米和12厘米的两个正方形并排放在一起，\\\\则图中阴影部分的面积是多少平方厘米？ \\end{gather}", img: "images/053703009.png",correctOption:"75 ",incorrectOptions:["54","30","24",]},
+{equation: "\\begin{gather}10.三如图，在正方形ABCD中，\\\\E，F分别是BC，DC的中点，\\\\已知正方形ABCD的面积为30平方厘米，\\\\则阴影部分的面积是多少平方厘米？\\end{gather}", img: "images/053703010.png",correctOption:"5 ",incorrectOptions:["42","54","36",]},
+{equation: "\\begin{gather}11.如图，在正方形ABCD中，\\\\E是BC边上靠近C点的三等分点，\\\\F是DC边上靠近C点的三等分点，\\\\已知正方形ABCD的面积为30平方厘米，\\\\则阴影部分的面积是多少平方厘米？\\end{gather}", img: "images/053703011.png",correctOption:"3 ",incorrectOptions:["2","5","6",]},
+{equation: "\\begin{gather}12.如图，在正方形ABCD中，\\\\E是BC边上靠近B点的三等分点，\\\\F是DC边上靠近D点的三等分点，\\\\已知正方形ABCD的面积为20平方厘米，\\\\则阴影部分的面积是多少平方厘米？\\end{gather}", img: "images/053703012.png",correctOption:"10 ",incorrectOptions:["15","8","12",]},
+
+
+
+
+
+]
+
+
+
+const 沙漏与金字塔04认识金字塔=[
+{equation: "\\begin{gather}1.下图中，AB平行CD，CD:AB=1:3，那么EC:EA= \\_:\\_.\\end{gather}", img: "images/053704001.png",correctOption:"1:3 ",incorrectOptions:["1:4","1:5","1:2",]},
+{equation: "\\begin{gather}2.下图中，AB平行CD，CD:AB=1:5，那么EC:EA=\\_:\\_.\\end{gather}", img: "images/053704002.png",correctOption:"1:5 ",incorrectOptions:["1:4","1:3","1:2",]},
+{equation: "\\begin{gather}3.下图中，AB平行CD，CD:AB=1:4，那么ED:EB=\\_:\\_.\\end{gather}", img: "images/053704003.png",correctOption:"1:4 ",incorrectOptions:["1:3","1:5","1:2",]},
+{equation: "\\begin{gather}4.下图中，AB平行CD，CD:AB=2:3，那么S∆CDE：S∆ABE=\\_:\\_.\\end{gather}", img: "images/053704004.png",correctOption:"4:9 ",incorrectOptions:["2:3","1:3","1:2",]},
+{equation: "\\begin{gather}5.下图中，AB平行CD，CD:AB=3:5，那么S∆CDE：S∆ABE=\\_:\\_.\\end{gather}", img: "images/053704005.png",correctOption:"9:25 ",incorrectOptions:["3:5","1:3","1:5",]},
+{equation: "\\begin{gather}6.下图中，AB平行CD，CD:AB=2:5，那么S∆CDE：S∆ABE=\\_:\\_.\\end{gather}", img: "images/053704006.png",correctOption:"4:25 ",incorrectOptions:["2:5","1:3","1:2",]},
+{equation: "\\begin{gather}7.如图，三角形ABE中，AB平行CD，\\\\CD=15厘米，AC=12厘米，AB=25厘米，\\\\那么AE=\\_厘米．\\end{gather}", img: "images/053704007.png",correctOption:"30 ",incorrectOptions:["28","15","24",]},
+{equation: "\\begin{gather}8.如图，三角形ABE中，AB平行CD，\\\\CD=14厘米，DB=7厘米，AB=21厘米，\\\\那么EB=\\_厘米．\\end{gather}", img: "images/053704008.png",correctOption:"21 ",incorrectOptions:["25","36","15",]},
+{equation: "\\begin{gather}9.如图，三角形ABE中，AB平行CD，\\\\CD=20厘米，AC=5厘米，AB=25厘米，\\\\那么AE=\\_厘米． \\end{gather}", img: "images/053704009.png",correctOption:"25 ",incorrectOptions:["12","35","18",]},
+{equation: "\\begin{gather}10.如图，三角形ABE中，AB平行CD,\\\\AC=10厘米，CE=15厘米．\\\\如果已知三角形CDE的面积是90平方厘米，\\\\那么梯形ABDC的面积是\\_平方厘米．\\end{gather}", img: "images/053704010.png",correctOption:"160 ",incorrectOptions:["90","63","117",]},
+{equation: "\\begin{gather}11.如图，三角形ABE中，AB平行CD,AC=5厘米，CE=10厘米．\\\\如果已知三角形CDE的面积是40平方厘米，\\\\那么梯形ABDC的面积是\\_平方厘米．\\end{gather}", img: "images/053704011.png",correctOption:"50 ",incorrectOptions:["40","45","60",]},
+{equation: "\\begin{gather}12.如图，三角形ABE中，AB平行CD,AC=5厘米，CE=15厘米．\\\\如果已知三角形CDE的面积是90平方厘米，\\\\那么梯形ABDC的面积是\\_平方厘米．\\end{gather}", img: "images/053704012.png",correctOption:"70 ",incorrectOptions:["40","45","60",]},
+
+]
+
+
+
+const 沙漏与金字塔05沙漏与金字塔综合=[
+{equation: "\\begin{gather}1.如图，三角形ABE中，\\\\AB平行DC，BD交AC于O，AD=2DE，\\\\请问AO的长度是OC的几倍？\\end{gather}", img: "images/053705001.png",correctOption:"3 ",incorrectOptions:["4","2","5",]},
+{equation: "\\begin{gather}2.如图，三角形ABE中，\\\\AB平行DC，BD交AC于O，AD=3DE，\\\\请问OB的长度是DO的几倍？\\end{gather}", img: "images/053705002.png",correctOption:"4 ",incorrectOptions:["3","2","5",]},
+{equation: "\\begin{gather}3.如图，三角形ABE中，\\\\AB平行DC，BD交AC于O，OB=3DO，\\\\请问AD的长度是DE的几倍？\\end{gather}", img: "images/053705003.png",correctOption:"2 ",incorrectOptions:["4","3","5",]},
+{equation: "\\begin{gather}4.如图，三角形ABE中，\\\\AB平行DC，BD交AC于O，AD=2DE，\\\\三角形ABO的面积为4，求三角形ABE的面积．\\end{gather}", img: "images/053705004.png",correctOption:"8 ",incorrectOptions:["6","10","12",]},
+{equation: "\\begin{gather}5.如图，三角形ABE中，\\\\AB平行DC，BD交AC于O，AD=DE，\\\\三角形ABE面积为36，求三角形OCD的面积．\\end{gather}", img: "images/053705005.png",correctOption:"3 ",incorrectOptions:["4","6","5",]},
+{equation: "\\begin{gather}6.如图，三角形ABE中，\\\\AB平行DC，BD交AC于O，AD=3DE，\\\\三角形OCD面积为3，求三角形ABE的面积．\\end{gather}", img: "images/053705006.png",correctOption:"80 ",incorrectOptions:["72","90","60",]},
+{equation: "\\begin{gather}7.如图，梯形ABCD中，\\\\过对角线的交点O作AB的平行线EF，\\\\分别交AD、BC于点E和点F，AB=2CD，\\\\梯形ABCD面积为27，\\\\求三角形OFC的面积．\\end{gather}", img: "images/053705007.png",correctOption:"2 ",incorrectOptions:["3","4","6",]},
+{equation: "\\begin{gather}8.如图，梯形ABCD中，\\\\过对角线的交点O作AB的平行线EF，\\\\分别交AD、BC于点E和点F，AB=2CD，\\\\梯形ABCD面积为54，\\\\求三角形EOD的面积．\\end{gather}", img: "images/053705008.png",correctOption:"4 ",incorrectOptions:["3","8","6",]},
+{equation: "\\begin{gather}9.如图，梯形ABCD中，\\\\过对角线的交点O作AB的平行线EF，\\\\分别交AD、BC于点E和点F，AB=2CD，\\\\梯形ABCD面积为27，\\\\求三角形AOE的面积．\\end{gather}", img: "images/053705009.png",correctOption:"4 ",incorrectOptions:["3","8","6",]},
+
+]
+
+
+
 
 
 
