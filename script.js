@@ -753,7 +753,7 @@ const  线性代数05内积与投影长=[
 {equation: "\\begin{gather}直角坐标系中有点A(0,-4)、B(-5,-10)\\textup{;}\\\\过点A做AD\\perp OB，垂足为D，\\\\则OD=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\\\比例法;向量法;公式法......\\end{gather}",correctOption: "\\frac{8\\sqrt{5}}{5}",incorrectOptions:["\\frac{12\\sqrt{5}}{5}","\\frac{14\\sqrt{5}}{5}","\\frac{26\\sqrt{5}}{5}"]},
 {equation: "\\begin{gather}直角坐标系中有点A(-4,-4)、B(-9,2)\\textup{;}\\\\过点A做AD\\perp OB，垂足为D，\\\\则OD=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\\\比例法;向量法;公式法......\\end{gather}",correctOption: "\\frac{28\\sqrt{85}}{85}",incorrectOptions:["\\frac{16\\sqrt{85}}{85}","\\frac{4\\sqrt{85}}{17}","\\frac{5\\sqrt{85}}{17}"]},
 {equation: "\\begin{gather}直角坐标系中有点A(0,-3)、B(2,-9)\\textup{;}\\\\过点A做AD\\perp OB，垂足为D，\\\\则OD=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\\\比例法;向量法;公式法......\\end{gather}",correctOption: "\\frac{27\\sqrt{85}}{85}",incorrectOptions:["\\frac{12\\sqrt{85}}{85}","\\frac{27\\sqrt{85}}{85}","\\frac{26\\sqrt{85}}{17}"]},
-{equation: "\\begin{gather}直角坐标系中有点A(4,5)、B(6,-7)\\textup{;}\\\\过点A做AD\\perp OB，垂足为D，\\\\则OD=\\textup{?}\\\\画出直角坐标系及相关点线再计算。\\\\比例法;向量法;公式法......\\end{gather}",correctOption: "3\\sqrt{5}",incorrectOptions:["6\\sqrt{5}","2\\sqrt{5}","9\\sqrt{5}"]},
+
 
 
 ]
