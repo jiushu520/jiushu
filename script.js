@@ -1,3 +1,215 @@
+const 排列组合02排列组合综合应用=[
+{equation: "\\begin{gather}妈妈打算给大毛买3个口味不同的甜筒，\\\\有香蕉、草莓、绿茶、蓝莓……等10种不同的口味可选，\\\\请问有多少种不同的买法？\\end{gather}",correctOption:"120 ",incorrectOptions:["240","90","180",]},
+{equation: "\\begin{gather}妈妈打算给大毛买3个口味不同的甜筒，\\\\有香蕉、草莓、绿茶、蓝莓……等12种不同的口味可选，\\\\请问有多少种不同的买法？\\end{gather}",correctOption:"220 ",incorrectOptions:["240","90","180",]},
+{equation: "\\begin{gather}妈妈打算给大毛买4个口味不同的甜筒，\\\\有香蕉、草莓、绿茶、蓝莓……等10种不同的口味可选，\\\\请问有多少种不同的买法？\\end{gather}",correctOption:"210 ",incorrectOptions:["240","90","180",]},
+{equation: "\\begin{gather}从5名男生中挑出3名，6名女生中挑出2名，\\\\一共5名同学组成小记者团，\\\\请问有多少种挑法？\\end{gather}",correctOption:"190 ",incorrectOptions:["240","90","180",]},
+{equation: "\\begin{gather}从6名男生中挑出2名，5名女生中挑出2名，\\\\一共4名同学组成小记者团，\\\\请问有多少种挑法？\\end{gather}",correctOption:"210 ",incorrectOptions:["240","90","180",]},
+{equation: "\\begin{gather}从5名男生中挑出2名，5名女生中挑出3名，\\\\一共5名同学组成小记者团，\\\\请问有多少种挑法\\end{gather}",correctOption:"120 ",incorrectOptions:["240","90","180",]},
+{equation: "\\begin{gather}两位同学去图书馆借故事书，\\\\发现书架上只剩下8本不同的书。\\\\若一位同学先借了3本书，接着另一位同学借了4本书，\\\\则一共有多少种不同的借法？\\end{gather}",correctOption:"280 ",incorrectOptions:["240","90","180",]},
+{equation: "\\begin{gather}两位同学去图书馆借故事书，\\\\发现书架上只剩下8本不同的书。\\\\若一位同学先借了3本书，接着另一位同学借了2本书，\\\\则一共有多少种不同的借法？\\end{gather}",correctOption:"560 ",incorrectOptions:["240","90","180",]},
+{equation: "\\begin{gather}20名外交官进行会面，每两人之间握一次手，\\\\一共要握多少次手？\\end{gather}",correctOption:"190 ",incorrectOptions:["380","90","180",]},
+{equation: "\\begin{gather}30名外交官进行会面，\\\\每两人之间握一次手，\\\\一共要握多少次手？\\end{gather}",correctOption:"435 ",incorrectOptions:["300","450","870",]},
+{equation: "\\begin{gather}20支足球队举行比赛，为公平起见，\\\\每两队之间需要在双方的主场各踢一场比赛。\\\\那么，一共要踢多少场比赛？\\end{gather}",correctOption:"380 ",incorrectOptions:["190","42","121",]},
+
+{equation: "\\begin{gather}有红、黄、绿3个球 \\\\(1)若鹿宝宝一把抓起两球，扔出去，共有 \\_种结果？  \\\\(2)若鹿宝宝是左右手各拿一个去玩，共有 \\_种拿法？\\end{gather}",correctOption:"3,6 ",incorrectOptions:["3,3","3,1","6,3",]},
+{equation: "\\begin{gather}有红、黄、蓝、绿4个球 \\\\(1)若小山羊一把抓起两球，扔出去，共有 \\_种结果？  \\\\(2)若小山羊是左右手各拿一个去玩，共有\\_ 种拿法？\\end{gather}",correctOption:"6,12 ",incorrectOptions:["6,3","3,12","12,6",]},
+{equation: "\\begin{gather}有红、黄、蓝、绿、黑共5个球 \\\\(1)若阿土伯一把抓起两球，扔出去，共有 \\_ 种结果？  \\\\(2)若阿土伯是左右手各拿一个去玩，共有 \\_种拿法？\\end{gather}",correctOption:"10,20",incorrectOptions:["20,10","10,10","10,5",]},
+
+
+{equation: "\\begin{gather}6个人， \\\\(1)平均分为甲、乙两组，每组3人，共有\\_种分法？ \\\\(2)平均分为两组，每组3人，共有\\_种分法？\\end{gather}",correctOption:"20,10 ",incorrectOptions:["20,40","30,15","60,30",]},
+{equation: "\\begin{gather}4个人， \\\\(1)平均分为甲、乙两组，每组2人，共有\\_种分法？ \\\\(2)平均分为两组，每组2人，共有\\_种分法？\\end{gather}",correctOption:"6,3 ",incorrectOptions:["3,6","12,6","6,3",]},
+{equation: "\\begin{gather}8个人， \\\\(1)平均分为甲、乙两组，每组4人，共有\\_种分法？ \\\\(2)平均分为两组，每组4人，共有\\_种分法？\\end{gather}",correctOption:"70,35 ",incorrectOptions:["35,70","30,15","60,30",]},
+{equation: "\\begin{gather}6个人， \\\\(1)平均分为甲、乙、丙三组，每组2人，共有\\_种分法？ \\\\(2)平均分为三组，每组2人，共有\\_种分法？\\end{gather}",correctOption:"90,15 ",incorrectOptions:["90,90","30,6","60,30",]},
+{equation: "\\begin{gather}9个人， \\\\(1)平均分为甲、乙、丙三组，每组3人，共有\\_种分法？ \\\\(2)平均分为三组，每组3人，共有\\_种分法？\\end{gather}",correctOption:"1680,280 ",incorrectOptions:["280,560","560,280","60,30",]},
+
+]
+
+
+const 排列组合01排列组合计数=[
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_5^ 4表示从5个里选4个进行有序排列; \\\\求A\_5^4=? \\end{gather}", correctOption: "120", incorrectOptions:["60","720","4"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_6^ 3表示从6个里选3个进行有序排列; \\\\求A\_6^3=? \\end{gather}", correctOption: "120", incorrectOptions:["30","60","5"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_4^ 3表示从4个里选3个进行有序排列; \\\\求A\_4^3=? \\end{gather}", correctOption: "24", incorrectOptions:["720","2","120"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_2^2表示从2个里全选进行有序排列也就是2的阶乘; \\\\求A\_2^2=2!=? \\end{gather}", correctOption: "2", incorrectOptions:["120","6","20"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_5^5表示从5个里全选进行有序排列也就是5的阶乘; \\\\求A\_5^5=5!=? \\end{gather}", correctOption: "120", incorrectOptions:["2","3","30"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_6^ 4表示从6个里选4个进行有序排列; \\\\求A\_6^4=? \\end{gather}", correctOption: "360", incorrectOptions:["3","60","2"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_6^6表示从6个里全选进行有序排列也就是6的阶乘; \\\\求A\_6^6=6!=? \\end{gather}", correctOption: "720", incorrectOptions:["30","12","120"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_6^ 3表示从6个里选3个进行有序排列; \\\\求A\_6^3=? \\end{gather}", correctOption: "120", incorrectOptions:["30","60","5"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_6^ 2表示从6个里选2个进行有序排列; \\\\求A\_6^2=? \\end{gather}", correctOption: "30", incorrectOptions:["6","720","12"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_4^ 2表示从4个里选2个进行有序排列; \\\\求A\_4^2=? \\end{gather}", correctOption: "12", incorrectOptions:["30","720","120"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_3^3表示从3个里全选进行有序排列也就是3的阶乘; \\\\求A\_3^3=3!=? \\end{gather}", correctOption: "6", incorrectOptions:["3","12","24"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_6^ 5表示从6个里选5个进行有序排列; \\\\求A\_6^5=? \\end{gather}", correctOption: "720", incorrectOptions:["6","2","120"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_3^ 2表示从3个里选2个进行有序排列; \\\\求A\_3^2=? \\end{gather}", correctOption: "6", incorrectOptions:["30","4","24"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_4^4表示从4个里全选进行有序排列也就是4的阶乘; \\\\求A\_4^4=4!=? \\end{gather}", correctOption: "24", incorrectOptions:["6","60","120"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_7^ 4表示从7个里选4个进行有序排列; \\\\求A\_7^4=? \\end{gather}", correctOption: "840", incorrectOptions:["6","5","2"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_2^2表示从2个里全选进行有序排列也就是2的阶乘; \\\\求A\_2^2=2!=? \\end{gather}", correctOption: "2", incorrectOptions:["4","5","24"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_5^ 3表示从5个里选3个进行有序排列; \\\\求A\_5^3=? \\end{gather}", correctOption: "60", incorrectOptions:["30","6","2"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_3^3表示从3个里全选进行有序排列也就是3的阶乘; \\\\求A\_3^3=3!=? \\end{gather}", correctOption: "6", incorrectOptions:["120","360","12"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_3^3表示从3个里全选进行有序排列也就是3的阶乘; \\\\求A\_3^3=3!=? \\end{gather}", correctOption: "6", incorrectOptions:["720","30","24"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_7^ 6表示从7个里选6个进行有序排列; \\\\求A\_7^6=? \\end{gather}", correctOption: "5040", incorrectOptions:["24","2","3"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_7^ 4表示从7个里选4个进行有序排列; \\\\求A\_7^4=? \\end{gather}", correctOption: "840", incorrectOptions:["12","720","6"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_4^4表示从4个里全选进行有序排列也就是4的阶乘; \\\\求A\_4^4=4!=? \\end{gather}", correctOption: "24", incorrectOptions:["30","720","6"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_7^ 4表示从7个里选4个进行有序排列; \\\\求A\_7^4=? \\end{gather}", correctOption: "840", incorrectOptions:["360","720","120"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_5^5表示从5个里全选进行有序排列也就是5的阶乘; \\\\求A\_5^5=5!=? \\end{gather}", correctOption: "120", incorrectOptions:["720","20","2"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_7^ 3表示从7个里选3个进行有序排列; \\\\求A\_7^3=? \\end{gather}", correctOption: "210", incorrectOptions:["60","5","2"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_5^ 3表示从5个里选3个进行有序排列; \\\\求A\_5^3=? \\end{gather}", correctOption: "60", incorrectOptions:["720","4","120"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_2^2表示从2个里全选进行有序排列也就是2的阶乘; \\\\求A\_2^2=2!=? \\end{gather}", correctOption: "2", incorrectOptions:["3","6","24"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_6^ 3表示从6个里选3个进行有序排列; \\\\求A\_6^3=? \\end{gather}", correctOption: "120", incorrectOptions:["24","720","360"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_4^ 2表示从4个里选2个进行有序排列; \\\\求A\_4^2=? \\end{gather}", correctOption: "12", incorrectOptions:["3","120","60"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_7^ 6表示从7个里选6个进行有序排列; \\\\求A\_7^6=? \\end{gather}", correctOption: "5040", incorrectOptions:["20","24","12"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ C\_6^ 2表示从6个里选2个进行无序组合; \\\\求C\_6^2=? \\end{gather}", correctOption: "15", incorrectOptions:["5","2","3"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ C\_4^ 4表示从4个里选4个进行无序组合; \\\\求C\_4^4=? \\end{gather}", correctOption: "1", incorrectOptions:["4","6","5"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ C\_7^ 2表示从7个里选2个进行无序组合; \\\\求C\_7^2=? \\end{gather}", correctOption: "21", incorrectOptions:["15","4","5"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ C\_6^ 5表示从6个里选5个进行无序组合; \\\\求C\_6^5=? \\end{gather}", correctOption: "6", incorrectOptions:["5","2","20"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ C\_4^ 3表示从4个里选3个进行无序组合; \\\\求C\_4^3=? \\end{gather}", correctOption: "4", incorrectOptions:["2","6","5"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ C\_2^ 2表示从2个里选2个进行无序组合; \\\\求C\_2^2=? \\end{gather}", correctOption: "1", incorrectOptions:["3","4","2"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ C\_6^ 4表示从6个里选4个进行无序组合; \\\\求C\_6^4=? \\end{gather}", correctOption: "15", incorrectOptions:["3","10","2"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ C\_7^ 2表示从7个里选2个进行无序组合; \\\\求C\_7^2=? \\end{gather}", correctOption: "21", incorrectOptions:["4","6","3"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ C\_6^ 5表示从6个里选5个进行无序组合; \\\\求C\_6^5=? \\end{gather}", correctOption: "6", incorrectOptions:["10","15","3"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ C\_3^ 3表示从3个里选3个进行无序组合; \\\\求C\_3^3=? \\end{gather}", correctOption: "1", incorrectOptions:["6","20","10"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ C\_3^ 2表示从3个里选2个进行无序组合; \\\\求C\_3^2=? \\end{gather}", correctOption: "3", incorrectOptions:["4","6","10"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ C\_3^ 3表示从3个里选3个进行无序组合; \\\\求C\_3^3=? \\end{gather}", correctOption: "1", incorrectOptions:["15","10","6"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ C\_2^ 2表示从2个里选2个进行无序组合; \\\\求C\_2^2=? \\end{gather}", correctOption: "1", incorrectOptions:["5","6","15"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ C\_7^ 5表示从7个里选5个进行无序组合; \\\\求C\_7^5=? \\end{gather}", correctOption: "21", incorrectOptions:["3","6","10"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ C\_4^ 3表示从4个里选3个进行无序组合; \\\\求C\_4^3=? \\end{gather}", correctOption: "4", incorrectOptions:["10","6","3"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ C\_7^ 2表示从7个里选2个进行无序组合; \\\\求C\_7^2=? \\end{gather}", correctOption: "21", incorrectOptions:["5","20","6"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ C\_4^ 4表示从4个里选4个进行无序组合; \\\\求C\_4^4=? \\end{gather}", correctOption: "1", incorrectOptions:["5","6","4"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ C\_3^ 2表示从3个里选2个进行无序组合; \\\\求C\_3^2=? \\end{gather}", correctOption: "3", incorrectOptions:["5","4","10"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ C\_7^ 3表示从7个里选3个进行无序组合; \\\\求C\_7^3=? \\end{gather}", correctOption: "35", incorrectOptions:["10","5","20"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ C\_6^ 5表示从6个里选5个进行无序组合; \\\\求C\_6^5=? \\end{gather}", correctOption: "6", incorrectOptions:["4","5","3"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ C\_7^ 3表示从7个里选3个进行无序组合; \\\\求C\_7^3=? \\end{gather}", correctOption: "35", incorrectOptions:["6","4","10"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ C\_3^ 2表示从3个里选2个进行无序组合; \\\\求C\_3^2=? \\end{gather}", correctOption: "3", incorrectOptions:["6","4","10"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ C\_6^ 2表示从6个里选2个进行无序组合; \\\\求C\_6^2=? \\end{gather}", correctOption: "15", incorrectOptions:["6","10","5"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ C\_7^ 5表示从7个里选5个进行无序组合; \\\\求C\_7^5=? \\end{gather}", correctOption: "21", incorrectOptions:["6","10","3"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ C\_7^ 5表示从7个里选5个进行无序组合; \\\\求C\_7^5=? \\end{gather}", correctOption: "21", incorrectOptions:["15","6","2"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ C\_7^ 4表示从7个里选4个进行无序组合; \\\\求C\_7^4=? \\end{gather}", correctOption: "35", incorrectOptions:["5","10","15"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ C\_6^ 4表示从6个里选4个进行无序组合; \\\\求C\_6^4=? \\end{gather}", correctOption: "15", incorrectOptions:["4","2","3"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ C\_6^ 5表示从6个里选5个进行无序组合; \\\\求C\_6^5=? \\end{gather}", correctOption: "6", incorrectOptions:["10","3","20"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ C\_7^ 3表示从7个里选3个进行无序组合; \\\\求C\_7^3=? \\end{gather}", correctOption: "35", incorrectOptions:["4","5","6"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ C\_6^ 6表示从6个里选6个进行无序组合; \\\\求C\_6^6=? \\end{gather}", correctOption: "1", incorrectOptions:["15","3","4"]},
+
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_2^ 2表示从2个里选2个进行有序排列; \\\\ C\_6^ 2表示从6个里选2个进行无序组合; \\\\求A\_2^2+C\_6^ 2=? \\end{gather}", correctOption: "17", incorrectOptions:["3","6","7"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_3^ 3表示从3个里选3个进行有序排列; \\\\ C\_5^ 3表示从5个里选3个进行无序组合; \\\\求A\_3^3+C\_5^ 3=? \\end{gather}", correctOption: "16", incorrectOptions:["56","6","15"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_3^ 3表示从3个里选3个进行有序排列; \\\\ C\_6^ 2表示从6个里选2个进行无序组合; \\\\求A\_3^3+C\_6^ 2=? \\end{gather}", correctOption: "21", incorrectOptions:["6","4","8"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_6^ 2表示从6个里选2个进行有序排列; \\\\ C\_7^ 4表示从7个里选4个进行无序组合; \\\\求A\_6^2+C\_7^ 4=? \\end{gather}", correctOption: "65", incorrectOptions:["28","3","6"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_5^ 4表示从5个里选4个进行有序排列; \\\\ C\_7^ 7表示从7个里选7个进行无序组合; \\\\求A\_5^4+C\_7^ 7=? \\end{gather}", correctOption: "121", incorrectOptions:["4","15","3"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_5^ 4表示从5个里选4个进行有序排列; \\\\ C\_5^ 5表示从5个里选5个进行无序组合; \\\\求A\_5^4+C\_5^ 5=? \\end{gather}", correctOption: "121", incorrectOptions:["15","7","8"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_4^ 2表示从4个里选2个进行有序排列; \\\\ C\_6^ 6表示从6个里选6个进行无序组合; \\\\求A\_4^2+C\_6^ 6=? \\end{gather}", correctOption: "13", incorrectOptions:["10","56","70"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_7^ 5表示从7个里选5个进行有序排列; \\\\ C\_4^ 4表示从4个里选4个进行无序组合; \\\\求A\_7^5+C\_4^ 4=? \\end{gather}", correctOption: "2521", incorrectOptions:["15","28","35"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_6^ 4表示从6个里选4个进行有序排列; \\\\ C\_6^ 5表示从6个里选5个进行无序组合; \\\\求A\_6^4+C\_6^ 5=? \\end{gather}", correctOption: "366", incorrectOptions:["5","35","56"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_4^ 2表示从4个里选2个进行有序排列; \\\\ C\_4^ 3表示从4个里选3个进行无序组合; \\\\求A\_4^2+C\_4^ 3=? \\end{gather}", correctOption: "16", incorrectOptions:["56","6","28"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_4^ 4表示从4个里选4个进行有序排列; \\\\ C\_5^ 3表示从5个里选3个进行无序组合; \\\\求A\_4^4+C\_5^ 3=? \\end{gather}", correctOption: "34", incorrectOptions:["56","8","6"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_6^ 3表示从6个里选3个进行有序排列; \\\\ C\_5^ 3表示从5个里选3个进行无序组合; \\\\求A\_6^3+C\_5^ 3=? \\end{gather}", correctOption: "130", incorrectOptions:["56","21","28"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_7^ 4表示从7个里选4个进行有序排列; \\\\ C\_3^ 2表示从3个里选2个进行无序组合; \\\\求A\_7^4+C\_3^ 2=? \\end{gather}", correctOption: "843", incorrectOptions:["35","6","8"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_7^ 3表示从7个里选3个进行有序排列; \\\\ C\_5^ 3表示从5个里选3个进行无序组合; \\\\求A\_7^3+C\_5^ 3=? \\end{gather}", correctOption: "220", incorrectOptions:["10","4","8"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_5^ 3表示从5个里选3个进行有序排列; \\\\ C\_4^ 3表示从4个里选3个进行无序组合; \\\\求A\_5^3+C\_4^ 3=? \\end{gather}", correctOption: "64", incorrectOptions:["7","4","6"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_2^ 2表示从2个里选2个进行有序排列; \\\\ C\_6^ 6表示从6个里选6个进行无序组合; \\\\求A\_2^2+C\_6^ 6=? \\end{gather}", correctOption: "3", incorrectOptions:["6","10","35"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_7^ 3表示从7个里选3个进行有序排列; \\\\ C\_6^ 2表示从6个里选2个进行无序组合; \\\\求A\_7^3+C\_6^ 2=? \\end{gather}", correctOption: "225", incorrectOptions:["10","20","56"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_6^ 5表示从6个里选5个进行有序排列; \\\\ C\_3^ 3表示从3个里选3个进行无序组合; \\\\求A\_6^5+C\_3^ 3=? \\end{gather}", correctOption: "721", incorrectOptions:["35","8","7"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_2^ 2表示从2个里选2个进行有序排列; \\\\ C\_4^ 4表示从4个里选4个进行无序组合; \\\\求A\_2^2+C\_4^ 4=? \\end{gather}", correctOption: "3", incorrectOptions:["6","10","20"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_6^ 4表示从6个里选4个进行有序排列; \\\\ C\_4^ 3表示从4个里选3个进行无序组合; \\\\求A\_6^4+C\_4^ 3=? \\end{gather}", correctOption: "364", incorrectOptions:["6","28","70"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_4^ 2表示从4个里选2个进行有序排列; \\\\ C\_4^ 3表示从4个里选3个进行无序组合; \\\\求A\_4^2+C\_4^ 3=? \\end{gather}", correctOption: "16", incorrectOptions:["70","6","8"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_2^ 2表示从2个里选2个进行有序排列; \\\\ C\_5^ 5表示从5个里选5个进行无序组合; \\\\求A\_2^2+C\_5^ 5=? \\end{gather}", correctOption: "3", incorrectOptions:["10","21","7"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_4^ 4表示从4个里选4个进行有序排列; \\\\ C\_6^ 2表示从6个里选2个进行无序组合; \\\\求A\_4^4+C\_6^ 2=? \\end{gather}", correctOption: "39", incorrectOptions:["56","15","3"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_7^ 3表示从7个里选3个进行有序排列; \\\\ C\_2^ 2表示从2个里选2个进行无序组合; \\\\求A\_7^3+C\_2^ 2=? \\end{gather}", correctOption: "211", incorrectOptions:["3","21","7"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_7^ 5表示从7个里选5个进行有序排列; \\\\ C\_7^ 2表示从7个里选2个进行无序组合; \\\\求A\_7^5+C\_7^ 2=? \\end{gather}", correctOption: "2541", incorrectOptions:["8","6","15"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_7^ 2表示从7个里选2个进行有序排列; \\\\ C\_4^ 3表示从4个里选3个进行无序组合; \\\\求A\_7^2+C\_4^ 3=? \\end{gather}", correctOption: "46", incorrectOptions:["4","5","21"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_6^ 4表示从6个里选4个进行有序排列; \\\\ C\_7^ 7表示从7个里选7个进行无序组合; \\\\求A\_6^4+C\_7^ 7=? \\end{gather}", correctOption: "361", incorrectOptions:["2","35","28"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_7^ 6表示从7个里选6个进行有序排列; \\\\ C\_2^ 2表示从2个里选2个进行无序组合; \\\\求A\_7^6+C\_2^ 2=? \\end{gather}", correctOption: "5041", incorrectOptions:["2","7","21"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_7^ 3表示从7个里选3个进行有序排列; \\\\ C\_4^ 4表示从4个里选4个进行无序组合; \\\\求A\_7^3+C\_4^ 4=? \\end{gather}", correctOption: "211", incorrectOptions:["15","7","20"]},
+
+{equation: "\\begin{gather}排列组合是组合学基础;\\\\ A\_7^ 4表示从7个里选4个进行有序排列; \\\\ C\_4^ 4表示从4个里选4个进行无序组合; \\\\求A\_7^4+C\_4^ 4=? \\end{gather}", correctOption: "841", incorrectOptions:["15","5","4"]},
+
+
+]
+
 const 直角坐标系运算05定比分点=[
 {equation: "\\begin{gather}已知数轴上点A=-8,B=12,\\\\点C在A、B之间,\\\\且AC：CB=9:11.\\\\则点C=\\_\\_。\\end{gather}",correctOption:"1 ",incorrectOptions:["0","-2","9",]},
 {equation: "\\begin{gather}已知数轴上点A=1,B=7,\\\\点C在A、B之间,\\\\且AC：CB=1:2.\\\\则点C=\\_\\_。\\end{gather}",correctOption:"3 ",incorrectOptions:["-8","-3","-1",]},
