@@ -4453,10 +4453,10 @@ function generateEquationSystem() {
 
 
 function myFunction(id) {
-  var x = document.getElementById('分数运算');
-  var y = document.getElementById('方程应用');
-  var z = document.getElementById('微积分');
-  var a = document.getElementById('线性代数');
+  var x = document.getElementById('数论几何组合');
+  var y = document.getElementById('运算方程应用');
+  var z = document.getElementById('函数微分积分');
+  var a = document.getElementById('向量线性代数');
   
   x.style.display = "none";
   y.style.display = "none";
