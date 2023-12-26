@@ -4455,36 +4455,31 @@ function generateEquationSystem() {
 function myFunction(id) {
   var x = document.getElementById('分数运算');
   var y = document.getElementById('方程应用');
-  var z = document.getElementById('微分积分');
+  var z = document.getElementById('微积分');
   var a = document.getElementById('线性代数');
   
-  if (id === '分数运算') {
-    x.style.display = "block";
-    y.style.display = "none";
-    z.style.display = "none";
-    a.style.display = "none";
-    
-  } else if (id === '方程应用') {
-    x.style.display = "none";
-    y.style.display = "block";
-    z.style.display = "none";
-    a.style.display = "none";
-  } else if (id === '微分积分') {
-    x.style.display = "none";
-    y.style.display = "none";
-    z.style.display = "block";
-    a.style.display = "none";
+  x.style.display = "none";
+  y.style.display = "none";
+  z.style.display = "none";
+  a.style.display = "none";
 
-  } else if (id === '线性代数') {
-    x.style.display = "none";
-    y.style.display = "none";
-    z.style.display = "none";
-    a.style.display = "block";
-  
-
-
+  switch(id) {
+    case 1:
+      x.style.display = "block";
+      break;
+    case 2:
+      y.style.display = "block";
+      break;
+    case 3:
+      z.style.display = "block";
+      break;
+    case 4:
+      a.style.display = "block";
+      break;
+  }
 }
-}
+
+
 
         // 默认不显示网页窗口点击才显示
 function showFrame(url) {
