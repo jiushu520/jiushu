@@ -1190,204 +1190,204 @@ const  方程应用行程02变速到达 =[
 
 
 const  方程应用行程01简单相遇追及 =[
-{equation: "\\[{\\begin{array}{c}AB两相距126千米。\\\\甲车在后，乙车在前。同向而行。\\\\甲车速度为每小时39千米，\\\\乙车速度为每小时18千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "6",incorrectOptions:["5 ","8","4"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距126千米。\\\\甲车在后从A出发，乙车在前从B出发。同向而行。\\\\甲车速度为每小时39千米，\\\\乙车速度为每小时18千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "6",incorrectOptions:["5 ","8","4"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距34千米。\\\\甲车在后，乙车在前。同向而行。\\\\甲车速度为每小时29千米，\\\\乙车速度为每小时12千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "2",incorrectOptions:["4 ","6","7"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距34千米。\\\\甲车在后从A出发，乙车在前从B出发。同向而行。\\\\甲车速度为每小时29千米，\\\\乙车速度为每小时12千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "2",incorrectOptions:["4 ","6","7"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距115千米。\\\\甲车在后，乙车在前。同向而行。\\\\甲车速度为每小时33千米，\\\\乙车速度为每小时10千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "5",incorrectOptions:["9 ","7","4"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距115千米。\\\\甲车在后从A出发，乙车在前从B出发。同向而行。\\\\甲车速度为每小时33千米，\\\\乙车速度为每小时10千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "5",incorrectOptions:["9 ","7","4"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距21千米。\\\\甲车在后，乙车在前。同向而行。\\\\甲车速度为每小时35千米，\\\\乙车速度为每小时28千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "3",incorrectOptions:["9 ","4","2"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距21千米。\\\\甲车在后从A出发，乙车在前从B出发。同向而行。\\\\甲车速度为每小时35千米，\\\\乙车速度为每小时28千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "3",incorrectOptions:["9 ","4","2"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距45千米。\\\\甲车在后，乙车在前。同向而行。\\\\甲车速度为每小时25千米，\\\\乙车速度为每小时10千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "3",incorrectOptions:["7 ","5","8"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距45千米。\\\\甲车在后从A出发，乙车在前从B出发。同向而行。\\\\甲车速度为每小时25千米，\\\\乙车速度为每小时10千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "3",incorrectOptions:["7 ","5","8"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距34千米。\\\\甲车在后，乙车在前。同向而行。\\\\甲车速度为每小时30千米，\\\\乙车速度为每小时13千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "2",incorrectOptions:["4 ","5","1"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距34千米。\\\\甲车在后从A出发，乙车在前从B出发。同向而行。\\\\甲车速度为每小时30千米，\\\\乙车速度为每小时13千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "2",incorrectOptions:["4 ","5","1"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距30千米。\\\\甲车在后，乙车在前。同向而行。\\\\甲车速度为每小时28千米，\\\\乙车速度为每小时18千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "3",incorrectOptions:["8 ","6","1"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距30千米。\\\\甲车在后从A出发，乙车在前从B出发。同向而行。\\\\甲车速度为每小时28千米，\\\\乙车速度为每小时18千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "3",incorrectOptions:["8 ","6","1"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距64千米。\\\\甲车在后，乙车在前。同向而行。\\\\甲车速度为每小时39千米，\\\\乙车速度为每小时23千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "4",incorrectOptions:["9 ","8","2"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距64千米。\\\\甲车在后从A出发，乙车在前从B出发。同向而行。\\\\甲车速度为每小时39千米，\\\\乙车速度为每小时23千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "4",incorrectOptions:["9 ","8","2"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距68千米。\\\\甲车在后，乙车在前。同向而行。\\\\甲车速度为每小时33千米，\\\\乙车速度为每小时16千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "4",incorrectOptions:["3 ","6","2"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距68千米。\\\\甲车在后从A出发，乙车在前从B出发。同向而行。\\\\甲车速度为每小时33千米，\\\\乙车速度为每小时16千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "4",incorrectOptions:["3 ","6","2"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距40千米。\\\\甲车在后，乙车在前。同向而行。\\\\甲车速度为每小时22千米，\\\\乙车速度为每小时12千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "4",incorrectOptions:["9 ","8","2"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距40千米。\\\\甲车在后从A出发，乙车在前从B出发。同向而行。\\\\甲车速度为每小时22千米，\\\\乙车速度为每小时12千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "4",incorrectOptions:["9 ","8","2"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距16千米。\\\\甲车在后，乙车在前。同向而行。\\\\甲车速度为每小时22千米，\\\\乙车速度为每小时14千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "2",incorrectOptions:["1 ","4","3"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距16千米。\\\\甲车在后从A出发，乙车在前从B出发。同向而行。\\\\甲车速度为每小时22千米，\\\\乙车速度为每小时14千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "2",incorrectOptions:["1 ","4","3"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距84千米。\\\\甲车在后，乙车在前。同向而行。\\\\甲车速度为每小时31千米，\\\\乙车速度为每小时17千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "6",incorrectOptions:["3 ","2","5"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距84千米。\\\\甲车在后从A出发，乙车在前从B出发。同向而行。\\\\甲车速度为每小时31千米，\\\\乙车速度为每小时17千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "6",incorrectOptions:["3 ","2","5"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距24千米。\\\\甲车在后，乙车在前。同向而行。\\\\甲车速度为每小时34千米，\\\\乙车速度为每小时22千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "2",incorrectOptions:["3 ","9","6"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距24千米。\\\\甲车在后从A出发，乙车在前从B出发。同向而行。\\\\甲车速度为每小时34千米，\\\\乙车速度为每小时22千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "2",incorrectOptions:["3 ","9","6"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距22千米。\\\\甲车在后，乙车在前。同向而行。\\\\甲车速度为每小时23千米，\\\\乙车速度为每小时12千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "2",incorrectOptions:["8 ","6","4"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距22千米。\\\\甲车在后从A出发，乙车在前从B出发。同向而行。\\\\甲车速度为每小时23千米，\\\\乙车速度为每小时12千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "2",incorrectOptions:["8 ","6","4"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距39千米。\\\\甲车在后，乙车在前。同向而行。\\\\甲车速度为每小时32千米，\\\\乙车速度为每小时19千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "3",incorrectOptions:["5 ","7","6"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距39千米。\\\\甲车在后从A出发，乙车在前从B出发。同向而行。\\\\甲车速度为每小时32千米，\\\\乙车速度为每小时19千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "3",incorrectOptions:["5 ","7","6"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距46千米。\\\\甲车在后，乙车在前。同向而行。\\\\甲车速度为每小时39千米，\\\\乙车速度为每小时16千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "2",incorrectOptions:["6 ","4","9"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距46千米。\\\\甲车在后从A出发，乙车在前从B出发。同向而行。\\\\甲车速度为每小时39千米，\\\\乙车速度为每小时16千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "2",incorrectOptions:["6 ","4","9"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距42千米。\\\\甲车在后，乙车在前。同向而行。\\\\甲车速度为每小时35千米，\\\\乙车速度为每小时14千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "2",incorrectOptions:["3 ","9","6"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距42千米。\\\\甲车在后从A出发，乙车在前从B出发。同向而行。\\\\甲车速度为每小时35千米，\\\\乙车速度为每小时14千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "2",incorrectOptions:["3 ","9","6"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距24千米。\\\\甲车在后，乙车在前。同向而行。\\\\甲车速度为每小时34千米，\\\\乙车速度为每小时26千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "3",incorrectOptions:["5 ","7","6"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距24千米。\\\\甲车在后从A出发，乙车在前从B出发。同向而行。\\\\甲车速度为每小时34千米，\\\\乙车速度为每小时26千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "3",incorrectOptions:["5 ","7","6"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距18千米。\\\\甲车在后，乙车在前。同向而行。\\\\甲车速度为每小时35千米，\\\\乙车速度为每小时26千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "2",incorrectOptions:["4 ","1","3"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距18千米。\\\\甲车在后从A出发，乙车在前从B出发。同向而行。\\\\甲车速度为每小时35千米，\\\\乙车速度为每小时26千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "2",incorrectOptions:["4 ","1","3"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距90千米。\\\\甲车在后，乙车在前。同向而行。\\\\甲车速度为每小时34千米，\\\\乙车速度为每小时16千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "5",incorrectOptions:["9 ","8","3"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距90千米。\\\\甲车在后从A出发，乙车在前从B出发。同向而行。\\\\甲车速度为每小时34千米，\\\\乙车速度为每小时16千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "5",incorrectOptions:["9 ","8","3"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距26千米。\\\\甲车在后，乙车在前。同向而行。\\\\甲车速度为每小时26千米，\\\\乙车速度为每小时13千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "2",incorrectOptions:["9 ","6","3"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距26千米。\\\\甲车在后从A出发，乙车在前从B出发。同向而行。\\\\甲车速度为每小时26千米，\\\\乙车速度为每小时13千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "2",incorrectOptions:["9 ","6","3"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距22千米。\\\\甲车在后，乙车在前。同向而行。\\\\甲车速度为每小时33千米，\\\\乙车速度为每小时22千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "2",incorrectOptions:["4 ","1","8"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距22千米。\\\\甲车在后从A出发，乙车在前从B出发。同向而行。\\\\甲车速度为每小时33千米，\\\\乙车速度为每小时22千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "2",incorrectOptions:["4 ","1","8"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距88千米。\\\\甲车在后，乙车在前。同向而行。\\\\甲车速度为每小时33千米，\\\\乙车速度为每小时11千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "4",incorrectOptions:["1 ","6","9"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距88千米。\\\\甲车在后从A出发，乙车在前从B出发。同向而行。\\\\甲车速度为每小时33千米，\\\\乙车速度为每小时11千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "4",incorrectOptions:["1 ","6","9"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距12千米。\\\\甲车在后，乙车在前。同向而行。\\\\甲车速度为每小时30千米，\\\\乙车速度为每小时24千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "2",incorrectOptions:["3 ","6","1"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距12千米。\\\\甲车在后从A出发，乙车在前从B出发。同向而行。\\\\甲车速度为每小时30千米，\\\\乙车速度为每小时24千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "2",incorrectOptions:["3 ","6","1"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距108千米。\\\\甲车在后，乙车在前。同向而行。\\\\甲车速度为每小时32千米，\\\\乙车速度为每小时20千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "9",incorrectOptions:["4 ","1","6"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距108千米。\\\\甲车在后从A出发，乙车在前从B出发。同向而行。\\\\甲车速度为每小时32千米，\\\\乙车速度为每小时20千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "9",incorrectOptions:["4 ","1","6"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距21千米。\\\\甲车在后，乙车在前。同向而行。\\\\甲车速度为每小时22千米，\\\\乙车速度为每小时15千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "3",incorrectOptions:["6 ","7","1"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距21千米。\\\\甲车在后从A出发，乙车在前从B出发。同向而行。\\\\甲车速度为每小时22千米，\\\\乙车速度为每小时15千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "3",incorrectOptions:["6 ","7","1"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距64千米。\\\\甲车在后，乙车在前。同向而行。\\\\甲车速度为每小时31千米，\\\\乙车速度为每小时15千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "4",incorrectOptions:["1 ","8","3"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距64千米。\\\\甲车在后从A出发，乙车在前从B出发。同向而行。\\\\甲车速度为每小时31千米，\\\\乙车速度为每小时15千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "4",incorrectOptions:["1 ","8","3"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距21千米。\\\\甲车在后，乙车在前。同向而行。\\\\甲车速度为每小时30千米，\\\\乙车速度为每小时23千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "3",incorrectOptions:["5 ","1","4"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距21千米。\\\\甲车在后从A出发，乙车在前从B出发。同向而行。\\\\甲车速度为每小时30千米，\\\\乙车速度为每小时23千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "3",incorrectOptions:["5 ","1","4"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距33千米。\\\\甲车在后，乙车在前。同向而行。\\\\甲车速度为每小时31千米，\\\\乙车速度为每小时20千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "3",incorrectOptions:["2 ","4","9"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距33千米。\\\\甲车在后从A出发，乙车在前从B出发。同向而行。\\\\甲车速度为每小时31千米，\\\\乙车速度为每小时20千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "3",incorrectOptions:["2 ","4","9"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距48千米。\\\\甲车在后，乙车在前。同向而行。\\\\甲车速度为每小时28千米，\\\\乙车速度为每小时12千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "3",incorrectOptions:["8 ","7","9"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距48千米。\\\\甲车在后从A出发，乙车在前从B出发。同向而行。\\\\甲车速度为每小时28千米，\\\\乙车速度为每小时12千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "3",incorrectOptions:["8 ","7","9"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距63千米。\\\\甲车在后，乙车在前。同向而行。\\\\甲车速度为每小时37千米，\\\\乙车速度为每小时28千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "7",incorrectOptions:["9 ","3","2"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距63千米。\\\\甲车在后从A出发，乙车在前从B出发。同向而行。\\\\甲车速度为每小时37千米，\\\\乙车速度为每小时28千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "7",incorrectOptions:["9 ","3","2"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距30千米。\\\\甲车在后，乙车在前。同向而行。\\\\甲车速度为每小时26千米，\\\\乙车速度为每小时20千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "5",incorrectOptions:["7 ","9","4"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距30千米。\\\\甲车在后从A出发，乙车在前从B出发。同向而行。\\\\甲车速度为每小时26千米，\\\\乙车速度为每小时20千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "5",incorrectOptions:["7 ","9","4"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距54千米。\\\\甲车在后，乙车在前。同向而行。\\\\甲车速度为每小时23千米，\\\\乙车速度为每小时17千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "9",incorrectOptions:["1 ","6","2"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距54千米。\\\\甲车在后从A出发，乙车在前从B出发。同向而行。\\\\甲车速度为每小时23千米，\\\\乙车速度为每小时17千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "9",incorrectOptions:["1 ","6","2"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距39千米。\\\\甲车在后，乙车在前。同向而行。\\\\甲车速度为每小时32千米，\\\\乙车速度为每小时19千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "3",incorrectOptions:["5 ","8","4"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距39千米。\\\\甲车在后从A出发，乙车在前从B出发。同向而行。\\\\甲车速度为每小时32千米，\\\\乙车速度为每小时19千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "3",incorrectOptions:["5 ","8","4"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距51千米。\\\\甲车在后，乙车在前。同向而行。\\\\甲车速度为每小时28千米，\\\\乙车速度为每小时11千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "3",incorrectOptions:["8 ","4","9"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距51千米。\\\\甲车在后从A出发，乙车在前从B出发。同向而行。\\\\甲车速度为每小时28千米，\\\\乙车速度为每小时11千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "3",incorrectOptions:["8 ","4","9"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距60千米。\\\\甲车在后，乙车在前。同向而行。\\\\甲车速度为每小时26千米，\\\\乙车速度为每小时11千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "4",incorrectOptions:["2 ","5","6"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距60千米。\\\\甲车在后从A出发，乙车在前从B出发。同向而行。\\\\甲车速度为每小时26千米，\\\\乙车速度为每小时11千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "4",incorrectOptions:["2 ","5","6"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距18千米。\\\\甲车在后，乙车在前。同向而行。\\\\甲车速度为每小时25千米，\\\\乙车速度为每小时19千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "3",incorrectOptions:["2 ","8","4"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距18千米。\\\\甲车在后从A出发，乙车在前从B出发。同向而行。\\\\甲车速度为每小时25千米，\\\\乙车速度为每小时19千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "3",incorrectOptions:["2 ","8","4"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距38千米。\\\\甲车在后，乙车在前。同向而行。\\\\甲车速度为每小时29千米，\\\\乙车速度为每小时10千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "2",incorrectOptions:["4 ","1","9"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距38千米。\\\\甲车在后从A出发，乙车在前从B出发。同向而行。\\\\甲车速度为每小时29千米，\\\\乙车速度为每小时10千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "2",incorrectOptions:["4 ","1","9"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距133千米。\\\\甲车在后，乙车在前。同向而行。\\\\甲车速度为每小时32千米，\\\\乙车速度为每小时13千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "7",incorrectOptions:["9 ","3","5"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距133千米。\\\\甲车在后从A出发，乙车在前从B出发。同向而行。\\\\甲车速度为每小时32千米，\\\\乙车速度为每小时13千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "7",incorrectOptions:["9 ","3","5"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距57千米。\\\\甲车在后，乙车在前。同向而行。\\\\甲车速度为每小时29千米，\\\\乙车速度为每小时10千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "3",incorrectOptions:["1 ","4","8"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距57千米。\\\\甲车在后从A出发，乙车在前从B出发。同向而行。\\\\甲车速度为每小时29千米，\\\\乙车速度为每小时10千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "3",incorrectOptions:["1 ","4","8"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距24千米。\\\\甲车在后，乙车在前。同向而行。\\\\甲车速度为每小时38千米，\\\\乙车速度为每小时26千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "2",incorrectOptions:["4 ","5","6"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距24千米。\\\\甲车在后从A出发，乙车在前从B出发。同向而行。\\\\甲车速度为每小时38千米，\\\\乙车速度为每小时26千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "2",incorrectOptions:["4 ","5","6"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距30千米。\\\\甲车在后，乙车在前。同向而行。\\\\甲车速度为每小时25千米，\\\\乙车速度为每小时15千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "3",incorrectOptions:["5 ","9","6"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距30千米。\\\\甲车在后从A出发，乙车在前从B出发。同向而行。\\\\甲车速度为每小时25千米，\\\\乙车速度为每小时15千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "3",incorrectOptions:["5 ","9","6"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距60千米。\\\\甲车在后，乙车在前。同向而行。\\\\甲车速度为每小时35千米，\\\\乙车速度为每小时15千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "3",incorrectOptions:["1 ","7","2"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距60千米。\\\\甲车在后从A出发，乙车在前从B出发。同向而行。\\\\甲车速度为每小时35千米，\\\\乙车速度为每小时15千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "3",incorrectOptions:["1 ","7","2"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距64千米。\\\\甲车在后，乙车在前。同向而行。\\\\甲车速度为每小时35千米，\\\\乙车速度为每小时19千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "4",incorrectOptions:["6 ","2","5"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距64千米。\\\\甲车在后从A出发，乙车在前从B出发。同向而行。\\\\甲车速度为每小时35千米，\\\\乙车速度为每小时19千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "4",incorrectOptions:["6 ","2","5"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距168千米。\\\\甲车在后，乙车在前。同向而行。\\\\甲车速度为每小时34千米，\\\\乙车速度为每小时13千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "8",incorrectOptions:["5 ","3","4"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距168千米。\\\\甲车在后从A出发，乙车在前从B出发。同向而行。\\\\甲车速度为每小时34千米，\\\\乙车速度为每小时13千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "8",incorrectOptions:["5 ","3","4"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距126千米。\\\\甲车在后，乙车在前。同向而行。\\\\甲车速度为每小时39千米，\\\\乙车速度为每小时21千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "7",incorrectOptions:["4 ","3","1"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距126千米。\\\\甲车在后从A出发，乙车在前从B出发。同向而行。\\\\甲车速度为每小时39千米，\\\\乙车速度为每小时21千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "7",incorrectOptions:["4 ","3","1"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距120千米。\\\\甲车在后，乙车在前。同向而行。\\\\甲车速度为每小时39千米，\\\\乙车速度为每小时19千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "6",incorrectOptions:["7 ","1","4"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距120千米。\\\\甲车在后从A出发，乙车在前从B出发。同向而行。\\\\甲车速度为每小时39千米，\\\\乙车速度为每小时19千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "6",incorrectOptions:["7 ","1","4"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距56千米。\\\\甲车在后，乙车在前。同向而行。\\\\甲车速度为每小时28千米，\\\\乙车速度为每小时21千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "8",incorrectOptions:["3 ","1","6"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距56千米。\\\\甲车在后从A出发，乙车在前从B出发。同向而行。\\\\甲车速度为每小时28千米，\\\\乙车速度为每小时21千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "8",incorrectOptions:["3 ","1","6"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距112千米。\\\\甲车在后，乙车在前。同向而行。\\\\甲车速度为每小时38千米，\\\\乙车速度为每小时22千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "7",incorrectOptions:["4 ","9","2"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距112千米。\\\\甲车在后从A出发，乙车在前从B出发。同向而行。\\\\甲车速度为每小时38千米，\\\\乙车速度为每小时22千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "7",incorrectOptions:["4 ","9","2"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距95千米。\\\\甲车在后，乙车在前。同向而行。\\\\甲车速度为每小时31千米，\\\\乙车速度为每小时12千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "5",incorrectOptions:["6 ","8","2"]},
-{equation: "\\[{\\begin{array}{c}AB两相距96千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为22千米每小时，\\\\乙车速度为26千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "2",incorrectOptions:["8 ","3","6"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距95千米。\\\\甲车在后从A出发，乙车在前从B出发。同向而行。\\\\甲车速度为每小时31千米，\\\\乙车速度为每小时12千米。\\\\请问同时出发后几小时甲车追及乙车？\\end{array}}\\]",correctOption: "5",incorrectOptions:["6 ","8","2"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距96千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为22千米每小时，\\\\乙车速度为26千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "2",incorrectOptions:["8 ","3","6"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距117千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为14千米每小时，\\\\乙车速度为25千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "3",incorrectOptions:["2 ","6","5"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距117千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为14千米每小时，\\\\乙车速度为25千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "3",incorrectOptions:["2 ","6","5"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距175千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为13千米每小时，\\\\乙车速度为22千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "5",incorrectOptions:["4 ","2","3"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距175千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为13千米每小时，\\\\乙车速度为22千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "5",incorrectOptions:["4 ","2","3"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距205千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为20千米每小时，\\\\乙车速度为21千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "5",incorrectOptions:["4 ","3","2"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距205千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为20千米每小时，\\\\乙车速度为21千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "5",incorrectOptions:["4 ","3","2"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距308千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为28千米每小时，\\\\乙车速度为16千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "7",incorrectOptions:["5 ","8","4"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距308千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为28千米每小时，\\\\乙车速度为16千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "7",incorrectOptions:["5 ","8","4"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距69千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为10千米每小时，\\\\乙车速度为13千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "3",incorrectOptions:["8 ","5","7"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距69千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为10千米每小时，\\\\乙车速度为13千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "3",incorrectOptions:["8 ","5","7"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距148千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为20千米每小时，\\\\乙车速度为17千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "4",incorrectOptions:["1 ","9","7"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距148千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为20千米每小时，\\\\乙车速度为17千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "4",incorrectOptions:["1 ","9","7"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距74千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为24千米每小时，\\\\乙车速度为13千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "2",incorrectOptions:["1 ","6","7"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距74千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为24千米每小时，\\\\乙车速度为13千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "2",incorrectOptions:["1 ","6","7"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距240千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为18千米每小时，\\\\乙车速度为22千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "6",incorrectOptions:["4 ","9","7"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距240千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为18千米每小时，\\\\乙车速度为22千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "6",incorrectOptions:["4 ","9","7"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距75千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为12千米每小时，\\\\乙车速度为13千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "3",incorrectOptions:["7 ","5","8"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距75千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为12千米每小时，\\\\乙车速度为13千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "3",incorrectOptions:["7 ","5","8"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距203千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为17千米每小时，\\\\乙车速度为12千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "7",incorrectOptions:["1 ","2","4"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距203千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为17千米每小时，\\\\乙车速度为12千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "7",incorrectOptions:["1 ","2","4"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距360千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为29千米每小时，\\\\乙车速度为16千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "8",incorrectOptions:["1 ","3","7"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距360千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为29千米每小时，\\\\乙车速度为16千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "8",incorrectOptions:["1 ","3","7"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距140千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为19千米每小时，\\\\乙车速度为16千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "4",incorrectOptions:["2 ","3","5"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距140千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为19千米每小时，\\\\乙车速度为16千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "4",incorrectOptions:["2 ","3","5"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距58千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为11千米每小时，\\\\乙车速度为18千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "2",incorrectOptions:["3 ","7","5"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距58千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为11千米每小时，\\\\乙车速度为18千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "2",incorrectOptions:["3 ","7","5"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距328千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为23千米每小时，\\\\乙车速度为18千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "8",incorrectOptions:["6 ","7","2"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距328千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为23千米每小时，\\\\乙车速度为18千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "8",incorrectOptions:["6 ","7","2"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距64千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为14千米每小时，\\\\乙车速度为18千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "2",incorrectOptions:["7 ","1","4"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距64千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为14千米每小时，\\\\乙车速度为18千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "2",incorrectOptions:["7 ","1","4"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距99千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为21千米每小时，\\\\乙车速度为12千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "3",incorrectOptions:["1 ","9","6"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距99千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为21千米每小时，\\\\乙车速度为12千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "3",incorrectOptions:["1 ","9","6"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距108千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为13千米每小时，\\\\乙车速度为23千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "3",incorrectOptions:["5 ","9","2"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距108千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为13千米每小时，\\\\乙车速度为23千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "3",incorrectOptions:["5 ","9","2"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距161千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为11千米每小时，\\\\乙车速度为12千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "7",incorrectOptions:["5 ","9","6"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距161千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为11千米每小时，\\\\乙车速度为12千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "7",incorrectOptions:["5 ","9","6"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距225千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为24千米每小时，\\\\乙车速度为21千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "5",incorrectOptions:["7 ","4","1"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距225千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为24千米每小时，\\\\乙车速度为21千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "5",incorrectOptions:["7 ","4","1"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距308千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为21千米每小时，\\\\乙车速度为23千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "7",incorrectOptions:["9 ","3","2"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距308千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为21千米每小时，\\\\乙车速度为23千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "7",incorrectOptions:["9 ","3","2"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距96千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为21千米每小时，\\\\乙车速度为11千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "3",incorrectOptions:["8 ","9","5"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距96千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为21千米每小时，\\\\乙车速度为11千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "3",incorrectOptions:["8 ","9","5"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距252千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为11千米每小时，\\\\乙车速度为25千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "7",incorrectOptions:["3 ","9","2"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距252千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为11千米每小时，\\\\乙车速度为25千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "7",incorrectOptions:["3 ","9","2"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距144千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为25千米每小时，\\\\乙车速度为23千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "3",incorrectOptions:["6 ","9","7"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距144千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为25千米每小时，\\\\乙车速度为23千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "3",incorrectOptions:["6 ","9","7"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距63千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为11千米每小时，\\\\乙车速度为10千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "3",incorrectOptions:["8 ","7","4"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距63千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为11千米每小时，\\\\乙车速度为10千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "3",incorrectOptions:["8 ","7","4"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距56千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为10千米每小时，\\\\乙车速度为18千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "2",incorrectOptions:["9 ","5","8"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距56千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为10千米每小时，\\\\乙车速度为18千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "2",incorrectOptions:["9 ","5","8"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距235千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为27千米每小时，\\\\乙车速度为20千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "5",incorrectOptions:["8 ","4","7"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距235千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为27千米每小时，\\\\乙车速度为20千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "5",incorrectOptions:["8 ","4","7"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距78千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为26千米每小时，\\\\乙车速度为13千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "2",incorrectOptions:["7 ","9","4"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距78千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为26千米每小时，\\\\乙车速度为13千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "2",incorrectOptions:["7 ","9","4"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距126千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为15千米每小时，\\\\乙车速度为27千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "3",incorrectOptions:["2 ","7","8"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距126千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为15千米每小时，\\\\乙车速度为27千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "3",incorrectOptions:["2 ","7","8"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距205千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为14千米每小时，\\\\乙车速度为27千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "5",incorrectOptions:["1 ","9","3"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距205千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为14千米每小时，\\\\乙车速度为27千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "5",incorrectOptions:["1 ","9","3"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距129千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为15千米每小时，\\\\乙车速度为28千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "3",incorrectOptions:["2 ","5","4"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距129千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为15千米每小时，\\\\乙车速度为28千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "3",incorrectOptions:["2 ","5","4"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距264千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为10千米每小时，\\\\乙车速度为23千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "8",incorrectOptions:["5 ","6","1"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距264千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为10千米每小时，\\\\乙车速度为23千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "8",incorrectOptions:["5 ","6","1"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距116千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为18千米每小时，\\\\乙车速度为11千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "4",incorrectOptions:["1 ","8","5"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距116千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为18千米每小时，\\\\乙车速度为11千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "4",incorrectOptions:["1 ","8","5"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距144千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为26千米每小时，\\\\乙车速度为22千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "3",incorrectOptions:["7 ","1","9"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距144千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为26千米每小时，\\\\乙车速度为22千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "3",incorrectOptions:["7 ","1","9"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距203千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为14千米每小时，\\\\乙车速度为15千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "7",incorrectOptions:["6 ","4","9"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距203千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为14千米每小时，\\\\乙车速度为15千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "7",incorrectOptions:["6 ","4","9"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距111千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为19千米每小时，\\\\乙车速度为18千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "3",incorrectOptions:["4 ","8","2"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距111千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为19千米每小时，\\\\乙车速度为18千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "3",incorrectOptions:["4 ","8","2"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距66千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为20千米每小时，\\\\乙车速度为13千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "2",incorrectOptions:["1 ","7","5"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距66千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为20千米每小时，\\\\乙车速度为13千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "2",incorrectOptions:["1 ","7","5"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距396千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为28千米每小时，\\\\乙车速度为16千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "9",incorrectOptions:["2 ","1","3"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距396千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为28千米每小时，\\\\乙车速度为16千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "9",incorrectOptions:["2 ","1","3"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距315千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为12千米每小时，\\\\乙车速度为23千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "9",incorrectOptions:["4 ","6","5"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距315千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为12千米每小时，\\\\乙车速度为23千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "9",incorrectOptions:["4 ","6","5"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距110千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为10千米每小时，\\\\乙车速度为12千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "5",incorrectOptions:["2 ","4","6"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距110千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为10千米每小时，\\\\乙车速度为12千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "5",incorrectOptions:["2 ","4","6"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距185千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为25千米每小时，\\\\乙车速度为12千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "5",incorrectOptions:["8 ","7","3"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距185千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为25千米每小时，\\\\乙车速度为12千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "5",incorrectOptions:["8 ","7","3"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距360千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为29千米每小时，\\\\乙车速度为16千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "8",incorrectOptions:["4 ","2","3"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距360千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为29千米每小时，\\\\乙车速度为16千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "8",incorrectOptions:["4 ","2","3"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距203千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为15千米每小时，\\\\乙车速度为14千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "7",incorrectOptions:["1 ","3","2"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距203千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为15千米每小时，\\\\乙车速度为14千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "7",incorrectOptions:["1 ","3","2"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距80千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为13千米每小时，\\\\乙车速度为27千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "2",incorrectOptions:["8 ","3","4"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距80千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为13千米每小时，\\\\乙车速度为27千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "2",incorrectOptions:["8 ","3","4"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距156千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为24千米每小时，\\\\乙车速度为28千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "3",incorrectOptions:["8 ","1","7"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距156千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为24千米每小时，\\\\乙车速度为28千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "3",incorrectOptions:["8 ","1","7"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距76千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为26千米每小时，\\\\乙车速度为12千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "2",incorrectOptions:["1 ","8","5"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距76千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为26千米每小时，\\\\乙车速度为12千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "2",incorrectOptions:["1 ","8","5"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距246千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为20千米每小时，\\\\乙车速度为21千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "6",incorrectOptions:["9 ","7","4"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距246千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为20千米每小时，\\\\乙车速度为21千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "6",incorrectOptions:["9 ","7","4"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距180千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为20千米每小时，\\\\乙车速度为25千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "4",incorrectOptions:["7 ","8","3"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距180千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为20千米每小时，\\\\乙车速度为25千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "4",incorrectOptions:["7 ","8","3"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距96千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为14千米每小时，\\\\乙车速度为10千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "4",incorrectOptions:["1 ","9","2"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距96千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为14千米每小时，\\\\乙车速度为10千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "4",incorrectOptions:["1 ","9","2"]},
 
-{equation: "\\[{\\begin{array}{c}AB两相距329千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为19千米每小时，\\\\乙车速度为28千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "7",incorrectOptions:["5 ","1","4"]},
+{equation: "\\[{\\begin{array}{c}AB两地相距329千米。\\\\甲车从A地出发，乙车从B地出发。相向而行。\\\\甲车速度为19千米每小时，\\\\乙车速度为28千米每小时。\\\\请问同时出发后几小时相遇？\\end{array}}\\]",correctOption: "7",incorrectOptions:["5 ","1","4"]},
 
 
 ]
