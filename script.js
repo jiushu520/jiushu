@@ -4768,6 +4768,7 @@ function toggleMode(mode) {
 function loadQuestions(questionBank, topic) {
     currentQuestionBank = questionBank;
     currentTopic = topic;
+    currentQuestionIndex = 0; // 初始化题目索引
     score = 0;
     questionsAnswered = 0;
     updateScoreboard();
