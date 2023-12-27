@@ -4603,6 +4603,36 @@ const 图片  =[
         let questionsAnswered = 0;
         let roundsScores = [];
         let currentTopic = '';
+        let currentQuestionIndex = 0; 
+        let isRandomMode = false; // 默认为顺序模式
+        
+
+
+
+
+
+function toggleMode(mode) {
+    isRandomMode = mode;
+    currentQuestionIndex = 0; // 重置问题索引
+
+    // 重置分数和已回答问题数
+    score = 0;
+    questionsAnswered = 0;
+    updateScoreboard();
+
+    // 更新显示元素
+    const modeDisplay = document.getElementById('current-mode-display');
+    if (isRandomMode) {
+        modeDisplay.textContent = '当前模式: 随机';
+    } else {
+        modeDisplay.textContent = '当前模式: 顺序';
+    }
+
+    startNewRound(); // 重新开始新一轮
+}
+
+
+
 
 
 
@@ -4619,9 +4649,23 @@ function loadQuestions(questionBank, topic) {
 
 
 
+
 function generateEquationSystem() {
-    const randomIndex = Math.floor(Math.random() * currentQuestionBank.length);
-    const { equation, img, correctOption, incorrectOptions } = currentQuestionBank[randomIndex];
+    let question;
+
+    // 根据当前模式选择题目
+    if (isRandomMode) {
+        const randomIndex = Math.floor(Math.random() * currentQuestionBank.length);
+        question = currentQuestionBank[randomIndex];
+    } else {
+        if (currentQuestionIndex >= currentQuestionBank.length) {
+            currentQuestionIndex = 0; // 如果到达题库末尾，重置索引
+        }
+        question = currentQuestionBank[currentQuestionIndex];
+        currentQuestionIndex++; // 移动到下一个题目
+    }
+
+    const { equation, img, correctOption, incorrectOptions } = question; // 使用选择的题目
 
     const correctIndex = Math.floor(Math.random() * 4);
     const options = [...incorrectOptions];
@@ -4640,6 +4684,8 @@ function generateEquationSystem() {
         options
     };
 }
+
+
 
 
 
