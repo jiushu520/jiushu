@@ -1942,6 +1942,135 @@ const 线性代数02向量点乘内积 =[
 {equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(-10,-6),B(6,2); \\\\ 计算:(-10,-6)\\cdot (6,2)=? \\\\在坐标系中画出O(0,0);A(-10,-6); B(6,2);C(-2,6)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系? \\end{gather}",correctOption: "-72",incorrectOptions:["-35","-78","-74"]},
 ]
 
+
+const 函数03二次函数切线方程 =[
+{equation: "\\begin{gather}f(x)=-2x^2-4x+5,\\\\求过点(0,5)的切线方程。\\end{gather}",correctOption: "y=-4x+5",incorrectOptions:["y=-7x+4","y=-x-5","y=-2x-1"]},
+
+{equation: "\\begin{gather}f(x)=-4x^2+x-8,\\\\求过点(-3,-47)的切线方程。\\end{gather}",correctOption: "y=25x+28",incorrectOptions:["y=2x-6","y=x+1","y=6x-8"]},
+
+{equation: "\\begin{gather}f(x)=3x^2+3x+3,\\\\求过点(3,39)的切线方程。\\end{gather}",correctOption: "y=21x-24",incorrectOptions:["y=-8x-7","y=-3x+4","y=-6x-3"]},
+
+{equation: "\\begin{gather}f(x)=-2x^2+4,\\\\求过点(-3,-14)的切线方程。\\end{gather}",correctOption: "y=12x+22",incorrectOptions:["y=2x-4","y=-6x-2","y=8x+5"]},
+
+{equation: "\\begin{gather}f(x)=-2x^2+3x-7,\\\\求过点(-2,-21)的切线方程。\\end{gather}",correctOption: "y=11x+1",incorrectOptions:["y=7x+3","y=-5x-8","y=-4x-4"]},
+
+{equation: "\\begin{gather}f(x)=-2x^2-4x+2,\\\\求过点(-1,4)的切线方程。\\end{gather}",correctOption: "y=4",incorrectOptions:["y=-7x-2","y=-4x+5","y=-x-4"]},
+
+{equation: "\\begin{gather}f(x)=2x^2-3x+6,\\\\求过点(0,6)的切线方程。\\end{gather}",correctOption: "y=-3x+6",incorrectOptions:["y=7x-8","y=-x-2","y=+1"]},
+
+{equation: "\\begin{gather}f(x)=-2x^2-4x-10,\\\\求过点(-2,-10)的切线方程。\\end{gather}",correctOption: "y=4x-2",incorrectOptions:["y=8x+4","y=3x-5","y=-2x+2"]},
+
+{equation: "\\begin{gather}f(x)=-5x^2+2x+7,\\\\求过点(0,7)的切线方程。\\end{gather}",correctOption: "y=2x+7",incorrectOptions:["y=7x-6","y=-2x-10","y=-5x-1"]},
+
+{equation: "\\begin{gather}f(x)=-2x^2-x+3,\\\\求过点(-2,-3)的切线方程。\\end{gather}",correctOption: "y=7x+11",incorrectOptions:["y=-9x-9","y=-8x-4","y=x+5"]},
+
+{equation: "\\begin{gather}f(x)=-2x^2+x-8,\\\\求过点(-4,-44)的切线方程。\\end{gather}",correctOption: "y=17x+24",incorrectOptions:["y=-8x-2","y=5x-10","y=6x-3"]},
+
+{equation: "\\begin{gather}f(x)=-5x^2+2x-7,\\\\求过点(2,-23)的切线方程。\\end{gather}",correctOption: "y=-18x+13",incorrectOptions:["y=5x+8","y=-4x-4","y=-5x+8"]},
+
+{equation: "\\begin{gather}f(x)=-5x^2-x-7,\\\\求过点(3,-55)的切线方程。\\end{gather}",correctOption: "y=-31x+38",incorrectOptions:["y=-6x+7","y=x+7","y=-4x-2"]},
+
+{equation: "\\begin{gather}f(x)=-4x^2-5x-3,\\\\求过点(-1,-2)的切线方程。\\end{gather}",correctOption: "y=3x+1",incorrectOptions:["y=-9x-5","y=5x-6","y=+5"]},
+
+{equation: "\\begin{gather}f(x)=-4x^2-4x-1,\\\\求过点(-1,-1)的切线方程。\\end{gather}",correctOption: "y=4x+3",incorrectOptions:["y=-7x+4","y=-2x+7","y=-8x+1"]},
+
+{equation: "\\begin{gather}f(x)=-3x^2-x-4,\\\\求过点(1,-8)的切线方程。\\end{gather}",correctOption: "y=-7x-1",incorrectOptions:["y=-9x-7","y=-2x-3","y=5x+6"]},
+
+{equation: "\\begin{gather}f(x)=3x^2-5x-9,\\\\求过点(-5,91)的切线方程。\\end{gather}",correctOption: "y=-35x-84",incorrectOptions:["y=-2x-9","y=4x-1","y=5x+8"]},
+
+{equation: "\\begin{gather}f(x)=3x^2-5x+8,\\\\求过点(0,8)的切线方程。\\end{gather}",correctOption: "y=-5x+8",incorrectOptions:["y=-3x-1","y=6x-10","y=-4x+7"]},
+
+{equation: "\\begin{gather}f(x)=3x^2-2x-3,\\\\求过点(-3,30)的切线方程。\\end{gather}",correctOption: "y=-20x-30",incorrectOptions:["y=-4x-10","y=-6x+4","y=3x+3"]},
+
+{equation: "\\begin{gather}f(x)=2x^2-3x+5,\\\\求过点(2,7)的切线方程。\\end{gather}",correctOption: "y=5x-3",incorrectOptions:["y=3x+3","y=-10x-6","y=4x-3"]},
+
+{equation: "\\begin{gather}f(x)=-4x^2+3x-9,\\\\求过点(1,-10)的切线方程。\\end{gather}",correctOption: "y=-5x-5",incorrectOptions:["y=6x-6","y=-9x-2","y=-6x+7"]},
+
+{equation: "\\begin{gather}f(x)=-3x^2-6,\\\\求过点(-2,-18)的切线方程。\\end{gather}",correctOption: "y=12x+6",incorrectOptions:["y=-2x-5","y=5x-1","y=2x-10"]},
+
+{equation: "\\begin{gather}f(x)=-4x^2-4x+2,\\\\求过点(3,-46)的切线方程。\\end{gather}",correctOption: "y=-28x+38",incorrectOptions:["y=2x-8","y=-4x","y=-6x-6"]},
+
+{equation: "\\begin{gather}f(x)=-x^2-3x-9,\\\\求过点(-4,-13)的切线方程。\\end{gather}",correctOption: "y=5x+7",incorrectOptions:["y=-7x-3","y=-9x-4","y=+7"]},
+
+{equation: "\\begin{gather}f(x)=-4x^2-x-8,\\\\求过点(2,-26)的切线方程。\\end{gather}",correctOption: "y=-17x+8",incorrectOptions:["y=-x-9","y=4x+1","y=-9x-4"]},
+
+{equation: "\\begin{gather}f(x)=-x^2-4x+3,\\\\求过点(-1,6)的切线方程。\\end{gather}",correctOption: "y=-2x+4",incorrectOptions:["y=2x-4","y=-5","y=5x-2"]},
+
+{equation: "\\begin{gather}f(x)=-x^2-3x+7,\\\\求过点(-5,-3)的切线方程。\\end{gather}",correctOption: "y=7x+32",incorrectOptions:["y=-3x-5","y=-7x-2","y=8x"]},
+
+{equation: "\\begin{gather}f(x)=2x^2-3x-6,\\\\求过点(3,3)的切线方程。\\end{gather}",correctOption: "y=9x-24",incorrectOptions:["y=-8x-8","y=8x-2","y=-x+5"]},
+
+{equation: "\\begin{gather}f(x)=x^2,\\\\求过点(-1,1)的切线方程。\\end{gather}",correctOption: "y=-2x-1",incorrectOptions:["y=5x-5","y=8x-3","y=-10x-10"]},
+
+{equation: "\\begin{gather}f(x)=-4x^2-4x+4,\\\\求过点(1,-4)的切线方程。\\end{gather}",correctOption: "y=-12x+8",incorrectOptions:["y=-10x-6","y=5x-3","y=3x+3"]},
+
+
+]
+
+const 函数02二次函数切线与求导 =[
+
+{equation: "\\begin{gather}f(x)=2x^2+3x,\\\\求过点(3,27)的切线斜率=？\\end{gather}",correctOption: "15",incorrectOptions:["-7","0","-1"]},
+
+{equation: "\\begin{gather}f(x)=-5x^2+2x+5,\\\\求过点(-1,-2)的切线斜率=？\\end{gather}",correctOption: "12",incorrectOptions:["-4","-6","-8"]},
+
+{equation: "\\begin{gather}f(x)=x^2+2x+3,\\\\求过点(-3,6)的切线斜率=？\\end{gather}",correctOption: "-4",incorrectOptions:["-2","1","8"]},
+
+{equation: "\\begin{gather}f(x)=-2x^2,\\\\求过点(-2,-8)的切线斜率=？\\end{gather}",correctOption: "8",incorrectOptions:["-9","-6","3"]},
+
+{equation: "\\begin{gather}f(x)=-2x^2-2x,\\\\求过点(0,0)的切线斜率=？\\end{gather}",correctOption: "-2",incorrectOptions:["1","8","-6"]},
+
+{equation: "\\begin{gather}f(x)=x^2-6,\\\\求过点(-1,-5)的切线斜率=？\\end{gather}",correctOption: "-2",incorrectOptions:["-4","-1","0"]},
+
+{equation: "\\begin{gather}f(x)=3x^2-2x-5,\\\\求过点(-2,11)的切线斜率=？\\end{gather}",correctOption: "-14",incorrectOptions:["-9","-7","-10"]},
+
+{equation: "\\begin{gather}f(x)=3x^2+3x-2,\\\\求过点(1,4)的切线斜率=？\\end{gather}",correctOption: "9",incorrectOptions:["-5","-8","8"]},
+
+{equation: "\\begin{gather}f(x)=-3x^2+2x+3,\\\\求过点(1,2)的切线斜率=？\\end{gather}",correctOption: "-4",incorrectOptions:["2","8","-1"]},
+
+{equation: "\\begin{gather}f(x)=-x^2+3x-6,\\\\求过点(1,-4)的切线斜率=？\\end{gather}",correctOption: "1",incorrectOptions:["8","-7","-5"]},
+
+{equation: "\\begin{gather}f(x)=2x^2-x-9,\\\\求过点(-2,1)的切线斜率=？\\end{gather}",correctOption: "-9",incorrectOptions:["4","5","1"]},
+
+{equation: "\\begin{gather}f(x)=-4x^2-x-3,\\\\求过点(-1,-6)的切线斜率=？\\end{gather}",correctOption: "7",incorrectOptions:["6","-3","-8"]},
+
+{equation: "\\begin{gather}f(x)=-2x^2-3x+3,\\\\求过点(0,3)的切线斜率=？\\end{gather}",correctOption: "-3",incorrectOptions:["-9","3","7"]},
+
+{equation: "\\begin{gather}f(x)=-4x^2-2x-6,\\\\求过点(0,-6)的切线斜率=？\\end{gather}",correctOption: "-2",incorrectOptions:["-5","6","7"]},
+
+{equation: "\\begin{gather}f(x)=3x^2+3,\\\\求过点(1,6)的切线斜率=？\\end{gather}",correctOption: "6",incorrectOptions:["2","-5","-6"]},
+
+{equation: "\\begin{gather}f(x)=-5x^2-2x-7,\\\\求过点(1,-14)的切线斜率=？\\end{gather}",correctOption: "-12",incorrectOptions:["-9","0","2"]},
+
+{equation: "\\begin{gather}f(x)=3x^2-2x-5,\\\\求过点(2,3)的切线斜率=？\\end{gather}",correctOption: "10",incorrectOptions:["-3","-6","-8"]},
+
+{equation: "\\begin{gather}f(x)=-2x^2+x,\\\\求过点(0,0)的切线斜率=？\\end{gather}",correctOption: "1",incorrectOptions:["0","-10","-6"]},
+
+{equation: "\\begin{gather}f(x)=2x^2+x-2,\\\\求过点(1,1)的切线斜率=？\\end{gather}",correctOption: "5",incorrectOptions:["-5","6","3"]},
+
+{equation: "\\begin{gather}f(x)=-3x^2+x-6,\\\\求过点(-4,-58)的切线斜率=？\\end{gather}",correctOption: "25",incorrectOptions:["-3","-6","2"]},
+
+{equation: "\\begin{gather}f(x)=-5x^2+1,\\\\求过点(-5,-124)的切线斜率=？\\end{gather}",correctOption: "50",incorrectOptions:["-10","-8","6"]},
+
+{equation: "\\begin{gather}f(x)=-3x^2-3x,\\\\求过点(-3,-18)的切线斜率=？\\end{gather}",correctOption: "15",incorrectOptions:["-7","-10","0"]},
+
+{equation: "\\begin{gather}f(x)=x^2-1,\\\\求过点(0,-1)的切线斜率=？\\end{gather}",correctOption: "0",incorrectOptions:["-9","-4","-2"]},
+
+{equation: "\\begin{gather}f(x)=-2x^2+2,\\\\求过点(2,-6)的切线斜率=？\\end{gather}",correctOption: "-8",incorrectOptions:["5","-9","-4"]},
+
+{equation: "\\begin{gather}f(x)=-2x^2-2x+1,\\\\求过点(-2,-3)的切线斜率=？\\end{gather}",correctOption: "6",incorrectOptions:["-10","8","2"]},
+
+{equation: "\\begin{gather}f(x)=-2x^2+2x-1,\\\\求过点(-2,-13)的切线斜率=？\\end{gather}",correctOption: "10",incorrectOptions:["-1","4","3"]},
+
+{equation: "\\begin{gather}f(x)=3x^2-3x-10,\\\\求过点(1,-10)的切线斜率=？\\end{gather}",correctOption: "3",incorrectOptions:["-3","-5","6"]},
+
+{equation: "\\begin{gather}f(x)=-x^2-4x-4,\\\\求过点(3,-25)的切线斜率=？\\end{gather}",correctOption: "-10",incorrectOptions:["-6","-4","-7"]},
+
+{equation: "\\begin{gather}f(x)=3x^2-5x+7,\\\\求过点(1,5)的切线斜率=？\\end{gather}",correctOption: "1",incorrectOptions:["-3","3","-4"]},
+
+{equation: "\\begin{gather}f(x)=3x^2-x-3,\\\\求过点(-1,1)的切线斜率=？\\end{gather}",correctOption: "-7",incorrectOptions:["1","5","3"]},
+
+
+]
  
 
 
