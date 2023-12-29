@@ -4181,11 +4181,11 @@ const 直角坐标系运算01两点距离 = [
         ];
 
         const 分数混合运算 = [
-           {equation:"8\\frac{1}{7}=?} \\]",correctOption:"\\frac{57}{7}",incorrectOptions:["\\frac{24}{7}","\\frac{9}{7}","\\frac{45}{7}",]},
+           {equation:"\\[ {8\\frac{1}{7}=?} \\]",correctOption:"\\frac{57}{7}",incorrectOptions:["\\frac{24}{7}","\\frac{9}{7}","\\frac{45}{7}",]},
 
-          {equation:"7\\frac{1}{6}=?} \\]",correctOption:"\\frac{43}{6}",incorrectOptions:["\\frac{56}{6}","\\frac{72}{6}","\\frac{5}{6}",]},
+          {equation:"\\[ {7\\frac{1}{6}=?} \\]",correctOption:"\\frac{43}{6}",incorrectOptions:["\\frac{56}{6}","\\frac{72}{6}","\\frac{5}{6}",]},
 
-          {equation:"7\\frac{1}{7}=?} \\]",correctOption:"\\frac{50}{7}",incorrectOptions:["\\frac{72}{7}","\\frac{3}{7}","\\frac{42}{7}",]}, 
+          {equation:"\\[ {7\\frac{1}{7}=?} \\]",correctOption:"\\frac{50}{7}",incorrectOptions:["\\frac{72}{7}","\\frac{3}{7}","\\frac{42}{7}",]}, 
 {equation:"\\[ {\\frac{1}{8}\\times\\frac{4}{5}=?} \\]",correctOption:"\\frac{1}{10}",incorrectOptions:["\\frac{7}{40}","\\frac{1}{4}","\\frac{7}{20}"]},
 
 {equation:"\\[ {\\frac{7}{8}\\times\\frac{5}{6}=?} \\]",correctOption:"\\frac{35}{48}",incorrectOptions:["\\frac{21}{16}","\\frac{7}{48}","\\frac{15}{8}"]},
@@ -4736,29 +4736,39 @@ const 图片  =[
         let isRandomMode = false; // 默认为顺序模式
         
 
+// 新的闯关模式函数
+function startChallengeMode() {
+    isChallengeMode = true; // 激活闯关模式标志
+    currentQuestionIndex = 0; // 重置问题索引
+    score = 0; // 重置分数
+    questionsAnswered = 0; // 重置已回答问题数
+    updateScoreboard();
+    updateRoundsScoreboard();
+    document.getElementById('current-mode-display').textContent = '当前模式: 闯关';
+    startNewRound();
+}
 
 
 
 
+
+
+// 修改 toggleMode 函数
 function toggleMode(mode) {
     isRandomMode = mode;
-    currentQuestionIndex = 0; // 重置问题索引
-
-    // 重置分数和已回答问题数
+    isChallengeMode = false; // 确保在非闯关模式下，将闯关模式标志设置为 false
+    currentQuestionIndex = 0;
     score = 0;
     questionsAnswered = 0;
     updateScoreboard();
-
-    // 更新显示元素
     const modeDisplay = document.getElementById('current-mode-display');
-    if (isRandomMode) {
-        modeDisplay.textContent = '当前模式: 随机';
-    } else {
-        modeDisplay.textContent = '当前模式: 顺序';
-    }
-
-    startNewRound(); // 重新开始新一轮
+    modeDisplay.textContent = isRandomMode ? '当前模式: 随机' : '当前模式: 顺序';
+    startNewRound(); 
 }
+
+
+
+
 
 
 
@@ -4769,11 +4779,13 @@ function loadQuestions(questionBank, topic) {
     currentQuestionBank = questionBank;
     currentTopic = topic;
     currentQuestionIndex = 0; // 初始化题目索引
-    score = 0;
-    questionsAnswered = 0;
+    score = 0; // 重置当前轮分数
+    questionsAnswered = 0; // 重置已回答问题数
+    isRandomMode = false; // 设置为顺序模式
+    isChallengeMode = false; // 确保不在闯关模式
     updateScoreboard();
-    updateRoundsScoreboard();
     document.getElementById('current-topic').textContent = `玖数学: ${currentTopic}`; // 更新题型名称
+    document.getElementById('current-mode-display').textContent = '当前模式: 顺序'; // 更新模式显示
     startNewRound();
 }
 
@@ -4794,7 +4806,7 @@ function generateEquationSystem() {
         question = currentQuestionBank[currentQuestionIndex];
         currentQuestionIndex++; // 移动到下一个题目
     }
-
+     currentQuestionIndex= currentQuestionIndex
     const { equation, img, correctOption, incorrectOptions } = question; // 使用选择的题目
 
     const correctIndex = Math.floor(Math.random() * 4);
@@ -4836,35 +4848,64 @@ function generateEquationSystem() {
             MathJax.typeset();
         }
 
-        function startNewRound() {
-            if (questionsAnswered >= 10) {
-                roundsScores.push({ topic: currentTopic, score: score });
-                score = 0;
-                questionsAnswered = 0;
-                updateRoundsScoreboard();
-            }
-            displayEquationSystem();
-        }
 
-        function checkAnswer(selectedIndex) {
-            if (parseInt(selectedIndex) === currentEquationSystem.correctIndex) {
-                score++;
-            }
+// 修改后的 startNewRound 函数
+function startNewRound() {
+    let roundComplete = false;
+    let totalQuestionsInRound = isChallengeMode ? currentQuestionBank.length : 10;
 
-            questionsAnswered++;
-            updateScoreboard();
-            startNewRound();
+    if (isChallengeMode) {
+        roundComplete = questionsAnswered >= currentQuestionBank.length;
+    } else {
+        roundComplete = questionsAnswered >= 10;
+    }
+
+    if (roundComplete) {
+        roundsScores.push({ topic: currentTopic, score: score, totalQuestions: totalQuestionsInRound });
+        score = 0;
+        questionsAnswered = 0;
+        updateRoundsScoreboard();
+        if (!isChallengeMode) {
+            currentQuestionIndex = 0;
         }
+    }
+
+    displayEquationSystem();
+}
+
+
+// 修改后的 checkAnswer 函数
+// 修改后的 checkAnswer 函数
+function checkAnswer(selectedIndex) {
+    if (parseInt(selectedIndex) === currentEquationSystem.correctIndex) {
+        score++;
+    } else if (isChallengeMode) { // 闯关模式下的错误处理
+        score = 0; // 分数清零
+        questionsAnswered = 0; // 已回答问题数清零
+        currentQuestionIndex = 0; // 从第一题开始
+        updateScoreboard();
+        startNewRound(); // 立即开始新一轮
+        return; // 提前退出函数，避免下面的逻辑
+    }
+    // 无论答案正确与否，每次回答后增加已回答问题数
+    questionsAnswered++;
+    updateScoreboard();
+    startNewRound();
+}
+
+
+
+
 
         function updateScoreboard() {
             document.getElementById('score').textContent = score;
             document.getElementById('answered').textContent = questionsAnswered;
         }
 
-        function updateRoundsScoreboard() {
-            let roundsScoresText = roundsScores.map((round, index) => `第${index + 1}轮 (${round.topic}): ${round.score}分共10题`).join('<br>');
-            document.getElementById('rounds-scoreboard').innerHTML = roundsScoresText;
-        }
+function updateRoundsScoreboard() {
+    let roundsScoresText = roundsScores.map((round, index) => `第${index + 1}轮 (${round.topic}): ${round.score}分共${round.totalQuestions}题`).join('<br>');
+    document.getElementById('rounds-scoreboard').innerHTML = roundsScoresText;
+}
 
 
 function myFunction(id) {
@@ -4919,5 +4960,9 @@ function hideFrame() {
 
 
         // 默认加载分数混合运算题库
-        window.onload = () => loadQuestions( 函数01二次最值01, ' 函数01二次最值01');
+window.onload = () => {
+    loadQuestions(函数01二次最值01, '函数01二次最值01');
+    isChallengeMode = false; // 初始化时确保闯关模式不激活
+    startNewRound(); // 确保在页面加载时显示题目
+};
     
