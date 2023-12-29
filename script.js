@@ -1,3 +1,52 @@
+const 自招真题01代数=[
+
+
+]
+
+
+
+const 自招真题02方程与不等式=[
+
+
+]
+
+
+const 自招真题03直线与一次函数=[
+
+
+]
+
+
+const 自招真题05函数几何综合=[
+
+
+]
+
+
+
+const自招真题06三角形与四边形=[
+
+
+]
+
+
+const 自招真题07圆与三角函数=[
+
+
+]
+
+
+const 自招真题08数论与杂题=[
+
+
+]
+
+
+
+
+
+
+
 const 排列组合02排列组合综合应用=[
 {equation: "\\begin{gather}妈妈打算给大毛买3个口味不同的甜筒，\\\\有\\textcolor{#FFFF00}{香蕉}、\\textcolor{red}{草莓}、\\textcolor{green}{绿茶}、\\textcolor{blue}{蓝莓}……等10种不同的口味可选，\\\\请问有多少种不同的买法？\\end{gather}",correctOption:"120 ",incorrectOptions:["240","90","180",]},
 {equation: "\\begin{gather}妈妈打算给大毛买3个口味不同的甜筒，\\\\有\\textcolor{#FFFF00}{香蕉}、\\textcolor{red}{草莓}、\\textcolor{green}{绿茶}、\\textcolor{blue}{蓝莓}……等12种不同的口味可选，\\\\请问有多少种不同的买法？\\end{gather}",correctOption:"220 ",incorrectOptions:["240","90","180",]},
@@ -4961,7 +5010,7 @@ function hideFrame() {
 
         // 默认加载分数混合运算题库
 window.onload = () => {
-    loadQuestions(函数01二次最值01, '函数01二次最值01');
+    loadQuestions(线性代数04内外积与正切, '线性代数04内外积与正切');
     isChallengeMode = false; // 初始化时确保闯关模式不激活
     startNewRound(); // 确保在页面加载时显示题目
 };
