@@ -58,7 +58,7 @@ const 自招真题09圆锥曲线与微积分=[
 ]
 
 
-const 自招真题10向量与线性代数=[
+const 自招真题10向量复数线性代数=[
 {equation: "题目在路上......",icorrectOption: " ",incorrectOptions:["","","",]},
 
 ]
