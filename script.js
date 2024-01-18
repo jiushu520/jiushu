@@ -336,16 +336,39 @@ const 直角坐标系运算05定比分点=[
 {equation: "\\begin{gather}已知数轴上点A=9,B=15,\\\\点C在A、B之间,\\\\且AC：CB=1:1.\\\\则点C=\\_\\_。\\end{gather}",correctOption:"12 ",incorrectOptions:["2","-6","-4",]},
 ]
 
+const 鸟头模型 = [
+{equation: "\\begin{gather}1.如图，在△ABC中，\\\\AB的长度是BD的4倍，AC的长度是EC的3倍。\\\\如果△ABC的面积为20平方厘米，\\\\那么△ADE的面积是多少平方厘米？ \\end{gather}", img: "images/051802001.png",correctOption:"10 ",incorrectOptions:["12","9","15",]},
+{equation: "\\begin{gather}2.如图，在△ABC中，\\\\D点是最靠近B点的四等分点，E点是靠近C点的三等分点。\\\\如果△ABC的面积为10平方厘米，\\\\那么△AED的面积是多少平方厘米？ \\end{gather}", img: "images/051802002.png",correctOption:"5 ",incorrectOptions:["6","8","4",]},
+{equation: "\\begin{gather}3.如图，在△ABC中，BD:DA=1:3，CE:EA=1:2。\\\\如果△ABC的面积为10平方厘米，\\\\那么△AED的面积是多少平方厘米？ \\end{gather}", img: "images/051802003.png",correctOption:"5 ",incorrectOptions:["6","8","4",]},
+{equation: "\\begin{gather}4.如图，在平行四边形ABCD中，\\\\AF的长度是FD的2倍，CE的长度等于ED。\\\\如果平行四边形ABCD的面积为120平方厘米，\\\\那么△FDE的面积是多少平方厘米？ \\end{gather}", img: "images/051802004.png",correctOption:"10 ",incorrectOptions:["12","9","15",]},
+{equation: "\\begin{gather}5.如图，在平行四边形ABCD中，\\\\点F为靠近点D的三等分点，E为CD中点。\\\\如果平行四边形ABCD的面积为120平方厘米，\\\\那么△FDE的面积是多少平方厘米？ \\end{gather}", img: "images/051802005.png",correctOption:"20 ",incorrectOptions:["24","16","15",]},
+{equation: "\\begin{gather}6.如图，在平行四边形ABCD中，\\\\AD:AF=3:2，CD:CE=2:1。\\\\如果平行四边形ABCD的面积为120平方厘米，\\\\那么△FDE的面积是多少平方厘米？ \\end{gather}", img: "images/051802006.png",correctOption:"20 ",incorrectOptions:["24","16","15",]},
+{equation: "\\begin{gather}7.三角形ABC中，\\\\AB的长度是DB的4倍，E点是靠近C点的三等分点，BF:FC=3:2。\\\\若三角形ABC的面积等于120平方厘米，\\\\则三角形DEF的面积是多少平方厘米？ \\end{gather}", img: "images/051802007.png",correctOption:"26 ",incorrectOptions:["20","36","18",]},
+{equation: "\\begin{gather}8.三角形ABC中，\\\\AB的长度是DB的2倍，E点是靠近C点的三等分点，BF:FC=3:2。\\\\若三角形ABC的面积等于60平方厘米，\\\\则三角形DEF的面积是多少平方厘米？ \\end{gather}", img: "images/051802008.png",correctOption:"14 ",incorrectOptions:["16","12","20",]},
+{equation: "\\begin{gather}9.三角形ABC中，\\\\AB的长度是DB的2倍，E点是靠近A点的三等分点，BF:FC=2:3。\\\\若三角形ABC的面积等于90平方厘米，\\\\则三角形DEF的面积是多少平方厘米？ \\end{gather}", img: "images/051802009.png",correctOption:"21 ",incorrectOptions:["12","15","20",]},
+{equation: "\\begin{gather}10.如图，在△ABC中，\\\\AD的长度是DB的2倍，AC的长度是EC的4倍。\\\\如果四边形DBEC的面积为10平方厘米，\\\\那么△ABC的面积是多少平方厘米？ \\end{gather}", img: "images/051802010.png",correctOption:"20 ",incorrectOptions:["12","30","16",]},
+{equation: "\\begin{gather}11.如图，在△ABC中，\\\\AD:BD=1:3，E是AC的中点。\\\\如果四边形ADEC的面积为70平方厘米，\\\\那么△ABC的面积是多少平方厘米？ \\end{gather}", img: "images/051802011.png",correctOption:"105 ",incorrectOptions:["120","110","90",]},
+
+
+
+        ];
+
+
+
+
+
+
+
 const 沙漏与金字塔01认识沙漏=[
 
-{equation: "\\begin{gather}如图，DC平行AB，AC和DB交于点O，\\\\AB:DC=2:1，则DO:OB=\\_: \\_.\\end{gather}", img: "images/053701001.png",correctOption:"1:2 ",incorrectOptions:["3:2","1:3","2:1",]},
-{equation: "\\begin{gather}如图，DC平行AB，AC和DB交于点O，\\\\AB:DC=3:1，则DO:OB=\\_:\\_\\end{gather}", img: "images/053701001.png",correctOption:"3:1 ",incorrectOptions:["3:3","1:3","2:1",]},
-{equation: ".\\begin{gather}如图，DC平行AB，AC和DB交于点O，\\\\AB:DC=3:2，则DO:OB=\\_:\\_.\\end{gather}", img: "images/053701001.png",correctOption:"2:3 ",incorrectOptions:["3:2","1:3","2:1",]},
-{equation: "\\begin{gather}如图，DC平行AB，AC和DB交于点O，\\\\DC长5厘米，AB长10厘米，DO长3厘米，\\\\那么OB长多少厘米？\\end{gather}", img: "images/053701001.png",correctOption:"6 ",incorrectOptions:["8","4","9",]},
-{equation: "\\begin{gather}如图，DC平行AB，AC和DB交于点O，\\\\DC长6厘米，AB长10厘米，DO长3厘米，\\\\那么OB长多少厘米？\\end{gather}", img: "images/053701001.png",correctOption:"5 ",incorrectOptions:["3","6","4",]},
-{equation: "\\begin{gather}如图，DC平行AB，AC和DB交于点O，\\\\DO长4厘米，OB长10厘米，AO长15厘米，\\\\那么OC长多少厘米？\\end{gather}", img: "images/053701002.png",correctOption:"6 ",incorrectOptions:["9","8","5",]},
-{equation: "\\begin{gather}如图，AD平行BC，AC与BD交于点O，\\\\AD长6厘米，BC长10厘米，BO比OD长2厘米，\\\\那么BD长多少厘米？\\end{gather}", img: "images/053701002.png",correctOption:"8 ",incorrectOptions:["4","9","3",]},
-{equation: "\\begin{gather}如图，AD平行BC，AC与BD交于点O，\\\\AD长9厘米，BC长15厘米，BO比OD长4厘米，\\\\那么BD长多少厘米？\\end{gather}", img: "images/053701002.png",correctOption:"16 ",incorrectOptions:["9","18","15",]},
+{equation: "\\begin{gather}1、如图，DC平行AB，AC和DB交于点O，\\\\AB:DC=2:1，则DO:OB=\\_: \\_.\\end{gather}", img: "images/053701001.png",correctOption:"1:2 ",incorrectOptions:["3:2","1:3","2:1",]},
+{equation: "\\begin{gather}2、如图，DC平行AB，AC和DB交于点O，\\\\AB:DC=3:1，则DO:OB=\\_:\\_\\end{gather}", img: "images/053701001.png",correctOption:"3:1 ",incorrectOptions:["3:3","1:3","2:1",]},
+{equation: ".\\begin{gather}3、如图，DC平行AB，AC和DB交于点O，\\\\AB:DC=3:2，则DO:OB=\\_:\\_.\\end{gather}", img: "images/053701001.png",correctOption:"2:3 ",incorrectOptions:["3:2","1:3","2:1",]},
+{equation: "\\begin{gather}4、如图，DC平行AB，AC和DB交于点O，\\\\DC长5厘米，AB长10厘米，DO长3厘米，\\\\那么OB长多少厘米？\\end{gather}", img: "images/053701001.png",correctOption:"6 ",incorrectOptions:["8","4","9",]},
+{equation: "\\begin{gather}5、如图，DC平行AB，AC和DB交于点O，\\\\DC长6厘米，AB长10厘米，DO长3厘米，\\\\那么OB长多少厘米？\\end{gather}", img: "images/053701001.png",correctOption:"5 ",incorrectOptions:["3","6","4",]},
+{equation: "\\begin{gather}6、如图，DC平行AB，AC和DB交于点O，\\\\DO长4厘米，OB长10厘米，AC长15厘米，\\\\那么OC长多少厘米？\\end{gather}", img: "images/053701002.png",correctOption:"6 ",incorrectOptions:["9","8","5",]},
+{equation: "\\begin{gather}7、如图，AD平行BC，AC与BD交于点O，\\\\AD长6厘米，BC长10厘米，BO比OD长2厘米，\\\\那么BD长多少厘米？\\end{gather}", img: "images/053701002.png",correctOption:"8 ",incorrectOptions:["4","9","3",]},
+{equation: "\\begin{gather}8、如图，AD平行BC，AC与BD交于点O，\\\\AD长9厘米，BC长15厘米，BO比OD长4厘米，\\\\那么BD长多少厘米？\\end{gather}", img: "images/053701002.png",correctOption:"16 ",incorrectOptions:["9","18","15",]},
 
 ]
 
@@ -4922,6 +4945,7 @@ function generateEquationSystem() {
         }
 
 
+
 // 修改后的 startNewRound 函数
 function startNewRound() {
     let roundComplete = false;
@@ -4938,13 +4962,14 @@ function startNewRound() {
         score = 0;
         questionsAnswered = 0;
         updateRoundsScoreboard();
-        if (!isChallengeMode) {
-            currentQuestionIndex = 0;
+        if (!isChallengeMode && currentQuestionIndex >= currentQuestionBank.length) {
+            currentQuestionIndex = 0; // 非闯关模式下，如果已回答完所有题目，重置索引
         }
     }
 
     displayEquationSystem();
 }
+
 
 
 // 修改后的 checkAnswer 函数
