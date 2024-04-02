@@ -4661,7 +4661,7 @@ const 直角坐标系运算01两点距离 = [
 
 {equation: "\\[ {\\begin{cases} 3x+2y=26 \\\\ 3x+3y=33\\end{cases}\\genfrac{}{}{0pt}{}{①}{②}} \\] ",correctOption:"\\begin{cases} x=4 \\\\ y=7\\end{cases} ",incorrectOptions:["\\begin{cases} x=11 \\\\ y=11\\end{cases}","\\begin{cases} x=7 \\\\ y=14\\end{cases}","\\begin{cases} x=1 \\\\ y=2\\end{cases}",]},
 
-{equation: "\\[ {\\begin{cases} 3x+y=5 \\\\ 6x+2y=10\\end{cases}\\genfrac{}{}{0pt}{}{①}{②}} \\] ",correctOption:"\\begin{cases} x=1 \\\\ y=2\\end{cases} ",incorrectOptions:["\\begin{cases} x=7 \\\\ y=10\\end{cases}","\\begin{cases} x=2 \\\\ y=5\\end{cases}","\\begin{cases} x=4 \\\\ y=4\\end{cases}",]},
+{equation: "\\[ {\\begin{cases} 3x+y=5 \\\\ 2x+3y=8\\end{cases}\\genfrac{}{}{0pt}{}{①}{②}} \\] ",correctOption:"\\begin{cases} x=1 \\\\ y=2\\end{cases} ",incorrectOptions:["\\begin{cases} x=7 \\\\ y=10\\end{cases}","\\begin{cases} x=2 \\\\ y=5\\end{cases}","\\begin{cases} x=4 \\\\ y=4\\end{cases}",]},
 
 {equation: "\\[ {\\begin{cases} 4x+y=21 \\\\ 6x+4y=44\\end{cases}\\genfrac{}{}{0pt}{}{①}{②}} \\] ",correctOption:"\\begin{cases} x=4 \\\\ y=5\\end{cases} ",incorrectOptions:["\\begin{cases} x=7 \\\\ y=7\\end{cases}","\\begin{cases} x=15 \\\\ y=7\\end{cases}","\\begin{cases} x=7 \\\\ y=10\\end{cases}",]},
 
