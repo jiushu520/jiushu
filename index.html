@@ -1,296 +1,104 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
-    <title>玖数学练习</title>
-    
-
-   
+    <title>玖数学</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            background-color: #e0f7fa; /* 浅蓝色背景 */
+        }
+        .top {
+            border: 1px solid #000;
+            padding: 0px; /* 减小padding以减少高度 */
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 50px; /* 设置一个固定的高度 */
+        }
+        .main {
+            display: flex;
+            flex-grow: 1;
+            height: calc(100vh - 50px); /* 剩余高度填充 */
+        }
+        .content, .right {
+            padding: 0px;
+            box-sizing: border-box;
+            border: 0px solid #fff;
+            height: 100%; /* 使其高度为父容器高度 */
+        }
+        .content {
+            flex: 7; /* 做题界面占70% */
+        }
+        .right {
+            flex: 3; /* 人工智能回复界面占30% */
+            transition: flex 0.3s; /* 增加过渡效果 */
+        }
+        .menu-link {
+            margin-left: 10px;
+            cursor: pointer;
+            text-decoration: none;
+            color: black;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        .hidden {
+            display: none; /* 隐藏元素 */
+        }
+        .blue-button {
+            background-color: #2196F3; /* 蓝色背景 */
+            color: white; /* 白色文字 */
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
-
-
-
-<div id="navigation" >
-        <h3><a href="https://jiushu520.github.io/jiushu/">玖数学运算</a></h3>
-
-        <div id="navigation1" style="background-color:lightblue">
-
-
-           <button onclick="myFunction(5)">自招综评系统</button><br><p>
-           <button onclick="myFunction(1)">数论几何组合</button><br><p>
-           <button onclick="myFunction(2)">运算方程应用</button><br><p>
-           <button onclick="myFunction(3)">函数微分积分</button><br><p>
-           <button onclick="myFunction(4)">向量线性代数</button><br><p>
-
-
-
-           <a href="#" onclick="showFrame('https://jiushu520.github.io/ai/'); return false;" >玖数问问</a><br><p>
-           <a href="#" onclick="showFrame('https://jiushu520.github.io/openai/'); return false;" >玖数AI</a><br><p>
-         <a href="https://shimo.im/docs/j9glacNngjQIXuhZ" target="_blank">阶梯运算</a>
-
-
-
-     </div>
-      <p>
-
-
-      <div id="自招综评系统" style="display">
-      <button onclick="hideFrame();">隐藏网页</button> <br>
-             <button onclick="loadQuestions(自招真题01代数, '自招真题01代数');">自招真题01代数</button><br>
-             <button onclick="loadQuestions(自招真题02方程与不等式, '自招真题02方程与不等式');">自招真题02方程与不等式</button><br>
-             <button onclick="loadQuestions(自招真题03直线与一次函数, '自招真题03直线与一次函数');">自招真题03直线与一次函数</button><br>
-             <button onclick="loadQuestions(自招真题04二次函数, '自招真题04二次函数');">自招真题04二次函数</button><br>
-             <button onclick="loadQuestions(自招真题05函数几何综合, '自招真题05函数几何综合');">自招真题05函数几何综合</button><br>
-             <button onclick="loadQuestions(自招真题06三角形与四边形, '自招真题06三角形与四边形');">自招真题06三角形与四边形</button><br>
-             <button onclick="loadQuestions(自招真题07圆与三角函数, '自招真题07圆与三角函数');">自招真题07圆与三角函数</button><br>
-             <button onclick="loadQuestions(自招真题08数论与杂题, '自招真题08数论与杂题');">自招真题08数论与杂题</button><br>
-             <button onclick="loadQuestions(自招真题09圆锥曲线与微积分, '自招真题09圆锥曲线与微积分');">自招真题09圆锥曲线与微积分</button><br>
-             <button onclick="loadQuestions(自招真题10向量复数线性代数, '自招真题10向量复数线性代数');">自招真题10向量复数线性代数</button><br>
-
-
-
-
-
-
-
-
-           <button onclick="loadQuestions(直角坐标系运算01两点距离, '直角坐标系运算01两点距离');">直角坐标系运算01两点距离</button><br>
-           <button onclick="loadQuestions(直角坐标系运算02两点求斜率, '直角坐标系运算02两点求斜率');">直角坐标系运算02两点求斜率</button><br>
-           <button onclick="loadQuestions(直角坐标系运算03两点求解析式, '直角坐标系运算03两点求解析式');">直角坐标系运算03两点求解析式</button><br>
-           <button onclick="loadQuestions(直角坐标系运算04点到直线距离, '直角坐标系运算04点到直线距离');">直角坐标系运算04点到直线距离</button><br>
-           <button onclick="loadQuestions(直角坐标系运算05定比分点, '直角坐标系运算05定比分点');">直角坐标系运算05定比分点</button><br>
-           <button onclick="loadQuestions(函数01二次最值01, '函数01二次最值01');">函数01二次最值01</button><br>
-           <button onclick="loadQuestions(函数02二次函数切线与求导, '函数02二次函数切线与求导');">函数02二次函数切线与求导</button><br>
-           <button onclick="loadQuestions(函数03二次函数切线方程, '函数03二次函数切线方程');">函数03二次函数切线方程</button><br>
-
-            <button onclick="loadQuestions(鸟头模型, '鸟头模型');showFrame('./video/05五年级/08图形中的比例/02直线形计算中的比例关系/小学五年级08图形中的比列02直线形计算中的比例关系02鸟头模型.mp4'); return false;">鸟头模型</button><br>
-           <button onclick="loadQuestions(燕尾模型01基本概念, '燕尾模型01基本概念');showFrame('./video/05五年级/08图形中的比例/03燕尾模型/小学五年级奥数08图形中的比例03燕尾模型01燕尾模型的基本概念.mp4'); return false;">燕尾模型01基本概念</button><br>
-           <button onclick="loadQuestions(燕尾模型02两外比的应用, '燕尾模型02两外比的应用');showFrame('./video/05五年级/08图形中的比例/03燕尾模型/小学五年级奥数08图形中的比例03燕尾模型02两外比的应用.mp4'); return false;">燕尾模型02两外比的应用</button><br>
-          <button onclick="loadQuestions(燕尾模型03一外一内比的应用上, '燕尾模型03一外一内比的应用(上)');showFrame('./video/05五年级/08图形中的比例/03燕尾模型/小学五年级奥数08图形中的比例03燕尾模型04一外一内比的应用（上）.mp4'); return false;">燕尾模型03一外一内比的应用(上)</button><br>
-           <button onclick="loadQuestions(燕尾模型04一外一内比的应用下, '燕尾模型04一外一内比的应用(下)');showFrame('./video/05五年级/08图形中的比例/03燕尾模型/小学五年级奥数08图形中的比例03燕尾模型04一外一内比的应用（下）.mp4'); return false;">燕尾模型04一外一内比的应用(下)</button><br>
-           <button onclick="loadQuestions(燕尾模型05两内比的应用, '燕尾模型05两内比的应用');showFrame('./video/05五年级/08图形中的比例/03燕尾模型/小学五年级奥数08图形中的比例03燕尾模型05两内比的应用.mp4'); return false;">燕尾模型05两内比的应用</button><br>
-           <button onclick="loadQuestions(沙漏与金字塔01认识沙漏, '沙漏与金字塔01认识沙漏');showFrame('./video//05五年级/08图形中的比例/04沙漏与金字塔/小学五年级奥数08图形中的比例04沙漏与金字塔01认识沙漏.mp4'); return false;">沙漏与金字塔01认识沙漏</button><br>
-
-           <button onclick="loadQuestions(沙漏与金字塔02梯形中的沙漏, '沙漏与金字塔02梯形中的沙漏');showFrame('./video//05五年级/08图形中的比例/04沙漏与金字塔/小学五年级奥数08图形中的比例04沙漏与金字塔02梯形中的沙漏.mp4'); return false;">沙漏与金字塔02梯形中的沙漏</button><br>
-           <button onclick="loadQuestions(沙漏与金字塔03平行线中的沙漏, '沙漏与金字塔03平行线中的沙漏');showFrame('./video//05五年级/08图形中的比例/04沙漏与金字塔/小学五年级奥数08图形中的比例04沙漏与金字塔03平行线与沙漏.mp4'); return false;">沙漏与金字塔03平行线中的沙漏</button><br>
-           <button onclick="loadQuestions(沙漏与金字塔04认识金字塔, '沙漏与金字塔04认识金字塔');showFrame('./video//05五年级/08图形中的比例/04沙漏与金字塔/小学五年级奥数08图形中的比例04沙漏与金字塔04认识金字塔.mp4'); return false;">沙漏与金字塔04认识金字塔</button><br>
-         <button onclick="loadQuestions(沙漏与金字塔05沙漏与金字塔综合, '沙漏与金字塔05沙漏与金字塔综合');showFrame('./video//05五年级/08图形中的比例/04沙漏与金字塔/小学五年级奥数08图形中的比例04沙漏与金字塔05金字塔和沙漏综合应用.mp4'); return false;">沙漏与金字塔05沙漏与金字塔综合</button><br>
-
-           <button onclick="loadQuestions(线性代数01行列式求值, '线性代数01行列式求值');">线性代数01行列式求值</button><br>
-           <button onclick="loadQuestions(线性代数02向量点乘内积, '线性代数02向量点乘内积');">线性代数02向量点乘内积</button><br>
-           <button onclick="loadQuestions(线性代数03向量叉乘外积, '线性代数03向量叉乘外积');">线性代数03向量叉乘外积</button><br>
-           <button onclick="loadQuestions(线性代数04内外积与正切, '线性代数04内外积与正切');">线性代数04内外积与正切</button><br>
-           <button onclick="loadQuestions(线性代数05内积与投影长, '线性代数05内积与投影长');">线性代数05内积与投影长</button><br>
-
-
-
-
-
-        
+    <div class="top">
+        <h3>玖数学</h3>
+        <div>
+            <a href="javascript:void(0);" class="menu-link" onclick="showRightContent('jiushuai.html')">玖数学问</a>
+            <a href="javascript:void(0);" class="menu-link" onclick="showRightContent('jiushudgtp4-o.html')">玖数求索</a>
+            <a href="javascript:void(0);" class="menu-link" onclick="showRightContent('jiushuopenai.html')">玖数智能</a>
+            <button class="blue-button" onclick="toggleRightContent()">切换人工智能</button>
+        </div>
     </div>
-
-
-
-
-
-
-
-      <div id="数论几何组合" style="display:none">
-      <button onclick="hideFrame();">隐藏网页</button> <br>
-
-           <button onclick="loadQuestions(鸟头模型, '鸟头模型');showFrame('./video/05五年级/08图形中的比例/02直线形计算中的比例关系/小学五年级08图形中的比列02直线形计算中的比例关系02鸟头模型.mp4'); return false;">鸟头模型</button><br>
-           <button onclick="loadQuestions(燕尾模型01基本概念, '燕尾模型01基本概念');showFrame('./video/05五年级/08图形中的比例/03燕尾模型/小学五年级奥数08图形中的比例03燕尾模型01燕尾模型的基本概念.mp4'); return false;">燕尾模型01基本概念</button><br>
-           <button onclick="loadQuestions(燕尾模型02两外比的应用, '燕尾模型02两外比的应用');showFrame('./video/05五年级/08图形中的比例/03燕尾模型/小学五年级奥数08图形中的比例03燕尾模型02两外比的应用.mp4'); return false;">燕尾模型02两外比的应用</button><br>
-          <button onclick="loadQuestions(燕尾模型03一外一内比的应用上, '燕尾模型03一外一内比的应用(上)');showFrame('./video/05五年级/08图形中的比例/03燕尾模型/小学五年级奥数08图形中的比例03燕尾模型04一外一内比的应用（上）.mp4'); return false;">燕尾模型03一外一内比的应用(上)</button><br>
-           <button onclick="loadQuestions(燕尾模型04一外一内比的应用下, '燕尾模型04一外一内比的应用(下)');showFrame('./video/05五年级/08图形中的比例/03燕尾模型/小学五年级奥数08图形中的比例03燕尾模型04一外一内比的应用（下）.mp4'); return false;">燕尾模型04一外一内比的应用(下)</button><br>
-           <button onclick="loadQuestions(燕尾模型05两内比的应用, '燕尾模型05两内比的应用');showFrame('./video/05五年级/08图形中的比例/03燕尾模型/小学五年级奥数08图形中的比例03燕尾模型05两内比的应用.mp4'); return false;">燕尾模型05两内比的应用</button><br>
-           <button onclick="loadQuestions(沙漏与金字塔01认识沙漏, '沙漏与金字塔01认识沙漏');showFrame('./video//05五年级/08图形中的比例/04沙漏与金字塔/小学五年级奥数08图形中的比例04沙漏与金字塔01认识沙漏.mp4'); return false;">沙漏与金字塔01认识沙漏</button><br>
-
-           <button onclick="loadQuestions(沙漏与金字塔02梯形中的沙漏, '沙漏与金字塔02梯形中的沙漏');showFrame('./video//05五年级/08图形中的比例/04沙漏与金字塔/小学五年级奥数08图形中的比例04沙漏与金字塔02梯形中的沙漏.mp4'); return false;">沙漏与金字塔02梯形中的沙漏</button><br>
-           <button onclick="loadQuestions(沙漏与金字塔03平行线中的沙漏, '沙漏与金字塔03平行线中的沙漏');showFrame('./video//05五年级/08图形中的比例/04沙漏与金字塔/小学五年级奥数08图形中的比例04沙漏与金字塔03平行线与沙漏.mp4'); return false;">沙漏与金字塔03平行线中的沙漏</button><br>
-           <button onclick="loadQuestions(沙漏与金字塔04认识金字塔, '沙漏与金字塔04认识金字塔');showFrame('./video//05五年级/08图形中的比例/04沙漏与金字塔/小学五年级奥数08图形中的比例04沙漏与金字塔04认识金字塔.mp4'); return false;">沙漏与金字塔04认识金字塔</button><br>
-         <button onclick="loadQuestions(沙漏与金字塔05沙漏与金字塔综合, '沙漏与金字塔05沙漏与金字塔综合');showFrame('./video//05五年级/08图形中的比例/04沙漏与金字塔/小学五年级奥数08图形中的比例04沙漏与金字塔05金字塔和沙漏综合应用.mp4'); return false;">沙漏与金字塔05沙漏与金字塔综合</button><br>
-         <button onclick="loadQuestions(排列组合01排列组合计数, '排列组合01排列组合计数');">排列组合01排列组合计数</button><br>
-         <button onclick="loadQuestions(排列组合02排列组合综合应用, '排列组合02排列组合综合应用');">排列组合02排列组合综合应用</button><br>
-
-
-
-
-
-
-
-
-        
+    <div class="main">
+        <div class="content" id="content">
+            <iframe src="https://jiushu520.github.io/tiku/" frameborder="0"></iframe>
+        </div>
+        <div class="right" id="right-content">
+            <iframe src="jiushudgtp4-o.html" frameborder="0"></iframe>
+        </div>
     </div>
+    <script>
+        function showRightContent(url) {
+            document.getElementById('right-content').innerHTML = `<iframe src="${url}" frameborder="0"></iframe>`;
+        }
 
-
-         <div id="运算方程应用" style="display:none">
-         <button onclick="hideFrame();">隐藏网页</button> <br>
-       <button onclick="loadQuestions(分数加减运算, '分数加减运算');">分数加减运算</button><br>
-       <button onclick="loadQuestions(分数混合运算, '分数混合运算');">分数混合运算</button><br>
-        <button onclick="loadQuestions(二元一次方程组, '二元一次方程组')">二元一次方程组</button><br>
-        <button onclick="loadQuestions(分数二元一次方程组01, '分数二元一次方程组01')">分数二元一次方程组01</button><br>
-        <button onclick="loadQuestions(鸡兔同笼头和差, '鸡兔同笼头和差')">鸡兔同笼头和差</button><br>
-        <button onclick="loadQuestions(鸡兔同笼头脚和, '鸡兔同笼头脚和')">鸡兔同笼头脚和</button><br>
-        <button onclick="loadQuestions(方程应用空瓶与水杯, '方程应用空瓶与水杯')">方程应用空瓶与水杯</button><br>
-        <button onclick="loadQuestions(盈亏问题01分配中比较, '盈亏问题01分配中比较')">盈亏问题01分配中比较</button><br>
-        <button onclick="loadQuestions(盈亏问题02盈盈问题, '盈亏问题02盈盈问题')">盈亏问题02盈盈问题</button><br>
-        <button onclick="loadQuestions(盈亏问题03亏亏问题, '盈亏问题03亏亏问题')">盈亏问题03亏亏问题</button><br>
-        <button onclick="loadQuestions(盈亏问题04盈亏问题, '盈亏问题04盈亏问题')">盈亏问题04盈亏问题</button><br>
-        <button onclick="loadQuestions(盈亏问题05一个对象的特殊问题, '盈亏问题05一个对象的特殊问题')">盈亏问题05一个对象的特殊问题</button><br>
-        <button onclick="loadQuestions(方程应用牛吃草最多能放几头牛, '方程应用牛吃草最多能放几头牛')">方程应用牛吃草最多能放几头牛</button><br>
-        <button onclick="loadQuestions(方程应用行程01简单相遇追及, '方程应用行程01简单相遇追及')">方程应用行程01简单相遇追及</button><br>
-        <button onclick="loadQuestions(方程应用行程02变速到达, '方程应用行程02变速到达')">方程应用行程02变速到达</button><br>
-
-
-
-       <a href="#" onclick="showFrame('https://v.leleketang.com/dat/ps/ma/k/video/24527.mp4'); return false;" >分数加减</a><br>
-       <a href="https://search.bilibili.com/all?keyword=分数的加减运算"target="_blank">分数的加减运算</a><br>
-       <a href="#" onclick="showFrame('https://vs.leleketang.com/dat/ps/ma/k/video/24536.mp4'); return false;" >分数乘分数</a><br>
-       <a href="#" onclick="showFrame('https://vs.leleketang.com/dat/ps/ma/k/video/24542.mp4'); return false;" >分数除法分数除以整数</a><br>
-       <a href="#" onclick="showFrame('https://vs.leleketang.com/dat/ps/ma/k/video/24543.mp4'); return false;" >分数除法整数除以分数</a><br>
-       <a href="https://search.bilibili.com/all?keyword=分数的四则运算"target="_blank">分数的四则运算</a><br>
-
-
-        <a href="https://search.bilibili.com/all?keyword=二元一次方程组解法行列式玖数学"target="_blank">二元一次方程组解法</a><br>
-       <a href="#" onclick="showFrame('https://www.bilibili.com/video/BV1di4y1v7tD/'); return false;" >子玥讲代入消元法</a><br>
-       <a href="#" onclick="showFrame('https://v.leleketang.com/dat/ms/ma/k/video/18552.mp4'); return false;" >二元一次方程组代入消元法</a><br>
-       <a href="#" onclick="showFrame('https://v.leleketang.com/dat/ms/ma/k/video/18553.mp4'); return false;" >二元一次方程组加减消元法</a><br>
-       <a href="https://search.bilibili.com/all?keyword=二元一次方程组各种解法行列式"target="_blank">二元一次方程组解法</a><br>
-       <a href="#" onclick="showFrame('https://vs.leleketang.com/dat/ms/ma/k/video/27622.mp4'); return false;" >二元一次方程组鸡兔同笼</a><br>
-       <a href="https://search.bilibili.com/all?keyword=二元一次方程鸡兔同笼的解法"target="_blank">二元一次方程鸡兔同笼的解法</a><br> 
-       <a href="https://search.bilibili.com/all?keyword=二元一次方程鸡兔同笼的解法"target="_blank">鸡兔同笼的解法</a><br>
-      
-  
-     </div>
-
-             
-
-
-
-     <div id="函数微分积分" style="display:none;">
-            <button onclick="hideFrame();">隐藏网页</button> <br>
-           <button onclick="loadQuestions(根式运算01简单有理化, '根式运算01简单有理化');">根式运算01简单有理化</button><br>
-           <button onclick="loadQuestions(根式运算02根式乘法有理化, '根式运算02根式乘法有理化');">根式运算02根式乘法有理化</button><br>
-           <button onclick="loadQuestions(根式运算03根式完全平方公式, '根式运算03根式完全平方公式');">根式运算03根式完全平方公式</button><br>
-           <button onclick="loadQuestions(直角坐标系运算01两点距离, '直角坐标系运算01两点距离');">直角坐标系运算01两点距离</button><br>
-
-
-           <button onclick="loadQuestions(直角坐标系运算02两点求斜率, '直角坐标系运算02两点求斜率');">直角坐标系运算02两点求斜率</button><br>
-           <button onclick="loadQuestions(直角坐标系运算03两点求解析式, '直角坐标系运算03两点求解析式');">直角坐标系运算03两点求解析式</button><br>
-           <button onclick="loadQuestions(直角坐标系运算04点到直线距离, '直角坐标系运算04点到直线距离');">直角坐标系运算04点到直线距离</button><br>
-           <button onclick="loadQuestions(直角坐标系运算05定比分点, '直角坐标系运算05定比分点');">直角坐标系运算05定比分点</button><br>
-
-
-
-           <button onclick="loadQuestions(函数01二次最值01, '函数01二次最值01');">函数01二次最值01</button><br>
-           <button onclick="loadQuestions(函数02二次函数切线与求导, '函数02二次函数切线与求导');">函数02二次函数切线与求导</button><br>
-           <button onclick="loadQuestions(函数03二次函数切线方程, '函数03二次函数切线方程');">函数03二次函数切线方程</button><br>
-
-
-
-            <a href="#" onclick="showFrame('https://v.leleketang.com/dat/ms/ma/k/video/18684.mp4'); return false;">根式运算01简单有理化</a><br>
-           <a href="https://search.bilibili.com/all?keyword=根式运算的简单有理化"target="_blank">根式运算视频讲解</a><br>
-           <a href="#" onclick="showFrame('https://v.leleketang.com/dat/ms/ma/k/video/18699.mp4'); return false;">网格与勾股定理两点距离</a><br>
-           <a href="https://search.bilibili.com/all?keyword=直角坐标系中两点的距离公式"target="_blank">两点的距离公式</a><br>
-           <a href="#" onclick="showFrame('https://v.leleketang.com/dat/hs/ma/k/video/22135.mp4'); return false;" >直角坐标系两点求斜率</a><br>
-           <a href="https://search.bilibili.com/all?keyword=直角坐标系直线的斜率"target="_blank">直角坐标系直线的斜率</a><br>
-           <a href="#" onclick="showFrame('http://v.leleketang.com/dat/ms/ma/k/video/18663.mp4'); return false;">利用配方法求最值</a><br>
-           <a href="#" onclick="showFrame('./video/如何用ＡＩ进行自学.mp4'); return false;">利用AI学配方法求最值</a><br>
-      
-        
-           
-      </div>
-
-
-     <div id="向量线性代数" style="display:none">
-          <button onclick="hideFrame();">隐藏网页</button> <br><p>       
-      
-
-           <button onclick="loadQuestions(乘法公式01整式乘法, '乘法公式01整式乘法');">乘法公式01整式乘法</button><br>
-           <button onclick="loadQuestions(乘法公式02整式乘法, '乘法公式02整式乘法');">乘法公式02整式乘法</button><br>
-           <button onclick="loadQuestions(乘法公式02整式乘法2乘3项01, '乘法公式02整式乘法2乘3项01');">乘法公式02整式乘法2乘3项01</button><br>
-           <button onclick="loadQuestions(乘法公式02整式乘法2乘3项02, '乘法公式02整式乘法2乘3项02');">乘法公式02整式乘法2乘3项02</button><br>
-           <button onclick="loadQuestions(乘法公式03因式分解01, '乘法公式03因式分解01')">乘法公式03因式分解01</button><br>
-           <button onclick="loadQuestions(乘法公式03因式分解02, '乘法公式03因式分解02');">乘法公式03因式分解02</button><br>
-           <button onclick="loadQuestions(乘法公式03因式分解03, '乘法公式03因式分解03');">乘法公式03因式分解03</button><br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-           <button onclick="loadQuestions(线性代数01行列式求值, '线性代数01行列式求值');">线性代数01行列式求值</button><br>
-           <button onclick="loadQuestions(线性代数02向量点乘内积, '线性代数02向量点乘内积');">线性代数02向量点乘内积</button><br>
-           <button onclick="loadQuestions(线性代数03向量叉乘外积, '线性代数03向量叉乘外积');">线性代数03向量叉乘外积</button><br>
-           <button onclick="loadQuestions(线性代数04内外积与正切, '线性代数04内外积与正切');">线性代数04内外积与正切</button><br>
-           <button onclick="loadQuestions(线性代数05内积与投影长, '线性代数05内积与投影长');">线性代数05内积与投影长</button><br>
-
-
-
-
-         
-          <a href="#" onclick="showFrame('https://v.leleketang.com/dat/ms/ma/k/video/18646.mp4'); return false;">整式乘法</a><br>
-          <a href="#" onclick="showFrame('https://vs.leleketang.com/dat/ms/ma/k/video/18656.mp4'); return false;">提取公因式</a><br>
-          <a href="#" onclick="showFrame('https://vs.leleketang.com/dat/ms/ma/k/video/18657.mp4'); return false;">公式法平方差公式</a><br>      
-          <a href="#" onclick="showFrame('https://vs.leleketang.com/dat/ms/ma/k/video/18658.mp4'); return false;">公式法完全平方公式</a><br>
-          <a href="#" onclick="showFrame('https://vs.leleketang.com/dat/ms/ma/k/video/27714.mp4'); return false;">因式分解两大秘诀</a><br>
-          <a href="#" onclick="showFrame('https://www.bilibili.com/video/BV1BS4y167Wa/'); return false;">行列式与面积关系的推导视频</a><br>
-
-
-
-          
-
-
-       
-      </div>
-
-    
-
-
-        
-    </div>
-
- <div id="game-container">
-
-
-
-
-       <h3>玖数学测训系统</h3>
-
-
-
-        <div id="current-topic"></div> <!-- 新添加的元素 -->
-
-        <div id="equation"></div>
-        <div id="options"></div>
-        <iframe id="myframe" style="display: none;" width="100%" height="600"></iframe>
-<div id="button-container">
-
-    <button onclick="toggleMode(false)">顺序</button>
-    <button onclick="toggleMode(true)">随机</button>
-    <button onclick="startChallengeMode()">闯关</button><br>
-<span id="current-mode-display">当前模式: 顺序</span>
-</div>
-        <div id="scoreboard">现在得分:<span id="score">0</span>,已回答:<span id="answered">0</span></div>
-        <div id="rounds-scoreboard"></div>
-    </div>
-
-<link rel="stylesheet" href="styles.css">
-<script src="script.js"></script>
-
+        function toggleRightContent() {
+            const rightContent = document.getElementById('right-content');
+            const content = document.getElementById('content');
+            if (rightContent.classList.contains('hidden')) {
+                rightContent.classList.remove('hidden');
+                content.style.flex = '7'; // 保留70%给做题界面
+                rightContent.style.flex = '3'; // 30%给人工智能回复界面
+            } else {
+                rightContent.classList.add('hidden');
+                content.style.flex = '1'; // 扩展做题界面宽度
+                rightContent.style.flex = '0'; // 隐藏人工智能回复界面
+            }
+        }
+    </script>
 </body>
 </html>
