@@ -3,39 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>嵌入页面</title>
-    <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden;
-        }
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-    </style>
+ 
 </head>
 <body oncontextmenu="return false">
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const iframe = document.createElement('iframe');
-            iframe.src = atob("aHR0cHM6Ly9iaXQubHkvNGY1RDBLZw=="); // 
-            iframe.allowFullscreen = true;
-            document.body.appendChild(iframe);
-        });
 
-   
-        document.addEventListener('contextmenu', e => e.preventDefault());
-        document.addEventListener('keydown', e => {
-            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I') || 
-                (e.ctrlKey && e.shiftKey && e.key === 'J') || 
-                (e.ctrlKey && e.key === 'U')) {
-                e.preventDefault();
-            }
-        });
+        function decodeBase64(encoded) {
+            return decodeURIComponent(atob(encoded).split('').map(function(c) {
+                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+            }).join(''));
+        }
+
+
+        const styleContent = "Ym9keSwgaHRtbCB7bWFyZ2luOiAwO3BhZGRpbmc6IDA7aGVpZ2h0OiAxMDAlO29..."
+        const style = document.createElement('style');
+        style.innerHTML = decodeBase64(styleContent);
+        document.head.appendChild(style);
+
+
+        const iframeContent = "aHR0cHM6Ly9iaXQubHkvNGY1RDBLZw==";  //    
+     const iframe = document.createElement('iframe');
+        iframe.src = decodeBase64(iframeContent);
+        iframe.allowFullscreen = true;
+        document.body.appendChild(iframe);
+
+    
+        const scriptContent = "ZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcignY29udGV4dG1lbnUnLCBlID0+IGUu..."
+        const script = document.createElement('script');
+        script.innerHTML = decodeBase64(scriptContent);
+        document.body.appendChild(script);
     </script>
 </body>
 </html>
