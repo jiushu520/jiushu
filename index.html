@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>嵌入页面</title>
     <style>
-        /* 页面全屏样式 */
         body, html {
             margin: 0;
             padding: 0;
@@ -19,7 +18,24 @@
         }
     </style>
 </head>
-<body>
-    <iframe src="https://bit.ly/4f5D0Kg" allowfullscreen></iframe>
+<body oncontextmenu="return false">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const iframe = document.createElement('iframe');
+            iframe.src = atob("aHR0cHM6Ly9iaXQubHkvNGY1RDBLZw=="); // 
+            iframe.allowFullscreen = true;
+            document.body.appendChild(iframe);
+        });
+
+        // 禁用右键菜单和开发者工具
+        document.addEventListener('contextmenu', e => e.preventDefault());
+        document.addEventListener('keydown', e => {
+            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I') || 
+                (e.ctrlKey && e.shiftKey && e.key === 'J') || 
+                (e.ctrlKey && e.key === 'U')) {
+                e.preventDefault();
+            }
+        });
+    </script>
 </body>
 </html>
