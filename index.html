@@ -27,7 +27,7 @@
             document.body.appendChild(iframe);
         });
 
-        // 禁用右键菜单和开发者工具
+   
         document.addEventListener('contextmenu', e => e.preventDefault());
         document.addEventListener('keydown', e => {
             if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I') || 
