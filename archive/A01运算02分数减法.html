@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <title>玖数学练习</title>
+    <style>
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: lightblue;
+        }
+
+        #navigation {
+            display: none;
+        }
+
+        #game-container {
+            width: 100%;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #equation, #options {
+            text-align: center;
+            width: 100%;
+            font-size: 20px;
+        }
+
+        .option {
+            display: inline-block;
+            margin: 0 10px;
+            padding: 10px;
+            border: 1px solid #000;
+            cursor: pointer;
+            margin: 0 10px 20px;
+            font-size: 20px;
+        }
+
+        #button-container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <h3>玖数学测训系统</h3>
+        <div id="current-topic"></div>
+        <div id="equation"></div>
+        <div id="options"></div>
+        <iframe id="myframe" style="display: none;" width="100%" height="600"></iframe>
+        <div id="button-container">
+            <button onclick="toggleMode(false)">顺序</button>
+            <button onclick="toggleMode(true)">随机</button>
+            <button onclick="startChallengeMode()">闯关</button><br>
+            <span id="current-mode-display">当前模式: 顺序</span>
+        </div>
+        <div id="scoreboard">现在得分:<span id="score">0</span>,已回答:<span id="answered">0</span></div>
+        <div id="rounds-scoreboard"></div>
+    </div>
+    <script>
+       
+const A01运算02分数减法= [
+{equation:"\\[ {\\frac{1}{6}-\\frac{3}{5}=?} \\]",correctOption:"\\frac{-13}{30}",incorrectOptions:["\\frac{1}{6}","\\frac{1}{10}","\\frac{3}{7}"]},
+
+{equation:"\\[ {\\frac{5}{8}-\\frac{4}{5}=?} \\]",correctOption:"\\frac{-7}{40}",incorrectOptions:["\\frac{2}{5}","\\frac{1}{10}","\\frac{2}{5}"]},
+
+{equation:"\\[ {\\frac{5}{6}-\\frac{8}{9}=?} \\]",correctOption:"\\frac{-1}{18}",incorrectOptions:["\\frac{1}{10}","\\frac{5}{9}","\\frac{9}{10}"]},
+
+{equation:"\\[ {\\frac{7}{10}-\\frac{3}{8}=?} \\]",correctOption:"\\frac{13}{40}",incorrectOptions:["\\frac{1}{6}","\\frac{1}{3}","\\frac{4}{5}"]},
+
+{equation:"\\[ {\\frac{5}{7}-\\frac{4}{5}=?} \\]",correctOption:"\\frac{-3}{35}",incorrectOptions:["\\frac{2}{7}","\\frac{7}{8}","\\frac{1}{9}"]},
+
+{equation:"\\[ {\\frac{5}{8}-\\frac{4}{5}=?} \\]",correctOption:"\\frac{-7}{40}",incorrectOptions:["\\frac{3}{4}","\\frac{4}{5}","\\frac{5}{9}"]},
+
+{equation:"\\[ {\\frac{1}{3}-\\frac{2}{3}=?} \\]",correctOption:"\\frac{-1}{3}",incorrectOptions:["\\frac{2}{9}","\\frac{7}{8}","\\frac{1}{3}"]},
+
+{equation:"\\[ {\\frac{5}{6}-\\frac{4}{7}=?} \\]",correctOption:"\\frac{11}{42}",incorrectOptions:["\\frac{7}{9}","\\frac{5}{6}","\\frac{1}{9}"]},
+
+{equation:"\\[ {\\frac{2}{9}-\\frac{1}{10}=?} \\]",correctOption:"\\frac{11}{90}",incorrectOptions:["\\frac{3}{4}","\\frac{2}{7}","\\frac{3}{5}"]},
+
+{equation:"\\[ {\\frac{1}{8}-\\frac{5}{7}=?} \\]",correctOption:"\\frac{-33}{56}",incorrectOptions:["\\frac{1}{7}","\\frac{9}{10}","\\frac{4}{9}"]},
+
+{equation:"\\[ {\\frac{5}{9}-\\frac{6}{7}=?} \\]",correctOption:"\\frac{-19}{63}",incorrectOptions:["\\frac{9}{10}","\\frac{5}{8}","\\frac{1}{4}"]},
+
+{equation:"\\[ {\\frac{2}{5}-\\frac{1}{10}=?} \\]",correctOption:"\\frac{3}{10}",incorrectOptions:["\\frac{3}{8}","\\frac{1}{10}","\\frac{1}{2}"]},
+
+{equation:"\\[ {\\frac{3}{5}-\\frac{1}{9}=?} \\]",correctOption:"\\frac{22}{45}",incorrectOptions:["\\frac{5}{6}","\\frac{1}{5}","\\frac{1}{3}"]},
+
+{equation:"\\[ {\\frac{2}{9}-\\frac{5}{8}=?} \\]",correctOption:"\\frac{-29}{72}",incorrectOptions:["\\frac{9}{10}","\\frac{5}{8}","\\frac{6}{7}"]},
+
+{equation:"\\[ {\\frac{3}{7}-\\frac{1}{3}=?} \\]",correctOption:"\\frac{2}{21}",incorrectOptions:["\\frac{1}{2}","\\frac{4}{5}","\\frac{1}{3}"]},
+
+{equation:"\\[ {\\frac{5}{9}-\\frac{4}{9}=?} \\]",correctOption:"\\frac{1}{9}",incorrectOptions:["\\frac{1}{6}","\\frac{6}{7}","\\frac{2}{9}"]},
+
+{equation:"\\[ {\\frac{3}{4}-\\frac{1}{2}=?} \\]",correctOption:"\\frac{1}{4}",incorrectOptions:["\\frac{1}{7}","\\frac{8}{9}","\\frac{2}{5}"]},
+
+{equation:"\\[ {\\frac{7}{9}-\\frac{1}{4}=?} \\]",correctOption:"\\frac{19}{36}",incorrectOptions:["\\frac{3}{10}","\\frac{1}{8}","\\frac{1}{10}"]},
+
+{equation:"\\[ {\\frac{5}{7}-\\frac{3}{10}=?} \\]",correctOption:"\\frac{29}{70}",incorrectOptions:["\\frac{3}{8}","\\frac{2}{9}","\\frac{6}{7}"]},
+
+{equation:"\\[ {\\frac{5}{7}-\\frac{1}{3}=?} \\]",correctOption:"\\frac{8}{21}",incorrectOptions:["\\frac{5}{9}","\\frac{1}{2}","\\frac{3}{7}"]},
+
+{equation:"\\[ {\\frac{9}{10}-\\frac{4}{7}=?} \\]",correctOption:"\\frac{23}{70}",incorrectOptions:["\\frac{1}{3}","\\frac{1}{8}","\\frac{3}{8}"]},
+
+{equation:"\\[ {\\frac{3}{7}-\\frac{2}{5}=?} \\]",correctOption:"\\frac{1}{35}",incorrectOptions:["\\frac{4}{5}","\\frac{4}{5}","\\frac{1}{3}"]},
+
+{equation:"\\[ {\\frac{4}{5}-\\frac{1}{8}=?} \\]",correctOption:"\\frac{27}{40}",incorrectOptions:["\\frac{2}{7}","\\frac{2}{3}","\\frac{2}{5}"]},
+
+{equation:"\\[ {\\frac{3}{8}-\\frac{1}{2}=?} \\]",correctOption:"\\frac{-1}{8}",incorrectOptions:["\\frac{1}{8}","\\frac{7}{9}","\\frac{7}{8}"]},
+
+{equation:"\\[ {\\frac{3}{4}-\\frac{2}{7}=?} \\]",correctOption:"\\frac{13}{28}",incorrectOptions:["\\frac{2}{3}","\\frac{2}{3}","\\frac{6}{7}"]},
+
+{equation:"\\[ {\\frac{2}{9}-\\frac{1}{9}=?} \\]",correctOption:"\\frac{1}{9}",incorrectOptions:["\\frac{7}{10}","\\frac{2}{5}","\\frac{5}{8}"]},
+
+{equation:"\\[ {\\frac{3}{10}-\\frac{7}{10}=?} \\]",correctOption:"\\frac{-2}{5}",incorrectOptions:["\\frac{7}{10}","\\frac{1}{4}","\\frac{1}{8}"]},
+
+{equation:"\\[ {\\frac{1}{7}-\\frac{4}{9}=?} \\]",correctOption:"\\frac{-19}{63}",incorrectOptions:["\\frac{5}{8}","\\frac{5}{7}","\\frac{1}{10}"]},
+
+{equation:"\\[ {\\frac{2}{7}-\\frac{2}{5}=?} \\]",correctOption:"\\frac{-4}{35}",incorrectOptions:["\\frac{1}{4}","\\frac{2}{3}","\\frac{8}{9}"]},
+
+{equation:"\\[ {\\frac{4}{5}-\\frac{2}{5}=?} \\]",correctOption:"\\frac{2}{5}",incorrectOptions:["\\frac{4}{9}","\\frac{3}{10}","\\frac{3}{10}"]},
+
+
+        ];
+
+        let currentQuestionBank;
+        let currentEquationSystem;
+        let score = 0;
+        let questionsAnswered = 0;
+        let roundsScores = [];
+        let currentTopic = '';
+        let currentQuestionIndex = 0;
+        let isRandomMode = false;
+
+        function startChallengeMode() {
+            isChallengeMode = true;
+            currentQuestionIndex = 0;
+            score = 0;
+            questionsAnswered = 0;
+            updateScoreboard();
+            updateRoundsScoreboard();
+            document.getElementById('current-mode-display').textContent = '当前模式: 闯关';
+            startNewRound();
+        }
+
+        function toggleMode(mode) {
+            isRandomMode = mode;
+            isChallengeMode = false;
+            currentQuestionIndex = 0;
+            score = 0;
+            questionsAnswered = 0;
+            updateScoreboard();
+            const modeDisplay = document.getElementById('current-mode-display');
+            modeDisplay.textContent = isRandomMode ? '当前模式: 随机' : '当前模式: 顺序';
+            startNewRound();
+        }
+
+        function loadQuestions(questionBank, topic) {
+            currentQuestionBank = questionBank;
+            currentTopic = topic;
+            currentQuestionIndex = 0;
+            score = 0;
+            questionsAnswered = 0;
+            isRandomMode = false;
+            isChallengeMode = false;
+            updateScoreboard();
+            document.getElementById('current-topic').textContent = `玖数学: ${currentTopic}`;
+            document.getElementById('current-mode-display').textContent = '当前模式: 顺序';
+            startNewRound();
+        }
+
+        function generateEquationSystem() {
+            let question;
+
+            if (isRandomMode) {
+                const randomIndex = Math.floor(Math.random() * currentQuestionBank.length);
+                question = currentQuestionBank[randomIndex];
+            } else {
+                if (currentQuestionIndex >= currentQuestionBank.length) {
+                    currentQuestionIndex = 0;
+                }
+                question = currentQuestionBank[currentQuestionIndex];
+                currentQuestionIndex++;
+            }
+
+            const { equation, img, correctOption, incorrectOptions } = question;
+            const correctIndex = Math.floor(Math.random() * 4);
+            const options = [...incorrectOptions];
+            options.splice(correctIndex, 0, correctOption);
+
+            let equationHTML = equation;
+
+            if (img && img.trim() !== '') {
+                equationHTML += `<br><img src="${img}" alt="题目图片">`;
+            }
+
+            currentEquationSystem = {
+                equationSystem: equationHTML,
+                correctIndex,
+                options
+            };
+        }
+
+        function generateOptions() {
+            const labels = ['A', 'B', 'C', 'D', ];
+            return currentEquationSystem.options.map((option, index) => `<div class="option" onclick="checkAnswer(${index})"><span>${labels[index]}. \\(${option}\\)</span></div>`).join('');
+        }
+
+        function displayEquationSystem() {
+            generateEquationSystem();
+            document.getElementById('equation').innerHTML = currentEquationSystem.equationSystem;
+            document.getElementById('options').innerHTML = generateOptions();
+            MathJax.typeset();
+        }
+
+        function startNewRound() {
+            let roundComplete = false;
+            let totalQuestionsInRound = isChallengeMode ? currentQuestionBank.length : 10;
+
+            if (isChallengeMode) {
+                roundComplete = questionsAnswered >= currentQuestionBank.length;
+            } else {
+                roundComplete = questionsAnswered >= 10;
+            }
+
+            if (roundComplete) {
+                roundsScores.push({ topic: currentTopic, score: score, totalQuestions: totalQuestionsInRound });
+                score = 0;
+                questionsAnswered = 0;
+                updateRoundsScoreboard();
+                if (!isChallengeMode && currentQuestionIndex >= currentQuestionBank.length) {
+                    currentQuestionIndex = 0;
+                }
+            }
+
+            displayEquationSystem();
+        }
+
+        function checkAnswer(selectedIndex) {
+            if (parseInt(selectedIndex) === currentEquationSystem.correctIndex) {
+                score++;
+            } else if (isChallengeMode) {
+                score = 0;
+                questionsAnswered = 0;
+                currentQuestionIndex = 0;
+                updateScoreboard();
+                startNewRound();
+                return;
+            }
+            questionsAnswered++;
+            updateScoreboard();
+            startNewRound();
+        }
+
+        function updateScoreboard() {
+            document.getElementById('score').textContent = score;
+            document.getElementById('answered').textContent = questionsAnswered;
+        }
+
+        function updateRoundsScoreboard() {
+            let roundsScoresText = roundsScores.map((round, index) => `第${index + 1}轮 (${round.topic}): ${round.score}分共${round.totalQuestions}题`).join('<br>');
+            document.getElementById('rounds-scoreboard').innerHTML = roundsScoresText;
+        }
+
+        window.onload = () => {
+            loadQuestions(A01运算02分数减法, 'A01运算02分数减法');
+            isChallengeMode = false;
+            startNewRound();
+        };
+    </script>
+</body>
+</html>

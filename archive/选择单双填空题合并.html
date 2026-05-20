@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <title>玖数学练习</title>
+    <style>
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: lightblue;
+        }
+
+        #game-container {
+            width: 100%;
+            height: 100%;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #equation, #answer-input, #answer-input-x, #answer-input-y, #options {
+            text-align: center;
+            width: 100%;
+            font-size: 20px;
+        }
+
+        #answer-input, #answer-input-x, #answer-input-y {
+            margin: 20px 0;
+        }
+
+        .option {
+            display: inline-block;
+            margin: 0 10px;
+            padding: 10px;
+            border: 1px solid #000;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        #button-container {
+            margin-top: 20px;
+        }
+
+        #result-table-container {
+            margin-top: 20px;
+            width: 100%;
+            height: calc(50% - 60px); /* 调整高度以适应 */
+            overflow-y: auto;
+        }
+
+        #result-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        #result-table th, #result-table td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <h3>玖数学测训系统</h3>
+        <div id="current-topic"></div>
+        <div id="equation"></div>
+        <div id="options" style="display: none;"></div>
+        <div id="single-answer-container" style="display: none;">
+            <input type="text" id="answer-input" placeholder="输入你的答案" onkeyup="handleKeyUp(event)">
+        </div>
+        <div id="dual-answer-container" style="display: none;">
+            x = <input type="text" id="answer-input-x" placeholder="x的值" onkeyup="handleKeyUp(event, 'answer-input-y')">
+            y = <input type="text" id="answer-input-y" placeholder="y的值" onkeyup="handleKeyUp(event)">
+        </div>
+        <button id="submit-button" onclick="checkAnswer()">提交答案</button>
+        <div id="button-container">
+            <button onclick="toggleMode(false)">顺序</button>
+            <button onclick="toggleMode(true)">随机</button>
+            <button onclick="startChallengeMode()">闯关</button><br>
+            <span id="current-mode-display">当前模式: 顺序</span>
+        </div>
+        <div id="scoreboard">现在得分:<span id="score">0</span>,已回答:<span id="answered">0</span></div>
+        <div id="result-table-container">
+            <table id="result-table">
+                <thead>
+                    <tr>
+                        <th>题目</th>
+                        <th>你的答案</th>
+                        <th>正确答案</th>
+                        <th>结果</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div id="rounds-scoreboard"></div>
+    </div>
+    <script>
+        const questions = [
+            {equation: "\\[ {2x+3=7}\\]", correctOption: {single: "2"}},
+            {equation: "\\[ {2x+3=7}\\]", correctOption: {single: "5"}},
+            {equation: "\\[ \\begin{cases} 2x + 3y = 13 \\\\ 4x - y = 5 \\end{cases} \\]", correctOption: {dual: {x: "2", y: "3"}}},
+            {equation: "\\[ {x^2+7x-8=?}\\]", correctOption: "(x-1)(x+8)", incorrectOptions:["(x-3)(x-2)","(x-2)(x-10)","(x+8)(x+1)"]},
+            {equation: "\\[ {x^2-2x+1=?}\\]", correctOption: "(x-1)^2", incorrectOptions:["(x+7)(x-3)","(x-5)(x+6)","(x-1)(x-6)"]}
+        ];
+
+        let state = {
+            currentQuestionBank: null,
+            currentEquationSystem: null,
+            score: 0,
+            questionsAnswered: 0,
+            roundsScores: [],
+            currentTopic: '',
+            currentQuestionIndex: 0,
+            isRandomMode: false,
+            isChallengeMode: false,
+        };
+
+        const updateElement = (id, value) => document.getElementById(id).textContent = value;
+
+        const startChallengeMode = () => {
+            state.isChallengeMode = true;
+            resetState();
+            updateElement('current-mode-display', '当前模式: 闯关');
+            startNewRound();
+        };
+
+        const toggleMode = (mode) => {
+            state.isRandomMode = mode;
+            state.isChallengeMode = false;
+            resetState();
+            updateElement('current-mode-display', state.isRandomMode ? '当前模式: 随机' : '当前模式: 顺序');
+            startNewRound();
+        };
+
+        const resetState = () => {
+            state.currentQuestionIndex = 0;
+            state.score = 0;
+            state.questionsAnswered = 0;
+            updateScoreboard();
+        };
+
+        const loadQuestions = (questionBank, topic) => {
+            state.currentQuestionBank = questionBank;
+            state.currentTopic = topic;
+            resetState();
+            updateElement('current-topic', `玖数学: ${state.currentTopic}`);
+            updateElement('current-mode-display', '当前模式: 顺序');
+            startNewRound();
+        };
+
+        const generateEquationSystem = () => {
+            let question = getQuestion();
+
+            const { equation, img, correctOption, incorrectOptions } = question;
+
+            let equationHTML = equation;
+            if (img && img.trim()) equationHTML += `<br><img src="${img}" alt="题目图片">`;
+
+            if (correctOption.single || correctOption.dual) {
+                state.currentEquationSystem = { equationSystem: equationHTML, correctOption };
+                toggleAnswerContainers(correctOption);
+                document.getElementById('submit-button').style.display = 'block';
+            } else {
+                const correctIndex = Math.floor(Math.random() * 4);
+                const options = [...incorrectOptions];
+                options.splice(correctIndex, 0, correctOption);
+
+                state.currentEquationSystem = {
+                    equationSystem: equationHTML,
+                    correctIndex,
+                    options,
+                    correctOption
+                };
+                toggleAnswerContainers(correctOption, true);
+                document.getElementById('submit-button').style.display = 'none';
+            }
+        };
+
+        const toggleAnswerContainers = (correctOption, showOptions = false) => {
+            document.getElementById('options').style.display = showOptions ? 'block' : 'none';
+            document.getElementById('single-answer-container').style.display = correctOption.single ? 'block' : 'none';
+            document.getElementById('dual-answer-container').style.display = correctOption.dual ? 'block' : 'none';
+        };
+
+        const getQuestion = () => {
+            if (state.isRandomMode) {
+                const randomIndex = Math.floor(Math.random() * state.currentQuestionBank.length);
+                return state.currentQuestionBank[randomIndex];
+            } else {
+                if (state.currentQuestionIndex >= state.currentQuestionBank.length) state.currentQuestionIndex = 0;
+                return state.currentQuestionBank[state.currentQuestionIndex++];
+            }
+        };
+
+        const generateOptions = () => {
+            if (state.currentEquationSystem.options) {
+                const labels = ['A', 'B', 'C', 'D'];
+                return state.currentEquationSystem.options.map((option, index) =>
+                    `<div class="option" onclick="checkAnswer(${index}, '${option.replace(/\\/g, '\\\\')}')">
+                        <span>${labels[index]}. \\(${option}\\)</span>
+                    </div>`
+                ).join('');
+            }
+            return '';
+        };
+
+        const displayEquationSystem = () => {
+            generateEquationSystem();
+            document.getElementById('equation').innerHTML = state.currentEquationSystem.equationSystem;
+            if (state.currentEquationSystem.options) {
+                document.getElementById('options').innerHTML = generateOptions();
+            }
+            MathJax.typeset();
+        };
+
+        const startNewRound = () => {
+            if (isRoundComplete()) {
+                state.roundsScores.push({ topic: state.currentTopic, score: state.score, totalQuestions: state.questionsAnswered });
+                resetState();
+                updateRoundsScoreboard();
+            }
+            displayEquationSystem();
+        };
+
+        const isRoundComplete = () => {
+            let totalQuestionsInRound = state.isChallengeMode ? state.currentQuestionBank.length : 10;
+            return state.questionsAnswered >= totalQuestionsInRound;
+        };
+
+        const checkAnswer = (selectedIndex, userAnswer) => {
+            let isCorrect = false;
+            let correctAnswer = '';
+
+            if (state.currentEquationSystem.correctOption.single) {
+                userAnswer = document.getElementById('answer-input').value.trim();
+                correctAnswer = state.currentEquationSystem.correctOption.single;
+                isCorrect = userAnswer === correctAnswer;
+            } else if (state.currentEquationSystem.correctOption.dual) {
+                const userAnswerX = document.getElementById('answer-input-x').value.trim();
+                const userAnswerY = document.getElementById('answer-input-y').value.trim();
+                correctAnswer = `x=${state.currentEquationSystem.correctOption.dual.x}, y=${state.currentEquationSystem.correctOption.dual.y}`;
+                userAnswer = `x=${userAnswerX}, y=${userAnswerY}`;
+                isCorrect = userAnswerX === state.currentEquationSystem.correctOption.dual.x && userAnswerY === state.currentEquationSystem.correctOption.dual.y;
+            } else {
+                isCorrect = selectedIndex === state.currentEquationSystem.correctIndex;
+                correctAnswer = state.currentEquationSystem.correctOption;
+            }
+
+            addResultRow(state.currentEquationSystem.equationSystem, userAnswer, correctAnswer, isCorrect);
+            if (isCorrect) state.score++;
+            state.questionsAnswered++;
+            updateScoreboard();
+            startNewRound();
+            MathJax.typeset();
+        };
+
+        const addResultRow = (equation, userAnswer, correctAnswer, isCorrect) => {
+            let resultRow = document.createElement('tr');
+            resultRow.innerHTML = `
+                <td>${equation}</td>
+                <td>\\(${userAnswer}\\)</td>
+                <td>\\(${correctAnswer}\\)</td>
+                <td style="color: ${isCorrect ? 'green' : 'red'};">${isCorrect ? '正确' : '错误'}</td>
+            `;
+            document.querySelector('#result-table tbody').insertBefore(resultRow, document.querySelector('#result-table tbody').firstChild);
+        };
+
+        const handleKeyUp = (event, nextInputId = null) => {
+            if (event.key === 'Enter') {
+                if (nextInputId) {
+                    document.getElementById(nextInputId).focus();
+                } else {
+                    checkAnswer();
+                }
+            }
+        };
+
+        const updateScoreboard = () => {
+            updateElement('score', state.score);
+            updateElement('answered', state.questionsAnswered);
+        };
+
+        const updateRoundsScoreboard = () => {
+            const roundsScoresText = state.roundsScores.map((round, index) =>
+                `第${index + 1}轮 (${round.topic}): ${round.score}分共${round.totalQuestions}题`
+            ).join('<br>');
+            document.getElementById('rounds-scoreboard').innerHTML = roundsScoresText;
+        };
+
+        window.onload = () => {
+            loadQuestions(questions, '综合题库');
+            state.isChallengeMode = false;
+            startNewRound();
+        };
+    </script>
+</body>
+</html>

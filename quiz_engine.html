@@ -1,0 +1,1592 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>玖数学测训引擎</title>
+    <!-- MathJax 渲染公式 -->
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="config/ai_config.js"></script>
+    <style>
+        :root {
+            --primary: #0288d1;
+            --primary-light: #e1f5fe;
+            --primary-gradient: linear-gradient(135deg, #0288d1 0%, #26c6da 100%);
+            --success: #4caf50;
+            --success-light: #e8f5e9;
+            --error: #f44336;
+            --error-light: #ffebee;
+            --text-dark: #2c3e50;
+            --text-light: #7f8c8d;
+            --card-shadow: 0 8px 32px 0 rgba(2, 136, 209, 0.08);
+            --border-radius: 16px;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f9fc 0%, #e0f2f1 100%);
+            color: var(--text-dark);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            box-sizing: border-box;
+        }
+
+        body.ai-open {
+            justify-content: flex-start;
+        }
+
+        #game-container {
+            width: 100%;
+            max-width: 960px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            padding: 30px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            transition: max-width 0.24s ease, margin 0.24s ease;
+        }
+
+        body.ai-open #game-container {
+            max-width: min(820px, calc(100vw - 620px));
+        }
+
+        /* 顶部标题与状态 */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px dashed rgba(2, 136, 209, 0.2);
+            padding-bottom: 16px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .header h3 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+        }
+
+        .current-topic {
+            font-size: 15px;
+            color: var(--text-light);
+            font-weight: 500;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 6px 12px;
+            border-radius: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            border: 1px solid rgba(2, 136, 209, 0.1);
+        }
+
+        /* 核心答题卡片 */
+        .quiz-card {
+            background: #ffffff;
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.02);
+            padding: 30px;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 160px;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .quiz-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: var(--primary-gradient);
+        }
+
+        #equation {
+            width: 100%;
+            font-size: 22px;
+            line-height: 1.6;
+            text-align: center;
+            margin-bottom: 10px;
+            word-wrap: break-word;
+        }
+
+        #equation img {
+            max-width: 90%;
+            height: auto;
+            border-radius: 8px;
+            margin-top: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        /* 答题交互区域 (MCQ / 填空) */
+        .interaction-area {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /* 多选题选项 */
+        #options {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        @media (max-width: 600px) {
+            #options {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .option {
+            background: #ffffff;
+            border: 1.5px solid rgba(2, 136, 209, 0.15);
+            border-radius: 12px;
+            padding: 16px 20px;
+            font-size: 17px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.01);
+        }
+
+        .option:hover {
+            transform: translateY(-2px);
+            border-color: var(--primary);
+            background-color: var(--primary-light);
+            box-shadow: 0 6px 16px rgba(2, 136, 209, 0.1);
+        }
+
+        .option span {
+            font-weight: 600;
+        }
+
+        /* 填空题输入框 */
+        .inputs-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .math-input {
+            width: 200px;
+            padding: 12px 16px;
+            border: 2px solid rgba(2, 136, 209, 0.2);
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            text-align: center;
+            outline: none;
+            transition: var(--transition);
+            background: #ffffff;
+        }
+
+        .math-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(2, 136, 209, 0.15);
+        }
+
+        /* 提交按钮 */
+        #submit-button {
+            background: var(--primary-gradient);
+            color: #ffffff;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 35px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(2, 136, 209, 0.2);
+            transition: var(--transition);
+        }
+
+        #submit-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(2, 136, 209, 0.35);
+        }
+
+        #submit-button:active {
+            transform: translateY(1px);
+        }
+
+        /* 控制按钮区域 */
+        .controls-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.5);
+            padding: 16px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .mode-buttons, .tool-buttons {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .btn:hover {
+            background: #f8fafc;
+            border-color: rgba(0, 0, 0, 0.15);
+            transform: translateY(-1px);
+        }
+
+        .btn-active {
+            background: var(--primary-gradient) !important;
+            color: #ffffff !important;
+            border-color: transparent !important;
+            box-shadow: 0 4px 10px rgba(2, 136, 209, 0.15);
+        }
+
+        .mode-display {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--primary);
+            background: rgba(2, 136, 209, 0.08);
+            padding: 6px 12px;
+            border-radius: 6px;
+        }
+
+        /* 计分面板与统计 */
+        .scoreboard-panel {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background: #ffffff;
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid rgba(0,0,0,0.03);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.01);
+        }
+
+        .score-stat {
+            text-align: center;
+            flex: 1;
+        }
+
+        .score-stat:not(:last-child) {
+            border-right: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .score-stat .label {
+            font-size: 13px;
+            color: var(--text-light);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .score-stat .value {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        /* GeoGebra 容器 */
+        #iframe-container {
+            width: 100%;
+            height: 480px;
+            border: 1px solid rgba(2, 136, 209, 0.15);
+            border-radius: 12px;
+            display: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        /* AI 原理演示面板 */
+        .ai-panel {
+            display: none;
+            position: fixed;
+            left: auto;
+            right: 18px;
+            top: 88px;
+            width: min(560px, calc(100vw - 36px));
+            height: min(760px, calc(100vh - 112px));
+            min-width: 360px;
+            min-height: 360px;
+            flex-direction: column;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.28);
+            border: 1px solid rgba(255, 255, 255, 0.62);
+            border-radius: 16px;
+            padding: 0;
+            box-shadow: 0 18px 48px rgba(15, 55, 78, 0.18);
+            backdrop-filter: blur(18px) saturate(1.3);
+            -webkit-backdrop-filter: blur(18px) saturate(1.3);
+            box-sizing: border-box;
+            z-index: 5000;
+            overflow: hidden;
+        }
+
+        .ai-panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            padding: 11px 12px 9px;
+            background: rgba(255, 255, 255, 0.54);
+            border-bottom: 1px solid rgba(2, 136, 209, 0.12);
+            cursor: move;
+            user-select: none;
+            touch-action: none;
+        }
+
+        .ai-drag-handle {
+            width: 30px;
+            height: 30px;
+            flex: 0 0 auto;
+            border-radius: 999px;
+            border: 1px solid rgba(2, 136, 209, 0.22);
+            background: rgba(255, 255, 255, 0.62);
+            display: grid;
+            place-items: center;
+            color: var(--primary);
+            font-size: 15px;
+            line-height: 1;
+            box-shadow: 0 3px 10px rgba(2, 136, 209, 0.12);
+        }
+
+        .ai-title-wrap {
+            min-width: 0;
+            flex: 1;
+        }
+
+        .ai-panel-title {
+            margin: 0;
+            color: var(--text-dark);
+            font-size: 17px;
+            font-weight: 800;
+        }
+
+        .ai-status {
+            color: var(--text-light);
+            font-size: 13px;
+            font-weight: 600;
+            margin-top: 2px;
+        }
+
+        .ai-panel-close {
+            width: 30px;
+            height: 30px;
+            border: 1px solid rgba(44, 62, 80, 0.12);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.72);
+            color: var(--text-dark);
+            cursor: pointer;
+            font-size: 18px;
+            line-height: 1;
+            display: grid;
+            place-items: center;
+            transition: var(--transition);
+        }
+
+        .ai-panel-close:hover {
+            color: var(--error);
+            border-color: rgba(244, 67, 54, 0.28);
+            background: rgba(255, 235, 238, 0.84);
+        }
+
+        .ai-explanation {
+            color: var(--text-dark);
+            line-height: 1.7;
+            font-size: 14px;
+            background: rgba(255, 255, 255, 0.36);
+            border-radius: 10px;
+            padding: 10px 12px;
+            margin: 0 12px;
+            white-space: pre-wrap;
+            border: 1px solid rgba(255, 255, 255, 0.42);
+        }
+
+        .ai-stream-output {
+            display: none;
+            margin: 0 12px;
+            max-height: 160px;
+            overflow: auto;
+            border: 1px solid rgba(2, 136, 209, 0.14);
+            border-radius: 10px;
+            padding: 10px 12px;
+            background: rgba(255, 255, 255, 0.5);
+            color: #334155;
+            font: 12px/1.55 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+            white-space: pre-wrap;
+        }
+
+        .ai-panel.is-streaming .ai-stream-output {
+            display: block;
+        }
+
+        .ai-demo-frame {
+            width: 100%;
+            flex: 0 0 auto;
+            height: 520px;
+            min-height: 240px;
+            border: 0;
+            border-radius: 0;
+            background: transparent;
+            box-sizing: border-box;
+            color-scheme: light;
+        }
+
+        .ai-resize-handle {
+            position: absolute;
+            left: 6px;
+            bottom: 6px;
+            width: 22px;
+            height: 22px;
+            border-radius: 7px;
+            cursor: nesw-resize;
+            touch-action: none;
+            background:
+                linear-gradient(135deg, transparent 0 45%, rgba(2, 136, 209, 0.28) 45% 55%, transparent 55%),
+                linear-gradient(135deg, transparent 0 64%, rgba(2, 136, 209, 0.44) 64% 73%, transparent 73%);
+            opacity: 0.88;
+        }
+
+        .ai-panel.is-moving,
+        .ai-panel.is-resizing {
+            transition: none;
+        }
+
+        @media (max-width: 720px) {
+            .ai-panel {
+                left: 10px;
+                right: auto;
+                top: 76px;
+                width: calc(100vw - 20px);
+                min-width: 300px;
+            }
+
+            body.ai-open #game-container {
+                max-width: 100%;
+            }
+        }
+
+        /* 答题历史记录表格 */
+        .history-panel {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .history-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin: 0;
+        }
+
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.01);
+            background: #ffffff;
+        }
+
+        #result-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 15px;
+        }
+
+        #result-table th, #result-table td {
+            padding: 12px 16px;
+            text-align: center;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        #result-table th {
+            background: #f8fafc;
+            color: var(--text-dark);
+            font-weight: 700;
+        }
+
+        #result-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .res-correct {
+            color: var(--success);
+            background: var(--success-light);
+            font-weight: 700;
+            border-radius: 6px;
+            padding: 4px 8px;
+            display: inline-block;
+        }
+
+        .res-error {
+            color: var(--error);
+            background: var(--error-light);
+            font-weight: 700;
+            border-radius: 6px;
+            padding: 4px 8px;
+            display: inline-block;
+        }
+
+        /* 轮次得分汇总板 */
+        #rounds-scoreboard {
+            font-size: 14px;
+            color: var(--text-light);
+            line-height: 1.6;
+            background: rgba(255, 255, 255, 0.6);
+            padding: 12px 16px;
+            border-radius: 8px;
+            border: 1px dashed rgba(0, 0, 0, 0.1);
+        }
+
+        /* 轻量级消息提示 */
+        .toast {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(44, 62, 80, 0.95);
+            color: #ffffff;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+            z-index: 9999;
+            transition: opacity 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <!-- 头部 -->
+        <div class="header">
+            <h3>玖数学测训系统</h3>
+            <div id="current-topic" class="current-topic">正在载入系统题库...</div>
+        </div>
+
+        <!-- 答题卡片 -->
+        <div class="quiz-card">
+            <div id="equation"></div>
+        </div>
+
+        <!-- 交互区域 -->
+        <div class="interaction-area">
+            <!-- MCQ 选项区域 -->
+            <div id="options" style="display: none;"></div>
+
+            <!-- 单填空题容器 -->
+            <div id="single-answer-container" class="inputs-container" style="display: none;">
+                <input type="text" id="answer-input" class="math-input" placeholder="输入你的答案" onkeyup="handleKeyUp(event)">
+            </div>
+
+            <!-- 双填空题容器 (方程组) -->
+            <div id="dual-answer-container" class="inputs-container" style="display: none;">
+                <div class="input-wrapper">
+                    x = &nbsp;
+                    <input type="text" id="answer-input-x" class="math-input" placeholder="x 的值" onkeyup="handleKeyUp(event, 'answer-input-y')">
+                </div>
+                <div class="input-wrapper">
+                    y = &nbsp;
+                    <input type="text" id="answer-input-y" class="math-input" placeholder="y 的值" onkeyup="handleKeyUp(event)">
+                </div>
+            </div>
+
+            <button id="submit-button" onclick="checkAnswer()" style="display: none;">提交答案</button>
+        </div>
+
+        <!-- 控制面板 -->
+        <div class="controls-wrapper">
+            <div class="controls">
+                <div class="mode-buttons">
+                    <button id="btn-seq" class="btn btn-active" onclick="toggleMode(false)">顺序模式</button>
+                    <button id="btn-rand" class="btn" onclick="toggleMode(true)">随机模式</button>
+                    <button id="btn-chall" class="btn" onclick="startChallengeMode()">闯关模式</button>
+                </div>
+                <div class="tool-buttons">
+                    <button id="ask-ai-button" class="btn" onclick="askAIForDemo()">🤖 问 AI</button>
+                    <button id="toggle-iframe-button" class="btn" onclick="toggleIframe()">🖥️ 交互画板</button>
+                    <button id="copy-button" class="btn" onclick="copyCurrentTopic()">📋 复制题目</button>
+                </div>
+                <span id="current-mode-display" class="mode-display">当前模式: 顺序</span>
+            </div>
+        </div>
+
+        <!-- 记分看板 -->
+        <div class="scoreboard-panel">
+            <div class="score-stat">
+                <div class="label">本轮得分</div>
+                <div id="score" class="value">0</div>
+            </div>
+            <div class="score-stat">
+                <div class="label">已回答题数</div>
+                <div id="answered" class="value">0</div>
+            </div>
+        </div>
+
+        <!-- GeoGebra 互动画板 -->
+        <iframe id="iframe-container" src="https://www.geogebra.org/classic"></iframe>
+
+        <!-- AI 原理演示 -->
+        <section id="ai-panel" class="ai-panel">
+            <div class="ai-panel-header">
+                <div class="ai-drag-handle" aria-hidden="true">⠿</div>
+                <div class="ai-title-wrap">
+                    <h4 id="ai-panel-title" class="ai-panel-title">AI 原理演示</h4>
+                    <div id="ai-status" class="ai-status">等待生成</div>
+                </div>
+                <button class="ai-panel-close" type="button" onclick="closeAIPanel()" aria-label="关闭 AI 原理演示">×</button>
+            </div>
+            <div id="ai-explanation" class="ai-explanation">点击“问 AI”后，会根据当前题目生成一个可交互的 HTML 原理演示。它会显示在下方沙盒中，不会改动主答题页面。</div>
+            <pre id="ai-stream-output" class="ai-stream-output"></pre>
+            <iframe id="ai-demo-frame" class="ai-demo-frame" sandbox="allow-scripts"></iframe>
+            <div class="ai-resize-handle" id="ai-resize-handle" aria-hidden="true"></div>
+        </section>
+
+        <!-- 答题历史与记录 -->
+        <div class="history-panel">
+            <h4 class="history-title">📝 本轮答题记录（倒序）</h4>
+            <div class="table-responsive">
+                <table id="result-table">
+                    <thead>
+                        <tr>
+                            <th>题目</th>
+                            <th>你的答案</th>
+                            <th>正确答案</th>
+                            <th>结果</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 历史轮次汇总 -->
+        <div id="rounds-scoreboard">尚未完成整轮测试（每轮 10 题，闯关模式需答完本专题全部题目）。</div>
+    </div>
+
+    <script>
+        // 核心答题引擎状态机
+        const state = {
+            currentQuestionBank: [],
+            currentEquationSystem: null,
+            score: 0,
+            questionsAnswered: 0,
+            roundsScores: [],
+            currentTopic: '',
+            currentQuestionIndex: 0,
+            isRandomMode: false,
+            isChallengeMode: false,
+            currentRawQuestion: null,
+            aiPanelInitialized: false,
+        };
+
+        // 获取 DOM 元素辅助函数
+        const $ = id => document.getElementById(id);
+
+        window.addEventListener('message', event => {
+            if (event.data?.type !== 'interactive-html-height') return;
+            if ($('ai-demo-frame').contentWindow !== event.source) return;
+            const frameHeight = Math.max(240, Math.min(760, Number(event.data.height) || 0));
+            const contentWidth = Number(event.data.width) || 0;
+            const frame = $('ai-demo-frame');
+            const panel = $('ai-panel');
+
+            if (contentWidth > 0) {
+                const maxPanelWidth = Math.max(360, Math.min(720, window.innerWidth - 36));
+                const nextWidth = Math.max(360, Math.min(maxPanelWidth, contentWidth + 24));
+                const rect = panel.getBoundingClientRect();
+                panel.style.width = `${nextWidth}px`;
+                panel.style.left = `${Math.max(10, Math.min(rect.left, window.innerWidth - nextWidth - 18))}px`;
+            }
+
+            frame.style.height = `${frameHeight}px`;
+
+            const headerHeight = panel.querySelector('.ai-panel-header')?.offsetHeight || 0;
+            const explanationHeight = $('ai-explanation').offsetHeight || 0;
+            const streamHeight = panel.classList.contains('is-streaming') ? ($('ai-stream-output').offsetHeight || 0) : 0;
+            const panelHeight = Math.min(
+                window.innerHeight - 16,
+                Math.max(360, headerHeight + explanationHeight + streamHeight + frameHeight + 34)
+            );
+            panel.style.height = `${panelHeight}px`;
+            clampAIPanelToViewport();
+        });
+
+        // 载入 URL 参数指定的题库
+        window.onload = () => {
+            const params = new URLSearchParams(window.location.search);
+            const topic = params.get('topic') || 'A01运算01分数加法'; // 默认回退
+            
+            $('current-topic').textContent = `正在加载专题: ${topic}...`;
+
+            // 动态创建并插入 script 标签以绕过本地 CORS 限制
+            const script = document.createElement('script');
+            script.src = `data/${encodeURIComponent(topic)}.js`;
+            script.onload = () => {
+                try {
+                    if (typeof window.JIUSHU_QUIZ === 'undefined' || !window.JIUSHU_QUIZ) {
+                        throw new Error('未检测到全局变量 window.JIUSHU_QUIZ，请确保数据格式正确。');
+                    }
+                    
+                    state.currentQuestionBank = window.JIUSHU_QUIZ.questions;
+                    state.currentTopic = window.JIUSHU_QUIZ.topic;
+                    
+                    $('current-topic').textContent = `玖数学: ${state.currentTopic}`;
+                    resetState();
+                    startNewRound();
+                } catch (err) {
+                    console.error(err);
+                    showErrorState();
+                }
+            };
+            script.onerror = (err) => {
+                console.error('Script load error:', err);
+                showErrorState();
+            };
+            document.body.appendChild(script);
+
+            function showErrorState() {
+                $('current-topic').textContent = `⚠️ 题库加载失败！请检查文件是否存在`;
+                $('equation').innerHTML = `<p style="color: var(--error); font-weight: 700; text-align: center;">无法读取该专题的数据文件，请确保后台转换脚本正常运行并生成了对应的 JS 数据。</p>`;
+            }
+        };
+
+        // 重置局内状态
+        function resetState() {
+            state.currentQuestionIndex = 0;
+            state.score = 0;
+            state.questionsAnswered = 0;
+            updateScoreboard();
+        }
+
+        // 切换模式：顺序 / 随机
+        function toggleMode(mode) {
+            state.isRandomMode = mode;
+            state.isChallengeMode = false;
+            resetState();
+            
+            // 样式更新
+            $('btn-seq').className = mode ? 'btn' : 'btn btn-active';
+            $('btn-rand').className = mode ? 'btn btn-active' : 'btn';
+            $('btn-chall').className = 'btn';
+            $('current-mode-display').textContent = mode ? '当前模式: 随机' : '当前模式: 顺序';
+            
+            startNewRound();
+        }
+
+        // 开启闯关模式
+        function startChallengeMode() {
+            state.isChallengeMode = true;
+            state.isRandomMode = false;
+            resetState();
+            
+            // 样式更新
+            $('btn-seq').className = 'btn';
+            $('btn-rand').className = 'btn';
+            $('btn-chall').className = 'btn btn-active';
+            $('current-mode-display').textContent = '当前模式: 闯关';
+            
+            startNewRound();
+        }
+
+        // 获取题目
+        function getQuestion() {
+            if (state.isRandomMode) {
+                const randomIndex = Math.floor(Math.random() * state.currentQuestionBank.length);
+                return state.currentQuestionBank[randomIndex];
+            } else {
+                if (state.currentQuestionIndex >= state.currentQuestionBank.length) {
+                    state.currentQuestionIndex = 0;
+                }
+                return state.currentQuestionBank[state.currentQuestionIndex++];
+            }
+        }
+
+        // 核心渲染引擎：根据题目类型生成界面
+        function generateEquationSystem() {
+            let question = getQuestion();
+            if (!question) return;
+            state.currentRawQuestion = question;
+            resetAIPanel(false);
+
+            const { equation, img, correctOption, incorrectOptions } = question;
+
+            // 处理 LaTeX 和图片路径
+            let equationHTML = equation;
+            if (img && img.trim()) {
+                equationHTML += `<br><img src="${img}" alt="题目图片">`;
+            }
+
+            // 更新 DOM 显示题目内容
+            $('equation').innerHTML = equationHTML;
+
+            // 题型判定与 DOM 展示切换
+            if (correctOption && (correctOption.single !== undefined || correctOption.dual !== undefined)) {
+                // ---- 填空题型 ----
+                state.currentEquationSystem = { equationSystem: equationHTML, correctOption };
+                
+                // 隐藏选项区，显示对应的输入框和提交按钮
+                $('options').style.display = 'none';
+                $('single-answer-container').style.display = correctOption.single !== undefined ? 'block' : 'none';
+                $('dual-answer-container').style.display = correctOption.dual !== undefined ? 'flex' : 'none';
+                $('submit-button').style.display = 'block';
+
+                // 清空输入框内容
+                $('answer-input').value = '';
+                $('answer-input-x').value = '';
+                $('answer-input-y').value = '';
+
+                // 聚焦第一个输入框
+                if (correctOption.single !== undefined) {
+                    $('answer-input').focus();
+                } else if (correctOption.dual !== undefined) {
+                    $('answer-input-x').focus();
+                }
+            } else {
+                // ---- 选择题型 ----
+                const correctIndex = Math.floor(Math.random() * 4);
+                const options = [...incorrectOptions];
+                options.splice(correctIndex, 0, correctOption);
+
+                state.currentEquationSystem = {
+                    equationSystem: equationHTML,
+                    correctIndex,
+                    options,
+                    correctOption
+                };
+
+                // 显示选项区，隐藏填空容器和提交按钮
+                $('options').style.display = 'grid';
+                $('single-answer-container').style.display = 'none';
+                $('dual-answer-container').style.display = 'none';
+                $('submit-button').style.display = 'none';
+
+                // 生成选项 DOM
+                const labels = ['A', 'B', 'C', 'D'];
+                $('options').innerHTML = state.currentEquationSystem.options.map((option, index) =>
+                    `<div class="option" onclick="checkAnswer(${index}, '${String(option).replace(/\\/g, '\\\\').replace(/'/g, "\\'")}')">
+                        <span>${labels[index]}. &nbsp; \\(${option}\\)</span>
+                    </div>`
+                ).join('');
+            }
+        }
+
+        // 答题历史及轮次判断
+        function startNewRound() {
+            let roundComplete = false;
+            let totalQuestionsInRound = state.isChallengeMode ? state.currentQuestionBank.length : 10;
+
+            if (state.questionsAnswered >= totalQuestionsInRound) {
+                roundComplete = true;
+            }
+
+            if (roundComplete) {
+                state.roundsScores.push({ 
+                    topic: state.currentTopic, 
+                    score: state.score, 
+                    totalQuestions: totalQuestionsInRound 
+                });
+                resetState();
+                updateRoundsScoreboard();
+            }
+
+            // 载入新题目并呼叫 MathJax 重绘公式
+            generateEquationSystem();
+            MathJax.typesetPromise();
+        }
+
+        // 校验答案
+        function checkAnswer(selectedIndex, optValue) {
+            let isCorrect = false;
+            let userAnswer = '';
+            let correctAnswer = '';
+            const correctOpt = state.currentEquationSystem.correctOption;
+
+            if (correctOpt && correctOpt.single !== undefined) {
+                // 单填空校验
+                userAnswer = $('answer-input').value.trim();
+                correctAnswer = correctOpt.single.trim();
+                isCorrect = (userAnswer === correctAnswer);
+            } else if (correctOpt && correctOpt.dual !== undefined) {
+                // 双填空校验
+                const userAnswerX = $('answer-input-x').value.trim();
+                const userAnswerY = $('answer-input-y').value.trim();
+                correctAnswer = `x = ${correctOpt.dual.x}, y = ${correctOpt.dual.y}`;
+                userAnswer = `x = ${userAnswerX}, y = ${userAnswerY}`;
+                isCorrect = (userAnswerX === correctOpt.dual.x && userAnswerY === correctOpt.dual.y);
+            } else {
+                // 选择题校验
+                isCorrect = (selectedIndex === state.currentEquationSystem.correctIndex);
+                userAnswer = optValue;
+                correctAnswer = state.currentEquationSystem.correctOption;
+            }
+
+            // 记录与反馈
+            addResultRow(state.currentEquationSystem.equationSystem, userAnswer, correctAnswer, isCorrect);
+            
+            if (isCorrect) {
+                state.score++;
+                state.questionsAnswered++;
+                updateScoreboard();
+                startNewRound();
+            } else {
+                if (state.isChallengeMode) {
+                    // 闯关失败，连对中断，全部清零并重新开始
+                    showTemporaryMessage('💥 闯关失败！错一题即清零，重新开始挑战！', 2000);
+                    resetState();
+                    startNewRound();
+                } else {
+                    state.questionsAnswered++;
+                    updateScoreboard();
+                    startNewRound();
+                }
+            }
+        }
+
+        // 回车键处理
+        function handleKeyUp(event, nextInputId = null) {
+            if (event.key === 'Enter') {
+                if (nextInputId) {
+                    $(nextInputId).focus();
+                } else {
+                    checkAnswer();
+                }
+            }
+        }
+
+        // 向表格中倒序插入记录
+        function addResultRow(equation, userAnswer, correctAnswer, isCorrect) {
+            const tbody = document.querySelector('#result-table tbody');
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td style="text-align: left; font-size: 14px;">${equation}</td>
+                <td>\\(${userAnswer}\\)</td>
+                <td>\\(${correctAnswer}\\)</td>
+                <td>
+                    <span class="${isCorrect ? 'res-correct' : 'res-error'}">${isCorrect ? '正确' : '错误'}</span>
+                </td>
+            `;
+            tbody.insertBefore(row, tbody.firstChild);
+        }
+
+        // 更新计分显示
+        function updateScoreboard() {
+            $('score').textContent = state.score;
+            $('answered').textContent = state.questionsAnswered;
+        }
+
+        // 更新历史轮次记录看板
+        function updateRoundsScoreboard() {
+            if (state.roundsScores.length === 0) return;
+            const roundsScoresText = state.roundsScores.map((round, index) =>
+                `第 ${index + 1} 轮 (${round.topic}): <strong>${round.score} 分</strong> / 共 ${round.totalQuestions} 题`
+            ).join('<br>');
+            $('rounds-scoreboard').innerHTML = roundsScoresText;
+        }
+
+        // 交互画板开启与隐藏
+        function toggleIframe() {
+            const iframe = $('iframe-container');
+            const button = $('toggle-iframe-button');
+            if (iframe.style.display === 'none' || iframe.style.display === '') {
+                iframe.style.display = 'block';
+                button.textContent = '🖥️ 隐藏画板';
+                button.classList.add('btn-active');
+            } else {
+                iframe.style.display = 'none';
+                button.textContent = '🖥️ 交互画板';
+                button.classList.remove('btn-active');
+            }
+        }
+
+        // 复制题目到剪贴板
+        function copyCurrentTopic() {
+            // 获取渲染后的纯文本内容
+            const currentTopicText = $('equation').innerText;
+            navigator.clipboard.writeText(currentTopicText).then(() => {
+                showTemporaryMessage('📋 题目纯文本已复制到剪贴板！', 1200);
+            }).catch(err => {
+                console.error('复制失败', err);
+            });
+        }
+
+        function getCorrectAnswerText(correctOption) {
+            if (!correctOption) return '';
+            if (correctOption.single !== undefined) {
+                return correctOption.single;
+            }
+            if (correctOption.dual !== undefined) {
+                return `x = ${correctOption.dual.x}, y = ${correctOption.dual.y}`;
+            }
+            return String(correctOption);
+        }
+
+        function buildAIPrompt() {
+            const question = state.currentRawQuestion || {};
+            return [
+                `专题：${state.currentTopic}`,
+                `题目原文：${question.equation || ''}`,
+                question.img ? `题目图片：${question.img}` : '',
+                `正确答案：${getCorrectAnswerText(question.correctOption)}`,
+                '请把这道数学题背后的核心原理做成透明背景的动态 HTML 演示。',
+                '要求：',
+                '1. 直接输出完整 HTML，不要 Markdown 代码块或解释前后缀，第一个字符必须是 <。',
+                '2. 自动识别适合可视化的数学原理：如分数通分、比例不变量、方程组消元、工程效率、浓度混合、行船速度、鸡兔同笼、几何面积关系、坐标/函数图象等。',
+                '3. html、body、主容器、canvas/svg 和绘图区背景必须 transparent；不要外层卡片、阴影、白色底板或整屏色块；如果用 canvas，不要 fillRect 铺背景。',
+                '4. 首屏直接呈现原理图或过程动画，用箭头、数轴、面积块、线段图、天平、表格或坐标系说明关键关系，不要写长篇解释。',
+                '5. 至少提供一种交互：播放/暂停、步骤切换、滑块改变数值、显示隐藏辅助线，或小按钮切换方法。',
+                '6. JS 使用 addEventListener，不要写 onclick/oninput 内联事件。',
+                '7. 所有 CSS 和 JS 内联，自包含，不依赖外部 CDN。',
+                '8. 聚焦数学原理，不要只给最终答案；如果无法确定具体原理，输出一个透明的“原理选择/候选图”，不要编造复杂机制。',
+                '9. 内容本身可以有不透明文字、线条、按钮和小标签，但页面背景必须完全透明，方便透出下面的题目。',
+                '10. 所有文字使用中文，界面适合学生观看。'
+            ].filter(Boolean).join('\\n');
+        }
+
+        function resetAIPanel(keepOpen = true) {
+            if (!keepOpen) {
+                $('ai-panel').style.display = 'none';
+                $('ask-ai-button').classList.remove('btn-active');
+                document.body.classList.remove('ai-open');
+            }
+            $('ai-panel').classList.remove('is-streaming');
+            $('ai-status').textContent = '等待生成';
+            $('ai-panel-title').textContent = 'AI 原理演示';
+            $('ai-explanation').textContent = '点击“问 AI”后，会根据当前题目生成一个可交互的 HTML 原理演示。它会显示在下方沙盒中，不会改动主答题页面。';
+            $('ai-stream-output').textContent = '';
+            $('ai-demo-frame').removeAttribute('srcdoc');
+            $('ai-demo-frame').style.height = '520px';
+        }
+
+        function closeAIPanel() {
+            $('ai-panel').style.display = 'none';
+            $('ask-ai-button').classList.remove('btn-active');
+            document.body.classList.remove('ai-open');
+        }
+
+        function positionAIPanelDefault() {
+            const panel = $('ai-panel');
+            const width = Math.min(560, Math.max(360, window.innerWidth - 36));
+            const height = Math.min(760, Math.max(420, window.innerHeight - 112));
+            panel.style.left = `${Math.max(10, window.innerWidth - width - 18)}px`;
+            panel.style.right = 'auto';
+            panel.style.top = '88px';
+            panel.style.width = `${width}px`;
+            panel.style.height = `${height}px`;
+        }
+
+        function clampAIPanelToViewport() {
+            const panel = $('ai-panel');
+            const rect = panel.getBoundingClientRect();
+            const margin = 8;
+            const left = Math.min(Math.max(rect.left, margin), Math.max(margin, window.innerWidth - rect.width - margin));
+            const top = Math.min(Math.max(rect.top, margin), Math.max(margin, window.innerHeight - rect.height - margin));
+            panel.style.left = `${left}px`;
+            panel.style.top = `${top}px`;
+        }
+
+        function openAIPanel() {
+            const panel = $('ai-panel');
+            if (panel.style.display !== 'flex') {
+                panel.style.display = 'flex';
+                if (!panel.dataset.positioned) {
+                    positionAIPanelDefault();
+                    panel.dataset.positioned = 'true';
+                } else {
+                    clampAIPanelToViewport();
+                }
+            }
+            $('ask-ai-button').classList.add('btn-active');
+            document.body.classList.add('ai-open');
+            initAIPanelDragResize();
+        }
+
+        function initAIPanelDragResize() {
+            if (state.aiPanelInitialized) return;
+            state.aiPanelInitialized = true;
+
+            const panel = $('ai-panel');
+            const header = panel.querySelector('.ai-panel-header');
+            const resizeHandle = $('ai-resize-handle');
+            const minWidth = 320;
+            const minHeight = 340;
+            const margin = 8;
+            let dragState = null;
+            let activePointerTarget = null;
+
+            const applyDrag = event => {
+                if (!dragState) return;
+                event.preventDefault();
+
+                if (dragState.type === 'move') {
+                    const width = panel.offsetWidth;
+                    const height = panel.offsetHeight;
+                    const dx = event.clientX - dragState.lastX;
+                    const dy = event.clientY - dragState.lastY;
+                    dragState.lastX = event.clientX;
+                    dragState.lastY = event.clientY;
+                    const nextLeft = Math.min(
+                        Math.max(dragState.left + dx, margin),
+                        Math.max(margin, window.innerWidth - width - margin)
+                    );
+                    const nextTop = Math.min(
+                        Math.max(dragState.top + dy, margin),
+                        Math.max(margin, window.innerHeight - height - margin)
+                    );
+                    dragState.left = nextLeft;
+                    dragState.top = nextTop;
+                    panel.style.left = `${nextLeft}px`;
+                    panel.style.top = `${nextTop}px`;
+                    return;
+                }
+
+                const dx = event.clientX - dragState.lastX;
+                const dy = event.clientY - dragState.lastY;
+                dragState.lastX = event.clientX;
+                dragState.lastY = event.clientY;
+                const rightEdge = dragState.left + dragState.width;
+                const maxWidth = Math.max(minWidth, rightEdge - margin);
+                const maxHeight = Math.max(minHeight, window.innerHeight - dragState.top - margin);
+                const nextWidth = Math.min(Math.max(dragState.width - dx, minWidth), maxWidth);
+                const nextHeight = Math.min(Math.max(dragState.height + dy, minHeight), maxHeight);
+                const nextLeft = rightEdge - nextWidth;
+                dragState.width = nextWidth;
+                dragState.height = nextHeight;
+                dragState.left = nextLeft;
+                panel.style.left = `${nextLeft}px`;
+                panel.style.width = `${nextWidth}px`;
+                panel.style.height = `${nextHeight}px`;
+            };
+
+            const stopDrag = () => {
+                if (!dragState) return;
+                panel.classList.remove('is-moving', 'is-resizing');
+                try {
+                    activePointerTarget?.releasePointerCapture?.(dragState.pointerId);
+                } catch {}
+                dragState = null;
+                activePointerTarget = null;
+                document.removeEventListener('pointermove', applyDrag);
+                document.removeEventListener('pointerup', stopDrag);
+                document.removeEventListener('pointercancel', stopDrag);
+            };
+
+            header.addEventListener('pointerdown', event => {
+                if (event.target.closest('.ai-panel-close')) return;
+                event.preventDefault();
+                const rect = panel.getBoundingClientRect();
+                dragState = {
+                    type: 'move',
+                    pointerId: event.pointerId,
+                    lastX: event.clientX,
+                    lastY: event.clientY,
+                    left: rect.left,
+                    top: rect.top
+                };
+                panel.classList.add('is-moving');
+                activePointerTarget = header;
+                header.setPointerCapture?.(event.pointerId);
+                document.addEventListener('pointermove', applyDrag);
+                document.addEventListener('pointerup', stopDrag);
+                document.addEventListener('pointercancel', stopDrag);
+            });
+
+            resizeHandle.addEventListener('pointerdown', event => {
+                event.preventDefault();
+                event.stopPropagation();
+                const rect = panel.getBoundingClientRect();
+                dragState = {
+                    type: 'resize',
+                    pointerId: event.pointerId,
+                    lastX: event.clientX,
+                    lastY: event.clientY,
+                    width: rect.width,
+                    height: rect.height,
+                    left: rect.left,
+                    top: rect.top
+                };
+                panel.classList.add('is-resizing');
+                activePointerTarget = resizeHandle;
+                resizeHandle.setPointerCapture?.(event.pointerId);
+                document.addEventListener('pointermove', applyDrag);
+                document.addEventListener('pointerup', stopDrag);
+                document.addEventListener('pointercancel', stopDrag);
+            });
+
+            window.addEventListener('resize', clampAIPanelToViewport);
+        }
+
+        function extractAIContent(data) {
+            const choice = data && data.choices && data.choices[0];
+            const message = choice && choice.message;
+            if (!message) return '';
+            if (typeof message.content === 'string') return message.content;
+            if (Array.isArray(message.content)) {
+                return message.content.map(part => part.text || part.content || '').join('\\n');
+            }
+            return '';
+        }
+
+        function prepareInteractiveHtml(html) {
+            const cleaned = String(html || '')
+                .replace(/```html/gi, '')
+                .replace(/```/g, '');
+            const docMatch = cleaned.match(/(?:<!doctype\s+html[^>]*>\s*)?<html[\s\S]*?<\/html>/i);
+            if (docMatch) return docMatch[0].trim();
+
+            const startMatch = cleaned.match(/<(?:style|head|body|main|section|div|canvas|svg)\b/i);
+            if (startMatch) return cleaned.slice(startMatch.index).trim();
+
+            return '';
+        }
+
+        function sanitizeInteractiveHtml(html) {
+            const template = document.createElement('template');
+            template.innerHTML = String(html || '');
+            const blockedTags = new Set(['iframe', 'object', 'embed', 'link', 'meta', 'base']);
+            const walker = document.createTreeWalker(template.content, NodeFilter.SHOW_ELEMENT);
+            const removeNodes = [];
+
+            while (walker.nextNode()) {
+                const node = walker.currentNode;
+                const tag = node.tagName.toLowerCase();
+                if (blockedTags.has(tag)) {
+                    removeNodes.push(node);
+                    continue;
+                }
+                [...node.attributes].forEach(attr => {
+                    const name = attr.name.toLowerCase();
+                    const value = attr.value || '';
+                    if (name.startsWith('on')) {
+                        node.removeAttribute(attr.name);
+                    } else if ((name === 'href' || name === 'src') && /^\s*javascript:/i.test(value)) {
+                        node.removeAttribute(attr.name);
+                    }
+                });
+            }
+            removeNodes.forEach(node => node.remove());
+            return template.innerHTML;
+        }
+
+        function enhanceInteractiveHtml(html) {
+            const frameCss = `
+                <style>
+                    :root, html {
+                        background: transparent !important;
+                        background-color: transparent !important;
+                        background-image: none !important;
+                    }
+                    body {
+                        margin: 0;
+                        min-height: 0;
+                        box-sizing: border-box;
+                        background: transparent !important;
+                        background-color: transparent !important;
+                        background-image: none !important;
+                        color: #0f172a !important;
+                    }
+                    * { box-sizing: border-box; }
+                    button, input, select, textarea {
+                        font: inherit;
+                        color: #0f172a !important;
+                    }
+                    h1, h2, h3, h4, h5, h6,
+                    p, span, label, li, dt, dd, th, td,
+                    strong, em, small, code, output,
+                    .title, .subtitle, .label, .caption, .formula, .step, .result,
+                    [class*="text"], [class*="label"], [class*="title"], [class*="formula"], [class*="step"] {
+                        color: #0f172a !important;
+                        text-shadow:
+                            0 1px 0 rgba(255, 255, 255, 0.9),
+                            0 0 4px rgba(255, 255, 255, 0.72) !important;
+                    }
+                    svg text,
+                    svg tspan {
+                        fill: #0f172a !important;
+                        stroke: rgba(255, 255, 255, 0.85) !important;
+                        stroke-width: 0.8px !important;
+                        paint-order: stroke fill !important;
+                    }
+                    body,
+                    body > main,
+                    body > section,
+                    body > article,
+                    body > div,
+                    canvas, svg,
+                    .app, .container, .wrapper, .stage, .scene,
+                    [class*="container"], [class*="wrapper"], [class*="stage"], [class*="scene"], [class*="canvas"] {
+                        background: transparent !important;
+                        background-color: transparent !important;
+                        background-image: none !important;
+                        box-shadow: none !important;
+                    }
+                    svg rect[fill="white"],
+                    svg rect[fill="#fff"],
+                    svg rect[fill="#ffffff"],
+                    svg rect[fill="rgb(255,255,255)"],
+                    svg rect[fill="rgb(255, 255, 255)"] {
+                        fill: transparent !important;
+                    }
+                    canvas {
+                        background: transparent !important;
+                        background-color: transparent !important;
+                    }
+                </style>
+            `;
+            const heightBridge = `
+                <script>
+                    (() => {
+                        const postHeight = () => {
+                            const root = document.documentElement;
+                            const body = document.body;
+                            const height = Math.max(
+                                root ? root.scrollHeight : 0,
+                                body ? body.scrollHeight : 0,
+                                240
+                            );
+                            const width = Math.max(
+                                root ? root.scrollWidth : 0,
+                                body ? body.scrollWidth : 0,
+                                360
+                            );
+                            parent.postMessage({ type: 'interactive-html-height', height, width }, '*');
+                        };
+                        window.addEventListener('load', postHeight);
+                        window.addEventListener('resize', postHeight);
+                        setTimeout(postHeight, 80);
+                        setTimeout(postHeight, 400);
+                    })();
+                <\/script>
+            `;
+            let output = String(html || '');
+            if (/<\/head>/i.test(output)) {
+                output = output.replace(/<\/head>/i, `${frameCss}</head>`);
+            } else if (/<head[\s>]/i.test(output)) {
+                output = output.replace(/<head([^>]*)>/i, `<head$1>${frameCss}`);
+            } else {
+                output = `${frameCss}${output}`;
+            }
+            if (/<\/body>/i.test(output)) {
+                output = output.replace(/<\/body>/i, `${heightBridge}</body>`);
+            } else {
+                output += heightBridge;
+            }
+            return output;
+        }
+
+        function renderAIDemo(html) {
+            const preparedHtml = prepareInteractiveHtml(html);
+            if (!preparedHtml) {
+                $('ai-status').textContent = '未识别到 HTML';
+                $('ai-explanation').textContent = 'AI 没有返回可渲染的 HTML，下面显示原始内容。';
+                $('ai-demo-frame').srcdoc = `<pre style="font-family: sans-serif; white-space: pre-wrap; padding: 18px;">${String(html || '').replace(/[&<>]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[ch]))}</pre>`;
+                return;
+            }
+            $('ai-panel-title').textContent = 'AI 原理演示';
+            $('ai-explanation').textContent = '下面是根据当前题目生成的交互式 HTML 原理演示。';
+            $('ai-demo-frame').style.height = '240px';
+            $('ai-demo-frame').srcdoc = enhanceInteractiveHtml(sanitizeInteractiveHtml(preparedHtml));
+            $('ai-status').textContent = '已生成';
+        }
+
+        function appendAIStreamText(text) {
+            if (!text) return;
+            const output = $('ai-stream-output');
+            output.textContent += text;
+            output.scrollTop = output.scrollHeight;
+            $('ai-status').textContent = `正在接收... ${output.textContent.length} 字`;
+        }
+
+        async function readAIStream(response) {
+            const contentType = response.headers.get('content-type') || '';
+            if (!contentType.includes('text/event-stream')) {
+                const text = await response.text();
+                try {
+                    const data = JSON.parse(text);
+                    const content = extractAIContent(data);
+                    appendAIStreamText(content);
+                    return content;
+                } catch {
+                    appendAIStreamText(text);
+                    return text;
+                }
+            }
+
+            if (!response.body) {
+                const data = await response.json();
+                return extractAIContent(data);
+            }
+
+            const reader = response.body.getReader();
+            const decoder = new TextDecoder('utf-8');
+            let buffer = '';
+            let result = '';
+
+            while (true) {
+                const { value, done } = await reader.read();
+                if (done) break;
+                buffer += decoder.decode(value, { stream: true });
+                const events = buffer.split('\n\n');
+                buffer = events.pop() || '';
+
+                for (const eventText of events) {
+                    const lines = eventText.split('\n')
+                        .map(line => line.trim())
+                        .filter(line => line.startsWith('data:'))
+                        .map(line => line.slice(5).trim());
+
+                    for (const line of lines) {
+                        if (!line || line === '[DONE]') continue;
+                        try {
+                            const payload = JSON.parse(line);
+                            const delta = payload.choices?.[0]?.delta?.content
+                                || payload.choices?.[0]?.message?.content
+                                || '';
+                            if (delta) {
+                                result += delta;
+                                appendAIStreamText(delta);
+                            }
+                        } catch {
+                            result += line;
+                            appendAIStreamText(line);
+                        }
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        async function askAIForDemo() {
+            const config = window.JIUSHU_AI_CONFIG;
+            if (!config || !config.apiUrl || !config.apiKey || !config.model) {
+                showTemporaryMessage('AI 配置缺失，请检查 config/ai_config.js', 1800);
+                return;
+            }
+            if (!state.currentRawQuestion) {
+                showTemporaryMessage('当前还没有可讲解的题目', 1400);
+                return;
+            }
+
+            openAIPanel();
+            $('ai-panel').classList.add('is-streaming');
+            $('ai-status').textContent = '正在生成...';
+            $('ai-explanation').textContent = 'AI 正在流式生成 HTML，完整接收后会自动渲染到透明演示窗口。';
+            $('ai-stream-output').textContent = '';
+            $('ai-demo-frame').removeAttribute('srcdoc');
+
+            try {
+                const response = await fetch(config.apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${config.apiKey}`
+                    },
+                    body: JSON.stringify({
+                        model: config.model,
+                        messages: [
+                            {
+                                role: 'system',
+                                content: '你是数学老师和前端工程师。你只返回完整 HTML，生成安全、清晰、可交互的数学原理演示。'
+                            },
+                            {
+                                role: 'user',
+                                content: buildAIPrompt()
+                            }
+                        ],
+                        temperature: 0.35,
+                        stream: true
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`AI 请求失败：${response.status}`);
+                }
+
+                const html = await readAIStream(response);
+                renderAIDemo(html);
+            } catch (err) {
+                console.error(err);
+                $('ai-status').textContent = '生成失败';
+                $('ai-explanation').textContent = `AI 原理演示生成失败：${err.message || err}`;
+                showTemporaryMessage('AI 生成失败，请检查网络或配置', 1800);
+            } finally {
+                $('ai-panel').classList.remove('is-streaming');
+            }
+        }
+
+        // 页面弹出轻量提示
+        function showTemporaryMessage(message, duration) {
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                setTimeout(() => document.body.removeChild(toast), 300);
+            }, duration);
+        }
+    </script>
+</body>
+</html>

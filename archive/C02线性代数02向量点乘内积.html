@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <title>玖数学练习</title>
+    <style>
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: lightblue;
+        }
+
+        #navigation {
+            display: none;
+        }
+
+        #game-container {
+            width: 100%;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #equation, #options {
+            text-align: center;
+            width: 100%;
+            font-size: 20px;
+        }
+
+        .option {
+            display: inline-block;
+            margin: 0 10px;
+            padding: 10px;
+            border: 1px solid #000;
+            cursor: pointer;
+            margin: 0 10px 20px;
+            font-size: 20px;
+        }
+
+        #button-container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <h3>玖数学测训系统</h3>
+        <div id="current-topic"></div>
+        <div id="equation"></div>
+        <div id="options"></div>
+        <iframe id="myframe" style="display: none;" width="100%" height="600"></iframe>
+        <div id="button-container">
+            <button onclick="toggleMode(false)">顺序</button>
+            <button onclick="toggleMode(true)">随机</button>
+            <button onclick="startChallengeMode()">闯关</button><br>
+            <span id="current-mode-display">当前模式: 顺序</span>
+        </div>
+        <div id="scoreboard">现在得分:<span id="score">0</span>,已回答:<span id="answered">0</span></div>
+        <div id="rounds-scoreboard"></div>
+    </div>
+    <script>
+       
+const C02线性代数02向量点乘内积 = [
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(8,5),B(3,-10); \\\\ 计算:(8,5)\\cdot (3,-10)=? \\\\在坐标系中画出O(0,0);A(8,5); B(3,-10);C(10,3)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系? \\end{gather}",correctOption: "-26",incorrectOptions:["-16","0","85"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(5,-7),B(-3,-7); \\\\ 计算:(5,-7)\\cdot (-3,-7)=? \\\\在坐标系中画出O(0,0);A(5,-7); B(-3,-7);C(7,-3)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系? \\end{gather}",correctOption: "34",incorrectOptions:["-57","75","-74"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(2,-9),B(-9,2); \\\\ 计算:(2,-9)\\cdot (-9,2)=? \\\\在坐标系中画出O(0,0);A(2,-9); B(-9,2);C(-2,-9)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系? \\end{gather}",correctOption: "-36",incorrectOptions:["10","22","-88"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(1,8),B(-2,-2); \\\\ 计算:(1,8)\\cdot (-2,-2)=? \\\\在坐标系中画出O(0,0);A(1,8); B(-2,-2);C(2,-2)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系? \\end{gather}",correctOption: "-18",incorrectOptions:["-16","-5","-52"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(-9,5),B(-7,3); \\\\ 计算:(-9,5)\\cdot (-7,3)=? \\\\在坐标系中画出O(0,0);A(-9,5); B(-7,3);C(-3,-7)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系? \\end{gather}",correctOption: "78",incorrectOptions:["-39","-82","2"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(7,8),B(-8,7); \\\\ 计算:(7,8)\\cdot (-8,7)=? \\\\在坐标系中画出O(0,0);A(7,8); B(-8,7);C(-7,-8)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系? \\end{gather}",correctOption: "0",incorrectOptions:["-18","88","-92"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(-10,-1),B(-8,-8); \\\\ 计算:(-10,-1)\\cdot (-8,-8)=? \\\\在坐标系中画出O(0,0);A(-10,-1); B(-8,-8);C(8,-8)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系? \\end{gather}",correctOption: "88",incorrectOptions:["-25","90","2"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(-9,-1),B(-10,-3); \\\\ 计算:(-9,-1)\\cdot (-10,-3)=? \\\\在坐标系中画出O(0,0);A(-9,-1); B(-10,-3);C(3,-10)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系? \\end{gather}",correctOption: "93",incorrectOptions:["75","-86","-44"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(4,3),B(-4,5); \\\\ 计算:(4,3)\\cdot (-4,5)=? \\\\在坐标系中画出O(0,0);A(4,3); B(-4,5);C(-5,-4)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系? \\end{gather}",correctOption: "-1",incorrectOptions:["-5","9","-34"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(1,-3),B(0,-3); \\\\ 计算:(1,-3)\\cdot (0,-3)=? \\\\在坐标系中画出O(0,0);A(1,-3); B(0,-3);C(3,0)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系? \\end{gather}",correctOption: "9",incorrectOptions:["77","88","-53"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(-4,-1),B(8,6); \\\\ 计算:(-4,-1)\\cdot (8,6)=? \\\\在坐标系中画出O(0,0);A(-4,-1); B(8,6);C(-6,8)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系? \\end{gather}",correctOption: "-38",incorrectOptions:["-82","50","88"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(-1,-2),B(2,-4); \\\\ 计算:(-1,-2)\\cdot (2,-4)=? \\\\在坐标系中画出O(0,0);A(-1,-2); B(2,-4);C(4,2)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系? \\end{gather}",correctOption: "6",incorrectOptions:["-43","93","84"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(-10,3),B(-8,-6); \\\\ 计算:(-10,3)\\cdot (-8,-6)=? \\\\在坐标系中画出O(0,0);A(-10,3); B(-8,-6);C(6,-8)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系? \\end{gather}",correctOption: "62",incorrectOptions:["2","77","9"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(-1,-5),B(2,6); \\\\ 计算:(-1,-5)\\cdot (2,6)=? \\\\在坐标系中画出O(0,0);A(-1,-5); B(2,6);C(-6,2)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系? \\end{gather}",correctOption: "-32",incorrectOptions:["-26","-3","6"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(4,-1),B(-1,1); \\\\ 计算:(4,-1)\\cdot (-1,1)=? \\\\在坐标系中画出O(0,0);A(4,-1); B(-1,1);C(-1,-1)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系? \\end{gather}",correctOption: "-5",incorrectOptions:["92","-40","-64"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(-1,-10),B(-9,-4); \\\\ 计算:(-1,-10)\\cdot (-9,-4)=? \\\\在坐标系中画出O(0,0);A(-1,-10); B(-9,-4);C(4,-9)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系? \\end{gather}",correctOption: "49",incorrectOptions:["-88","-100","-17"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(-10,-2),B(-8,4); \\\\ 计算:(-10,-2)\\cdot (-8,4)=? \\\\在坐标系中画出O(0,0);A(-10,-2); B(-8,4);C(-4,-8)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系? \\end{gather}",correctOption: "72",incorrectOptions:["50","-69","89"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(-1,3),B(-10,4); \\\\ 计算:(-1,3)\\cdot (-10,4)=? \\\\在坐标系中画出O(0,0);A(-1,3); B(-10,4);C(-4,-10)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系? \\end{gather}",correctOption: "22",incorrectOptions:["38","-50","-25"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(-8,3),B(-3,-6); \\\\ 计算:(-8,3)\\cdot (-3,-6)=? \\\\在坐标系中画出O(0,0);A(-8,3); B(-3,-6);C(6,-3)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系? \\end{gather}",correctOption: "6",incorrectOptions:["48","-28","82"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(-8,-3),B(-9,-10); \\\\ 计算:(-8,-3)\\cdot (-9,-10)=? \\\\在坐标系中画出O(0,0);A(-8,-3); B(-9,-10);C(10,-9)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系? \\end{gather}",correctOption: "102",incorrectOptions:["-24","98","-51"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(6,-10),B(8,-9); \\\\ 计算:(6,-10)\\cdot (8,-9)=? \\\\在坐标系中画出O(0,0);A(6,-10); B(8,-9);C(9,8)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系? \\end{gather}",correctOption: "138",incorrectOptions:["83","-94","58"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(-3,5),B(6,-9); \\\\ 计算:(-3,5)\\cdot (6,-9)=? \\\\在坐标系中画出O(0,0);A(-3,5); B(6,-9);C(9,6)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系? \\end{gather}",correctOption: "-63",incorrectOptions:["59","71","-97"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(-3,5),B(8,6); \\\\ 计算:(-3,5)\\cdot (8,6)=? \\\\在坐标系中画出O(0,0);A(-3,5); B(8,6);C(-6,8)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系? \\end{gather}",correctOption: "6",incorrectOptions:["-14","22","-67"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(-1,-7),B(4,-3); \\\\ 计算:(-1,-7)\\cdot (4,-3)=? \\\\在坐标系中画出O(0,0);A(-1,-7); B(4,-3);C(3,4)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系? \\end{gather}",correctOption: "17",incorrectOptions:["3","28","56"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(2,-3),B(-10,4); \\\\ 计算:(2,-3)\\cdot (-10,4)=? \\\\在坐标系中画出O(0,0);A(2,-3); B(-10,4);C(-4,-10)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系? \\end{gather}",correctOption: "-32",incorrectOptions:["50","9","51"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(8,6),B(-9,6); \\\\ 计算:(8,6)\\cdot (-9,6)=? \\\\在坐标系中画出O(0,0);A(8,6); B(-9,6);C(-6,-9)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系? \\end{gather}",correctOption: "-36",incorrectOptions:["93","20","-95"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(-5,5),B(-9,-10); \\\\ 计算:(-5,5)\\cdot (-9,-10)=? \\\\在坐标系中画出O(0,0);A(-5,5); B(-9,-10);C(10,-9)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系? \\end{gather}",correctOption: "-5",incorrectOptions:["-16","-66","23"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(-9,-1),B(4,4); \\\\ 计算:(-9,-1)\\cdot (4,4)=? \\\\在坐标系中画出O(0,0);A(-9,-1); B(4,4);C(-4,4)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系? \\end{gather}",correctOption: "-40",incorrectOptions:["-94","-83","-89"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(-6,-5),B(2,-10); \\\\ 计算:(-6,-5)\\cdot (2,-10)=? \\\\在坐标系中画出O(0,0);A(-6,-5); B(2,-10);C(10,2)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系? \\end{gather}",correctOption: "38",incorrectOptions:["-93","-96","-5"]},
+
+{equation: "\\begin{gather}向量是代数基础;\\\\ 已知点A(-10,-6),B(6,2); \\\\ 计算:(-10,-6)\\cdot (6,2)=? \\\\在坐标系中画出O(0,0);A(-10,-6); B(6,2);C(-2,6)。 \\\\三角形面积S△OAC\\times2=?。 \\\\OA、OB、OC以及它们之间的投影长有什么关系? \\end{gather}",correctOption: "-72",incorrectOptions:["-35","-78","-74"]},
+
+
+
+        ];
+
+        let currentQuestionBank;
+        let currentEquationSystem;
+        let score = 0;
+        let questionsAnswered = 0;
+        let roundsScores = [];
+        let currentTopic = '';
+        let currentQuestionIndex = 0;
+        let isRandomMode = false;
+
+        function startChallengeMode() {
+            isChallengeMode = true;
+            currentQuestionIndex = 0;
+            score = 0;
+            questionsAnswered = 0;
+            updateScoreboard();
+            updateRoundsScoreboard();
+            document.getElementById('current-mode-display').textContent = '当前模式: 闯关';
+            startNewRound();
+        }
+
+        function toggleMode(mode) {
+            isRandomMode = mode;
+            isChallengeMode = false;
+            currentQuestionIndex = 0;
+            score = 0;
+            questionsAnswered = 0;
+            updateScoreboard();
+            const modeDisplay = document.getElementById('current-mode-display');
+            modeDisplay.textContent = isRandomMode ? '当前模式: 随机' : '当前模式: 顺序';
+            startNewRound();
+        }
+
+        function loadQuestions(questionBank, topic) {
+            currentQuestionBank = questionBank;
+            currentTopic = topic;
+            currentQuestionIndex = 0;
+            score = 0;
+            questionsAnswered = 0;
+            isRandomMode = false;
+            isChallengeMode = false;
+            updateScoreboard();
+            document.getElementById('current-topic').textContent = `玖数学: ${currentTopic}`;
+            document.getElementById('current-mode-display').textContent = '当前模式: 顺序';
+            startNewRound();
+        }
+
+        function generateEquationSystem() {
+            let question;
+
+            if (isRandomMode) {
+                const randomIndex = Math.floor(Math.random() * currentQuestionBank.length);
+                question = currentQuestionBank[randomIndex];
+            } else {
+                if (currentQuestionIndex >= currentQuestionBank.length) {
+                    currentQuestionIndex = 0;
+                }
+                question = currentQuestionBank[currentQuestionIndex];
+                currentQuestionIndex++;
+            }
+
+            const { equation, img, correctOption, incorrectOptions } = question;
+            const correctIndex = Math.floor(Math.random() * 4);
+            const options = [...incorrectOptions];
+            options.splice(correctIndex, 0, correctOption);
+
+            let equationHTML = equation;
+
+            if (img && img.trim() !== '') {
+                equationHTML += `<br><img src="${img}" alt="题目图片">`;
+            }
+
+            currentEquationSystem = {
+                equationSystem: equationHTML,
+                correctIndex,
+                options
+            };
+        }
+
+        function generateOptions() {
+            const labels = ['A', 'B', 'C', 'D', ];
+            return currentEquationSystem.options.map((option, index) => `<div class="option" onclick="checkAnswer(${index})"><span>${labels[index]}. \\(${option}\\)</span></div>`).join('');
+        }
+
+        function displayEquationSystem() {
+            generateEquationSystem();
+            document.getElementById('equation').innerHTML = currentEquationSystem.equationSystem;
+            document.getElementById('options').innerHTML = generateOptions();
+            MathJax.typeset();
+        }
+
+        function startNewRound() {
+            let roundComplete = false;
+            let totalQuestionsInRound = isChallengeMode ? currentQuestionBank.length : 10;
+
+            if (isChallengeMode) {
+                roundComplete = questionsAnswered >= currentQuestionBank.length;
+            } else {
+                roundComplete = questionsAnswered >= 10;
+            }
+
+            if (roundComplete) {
+                roundsScores.push({ topic: currentTopic, score: score, totalQuestions: totalQuestionsInRound });
+                score = 0;
+                questionsAnswered = 0;
+                updateRoundsScoreboard();
+                if (!isChallengeMode && currentQuestionIndex >= currentQuestionBank.length) {
+                    currentQuestionIndex = 0;
+                }
+            }
+
+            displayEquationSystem();
+        }
+
+        function checkAnswer(selectedIndex) {
+            if (parseInt(selectedIndex) === currentEquationSystem.correctIndex) {
+                score++;
+            } else if (isChallengeMode) {
+                score = 0;
+                questionsAnswered = 0;
+                currentQuestionIndex = 0;
+                updateScoreboard();
+                startNewRound();
+                return;
+            }
+            questionsAnswered++;
+            updateScoreboard();
+            startNewRound();
+        }
+
+        function updateScoreboard() {
+            document.getElementById('score').textContent = score;
+            document.getElementById('answered').textContent = questionsAnswered;
+        }
+
+        function updateRoundsScoreboard() {
+            let roundsScoresText = roundsScores.map((round, index) => `第${index + 1}轮 (${round.topic}): ${round.score}分共${round.totalQuestions}题`).join('<br>');
+            document.getElementById('rounds-scoreboard').innerHTML = roundsScoresText;
+        }
+
+        window.onload = () => {
+            loadQuestions(C02线性代数02向量点乘内积, 'C02线性代数02向量点乘内积');
+            isChallengeMode = false;
+            startNewRound();
+        };
+    </script>
+</body>
+</html>

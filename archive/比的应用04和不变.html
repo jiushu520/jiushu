@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <title>玖数学练习</title>
+    <style>
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: lightblue;
+        }
+
+        #game-container {
+            width: 100%;
+            height: 100%;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #equation, #answer-input, #answer-input-x, #answer-input-y, #options {
+            text-align: center;
+            width: 100%;
+            font-size: 20px;
+        }
+
+        #answer-input, #answer-input-x, #answer-input-y {
+            margin: 20px 0;
+        }
+
+        .option {
+            display: inline-block;
+            margin: 0 10px;
+            padding: 10px;
+            border: 1px solid #000;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        #button-container {
+            margin-top: 20px;
+        }
+
+        #result-table-container {
+            margin-top: 20px;
+            width: 100%;
+            height: calc(50% - 60px); /* 调整高度以适应 */
+                    }
+
+        #result-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        #result-table th, #result-table td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: center;
+        }
+        iframe#iframe-container {
+        width: 100%; /* 设置全屏宽度 */
+        height: 500px; /* 设置高度为500px */
+        border: none; /* 去掉边框 */
+        display: none; /* 初始隐藏iframe */
+    }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <h3>玖数学测训系统</h3>
+        <div id="current-topic"></div>
+        <div id="equation"></div>
+        <div id="options" style="display: none;"></div>
+        <div id="single-answer-container" style="display: none;">
+            <input type="text" id="answer-input" placeholder="输入你的答案" onkeyup="handleKeyUp(event)">
+        </div>
+        <div id="dual-answer-container" style="display: none;">
+                x=<input type="text" id="answer-input-x" placeholder="x的值" onkeyup="handleKeyUp(event, 'answer-input-y')">
+                y=<input type="text" id="answer-input-y" placeholder="y的值" onkeyup="handleKeyUp(event)">
+        </div>
+        <button id="submit-button" onclick="checkAnswer()">提交答案</button>
+        <div id="button-container">
+            <button onclick="toggleMode(false)">顺序</button>
+            <button onclick="toggleMode(true)">随机</button>
+            <button onclick="startChallengeMode()">闯关</button>
+            <button id="toggle-iframe-button" onclick="toggleIframe()">交互</button>
+            <button id="copy-button" onclick="copyCurrentTopic()">复制当前题目</button>
+
+<br>
+            <span id="current-mode-display">当前模式: 顺序</span>
+        </div>
+        <div id="scoreboard">现在得分:<span id="score">0</span>,已回答:<span id="answered">0</span></div>
+        <iframe id="iframe-container" src="https://www.geogebra.org/calculator"></iframe>
+        <div id="result-table-container">
+            <table id="result-table">
+                <thead>
+                    <tr>
+                        <th>题目</th>
+                        <th>你的答案</th>
+                        <th>正确答案</th>
+                        <th>结果</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div id="rounds-scoreboard"></div>
+    </div>
+    <script>
+        const 比的应用04和不变 = [
+
+
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为7:3:。}\\\\ \\text{阿土伯给小山羊26元后，}\\\\ \\text{阿土伯与小山羊的钱数比变为3:5。}\\\\ \\text{那么阿土伯原来有多少元钱？}\\end{array} \\]", correctOption: {single: "56"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为7:6:。}\\\\ \\text{阿土伯给小山羊57元后，}\\\\ \\text{阿土伯与小山羊的钱数比变为5:7。}\\\\ \\text{那么阿土伯原来有多少元钱？}\\end{array} \\]", correctOption: {single: "252"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为6:5:。}\\\\ \\text{阿土伯给小山羊24元后，}\\\\ \\text{阿土伯与小山羊的钱数比变为2:3。}\\\\ \\text{那么阿土伯原来有多少元钱？}\\end{array} \\]", correctOption: {single: "90"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为3:2:。}\\\\ \\text{阿土伯给小山羊8元后，}\\\\ \\text{阿土伯与小山羊的钱数比变为5:6。}\\\\ \\text{那么阿土伯原来有多少元钱？}\\end{array} \\]", correctOption: {single: "33"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为2:1:。}\\\\ \\text{阿土伯给小山羊27元后，}\\\\ \\text{阿土伯与小山羊的钱数比变为1:5。}\\\\ \\text{那么阿土伯原来有多少元钱？}\\end{array} \\]", correctOption: {single: "36"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为4:1:。}\\\\ \\text{阿土伯给小山羊20元后，}\\\\ \\text{阿土伯与小山羊的钱数比变为2:3。}\\\\ \\text{那么阿土伯原来有多少元钱？}\\end{array} \\]", correctOption: {single: "40"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为7:5:。}\\\\ \\text{阿土伯给小山羊16元后，}\\\\ \\text{阿土伯与小山羊的钱数比变为1:3。}\\\\ \\text{那么阿土伯原来有多少元钱？}\\end{array} \\]", correctOption: {single: "28"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为7:2:。}\\\\ \\text{阿土伯给小山羊68元后，}\\\\ \\text{阿土伯与小山羊的钱数比变为2:3。}\\\\ \\text{那么阿土伯原来有多少元钱？}\\end{array} \\]", correctOption: {single: "140"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为5:3:。}\\\\ \\text{阿土伯给小山羊52元后，}\\\\ \\text{阿土伯与小山羊的钱数比变为3:7。}\\\\ \\text{那么阿土伯原来有多少元钱？}\\end{array} \\]", correctOption: {single: "100"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为7:3:。}\\\\ \\text{阿土伯给小山羊22元后，}\\\\ \\text{阿土伯与小山羊的钱数比变为1:2。}\\\\ \\text{那么阿土伯原来有多少元钱？}\\end{array} \\]", correctOption: {single: "42"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为5:4:。}\\\\ \\text{阿土伯给小山羊105元后，}\\\\ \\text{阿土伯与小山羊的钱数比变为1:5。}\\\\ \\text{那么阿土伯原来有多少元钱？}\\end{array} \\]", correctOption: {single: "150"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为5:4:。}\\\\ \\text{阿土伯给小山羊68元后，}\\\\ \\text{阿土伯与小山羊的钱数比变为2:5。}\\\\ \\text{那么阿土伯原来有多少元钱？}\\end{array} \\]", correctOption: {single: "140"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为7:6:。}\\\\ \\text{阿土伯给小山羊15元后，}\\\\ \\text{阿土伯与小山羊的钱数比变为1:3。}\\\\ \\text{那么阿土伯原来有多少元钱？}\\end{array} \\]", correctOption: {single: "28"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为4:3:。}\\\\ \\text{阿土伯给小山羊18元后，}\\\\ \\text{阿土伯与小山羊的钱数比变为2:3。}\\\\ \\text{那么阿土伯原来有多少元钱？}\\end{array} \\]", correctOption: {single: "60"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为6:5:。}\\\\ \\text{阿土伯给小山羊124元后，}\\\\ \\text{阿土伯与小山羊的钱数比变为1:6。}\\\\ \\text{那么阿土伯原来有多少元钱？}\\end{array} \\]", correctOption: {single: "168"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为5:4:。}\\\\ \\text{阿土伯给小山羊12元后，}\\\\ \\text{阿土伯与小山羊的钱数比变为1:2。}\\\\ \\text{那么阿土伯原来有多少元钱？}\\end{array} \\]", correctOption: {single: "30"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为6:1:。}\\\\ \\text{阿土伯给小山羊48元后，}\\\\ \\text{阿土伯与小山羊的钱数比变为2:3。}\\\\ \\text{那么阿土伯原来有多少元钱？}\\end{array} \\]", correctOption: {single: "90"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为2:1:。}\\\\ \\text{阿土伯给小山羊20元后，}\\\\ \\text{阿土伯与小山羊的钱数比变为1:3。}\\\\ \\text{那么阿土伯原来有多少元钱？}\\end{array} \\]", correctOption: {single: "32"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为5:1:。}\\\\ \\text{阿土伯给小山羊110元后，}\\\\ \\text{阿土伯与小山羊的钱数比变为3:5。}\\\\ \\text{那么阿土伯原来有多少元钱？}\\end{array} \\]", correctOption: {single: "200"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为6:1:。}\\\\ \\text{阿土伯给小山羊21元后，}\\\\ \\text{阿土伯与小山羊的钱数比变为3:4。}\\\\ \\text{那么阿土伯原来有多少元钱？}\\end{array} \\]", correctOption: {single: "42"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为3:2:。}\\\\ \\text{阿土伯给小山羊65元后，}\\\\ \\text{阿土伯与小山羊的钱数比变为1:5。}\\\\ \\text{那么阿土伯原来有多少元钱？}\\end{array} \\]", correctOption: {single: "90"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为7:5:。}\\\\ \\text{阿土伯给小山羊55元后，}\\\\ \\text{阿土伯与小山羊的钱数比变为2:3。}\\\\ \\text{那么阿土伯原来有多少元钱？}\\end{array} \\]", correctOption: {single: "175"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为3:1:。}\\\\ \\text{阿土伯给小山羊45元后，}\\\\ \\text{阿土伯与小山羊的钱数比变为3:4。}\\\\ \\text{那么阿土伯原来有多少元钱？}\\end{array} \\]", correctOption: {single: "105"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为5:1:。}\\\\ \\text{阿土伯给小山羊75元后，}\\\\ \\text{阿土伯与小山羊的钱数比变为5:6。}\\\\ \\text{那么阿土伯原来有多少元钱？}\\end{array} \\]", correctOption: {single: "165"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为7:3:。}\\\\ \\text{阿土伯给小山羊29元后，}\\\\ \\text{阿土伯与小山羊的钱数比变为2:5。}\\\\ \\text{那么阿土伯原来有多少元钱？}\\end{array} \\]", correctOption: {single: "49"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为5:3:。}\\\\ \\text{阿土伯给小山羊60元后，}\\\\ \\text{阿土伯与小山羊的钱数比变为1:3。}\\\\ \\text{那么阿土伯原来有多少元钱？}\\end{array} \\]", correctOption: {single: "100"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为6:5:。}\\\\ \\text{阿土伯给小山羊11元后，}\\\\ \\text{阿土伯与小山羊的钱数比变为5:6。}\\\\ \\text{那么阿土伯原来有多少元钱？}\\end{array} \\]", correctOption: {single: "66"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为2:1:。}\\\\ \\text{阿土伯给小山羊5元后，}\\\\ \\text{阿土伯与小山羊的钱数比变为1:3。}\\\\ \\text{那么阿土伯原来有多少元钱？}\\end{array} \\]", correctOption: {single: "8"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为7:5:。}\\\\ \\text{阿土伯给小山羊51元后，}\\\\ \\text{阿土伯与小山羊的钱数比变为5:6。}\\\\ \\text{那么阿土伯原来有多少元钱？}\\end{array} \\]", correctOption: {single: "231"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为3:2:。}\\\\ \\text{阿土伯给小山羊51元后，}\\\\ \\text{阿土伯与小山羊的钱数比变为2:7。}\\\\ \\text{那么阿土伯原来有多少元钱？}\\end{array} \\]", correctOption: {single: "81"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为4:1:。}\\\\ \\text{阿土伯给小山羊22元后，}\\\\ \\text{阿土伯与小山羊的钱数比变为1:3。}\\\\ \\text{那么阿土伯原来有多少元钱？}\\end{array} \\]", correctOption: {single: "32"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为3:2:。}\\\\ \\text{阿土伯给小山羊6元后，}\\\\ \\text{阿土伯与小山羊的钱数比变为3:4。}\\\\ \\text{那么阿土伯原来有多少元钱？}\\end{array} \\]", correctOption: {single: "21"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为7:4:。}\\\\ \\text{阿土伯给小山羊135元后，}\\\\ \\text{阿土伯与小山羊的钱数比变为2:5。}\\\\ \\text{那么阿土伯原来有多少元钱？}\\end{array} \\]", correctOption: {single: "245"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为5:4:。}\\\\ \\text{阿土伯给小山羊16元后，}\\\\ \\text{阿土伯与小山羊的钱数比变为3:4。}\\\\ \\text{那么阿土伯原来有多少元钱？}\\end{array} \\]", correctOption: {single: "70"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为2:1:。}\\\\ \\text{阿土伯给小山羊14元后，}\\\\ \\text{阿土伯与小山羊的钱数比变为5:6。}\\\\ \\text{那么阿土伯原来有多少元钱？}\\end{array} \\]", correctOption: {single: "44"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为2:1:。}\\\\ \\text{阿土伯给小山羊16元后，}\\\\ \\text{阿土伯与小山羊的钱数比变为2:3。}\\\\ \\text{那么阿土伯原来有多少元钱？}\\end{array} \\]", correctOption: {single: "40"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为7:3:。}\\\\ \\text{阿土伯给小山羊25元后，}\\\\ \\text{阿土伯与小山羊的钱数比变为1:4。}\\\\ \\text{那么阿土伯原来有多少元钱？}\\end{array} \\]", correctOption: {single: "35"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为5:4:。}\\\\ \\text{阿土伯给小山羊6元后，}\\\\ \\text{阿土伯与小山羊的钱数比变为1:2。}\\\\ \\text{那么阿土伯原来有多少元钱？}\\end{array} \\]", correctOption: {single: "15"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为4:1:。}\\\\ \\text{阿土伯给小山羊19元后，}\\\\ \\text{阿土伯与小山羊的钱数比变为1:5。}\\\\ \\text{那么阿土伯原来有多少元钱？}\\end{array} \\]", correctOption: {single: "24"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为2:1:。}\\\\ \\text{阿土伯给小山羊10元后，}\\\\ \\text{阿土伯与小山羊的钱数比变为1:3。}\\\\ \\text{那么阿土伯原来有多少元钱？}\\end{array} \\]", correctOption: {single: "16"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为3:2:。}\\\\ \\text{阿土伯给小山羊28元后，}\\\\ \\text{阿土伯与小山羊的钱数比变为4:5。}\\\\ \\text{那么阿土伯原来有多少元钱？}\\end{array} \\]", correctOption: {single: "108"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为7:3:。}\\\\ \\text{阿土伯给小山羊102元后，}\\\\ \\text{阿土伯与小山羊的钱数比变为5:7。}\\\\ \\text{那么阿土伯原来有多少元钱？}\\end{array} \\]", correctOption: {single: "252"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为7:3:。}\\\\ \\text{阿土伯给小山羊68元后，}\\\\ \\text{阿土伯与小山羊的钱数比变为5:7。}\\\\ \\text{那么阿土伯原来有多少元钱？}\\end{array} \\]", correctOption: {single: "168"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为5:4:。}\\\\ \\text{阿土伯给小山羊63元后，}\\\\ \\text{阿土伯与小山羊的钱数比变为1:5。}\\\\ \\text{那么阿土伯原来有多少元钱？}\\end{array} \\]", correctOption: {single: "90"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为5:4:。}\\\\ \\text{阿土伯给小山羊11元后，}\\\\ \\text{阿土伯与小山羊的钱数比变为1:3。}\\\\ \\text{那么阿土伯原来有多少元钱？}\\end{array} \\]", correctOption: {single: "20"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为2:1:。}\\\\ \\text{阿土伯给小山羊7元后，}\\\\ \\text{阿土伯与小山羊的钱数比变为1:4。}\\\\ \\text{那么阿土伯原来有多少元钱？}\\end{array} \\]", correctOption: {single: "10"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为7:4:。}\\\\ \\text{阿土伯给小山羊39元后，}\\\\ \\text{阿土伯与小山羊的钱数比变为2:3。}\\\\ \\text{那么阿土伯原来有多少元钱？}\\end{array} \\]", correctOption: {single: "105"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为4:1:。}\\\\ \\text{阿土伯给小山羊54元后，}\\\\ \\text{阿土伯与小山羊的钱数比变为2:5。}\\\\ \\text{那么阿土伯原来有多少元钱？}\\end{array} \\]", correctOption: {single: "84"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为3:2:。}\\\\ \\text{阿土伯给小山羊8元后，}\\\\ \\text{阿土伯与小山羊的钱数比变为1:2。}\\\\ \\text{那么阿土伯原来有多少元钱？}\\end{array} \\]", correctOption: {single: "18"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为5:4:。}\\\\ \\text{阿土伯给小山羊14元后，}\\\\ \\text{阿土伯与小山羊的钱数比变为2:3。}\\\\ \\text{那么阿土伯原来有多少元钱？}\\end{array} \\]", correctOption: {single: "50"}},
+
+
+
+    
+    ];
+
+        let state = {
+            currentQuestionBank: null,
+            currentEquationSystem: null,
+            score: 0,
+            questionsAnswered: 0,
+            roundsScores: [],
+            currentTopic: '',
+            currentQuestionIndex: 0,
+            isRandomMode: false,
+            isChallengeMode: false,
+        };
+
+        const updateElement = (id, value) => document.getElementById(id).textContent = value;
+
+        const startChallengeMode = () => {
+            state.isChallengeMode = true;
+            resetState();
+            updateElement('current-mode-display', '当前模式: 闯关');
+            startNewRound();
+        };
+
+        const toggleMode = (mode) => {
+            state.isRandomMode = mode;
+            state.isChallengeMode = false;
+            resetState();
+            updateElement('current-mode-display', state.isRandomMode ? '当前模式: 随机' : '当前模式: 顺序');
+            startNewRound();
+        };
+
+        const resetState = () => {
+            state.currentQuestionIndex = 0;
+            state.score = 0;
+            state.questionsAnswered = 0;
+            updateScoreboard();
+        };
+
+        const loadQuestions = (questionBank, topic) => {
+            state.currentQuestionBank = questionBank;
+            state.currentTopic = topic;
+            resetState();
+            updateElement('current-topic', `玖数学: ${state.currentTopic}`);
+            updateElement('current-mode-display', '当前模式: 顺序');
+            startNewRound();
+        };
+
+const toggleIframe = () => {
+    const iframe = document.getElementById('iframe-container');
+    const button = document.getElementById('toggle-iframe-button');
+    if (iframe.style.display === 'none' || iframe.style.display === '') {
+        iframe.style.display = 'block';
+        button.textContent = '隐藏';
+    } else {
+        iframe.style.display = 'none';
+        button.textContent = '显示';
+    }
+};
+
+
+const copyCurrentTopic = () => {
+    const currentTopic = document.getElementById('equation').innerText;
+    navigator.clipboard.writeText(currentTopic).then(() => {
+        showTemporaryMessage('题目已复制!', 1000);
+    }).catch(err => {
+        console.error('复制失败', err);
+    });
+};
+
+const showTemporaryMessage = (message, duration) => {
+    const messageElement = document.createElement('div');
+    messageElement.textContent = message;
+    messageElement.style.position = 'fixed';
+    messageElement.style.top = '50%';
+    messageElement.style.left = '50%';
+    messageElement.style.transform = 'translate(-50%, -50%)';
+    messageElement.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+    messageElement.style.color = 'white';
+    messageElement.style.padding = '10px';
+    messageElement.style.borderRadius = '5px';
+    document.body.appendChild(messageElement);
+
+    setTimeout(() => {
+        document.body.removeChild(messageElement);
+    }, duration);
+};
+
+
+
+
+        const generateEquationSystem = () => {
+            let question = getQuestion();
+
+            const { equation, img, correctOption, incorrectOptions } = question;
+
+            let equationHTML = equation;
+            if (img && img.trim()) equationHTML += `<br><img src="${img}" alt="题目图片">`;
+
+            if (correctOption.single || correctOption.dual) {
+                state.currentEquationSystem = { equationSystem: equationHTML, correctOption };
+                toggleAnswerContainers(correctOption);
+                document.getElementById('submit-button').style.display = 'block';
+            } else {
+                const correctIndex = Math.floor(Math.random() * 4);
+                const options = [...incorrectOptions];
+                options.splice(correctIndex, 0, correctOption);
+
+                state.currentEquationSystem = {
+                    equationSystem: equationHTML,
+                    correctIndex,
+                    options,
+                    correctOption
+                };
+                toggleAnswerContainers(correctOption, true);
+                document.getElementById('submit-button').style.display = 'none';
+            }
+        };
+
+        const toggleAnswerContainers = (correctOption, showOptions = false) => {
+            document.getElementById('options').style.display = showOptions ? 'block' : 'none';
+            document.getElementById('single-answer-container').style.display = correctOption.single ? 'block' : 'none';
+            document.getElementById('dual-answer-container').style.display = correctOption.dual ? 'block' : 'none';
+        };
+
+        const getQuestion = () => {
+            if (state.isRandomMode) {
+                const randomIndex = Math.floor(Math.random() * state.currentQuestionBank.length);
+                return state.currentQuestionBank[randomIndex];
+            } else {
+                if (state.currentQuestionIndex >= state.currentQuestionBank.length) state.currentQuestionIndex = 0;
+                return state.currentQuestionBank[state.currentQuestionIndex++];
+            }
+        };
+
+        const generateOptions = () => {
+            if (state.currentEquationSystem.options) {
+                const labels = ['A', 'B', 'C', 'D'];
+                return state.currentEquationSystem.options.map((option, index) =>
+                    `<div class="option" onclick="checkAnswer(${index}, '${option.replace(/\\/g, '\\\\')}')">
+                        <span>${labels[index]}. \\(${option}\\)</span>
+                    </div>`
+                ).join('');
+            }
+            return '';
+        };
+
+        const displayEquationSystem = () => {
+            generateEquationSystem();
+            document.getElementById('equation').innerHTML = state.currentEquationSystem.equationSystem;
+            if (state.currentEquationSystem.options) {
+                document.getElementById('options').innerHTML = generateOptions();
+            }
+            MathJax.typeset();
+        };
+
+        const startNewRound = () => {
+            if (isRoundComplete()) {
+                state.roundsScores.push({ topic: state.currentTopic, score: state.score, totalQuestions: state.questionsAnswered });
+                resetState();
+                updateRoundsScoreboard();
+            }
+            displayEquationSystem();
+        };
+
+        const isRoundComplete = () => {
+            let totalQuestionsInRound = state.isChallengeMode ? state.currentQuestionBank.length : 10;
+            return state.questionsAnswered >= totalQuestionsInRound;
+        };
+
+        const checkAnswer = (selectedIndex, userAnswer) => {
+            let isCorrect = false;
+            let correctAnswer = '';
+
+            if (state.currentEquationSystem.correctOption.single) {
+                userAnswer = document.getElementById('answer-input').value.trim();
+                correctAnswer = state.currentEquationSystem.correctOption.single;
+                isCorrect = userAnswer === correctAnswer;
+            } else if (state.currentEquationSystem.correctOption.dual) {
+                const userAnswerX = document.getElementById('answer-input-x').value.trim();
+                const userAnswerY = document.getElementById('answer-input-y').value.trim();
+                correctAnswer = `x=${state.currentEquationSystem.correctOption.dual.x}, y=${state.currentEquationSystem.correctOption.dual.y}`;
+                userAnswer = `x=${userAnswerX}, y=${userAnswerY}`;
+                isCorrect = userAnswerX === state.currentEquationSystem.correctOption.dual.x && userAnswerY === state.currentEquationSystem.correctOption.dual.y;
+            } else {
+                isCorrect = selectedIndex === state.currentEquationSystem.correctIndex;
+                correctAnswer = state.currentEquationSystem.correctOption;
+            }
+
+            addResultRow(state.currentEquationSystem.equationSystem, userAnswer, correctAnswer, isCorrect);
+            if (isCorrect) state.score++;
+            state.questionsAnswered++;
+            updateScoreboard();
+            startNewRound();
+            MathJax.typeset();
+        };
+
+        const addResultRow = (equation, userAnswer, correctAnswer, isCorrect) => {
+            let resultRow = document.createElement('tr');
+            resultRow.innerHTML = `
+                <td>${equation}</td>
+                <td>\\(${userAnswer}\\)</td>
+                <td>\\(${correctAnswer}\\)</td>
+                <td style="color: ${isCorrect ? 'green' : 'red'};">${isCorrect ? '正确' : '错误'}</td>
+            `;
+            document.querySelector('#result-table tbody').insertBefore(resultRow, document.querySelector('#result-table tbody').firstChild);
+        };
+
+        const handleKeyUp = (event, nextInputId = null) => {
+            if (event.key === 'Enter') {
+                if (nextInputId) {
+                    document.getElementById(nextInputId).focus();
+                } else {
+                    checkAnswer();
+                }
+            }
+        };
+
+        const updateScoreboard = () => {
+            updateElement('score', state.score);
+            updateElement('answered', state.questionsAnswered);
+        };
+
+        const updateRoundsScoreboard = () => {
+            const roundsScoresText = state.roundsScores.map((round, index) =>
+                `第${index + 1}轮 (${round.topic}): ${round.score}分共${round.totalQuestions}题`
+            ).join('<br>');
+            document.getElementById('rounds-scoreboard').innerHTML = roundsScoresText;
+        };
+
+window.onload = () => {
+    loadQuestions(比的应用04和不变, '比的应用04和不变');
+    state.isRandomMode = true;  // 初始化为随机模式
+    state.isChallengeMode = false;
+    startNewRound();
+};
+
+    </script>
+</body>
+</html>

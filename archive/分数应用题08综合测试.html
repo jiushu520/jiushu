@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <title>玖数学练习</title>
+    <style>
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: lightblue;
+        }
+
+        #game-container {
+            width: 100%;
+            height: 100%;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #equation, #answer-input, #answer-input-x, #answer-input-y, #options {
+            text-align: center;
+            width: 100%;
+            font-size: 20px;
+        }
+
+        #answer-input, #answer-input-x, #answer-input-y {
+            margin: 20px 0;
+        }
+
+        .option {
+            display: inline-block;
+            margin: 0 10px;
+            padding: 10px;
+            border: 1px solid #000;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        #button-container {
+            margin-top: 20px;
+        }
+
+        #result-table-container {
+            margin-top: 20px;
+            width: 100%;
+            height: calc(50% - 60px); /* 调整高度以适应 */
+                    }
+
+        #result-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        #result-table th, #result-table td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: center;
+        }
+        iframe#iframe-container {
+        width: 100%; /* 设置全屏宽度 */
+        height: 500px; /* 设置高度为500px */
+        border: none; /* 去掉边框 */
+        display: none; /* 初始隐藏iframe */
+    }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <h3>玖数学测训系统</h3>
+        <div id="current-topic"></div>
+        <div id="equation"></div>
+        <div id="options" style="display: none;"></div>
+        <div id="single-answer-container" style="display: none;">
+            <input type="text" id="answer-input" placeholder="输入你的答案" onkeyup="handleKeyUp(event)">
+        </div>
+        <div id="dual-answer-container" style="display: none;">
+                x=<input type="text" id="answer-input-x" placeholder="x的值" onkeyup="handleKeyUp(event, 'answer-input-y')">
+                y=<input type="text" id="answer-input-y" placeholder="y的值" onkeyup="handleKeyUp(event)">
+        </div>
+        <button id="submit-button" onclick="checkAnswer()">提交答案</button>
+        <div id="button-container">
+            <button onclick="toggleMode(false)">顺序</button>
+            <button onclick="toggleMode(true)">随机</button>
+            <button onclick="startChallengeMode()">闯关</button>
+            <button id="toggle-iframe-button" onclick="toggleIframe()">交互</button>
+            <button id="copy-button" onclick="copyCurrentTopic()">复制当前题目</button>
+
+<br>
+            <span id="current-mode-display">当前模式: 顺序</span>
+        </div>
+        <div id="scoreboard">现在得分:<span id="score">0</span>,已回答:<span id="answered">0</span></div>
+        <iframe id="iframe-container" src="https://www.geogebra.org/calculator"></iframe>
+        <div id="result-table-container">
+            <table id="result-table">
+                <thead>
+                    <tr>
+                        <th>题目</th>
+                        <th>你的答案</th>
+                        <th>正确答案</th>
+                        <th>结果</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div id="rounds-scoreboard"></div>
+    </div>
+    <script>
+        const 分数应用题08综合测试 = [
+{equation: "\\[ \\begin{array}{c} 小明同学在玖数学堂里看科幻小说，\\\\第一天看了全书的\\frac{2}{3}，还多4页。\\\\第二天看了剩下的\\frac{2}{3}，还多4页。\\\\第三天看了剩下的\\frac{2}{3}，还多4页。\\\\第四天看了最后的6页。请问原书有多少页？\\end{array} \\]", correctOption: {single: "318"}},
+{equation: "\\[ \\begin{array}{c} 小明同学在玖数学堂里看科幻小说，\\\\第一天看了全书的\\frac{2}{3}，还多16页。\\\\第二天看了剩下的\\frac{2}{3}，还多16页。\\\\第三天看了剩下的\\frac{2}{3}，还多16页。\\\\第四天看了最后的8页。请问原书有多少页？\\end{array} \\]", correctOption: {single: "840"}},
+{equation: "\\[ \\begin{array}{c} 小明同学在玖数学堂里看科幻小说，\\\\第一天看了全书的\\frac{4}{5}，还多16页。\\\\第二天看了剩下的\\frac{4}{5}，还多16页。\\\\第三天看了剩下的\\frac{4}{5}，还多16页。\\\\第四天看了最后的5页。请问原书有多少页？\\end{array} \\]", correctOption: {single: "3105"}},
+{equation: "\\[ \\begin{array}{c} 小明同学在玖数学堂里看科幻小说，\\\\第一天看了全书的\\frac{3}{4}，还多30页。\\\\第二天看了剩下的\\frac{3}{4}，还多30页。\\\\第三天看了剩下的\\frac{3}{4}，还多30页。\\\\第四天看了最后的5页。请问原书有多少页？\\end{array} \\]", correctOption: {single: "2840"}},
+{equation: "\\[ \\begin{array}{c} 小明同学在玖数学堂里看科幻小说，\\\\第一天看了全书的\\frac{3}{4}，还多24页。\\\\第二天看了剩下的\\frac{3}{4}，还多24页。\\\\第三天看了剩下的\\frac{3}{4}，还多24页。\\\\第四天看了最后的4页。请问原书有多少页？\\end{array} \\]", correctOption: {single: "2272"}},
+{equation: "\\[ \\begin{array}{c} 小明同学在玖数学堂里看科幻小说，\\\\第一天看了全书的\\frac{4}{5}，还多40页。\\\\第二天看了剩下的\\frac{4}{5}，还多40页。\\\\第三天看了剩下的\\frac{4}{5}，还多40页。\\\\第四天看了最后的5页。请问原书有多少页？\\end{array} \\]", correctOption: {single: "6825"}},
+{equation: "\\[ \\begin{array}{c} 小明同学在玖数学堂里看科幻小说，\\\\第一天看了全书的\\frac{4}{5}，还多16页。\\\\第二天看了剩下的\\frac{4}{5}，还多16页。\\\\第三天看了剩下的\\frac{4}{5}，还多16页。\\\\第四天看了最后的3页。请问原书有多少页？\\end{array} \\]", correctOption: {single: "2855"}},
+{equation: "\\[ \\begin{array}{c} 小明同学在玖数学堂里看科幻小说，\\\\第一天看了全书的\\frac{2}{3}，还多20页。\\\\第二天看了剩下的\\frac{2}{3}，还多20页。\\\\第三天看了剩下的\\frac{2}{3}，还多20页。\\\\第四天看了最后的3页。请问原书有多少页？\\end{array} \\]", correctOption: {single: "861"}},
+{equation: "\\[ \\begin{array}{c} 小明同学在玖数学堂里看科幻小说，\\\\第一天看了全书的\\frac{4}{5}，还多20页。\\\\第二天看了剩下的\\frac{4}{5}，还多20页。\\\\第三天看了剩下的\\frac{4}{5}，还多20页。\\\\第四天看了最后的5页。请问原书有多少页？\\end{array} \\]", correctOption: {single: "3725"}},
+{equation: "\\[ \\begin{array}{c} 小明同学在玖数学堂里看科幻小说，\\\\第一天看了全书的\\frac{3}{4}，还多18页。\\\\第二天看了剩下的\\frac{3}{4}，还多18页。\\\\第三天看了剩下的\\frac{3}{4}，还多18页。\\\\第四天看了最后的8页。请问原书有多少页？\\end{array} \\]", correctOption: {single: "2024"}},
+{equation: "\\[ \\begin{array}{c} 小明同学在玖数学堂里看科幻小说，\\\\第一天看了全书的\\frac{2}{3}，还多20页。\\\\第二天看了剩下的\\frac{2}{3}，还多20页。\\\\第三天看了剩下的\\frac{2}{3}，还多20页。\\\\第四天看了最后的2页。请问原书有多少页？\\end{array} \\]", correctOption: {single: "834"}},
+{equation: "\\[ \\begin{array}{c} 小明同学在玖数学堂里看科幻小说，\\\\第一天看了全书的\\frac{4}{5}，还多8页。\\\\第二天看了剩下的\\frac{4}{5}，还多8页。\\\\第三天看了剩下的\\frac{4}{5}，还多8页。\\\\第四天看了最后的6页。请问原书有多少页？\\end{array} \\]", correctOption: {single: "1990"}},
+{equation: "\\[ \\begin{array}{c} 小明同学在玖数学堂里看科幻小说，\\\\第一天看了全书的\\frac{3}{4}，还多21页。\\\\第二天看了剩下的\\frac{3}{4}，还多21页。\\\\第三天看了剩下的\\frac{3}{4}，还多21页。\\\\第四天看了最后的10页。请问原书有多少页？\\end{array} \\]", correctOption: {single: "2404"}},
+{equation: "\\[ \\begin{array}{c} 小明同学在玖数学堂里看科幻小说，\\\\第一天看了全书的\\frac{3}{4}，还多6页。\\\\第二天看了剩下的\\frac{3}{4}，还多6页。\\\\第三天看了剩下的\\frac{3}{4}，还多6页。\\\\第四天看了最后的4页。请问原书有多少页？\\end{array} \\]", correctOption: {single: "760"}},
+{equation: "\\[ \\begin{array}{c} 小明同学在玖数学堂里看科幻小说，\\\\第一天看了全书的\\frac{2}{3}，还多4页。\\\\第二天看了剩下的\\frac{2}{3}，还多4页。\\\\第三天看了剩下的\\frac{2}{3}，还多4页。\\\\第四天看了最后的9页。请问原书有多少页？\\end{array} \\]", correctOption: {single: "399"}},
+{equation: "\\[ \\begin{array}{c} 小明同学在玖数学堂里看科幻小说，\\\\第一天看了全书的\\frac{4}{5}，还多8页。\\\\第二天看了剩下的\\frac{4}{5}，还多8页。\\\\第三天看了剩下的\\frac{4}{5}，还多8页。\\\\第四天看了最后的8页。请问原书有多少页？\\end{array} \\]", correctOption: {single: "2240"}},
+{equation: "\\[ \\begin{array}{c} 小明同学在玖数学堂里看科幻小说，\\\\第一天看了全书的\\frac{3}{4}，还多21页。\\\\第二天看了剩下的\\frac{3}{4}，还多21页。\\\\第三天看了剩下的\\frac{3}{4}，还多21页。\\\\第四天看了最后的3页。请问原书有多少页？\\end{array} \\]", correctOption: {single: "1956"}},
+{equation: "\\[ \\begin{array}{c} 小明同学在玖数学堂里看科幻小说，\\\\第一天看了全书的\\frac{4}{5}，还多32页。\\\\第二天看了剩下的\\frac{4}{5}，还多32页。\\\\第三天看了剩下的\\frac{4}{5}，还多32页。\\\\第四天看了最后的2页。请问原书有多少页？\\end{array} \\]", correctOption: {single: "5210"}},
+{equation: "\\[ \\begin{array}{c} 小明同学在玖数学堂里看科幻小说，\\\\第一天看了全书的\\frac{3}{4}，还多27页。\\\\第二天看了剩下的\\frac{3}{4}，还多27页。\\\\第三天看了剩下的\\frac{3}{4}，还多27页。\\\\第四天看了最后的9页。请问原书有多少页？\\end{array} \\]", correctOption: {single: "2844"}},
+{equation: "\\[ \\begin{array}{c} 小明同学在玖数学堂里看科幻小说，\\\\第一天看了全书的\\frac{4}{5}，还多8页。\\\\第二天看了剩下的\\frac{4}{5}，还多8页。\\\\第三天看了剩下的\\frac{4}{5}，还多8页。\\\\第四天看了最后的2页。请问原书有多少页？\\end{array} \\]", correctOption: {single: "1490"}},
+{equation: "\\[ \\begin{array}{c} 小明同学在玖数学堂里看科幻小说，\\\\第一天看了全书的\\frac{2}{3}，还多12页。\\\\第二天看了剩下的\\frac{2}{3}，还多12页。\\\\第三天看了剩下的\\frac{2}{3}，还多12页。\\\\第四天看了最后的3页。请问原书有多少页？\\end{array} \\]", correctOption: {single: "549"}},
+{equation: "\\[ \\begin{array}{c} 小明同学在玖数学堂里看科幻小说，\\\\第一天看了全书的\\frac{2}{3}，还多16页。\\\\第二天看了剩下的\\frac{2}{3}，还多16页。\\\\第三天看了剩下的\\frac{2}{3}，还多16页。\\\\第四天看了最后的9页。请问原书有多少页？\\end{array} \\]", correctOption: {single: "867"}},
+{equation: "\\[ \\begin{array}{c} 小明同学在玖数学堂里看科幻小说，\\\\第一天看了全书的\\frac{2}{3}，还多6页。\\\\第二天看了剩下的\\frac{2}{3}，还多6页。\\\\第三天看了剩下的\\frac{2}{3}，还多6页。\\\\第四天看了最后的2页。请问原书有多少页？\\end{array} \\]", correctOption: {single: "288"}},
+{equation: "\\[ \\begin{array}{c} 小明同学在玖数学堂里看科幻小说，\\\\第一天看了全书的\\frac{2}{3}，还多8页。\\\\第二天看了剩下的\\frac{2}{3}，还多8页。\\\\第三天看了剩下的\\frac{2}{3}，还多8页。\\\\第四天看了最后的8页。请问原书有多少页？\\end{array} \\]", correctOption: {single: "528"}},
+{equation: "\\[ \\begin{array}{c} 小明同学在玖数学堂里看科幻小说，\\\\第一天看了全书的\\frac{4}{5}，还多40页。\\\\第二天看了剩下的\\frac{4}{5}，还多40页。\\\\第三天看了剩下的\\frac{4}{5}，还多40页。\\\\第四天看了最后的8页。请问原书有多少页？\\end{array} \\]", correctOption: {single: "7200"}},
+{equation: "\\[ \\begin{array}{c} 小明同学在玖数学堂里看科幻小说，\\\\第一天看了全书的\\frac{1}{2}，还多8页。\\\\第二天看了剩下的\\frac{1}{2}，还多8页。\\\\第三天看了剩下的\\frac{1}{2}，还多8页。\\\\第四天看了最后的7页。请问原书有多少页？\\end{array} \\]", correctOption: {single: "168"}},
+{equation: "\\[ \\begin{array}{c} 小明同学在玖数学堂里看科幻小说，\\\\第一天看了全书的\\frac{3}{4}，还多27页。\\\\第二天看了剩下的\\frac{3}{4}，还多27页。\\\\第三天看了剩下的\\frac{3}{4}，还多27页。\\\\第四天看了最后的5页。请问原书有多少页？\\end{array} \\]", correctOption: {single: "2588"}},
+{equation: "\\[ \\begin{array}{c} 小明同学在玖数学堂里看科幻小说，\\\\第一天看了全书的\\frac{3}{4}，还多9页。\\\\第二天看了剩下的\\frac{3}{4}，还多9页。\\\\第三天看了剩下的\\frac{3}{4}，还多9页。\\\\第四天看了最后的6页。请问原书有多少页？\\end{array} \\]", correctOption: {single: "1140"}},
+{equation: "\\[ \\begin{array}{c} 小明同学在玖数学堂里看科幻小说，\\\\第一天看了全书的\\frac{4}{5}，还多28页。\\\\第二天看了剩下的\\frac{4}{5}，还多28页。\\\\第三天看了剩下的\\frac{4}{5}，还多28页。\\\\第四天看了最后的2页。请问原书有多少页？\\end{array} \\]", correctOption: {single: "4590"}},
+{equation: "\\[ \\begin{array}{c} 小明同学在玖数学堂里看科幻小说，\\\\第一天看了全书的\\frac{2}{3}，还多8页。\\\\第二天看了剩下的\\frac{2}{3}，还多8页。\\\\第三天看了剩下的\\frac{2}{3}，还多8页。\\\\第四天看了最后的3页。请问原书有多少页？\\end{array} \\]", correctOption: {single: "393"}},
+{equation: "\\[ \\begin{array}{c} 小明同学在玖数学堂里看科幻小说，\\\\第一天看了全书的\\frac{1}{2}，还多3页。\\\\第二天看了剩下的\\frac{1}{2}，还多3页。\\\\第三天看了剩下的\\frac{1}{2}，还多3页。\\\\第四天看了最后的6页。请问原书有多少页？\\end{array} \\]", correctOption: {single: "90"}},
+{equation: "\\[ \\begin{array}{c} 小明同学在玖数学堂里看科幻小说，\\\\第一天看了全书的\\frac{4}{5}，还多12页。\\\\第二天看了剩下的\\frac{4}{5}，还多12页。\\\\第三天看了剩下的\\frac{4}{5}，还多12页。\\\\第四天看了最后的2页。请问原书有多少页？\\end{array} \\]", correctOption: {single: "2110"}},
+{equation: "\\[ \\begin{array}{c} 小明同学在玖数学堂里看科幻小说，\\\\第一天看了全书的\\frac{1}{2}，还多2页。\\\\第二天看了剩下的\\frac{1}{2}，还多2页。\\\\第三天看了剩下的\\frac{1}{2}，还多2页。\\\\第四天看了最后的7页。请问原书有多少页？\\end{array} \\]", correctOption: {single: "84"}},
+{equation: "\\[ \\begin{array}{c} 小明同学在玖数学堂里看科幻小说，\\\\第一天看了全书的\\frac{3}{4}，还多30页。\\\\第二天看了剩下的\\frac{3}{4}，还多30页。\\\\第三天看了剩下的\\frac{3}{4}，还多30页。\\\\第四天看了最后的2页。请问原书有多少页？\\end{array} \\]", correctOption: {single: "2648"}},
+{equation: "\\[ \\begin{array}{c} 小明同学在玖数学堂里看科幻小说，\\\\第一天看了全书的\\frac{4}{5}，还多28页。\\\\第二天看了剩下的\\frac{4}{5}，还多28页。\\\\第三天看了剩下的\\frac{4}{5}，还多28页。\\\\第四天看了最后的5页。请问原书有多少页？\\end{array} \\]", correctOption: {single: "4965"}},
+{equation: "\\[ \\begin{array}{c} 小明同学在玖数学堂里看科幻小说，\\\\第一天看了全书的\\frac{4}{5}，还多16页。\\\\第二天看了剩下的\\frac{4}{5}，还多16页。\\\\第三天看了剩下的\\frac{4}{5}，还多16页。\\\\第四天看了最后的9页。请问原书有多少页？\\end{array} \\]", correctOption: {single: "3605"}},
+
+{equation: "\\[ \\begin{array}{c} 玖数学堂里有一堆糖果，分给同学们，\\\\第一天分了全部的\\frac{1}{12}，以后的10天,分别分了当天糖果的\\frac{1}{11},\\frac{1}{10},…...\\frac{1}{2}。\\\\分了11天，最后剩下14颗糖果.玖数学堂原来有几颗糖果？\\end{array} \\]", correctOption: {single: "168"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂里有一堆糖果，分给同学们，\\\\第一天分了全部的\\frac{1}{8}，以后的6天,分别分了当天糖果的\\frac{1}{7},\\frac{1}{6},…...\\frac{1}{2}。\\\\分了7天，最后剩下22颗糖果.玖数学堂原来有几颗糖果？\\end{array} \\]", correctOption: {single: "176"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂里有一堆糖果，分给同学们，\\\\第一天分了全部的\\frac{1}{14}，以后的12天,分别分了当天糖果的\\frac{1}{13},\\frac{1}{12},…...\\frac{1}{2}。\\\\分了13天，最后剩下22颗糖果.玖数学堂原来有几颗糖果？\\end{array} \\]", correctOption: {single: "308"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂里有一堆糖果，分给同学们，\\\\第一天分了全部的\\frac{1}{11}，以后的9天,分别分了当天糖果的\\frac{1}{10},\\frac{1}{9},…...\\frac{1}{2}。\\\\分了10天，最后剩下19颗糖果.玖数学堂原来有几颗糖果？\\end{array} \\]", correctOption: {single: "209"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂里有一堆糖果，分给同学们，\\\\第一天分了全部的\\frac{1}{6}，以后的4天,分别分了当天糖果的\\frac{1}{5},\\frac{1}{4},…...\\frac{1}{2}。\\\\分了5天，最后剩下16颗糖果.玖数学堂原来有几颗糖果？\\end{array} \\]", correctOption: {single: "96"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂里有一堆糖果，分给同学们，\\\\第一天分了全部的\\frac{1}{15}，以后的13天,分别分了当天糖果的\\frac{1}{14},\\frac{1}{13},…...\\frac{1}{2}。\\\\分了14天，最后剩下15颗糖果.玖数学堂原来有几颗糖果？\\end{array} \\]", correctOption: {single: "225"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂里有一堆糖果，分给同学们，\\\\第一天分了全部的\\frac{1}{10}，以后的8天,分别分了当天糖果的\\frac{1}{9},\\frac{1}{8},…...\\frac{1}{2}。\\\\分了9天，最后剩下25颗糖果.玖数学堂原来有几颗糖果？\\end{array} \\]", correctOption: {single: "250"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂里有一堆糖果，分给同学们，\\\\第一天分了全部的\\frac{1}{6}，以后的4天,分别分了当天糖果的\\frac{1}{5},\\frac{1}{4},…...\\frac{1}{2}。\\\\分了5天，最后剩下23颗糖果.玖数学堂原来有几颗糖果？\\end{array} \\]", correctOption: {single: "138"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂里有一堆糖果，分给同学们，\\\\第一天分了全部的\\frac{1}{13}，以后的11天,分别分了当天糖果的\\frac{1}{12},\\frac{1}{11},…...\\frac{1}{2}。\\\\分了12天，最后剩下13颗糖果.玖数学堂原来有几颗糖果？\\end{array} \\]", correctOption: {single: "169"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂里有一堆糖果，分给同学们，\\\\第一天分了全部的\\frac{1}{8}，以后的6天,分别分了当天糖果的\\frac{1}{7},\\frac{1}{6},…...\\frac{1}{2}。\\\\分了7天，最后剩下10颗糖果.玖数学堂原来有几颗糖果？\\end{array} \\]", correctOption: {single: "80"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂里有一堆糖果，分给同学们，\\\\第一天分了全部的\\frac{1}{9}，以后的7天,分别分了当天糖果的\\frac{1}{8},\\frac{1}{7},…...\\frac{1}{2}。\\\\分了8天，最后剩下23颗糖果.玖数学堂原来有几颗糖果？\\end{array} \\]", correctOption: {single: "207"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂里有一堆糖果，分给同学们，\\\\第一天分了全部的\\frac{1}{12}，以后的10天,分别分了当天糖果的\\frac{1}{11},\\frac{1}{10},…...\\frac{1}{2}。\\\\分了11天，最后剩下21颗糖果.玖数学堂原来有几颗糖果？\\end{array} \\]", correctOption: {single: "252"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂里有一堆糖果，分给同学们，\\\\第一天分了全部的\\frac{1}{11}，以后的9天,分别分了当天糖果的\\frac{1}{10},\\frac{1}{9},…...\\frac{1}{2}。\\\\分了10天，最后剩下8颗糖果.玖数学堂原来有几颗糖果？\\end{array} \\]", correctOption: {single: "88"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂里有一堆糖果，分给同学们，\\\\第一天分了全部的\\frac{1}{7}，以后的5天,分别分了当天糖果的\\frac{1}{6},\\frac{1}{5},…...\\frac{1}{2}。\\\\分了6天，最后剩下6颗糖果.玖数学堂原来有几颗糖果？\\end{array} \\]", correctOption: {single: "42"}},
+
+
+
+{equation: "\\[ \\begin{array}{c} 玖数学堂举行有数学编程大赛，\\\\获一等奖的同学占其它奖项同学的\\frac{1}{3}，获二等奖的同学占其它奖项同学占\\frac{1}{5}，获三等奖的同学有42人，\\\\那么一共有多少同学获奖呢？\\end{array} \\]", correctOption: {single: "72"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂举行有数学编程大赛，\\\\获一等奖的同学占其它奖项同学的\\frac{1}{2}，获二等奖的同学占其它奖项同学占\\frac{1}{4}，获三等奖的同学有21人，\\\\那么一共有多少同学获奖呢？\\end{array} \\]", correctOption: {single: "45"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂举行有数学编程大赛，\\\\获一等奖的同学占其它奖项同学的\\frac{1}{4}，获二等奖的同学占其它奖项同学占\\frac{1}{6}，获三等奖的同学有92人，\\\\那么一共有多少同学获奖呢？\\end{array} \\]", correctOption: {single: "140"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂举行有数学编程大赛，\\\\获一等奖的同学占其它奖项同学的\\frac{1}{6}，获二等奖的同学占其它奖项同学占\\frac{1}{5}，获三等奖的同学有58人，\\\\那么一共有多少同学获奖呢？\\end{array} \\]", correctOption: {single: "84"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂举行有数学编程大赛，\\\\获一等奖的同学占其它奖项同学的\\frac{1}{7}，获二等奖的同学占其它奖项同学占\\frac{1}{6}，获三等奖的同学有82人，\\\\那么一共有多少同学获奖呢？\\end{array} \\]", correctOption: {single: "112"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂举行有数学编程大赛，\\\\获一等奖的同学占其它奖项同学的\\frac{1}{4}，获二等奖的同学占其它奖项同学占\\frac{1}{6}，获三等奖的同学有46人，\\\\那么一共有多少同学获奖呢？\\end{array} \\]", correctOption: {single: "70"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂举行有数学编程大赛，\\\\获一等奖的同学占其它奖项同学的\\frac{1}{6}，获二等奖的同学占其它奖项同学占\\frac{1}{4}，获三等奖的同学有23人，\\\\那么一共有多少同学获奖呢？\\end{array} \\]", correctOption: {single: "35"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂举行有数学编程大赛，\\\\获一等奖的同学占其它奖项同学的\\frac{1}{2}，获二等奖的同学占其它奖项同学占\\frac{1}{5}，获三等奖的同学有18人，\\\\那么一共有多少同学获奖呢？\\end{array} \\]", correctOption: {single: "36"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂举行有数学编程大赛，\\\\获一等奖的同学占其它奖项同学的\\frac{1}{7}，获二等奖的同学占其它奖项同学占\\frac{1}{3}，获三等奖的同学有20人，\\\\那么一共有多少同学获奖呢？\\end{array} \\]", correctOption: {single: "32"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂举行有数学编程大赛，\\\\获一等奖的同学占其它奖项同学的\\frac{1}{3}，获二等奖的同学占其它奖项同学占\\frac{1}{6}，获三等奖的同学有17人，\\\\那么一共有多少同学获奖呢？\\end{array} \\]", correctOption: {single: "28"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂举行有数学编程大赛，\\\\获一等奖的同学占其它奖项同学的\\frac{1}{4}，获二等奖的同学占其它奖项同学占\\frac{1}{6}，获三等奖的同学有69人，\\\\那么一共有多少同学获奖呢？\\end{array} \\]", correctOption: {single: "105"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂举行有数学编程大赛，\\\\获一等奖的同学占其它奖项同学的\\frac{1}{5}，获二等奖的同学占其它奖项同学占\\frac{1}{6}，获三等奖的同学有29人，\\\\那么一共有多少同学获奖呢？\\end{array} \\]", correctOption: {single: "42"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂举行有数学编程大赛，\\\\获一等奖的同学占其它奖项同学的\\frac{1}{4}，获二等奖的同学占其它奖项同学占\\frac{1}{3}，获三等奖的同学有44人，\\\\那么一共有多少同学获奖呢？\\end{array} \\]", correctOption: {single: "80"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂举行有数学编程大赛，\\\\获一等奖的同学占其它奖项同学的\\frac{1}{5}，获二等奖的同学占其它奖项同学占\\frac{1}{3}，获三等奖的同学有56人，\\\\那么一共有多少同学获奖呢？\\end{array} \\]", correctOption: {single: "96"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂举行有数学编程大赛，\\\\获一等奖的同学占其它奖项同学的\\frac{1}{7}，获二等奖的同学占其它奖项同学占\\frac{1}{6}，获三等奖的同学有41人，\\\\那么一共有多少同学获奖呢？\\end{array} \\]", correctOption: {single: "56"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂举行有数学编程大赛，\\\\获一等奖的同学占其它奖项同学的\\frac{1}{3}，获二等奖的同学占其它奖项同学占\\frac{1}{6}，获三等奖的同学有51人，\\\\那么一共有多少同学获奖呢？\\end{array} \\]", correctOption: {single: "84"}},
+
+
+
+{equation: "\\[ \\begin{array}{c} 玖数学堂举行有数学编程大赛，\\\\获一等奖的同学占所有获奖同学的\\frac{1}{6}，获二等奖的同学占\\frac{1}{4}，获三等奖的同学有42人，\\\\那么一共有多少同学获奖呢？\\end{array} \\]", correctOption: {single: "72"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂举行有数学编程大赛，\\\\获一等奖的同学占所有获奖同学的\\frac{1}{7}，获二等奖的同学占\\frac{1}{5}，获三等奖的同学有69人，\\\\那么一共有多少同学获奖呢？\\end{array} \\]", correctOption: {single: "105"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂举行有数学编程大赛，\\\\获一等奖的同学占所有获奖同学的\\frac{1}{4}，获二等奖的同学占\\frac{1}{6}，获三等奖的同学有28人，\\\\那么一共有多少同学获奖呢？\\end{array} \\]", correctOption: {single: "48"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂举行有数学编程大赛，\\\\获一等奖的同学占所有获奖同学的\\frac{1}{5}，获二等奖的同学占\\frac{1}{3}，获三等奖的同学有7人，\\\\那么一共有多少同学获奖呢？\\end{array} \\]", correctOption: {single: "15"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂举行有数学编程大赛，\\\\获一等奖的同学占所有获奖同学的\\frac{1}{3}，获二等奖的同学占\\frac{1}{5}，获三等奖的同学有21人，\\\\那么一共有多少同学获奖呢？\\end{array} \\]", correctOption: {single: "45"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂举行有数学编程大赛，\\\\获一等奖的同学占所有获奖同学的\\frac{1}{4}，获二等奖的同学占\\frac{1}{6}，获三等奖的同学有14人，\\\\那么一共有多少同学获奖呢？\\end{array} \\]", correctOption: {single: "24"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂举行有数学编程大赛，\\\\获一等奖的同学占所有获奖同学的\\frac{1}{6}，获二等奖的同学占\\frac{1}{6}，获三等奖的同学有48人，\\\\那么一共有多少同学获奖呢？\\end{array} \\]", correctOption: {single: "72"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂举行有数学编程大赛，\\\\获一等奖的同学占所有获奖同学的\\frac{1}{6}，获二等奖的同学占\\frac{1}{6}，获三等奖的同学有96人，\\\\那么一共有多少同学获奖呢？\\end{array} \\]", correctOption: {single: "144"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂举行有数学编程大赛，\\\\获一等奖的同学占所有获奖同学的\\frac{1}{2}，获二等奖的同学占\\frac{1}{5}，获三等奖的同学有3人，\\\\那么一共有多少同学获奖呢？\\end{array} \\]", correctOption: {single: "10"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂举行有数学编程大赛，\\\\获一等奖的同学占所有获奖同学的\\frac{1}{3}，获二等奖的同学占\\frac{1}{6}，获三等奖的同学有9人，\\\\那么一共有多少同学获奖呢？\\end{array} \\]", correctOption: {single: "18"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂举行有数学编程大赛，\\\\获一等奖的同学占所有获奖同学的\\frac{1}{5}，获二等奖的同学占\\frac{1}{5}，获三等奖的同学有30人，\\\\那么一共有多少同学获奖呢？\\end{array} \\]", correctOption: {single: "50"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂举行有数学编程大赛，\\\\获一等奖的同学占所有获奖同学的\\frac{1}{2}，获二等奖的同学占\\frac{1}{4}，获三等奖的同学有2人，\\\\那么一共有多少同学获奖呢？\\end{array} \\]", correctOption: {single: "8"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂举行有数学编程大赛，\\\\获一等奖的同学占所有获奖同学的\\frac{1}{7}，获二等奖的同学占\\frac{1}{5}，获三等奖的同学有46人，\\\\那么一共有多少同学获奖呢？\\end{array} \\]", correctOption: {single: "70"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂举行有数学编程大赛，\\\\获一等奖的同学占所有获奖同学的\\frac{1}{5}，获二等奖的同学占\\frac{1}{5}，获三等奖的同学有60人，\\\\那么一共有多少同学获奖呢？\\end{array} \\]", correctOption: {single: "100"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂举行有数学编程大赛，\\\\获一等奖的同学占所有获奖同学的\\frac{1}{3}，获二等奖的同学占\\frac{1}{6}，获三等奖的同学有27人，\\\\那么一共有多少同学获奖呢？\\end{array} \\]", correctOption: {single: "54"}},
+
+
+{equation: "\\[ \\begin{array}{c} 玖数学堂进行小升初试题训练，有应用题和几何题共83道，\\\\小明做了应用题的\\frac{1}{7}，几何题的\\frac{1}{6}，\\\\还剩下应用题和几何题共70道没完成，\\\\则原有应用题x道，几何题y道。 \\end{array} \\]", correctOption: {dual:{x: "35", y: "48"}}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂进行小升初试题训练，有应用题和几何题共94道，\\\\小明做了应用题的\\frac{1}{2}，几何题的\\frac{1}{4}，\\\\还剩下应用题和几何题共53道没完成，\\\\则原有应用题x道，几何题y道。 \\end{array} \\]", correctOption: {dual:{x: "70", y: "24"}}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂进行小升初试题训练，有应用题和几何题共69道，\\\\小明做了应用题的\\frac{2}{5}，几何题的\\frac{6}{11}，\\\\还剩下应用题和几何题共35道没完成，\\\\则原有应用题x道，几何题y道。 \\end{array} \\]", correctOption: {dual:{x: "25", y: "44"}}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂进行小升初试题训练，有应用题和几何题共100道，\\\\小明做了应用题的\\frac{3}{5}，几何题的\\frac{1}{5}，\\\\还剩下应用题和几何题共48道没完成，\\\\则原有应用题x道，几何题y道。 \\end{array} \\]", correctOption: {dual:{x: "80", y: "20"}}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂进行小升初试题训练，有应用题和几何题共72道，\\\\小明做了应用题的\\frac{5}{6}，几何题的\\frac{2}{3}，\\\\还剩下应用题和几何题共16道没完成，\\\\则原有应用题x道，几何题y道。 \\end{array} \\]", correctOption: {dual:{x: "48", y: "24"}}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂进行小升初试题训练，有应用题和几何题共98道，\\\\小明做了应用题的\\frac{2}{3}，几何题的\\frac{3}{7}，\\\\还剩下应用题和几何题共46道没完成，\\\\则原有应用题x道，几何题y道。 \\end{array} \\]", correctOption: {dual:{x: "42", y: "56"}}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂进行小升初试题训练，有应用题和几何题共78道，\\\\小明做了应用题的\\frac{5}{8}，几何题的\\frac{1}{3}，\\\\还剩下应用题和几何题共38道没完成，\\\\则原有应用题x道，几何题y道。 \\end{array} \\]", correctOption: {dual:{x: "48", y: "30"}}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂进行小升初试题训练，有应用题和几何题共74道，\\\\小明做了应用题的\\frac{4}{7}，几何题的\\frac{2}{3}，\\\\还剩下应用题和几何题共30道没完成，\\\\则原有应用题x道，几何题y道。 \\end{array} \\]", correctOption: {dual:{x: "56", y: "18"}}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂进行小升初试题训练，有应用题和几何题共158道，\\\\小明做了应用题的\\frac{5}{11}，几何题的\\frac{1}{2}，\\\\还剩下应用题和几何题共83道没完成，\\\\则原有应用题x道，几何题y道。 \\end{array} \\]", correctOption: {dual:{x: "88", y: "70"}}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂进行小升初试题训练，有应用题和几何题共84道，\\\\小明做了应用题的\\frac{1}{2}，几何题的\\frac{1}{4}，\\\\还剩下应用题和几何题共56道没完成，\\\\则原有应用题x道，几何题y道。 \\end{array} \\]", correctOption: {dual:{x: "28", y: "56"}}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂进行小升初试题训练，有应用题和几何题共76道，\\\\小明做了应用题的\\frac{3}{4}，几何题的\\frac{2}{7}，\\\\还剩下应用题和几何题共32道没完成，\\\\则原有应用题x道，几何题y道。 \\end{array} \\]", correctOption: {dual:{x: "48", y: "28"}}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂进行小升初试题训练，有应用题和几何题共60道，\\\\小明做了应用题的\\frac{1}{2}，几何题的\\frac{3}{7}，\\\\还剩下应用题和几何题共33道没完成，\\\\则原有应用题x道，几何题y道。 \\end{array} \\]", correctOption: {dual:{x: "18", y: "42"}}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂进行小升初试题训练，有应用题和几何题共49道，\\\\小明做了应用题的\\frac{1}{4}，几何题的\\frac{2}{3}，\\\\还剩下应用题和几何题共33道没完成，\\\\则原有应用题x道，几何题y道。 \\end{array} \\]", correctOption: {dual:{x: "40", y: "9"}}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂进行小升初试题训练，有应用题和几何题共84道，\\\\小明做了应用题的\\frac{2}{5}，几何题的\\frac{3}{4}，\\\\还剩下应用题和几何题共42道没完成，\\\\则原有应用题x道，几何题y道。 \\end{array} \\]", correctOption: {dual:{x: "60", y: "24"}}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂进行小升初试题训练，有应用题和几何题共60道，\\\\小明做了应用题的\\frac{1}{6}，几何题的\\frac{1}{2}，\\\\还剩下应用题和几何题共42道没完成，\\\\则原有应用题x道，几何题y道。 \\end{array} \\]", correctOption: {dual:{x: "36", y: "24"}}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂进行小升初试题训练，有应用题和几何题共52道，\\\\小明做了应用题的\\frac{3}{5}，几何题的\\frac{1}{4}，\\\\还剩下应用题和几何题共32道没完成，\\\\则原有应用题x道，几何题y道。 \\end{array} \\]", correctOption: {dual:{x: "20", y: "32"}}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂进行小升初试题训练，有应用题和几何题共66道，\\\\小明做了应用题的\\frac{2}{3}，几何题的\\frac{5}{7}，\\\\还剩下应用题和几何题共20道没完成，\\\\则原有应用题x道，几何题y道。 \\end{array} \\]", correctOption: {dual:{x: "24", y: "42"}}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂进行小升初试题训练，有应用题和几何题共72道，\\\\小明做了应用题的\\frac{3}{7}，几何题的\\frac{2}{5}，\\\\还剩下应用题和几何题共42道没完成，\\\\则原有应用题x道，几何题y道。 \\end{array} \\]", correctOption: {dual:{x: "42", y: "30"}}},
+
+
+{equation: "\\[ \\begin{array}{c} 玖数学堂成立几何画板编程小组，其中女生占\\frac{4}{7}，\\\\后来又有50个女生参加这个几何画板编程小组，\\\\这时女生人数占总人数的\\frac{3}{4},\\\\求现在几何画板编程小组有多少人？\\end{array} \\]", correctOption: {single: "120"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂成立几何画板编程小组，其中女生占\\frac{1}{2}，\\\\后来又有36个女生参加这个几何画板编程小组，\\\\这时女生人数占总人数的\\frac{2}{3},\\\\求现在几何画板编程小组有多少人？\\end{array} \\]", correctOption: {single: "108"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂成立几何画板编程小组，其中女生占\\frac{1}{2}，\\\\后来又有63个女生参加这个几何画板编程小组，\\\\这时女生人数占总人数的\\frac{13}{17},\\\\求现在几何画板编程小组有多少人？\\end{array} \\]", correctOption: {single: "119"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂成立几何画板编程小组，其中女生占\\frac{7}{10}，\\\\后来又有56个女生参加这个几何画板编程小组，\\\\这时女生人数占总人数的\\frac{5}{6},\\\\求现在几何画板编程小组有多少人？\\end{array} \\]", correctOption: {single: "126"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂成立几何画板编程小组，其中女生占\\frac{6}{13}，\\\\后来又有80个女生参加这个几何画板编程小组，\\\\这时女生人数占总人数的\\frac{2}{3},\\\\求现在几何画板编程小组有多少人？\\end{array} \\]", correctOption: {single: "210"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂成立几何画板编程小组，其中女生占\\frac{9}{17}，\\\\后来又有72个女生参加这个几何画板编程小组，\\\\这时女生人数占总人数的\\frac{9}{13},\\\\求现在几何画板编程小组有多少人？\\end{array} \\]", correctOption: {single: "208"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂成立几何画板编程小组，其中女生占\\frac{1}{2}，\\\\后来又有40个女生参加这个几何画板编程小组，\\\\这时女生人数占总人数的\\frac{7}{10},\\\\求现在几何画板编程小组有多少人？\\end{array} \\]", correctOption: {single: "100"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂成立几何画板编程小组，其中女生占\\frac{4}{9}，\\\\后来又有81个女生参加这个几何画板编程小组，\\\\这时女生人数占总人数的\\frac{13}{18},\\\\求现在几何画板编程小组有多少人？\\end{array} \\]", correctOption: {single: "162"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂成立几何画板编程小组，其中女生占\\frac{5}{13}，\\\\后来又有24个女生参加这个几何画板编程小组，\\\\这时女生人数占总人数的\\frac{1}{2},\\\\求现在几何画板编程小组有多少人？\\end{array} \\]", correctOption: {single: "128"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂成立几何画板编程小组，其中女生占\\frac{9}{17}，\\\\后来又有36个女生参加这个几何画板编程小组，\\\\这时女生人数占总人数的\\frac{13}{21},求现在几何画板编程小组有多少人？\\end{array} \\]", correctOption: {single: "189"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂成立几何画板编程小组，其中女生占\\frac{1}{2}，\\\\后来又有90个女生参加这个几何画板编程小组，\\\\这时女生人数占总人数的\\frac{5}{7},\\\\求现在几何画板编程小组有多少人？\\end{array} \\]", correctOption: {single: "210"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂成立几何画板编程小组，其中女生占\\frac{4}{7}，\\\\后来又有48个女生参加这个几何画板编程小组，\\\\这时女生人数占总人数的\\frac{4}{5},\\\\求现在几何画板编程小组有多少人？\\end{array} \\]", correctOption: {single: "90"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂成立几何画板编程小组，其中女生占\\frac{4}{13}，\\\\后来又有40个女生参加这个几何画板编程小组，\\\\这时女生人数占总人数的\\frac{8}{17},\\\\求现在几何画板编程小组有多少人？\\end{array} \\]", correctOption: {single: "170"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂成立几何画板编程小组，其中女生占\\frac{9}{16}，\\\\后来又有18个女生参加这个几何画板编程小组，\\\\这时女生人数占总人数的\\frac{12}{19},求现在几何画板编程小组有多少人？\\end{array} \\]", correctOption: {single: "114"}},
+{equation: "\\[ \\begin{array}{c} 玖数学堂成立几何画板编程小组，其中女生占\\frac{2}{3}，\\\\后来又有64个女生参加这个几何画板编程小组，\\\\这时女生人数占总人数的\\frac{4}{5},\\\\求现在几何画板编程小组有多少人？\\end{array} \\]", correctOption: {single: "160"}},
+{equation: "\\[ \\begin{array}{c} 星期天，玖数学堂买了一些苹果，\\\\玖玖分了这些苹果的\\frac{1}{4}，数数分了余下的\\frac{1}{5}，余下的24个苹果都给了学学，\\\\玖数学堂买一共买了多少个苹果？\\end{array} \\]", correctOption: {single: "40"}},
+{equation: "\\[ \\begin{array}{c} 星期天，玖数学堂买了一些苹果，\\\\玖玖分了这些苹果的\\frac{2}{5}，数数分了余下的\\frac{1}{3}，余下的36个苹果都给了学学，\\\\玖数学堂买一共买了多少个苹果？\\end{array} \\]", correctOption: {single: "90"}},
+{equation: "\\[ \\begin{array}{c} 星期天，玖数学堂买了一些苹果，\\\\玖玖分了这些苹果的\\frac{1}{3}，数数分了余下的\\frac{1}{2}，余下的16个苹果都给了学学，\\\\玖数学堂买一共买了多少个苹果？\\end{array} \\]", correctOption: {single: "48"}},
+{equation: "\\[ \\begin{array}{c} 星期天，玖数学堂买了一些苹果，\\\\玖玖分了这些苹果的\\frac{1}{2}，数数分了余下的\\frac{2}{3}，余下的8个苹果都给了学学，\\\\玖数学堂买一共买了多少个苹果？\\end{array} \\]", correctOption: {single: "48"}},
+{equation: "\\[ \\begin{array}{c} 星期天，玖数学堂买了一些苹果，\\\\玖玖分了这些苹果的\\frac{3}{4}，数数分了余下的\\frac{1}{2}，余下的6个苹果都给了学学，\\\\玖数学堂买一共买了多少个苹果？\\end{array} \\]", correctOption: {single: "48"}},
+{equation: "\\[ \\begin{array}{c} 星期天，玖数学堂买了一些苹果，\\\\玖玖分了这些苹果的\\frac{1}{3}，数数分了余下的\\frac{3}{4}，余下的8个苹果都给了学学，\\\\玖数学堂买一共买了多少个苹果？\\end{array} \\]", correctOption: {single: "48"}},
+{equation: "\\[ \\begin{array}{c} 星期天，玖数学堂买了一些苹果，\\\\玖玖分了这些苹果的\\frac{2}{3}，数数分了余下的\\frac{1}{2}，余下的8个苹果都给了学学，\\\\玖数学堂买一共买了多少个苹果？\\end{array} \\]", correctOption: {single: "48"}},
+{equation: "\\[ \\begin{array}{c} 星期天，玖数学堂买了一些苹果，\\\\玖玖分了这些苹果的\\frac{2}{3}，数数分了余下的\\frac{1}{3}，余下的4个苹果都给了学学，\\\\玖数学堂买一共买了多少个苹果？\\end{array} \\]", correctOption: {single: "18"}},
+{equation: "\\[ \\begin{array}{c} 星期天，玖数学堂买了一些苹果，\\\\玖玖分了这些苹果的\\frac{4}{5}，数数分了余下的\\frac{1}{3}，余下的4个苹果都给了学学，\\\\玖数学堂买一共买了多少个苹果？\\end{array} \\]", correctOption: {single: "30"}},
+{equation: "\\[ \\begin{array}{c} 星期天，玖数学堂买了一些苹果，\\\\玖玖分了这些苹果的\\frac{2}{5}，数数分了余下的\\frac{1}{5}，余下的24个苹果都给了学学，\\\\玖数学堂买一共买了多少个苹果？\\end{array} \\]", correctOption: {single: "50"}},
+{equation: "\\[ \\begin{array}{c} 星期天，玖数学堂买了一些苹果，\\\\玖玖分了这些苹果的\\frac{2}{3}，数数分了余下的\\frac{4}{5}，余下的2个苹果都给了学学，\\\\玖数学堂买一共买了多少个苹果？   \\end{array} \\]", correctOption: {single: "30"}},
+{equation: "\\[ \\begin{array}{c} 星期天，玖数学堂买了一些苹果，\\\\玖玖分了这些苹果的\\frac{2}{3}，数数分了余下的\\frac{3}{4}，余下的2个苹果都给了学学，\\\\玖数学堂买一共买了多少个苹果？   \\end{array} \\]", correctOption: {single: "24"}},
+
+
+
+
+
+
+    
+    ];
+
+        let state = {
+            currentQuestionBank: null,
+            currentEquationSystem: null,
+            score: 0,
+            questionsAnswered: 0,
+            roundsScores: [],
+            currentTopic: '',
+            currentQuestionIndex: 0,
+            isRandomMode: false,
+            isChallengeMode: false,
+        };
+
+        const updateElement = (id, value) => document.getElementById(id).textContent = value;
+
+        const startChallengeMode = () => {
+            state.isChallengeMode = true;
+            resetState();
+            updateElement('current-mode-display', '当前模式: 闯关');
+            startNewRound();
+        };
+
+        const toggleMode = (mode) => {
+            state.isRandomMode = mode;
+            state.isChallengeMode = false;
+            resetState();
+            updateElement('current-mode-display', state.isRandomMode ? '当前模式: 随机' : '当前模式: 顺序');
+            startNewRound();
+        };
+
+        const resetState = () => {
+            state.currentQuestionIndex = 0;
+            state.score = 0;
+            state.questionsAnswered = 0;
+            updateScoreboard();
+        };
+
+        const loadQuestions = (questionBank, topic) => {
+            state.currentQuestionBank = questionBank;
+            state.currentTopic = topic;
+            resetState();
+            updateElement('current-topic', `玖数学: ${state.currentTopic}`);
+            updateElement('current-mode-display', '当前模式: 顺序');
+            startNewRound();
+        };
+
+const toggleIframe = () => {
+    const iframe = document.getElementById('iframe-container');
+    const button = document.getElementById('toggle-iframe-button');
+    if (iframe.style.display === 'none' || iframe.style.display === '') {
+        iframe.style.display = 'block';
+        button.textContent = '隐藏';
+    } else {
+        iframe.style.display = 'none';
+        button.textContent = '显示';
+    }
+};
+
+
+const copyCurrentTopic = () => {
+    const currentTopic = document.getElementById('equation').innerText;
+    navigator.clipboard.writeText(currentTopic).then(() => {
+        showTemporaryMessage('题目已复制!', 1000);
+    }).catch(err => {
+        console.error('复制失败', err);
+    });
+};
+
+const showTemporaryMessage = (message, duration) => {
+    const messageElement = document.createElement('div');
+    messageElement.textContent = message;
+    messageElement.style.position = 'fixed';
+    messageElement.style.top = '50%';
+    messageElement.style.left = '50%';
+    messageElement.style.transform = 'translate(-50%, -50%)';
+    messageElement.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+    messageElement.style.color = 'white';
+    messageElement.style.padding = '10px';
+    messageElement.style.borderRadius = '5px';
+    document.body.appendChild(messageElement);
+
+    setTimeout(() => {
+        document.body.removeChild(messageElement);
+    }, duration);
+};
+
+
+
+
+        const generateEquationSystem = () => {
+            let question = getQuestion();
+
+            const { equation, img, correctOption, incorrectOptions } = question;
+
+            let equationHTML = equation;
+            if (img && img.trim()) equationHTML += `<br><img src="${img}" alt="题目图片">`;
+
+            if (correctOption.single || correctOption.dual) {
+                state.currentEquationSystem = { equationSystem: equationHTML, correctOption };
+                toggleAnswerContainers(correctOption);
+                document.getElementById('submit-button').style.display = 'block';
+            } else {
+                const correctIndex = Math.floor(Math.random() * 4);
+                const options = [...incorrectOptions];
+                options.splice(correctIndex, 0, correctOption);
+
+                state.currentEquationSystem = {
+                    equationSystem: equationHTML,
+                    correctIndex,
+                    options,
+                    correctOption
+                };
+                toggleAnswerContainers(correctOption, true);
+                document.getElementById('submit-button').style.display = 'none';
+            }
+        };
+
+        const toggleAnswerContainers = (correctOption, showOptions = false) => {
+            document.getElementById('options').style.display = showOptions ? 'block' : 'none';
+            document.getElementById('single-answer-container').style.display = correctOption.single ? 'block' : 'none';
+            document.getElementById('dual-answer-container').style.display = correctOption.dual ? 'block' : 'none';
+        };
+
+        const getQuestion = () => {
+            if (state.isRandomMode) {
+                const randomIndex = Math.floor(Math.random() * state.currentQuestionBank.length);
+                return state.currentQuestionBank[randomIndex];
+            } else {
+                if (state.currentQuestionIndex >= state.currentQuestionBank.length) state.currentQuestionIndex = 0;
+                return state.currentQuestionBank[state.currentQuestionIndex++];
+            }
+        };
+
+        const generateOptions = () => {
+            if (state.currentEquationSystem.options) {
+                const labels = ['A', 'B', 'C', 'D'];
+                return state.currentEquationSystem.options.map((option, index) =>
+                    `<div class="option" onclick="checkAnswer(${index}, '${option.replace(/\\/g, '\\\\')}')">
+                        <span>${labels[index]}. \\(${option}\\)</span>
+                    </div>`
+                ).join('');
+            }
+            return '';
+        };
+
+        const displayEquationSystem = () => {
+            generateEquationSystem();
+            document.getElementById('equation').innerHTML = state.currentEquationSystem.equationSystem;
+            if (state.currentEquationSystem.options) {
+                document.getElementById('options').innerHTML = generateOptions();
+            }
+            MathJax.typeset();
+        };
+
+        const startNewRound = () => {
+            if (isRoundComplete()) {
+                state.roundsScores.push({ topic: state.currentTopic, score: state.score, totalQuestions: state.questionsAnswered });
+                resetState();
+                updateRoundsScoreboard();
+            }
+            displayEquationSystem();
+        };
+
+        const isRoundComplete = () => {
+            let totalQuestionsInRound = state.isChallengeMode ? state.currentQuestionBank.length : 10;
+            return state.questionsAnswered >= totalQuestionsInRound;
+        };
+
+        const checkAnswer = (selectedIndex, userAnswer) => {
+            let isCorrect = false;
+            let correctAnswer = '';
+
+            if (state.currentEquationSystem.correctOption.single) {
+                userAnswer = document.getElementById('answer-input').value.trim();
+                correctAnswer = state.currentEquationSystem.correctOption.single;
+                isCorrect = userAnswer === correctAnswer;
+            } else if (state.currentEquationSystem.correctOption.dual) {
+                const userAnswerX = document.getElementById('answer-input-x').value.trim();
+                const userAnswerY = document.getElementById('answer-input-y').value.trim();
+                correctAnswer = `x=${state.currentEquationSystem.correctOption.dual.x}, y=${state.currentEquationSystem.correctOption.dual.y}`;
+                userAnswer = `x=${userAnswerX}, y=${userAnswerY}`;
+                isCorrect = userAnswerX === state.currentEquationSystem.correctOption.dual.x && userAnswerY === state.currentEquationSystem.correctOption.dual.y;
+            } else {
+                isCorrect = selectedIndex === state.currentEquationSystem.correctIndex;
+                correctAnswer = state.currentEquationSystem.correctOption;
+            }
+
+            addResultRow(state.currentEquationSystem.equationSystem, userAnswer, correctAnswer, isCorrect);
+            if (isCorrect) state.score++;
+            state.questionsAnswered++;
+            updateScoreboard();
+            startNewRound();
+            MathJax.typeset();
+        };
+
+        const addResultRow = (equation, userAnswer, correctAnswer, isCorrect) => {
+            let resultRow = document.createElement('tr');
+            resultRow.innerHTML = `
+                <td>${equation}</td>
+                <td>\\(${userAnswer}\\)</td>
+                <td>\\(${correctAnswer}\\)</td>
+                <td style="color: ${isCorrect ? 'green' : 'red'};">${isCorrect ? '正确' : '错误'}</td>
+            `;
+            document.querySelector('#result-table tbody').insertBefore(resultRow, document.querySelector('#result-table tbody').firstChild);
+        };
+
+        const handleKeyUp = (event, nextInputId = null) => {
+            if (event.key === 'Enter') {
+                if (nextInputId) {
+                    document.getElementById(nextInputId).focus();
+                } else {
+                    checkAnswer();
+                }
+            }
+        };
+
+        const updateScoreboard = () => {
+            updateElement('score', state.score);
+            updateElement('answered', state.questionsAnswered);
+        };
+
+        const updateRoundsScoreboard = () => {
+            const roundsScoresText = state.roundsScores.map((round, index) =>
+                `第${index + 1}轮 (${round.topic}): ${round.score}分共${round.totalQuestions}题`
+            ).join('<br>');
+            document.getElementById('rounds-scoreboard').innerHTML = roundsScoresText;
+        };
+
+window.onload = () => {
+    loadQuestions(分数应用题08综合测试, '分数应用题08综合测试');
+    state.isRandomMode = true;  // 初始化为随机模式
+    state.isChallengeMode = false;
+    startNewRound();
+};
+
+    </script>
+</body>
+</html>

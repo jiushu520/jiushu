@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <title>玖数学练习</title>
+    <style>
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: lightblue;
+        }
+
+        #navigation {
+            display: none;
+        }
+
+        #game-container {
+            width: 100%;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #equation, #options {
+            text-align: center;
+            width: 100%;
+            font-size: 20px;
+        }
+
+        .option {
+            display: inline-block;
+            margin: 0 10px;
+            padding: 10px;
+            border: 1px solid #000;
+            cursor: pointer;
+            margin: 0 10px 20px;
+            font-size: 20px;
+        }
+
+        #button-container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <h3>玖数学测训系统</h3>
+        <div id="current-topic"></div>
+        <div id="equation"></div>
+        <div id="options"></div>
+        <iframe id="myframe" style="display: none;" width="100%" height="600"></iframe>
+        <div id="button-container">
+            <button onclick="toggleMode(false)">顺序</button>
+            <button onclick="toggleMode(true)">随机</button>
+            <button onclick="startChallengeMode()">闯关</button><br>
+            <span id="current-mode-display">当前模式: 顺序</span>
+        </div>
+        <div id="scoreboard">现在得分:<span id="score">0</span>,已回答:<span id="answered">0</span></div>
+        <div id="rounds-scoreboard"></div>
+    </div>
+    <script>
+       
+const D02微积分根式运算02= [
+ 
+{equation: "\\[{\\sqrt{70}\\cdot\\sqrt{70}=?}\\]",correctOption: "70",incorrectOptions:["7\\sqrt{14}","14\\sqrt{2}","10\\sqrt{35}"]},
+
+{equation: "\\[{3\\sqrt{2}\\cdot\\sqrt{21}=?}\\]",correctOption: "3\\sqrt{42}",incorrectOptions:["9\\sqrt{2}","6\\sqrt{2}","7\\sqrt{6}"]},
+
+{equation: "\\[{\\sqrt{6}\\cdot9=?}\\]",correctOption: "9\\sqrt{6}",incorrectOptions:["6\\sqrt{10}","27\\sqrt{2}","9\\sqrt{5}"]},
+
+{equation: "\\[{3\\sqrt{2}\\cdot5=?}\\]",correctOption: "15\\sqrt{2}",incorrectOptions:["3\\sqrt{3}","20","10\\sqrt{3}"]},
+
+{equation: "\\[{\\sqrt{70}\\cdot2\\sqrt{10}=?}\\]",correctOption: "20\\sqrt{7}",incorrectOptions:["14\\sqrt{5}","4\\sqrt{21}","20\\sqrt{2}"]},
+
+{equation: "\\[{\\sqrt{30}\\cdot\\sqrt{3}=?}\\]",correctOption: "3\\sqrt{10}",incorrectOptions:["12\\sqrt{14}","3\\sqrt{3}","\\sqrt{35}"]},
+
+{equation: "\\[{4\\sqrt{3}\\cdot4=?}\\]",correctOption: "16\\sqrt{3}",incorrectOptions:["6\\sqrt{5}","4\\sqrt{6}","8\\sqrt{5}"]},
+
+{equation: "\\[{2\\sqrt{14}\\cdot3\\sqrt{3}=?}\\]",correctOption: "6\\sqrt{42}",incorrectOptions:["7\\sqrt{10}","6\\sqrt{14}","9\\sqrt{15}"]},
+
+{equation: "\\[{6\\sqrt{2}\\cdot2\\sqrt{14}=?}\\]",correctOption: "24\\sqrt{7}",incorrectOptions:["18\\sqrt{6}","8\\sqrt{3}","14\\sqrt{3}"]},
+
+{equation: "\\[{2\\sqrt{5}\\cdot3\\sqrt{2}=?}\\]",correctOption: "6\\sqrt{10}",incorrectOptions:["2","3\\sqrt{42}","6"]},
+
+{equation: "\\[{5\\sqrt{2}\\cdot\\sqrt{10}=?}\\]",correctOption: "10\\sqrt{5}",incorrectOptions:["10\\sqrt{3}","2\\sqrt{7}","20"]},
+
+{equation: "\\[{2\\sqrt{2}\\cdot3=?}\\]",correctOption: "6\\sqrt{2}",incorrectOptions:["16\\sqrt{5}","18\\sqrt{2}","\\sqrt{7}"]},
+
+{equation: "\\[{\\sqrt{35}\\cdot2\\sqrt{10}=?}\\]",correctOption: "10\\sqrt{14}",incorrectOptions:["14\\sqrt{3}","10\\sqrt{3}","8\\sqrt{30}"]},
+
+{equation: "\\[{5\\cdot2=?}\\]",correctOption: "10",incorrectOptions:["20","4\\sqrt{6}","\\sqrt{10}"]},
+
+{equation: "\\[{3\\sqrt{6}\\cdot\\sqrt{42}=?}\\]",correctOption: "18\\sqrt{7}",incorrectOptions:["12","6\\sqrt{2}","7\\sqrt{30}"]},
+
+{equation: "\\[{2\\sqrt{10}\\cdot2\\sqrt{10}=?}\\]",correctOption: "40",incorrectOptions:["8\\sqrt{6}","10\\sqrt{6}","8\\sqrt{5}"]},
+
+{equation: "\\[{3\\sqrt{7}\\cdot3\\sqrt{10}=?}\\]",correctOption: "9\\sqrt{70}",incorrectOptions:["7\\sqrt{42}","18\\sqrt{5}","20\\sqrt{7}"]},
+
+{equation: "\\[{\\sqrt{14}\\cdot2\\sqrt{6}=?}\\]",correctOption: "4\\sqrt{21}",incorrectOptions:["2\\sqrt{14}","3\\sqrt{2}","8\\sqrt{15}"]},
+
+{equation: "\\[{3\\cdot3\\sqrt{5}=?}\\]",correctOption: "9\\sqrt{5}",incorrectOptions:["9\\sqrt{42}","10\\sqrt{2}","18"]},
+
+{equation: "\\[{\\sqrt{5}\\cdot3=?}\\]",correctOption: "3\\sqrt{5}",incorrectOptions:["5\\sqrt{6}","18","2\\sqrt{3}"]},
+
+{equation: "\\[{4\\sqrt{2}\\cdot\\sqrt{15}=?}\\]",correctOption: "4\\sqrt{30}",incorrectOptions:["8\\sqrt{42}","5\\sqrt{3}","3\\sqrt{6}"]},
+
+{equation: "\\[{6\\cdot4\\sqrt{3}=?}\\]",correctOption: "24\\sqrt{3}",incorrectOptions:["9\\sqrt{42}","6\\sqrt{5}","8\\sqrt{7}"]},
+
+{equation: "\\[{3\\sqrt{2}\\cdot2\\sqrt{3}=?}\\]",correctOption: "6\\sqrt{6}",incorrectOptions:["2\\sqrt{10}","18","2\\sqrt{6}"]},
+
+{equation: "\\[{2\\sqrt{6}\\cdot3\\sqrt{2}=?}\\]",correctOption: "12\\sqrt{3}",incorrectOptions:["12\\sqrt{10}","9\\sqrt{7}","8\\sqrt{3}"]},
+
+{equation: "\\[{2\\sqrt{7}\\cdot6=?}\\]",correctOption: "12\\sqrt{7}",incorrectOptions:["4\\sqrt{14}","9\\sqrt{2}","16"]},
+
+{equation: "\\[{2\\sqrt{15}\\cdot\\sqrt{70}=?}\\]",correctOption: "10\\sqrt{42}",incorrectOptions:["6\\sqrt{14}","56","20\\sqrt{3}"]},
+
+{equation: "\\[{\\sqrt{35}\\cdot6=?}\\]",correctOption: "6\\sqrt{35}",incorrectOptions:["5","18\\sqrt{3}","16"]},
+
+{equation: "\\[{3\\sqrt{7}\\cdot2\\sqrt{5}=?}\\]",correctOption: "6\\sqrt{35}",incorrectOptions:["9\\sqrt{10}","40","4\\sqrt{7}"]},
+
+{equation: "\\[{2\\sqrt{2}\\cdot3\\sqrt{2}=?}\\]",correctOption: "12",incorrectOptions:["4\\sqrt{42}","9\\sqrt{2}","6\\sqrt{10}"]},
+
+{equation: "\\[{2\\sqrt{7}\\cdot3\\sqrt{7}=?}\\]",correctOption: "42",incorrectOptions:["14\\sqrt{6}","18","14"]},
+
+
+
+        ];
+
+        let currentQuestionBank;
+        let currentEquationSystem;
+        let score = 0;
+        let questionsAnswered = 0;
+        let roundsScores = [];
+        let currentTopic = '';
+        let currentQuestionIndex = 0;
+        let isRandomMode = false;
+
+        function startChallengeMode() {
+            isChallengeMode = true;
+            currentQuestionIndex = 0;
+            score = 0;
+            questionsAnswered = 0;
+            updateScoreboard();
+            updateRoundsScoreboard();
+            document.getElementById('current-mode-display').textContent = '当前模式: 闯关';
+            startNewRound();
+        }
+
+        function toggleMode(mode) {
+            isRandomMode = mode;
+            isChallengeMode = false;
+            currentQuestionIndex = 0;
+            score = 0;
+            questionsAnswered = 0;
+            updateScoreboard();
+            const modeDisplay = document.getElementById('current-mode-display');
+            modeDisplay.textContent = isRandomMode ? '当前模式: 随机' : '当前模式: 顺序';
+            startNewRound();
+        }
+
+        function loadQuestions(questionBank, topic) {
+            currentQuestionBank = questionBank;
+            currentTopic = topic;
+            currentQuestionIndex = 0;
+            score = 0;
+            questionsAnswered = 0;
+            isRandomMode = false;
+            isChallengeMode = false;
+            updateScoreboard();
+            document.getElementById('current-topic').textContent = `玖数学: ${currentTopic}`;
+            document.getElementById('current-mode-display').textContent = '当前模式: 顺序';
+            startNewRound();
+        }
+
+        function generateEquationSystem() {
+            let question;
+
+            if (isRandomMode) {
+                const randomIndex = Math.floor(Math.random() * currentQuestionBank.length);
+                question = currentQuestionBank[randomIndex];
+            } else {
+                if (currentQuestionIndex >= currentQuestionBank.length) {
+                    currentQuestionIndex = 0;
+                }
+                question = currentQuestionBank[currentQuestionIndex];
+                currentQuestionIndex++;
+            }
+
+            const { equation, img, correctOption, incorrectOptions } = question;
+            const correctIndex = Math.floor(Math.random() * 4);
+            const options = [...incorrectOptions];
+            options.splice(correctIndex, 0, correctOption);
+
+            let equationHTML = equation;
+
+            if (img && img.trim() !== '') {
+                equationHTML += `<br><img src="${img}" alt="题目图片">`;
+            }
+
+            currentEquationSystem = {
+                equationSystem: equationHTML,
+                correctIndex,
+                options
+            };
+        }
+
+        function generateOptions() {
+            const labels = ['A', 'B', 'C', 'D', ];
+            return currentEquationSystem.options.map((option, index) => `<div class="option" onclick="checkAnswer(${index})"><span>${labels[index]}. \\(${option}\\)</span></div>`).join('');
+        }
+
+        function displayEquationSystem() {
+            generateEquationSystem();
+            document.getElementById('equation').innerHTML = currentEquationSystem.equationSystem;
+            document.getElementById('options').innerHTML = generateOptions();
+            MathJax.typeset();
+        }
+
+        function startNewRound() {
+            let roundComplete = false;
+            let totalQuestionsInRound = isChallengeMode ? currentQuestionBank.length : 10;
+
+            if (isChallengeMode) {
+                roundComplete = questionsAnswered >= currentQuestionBank.length;
+            } else {
+                roundComplete = questionsAnswered >= 10;
+            }
+
+            if (roundComplete) {
+                roundsScores.push({ topic: currentTopic, score: score, totalQuestions: totalQuestionsInRound });
+                score = 0;
+                questionsAnswered = 0;
+                updateRoundsScoreboard();
+                if (!isChallengeMode && currentQuestionIndex >= currentQuestionBank.length) {
+                    currentQuestionIndex = 0;
+                }
+            }
+
+            displayEquationSystem();
+        }
+
+        function checkAnswer(selectedIndex) {
+            if (parseInt(selectedIndex) === currentEquationSystem.correctIndex) {
+                score++;
+            } else if (isChallengeMode) {
+                score = 0;
+                questionsAnswered = 0;
+                currentQuestionIndex = 0;
+                updateScoreboard();
+                startNewRound();
+                return;
+            }
+            questionsAnswered++;
+            updateScoreboard();
+            startNewRound();
+        }
+
+        function updateScoreboard() {
+            document.getElementById('score').textContent = score;
+            document.getElementById('answered').textContent = questionsAnswered;
+        }
+
+        function updateRoundsScoreboard() {
+            let roundsScoresText = roundsScores.map((round, index) => `第${index + 1}轮 (${round.topic}): ${round.score}分共${round.totalQuestions}题`).join('<br>');
+            document.getElementById('rounds-scoreboard').innerHTML = roundsScoresText;
+        }
+
+        window.onload = () => {
+            loadQuestions(D02微积分根式运算02,'D02微积分根式运算02');
+            isChallengeMode = false;
+            startNewRound();
+        };
+    </script>
+</body>
+</html>

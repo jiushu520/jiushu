@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <title>玖数学练习</title>
+    <style>
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: lightblue;
+        }
+
+        #game-container {
+            width: 100%;
+            height: 100%;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #equation, #answer-input, #answer-input-x, #answer-input-y, #options {
+            text-align: center;
+            width: 100%;
+            font-size: 20px;
+        }
+
+        #answer-input, #answer-input-x, #answer-input-y {
+            margin: 20px 0;
+        }
+
+        .option {
+            display: inline-block;
+            margin: 0 10px;
+            padding: 10px;
+            border: 1px solid #000;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        #button-container {
+            margin-top: 20px;
+        }
+
+        #result-table-container {
+            margin-top: 20px;
+            width: 100%;
+            height: calc(50% - 60px); /* 调整高度以适应 */
+                    }
+
+        #result-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        #result-table th, #result-table td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: center;
+        }
+        iframe#iframe-container {
+        width: 100%; /* 设置全屏宽度 */
+        height: 500px; /* 设置高度为500px */
+        border: none; /* 去掉边框 */
+        display: none; /* 初始隐藏iframe */
+    }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <h3>玖数学测训系统</h3>
+        <div id="current-topic"></div>
+        <div id="equation"></div>
+        <div id="options" style="display: none;"></div>
+        <div id="single-answer-container" style="display: none;">
+            <input type="text" id="answer-input" placeholder="输入你的答案" onkeyup="handleKeyUp(event)">
+        </div>
+        <div id="dual-answer-container" style="display: none;">
+                x=<input type="text" id="answer-input-x" placeholder="x的值" onkeyup="handleKeyUp(event, 'answer-input-y')">
+                y=<input type="text" id="answer-input-y" placeholder="y的值" onkeyup="handleKeyUp(event)">
+        </div>
+        <button id="submit-button" onclick="checkAnswer()">提交答案</button>
+        <div id="button-container">
+            <button onclick="toggleMode(false)">顺序</button>
+            <button onclick="toggleMode(true)">随机</button>
+            <button onclick="startChallengeMode()">闯关</button>
+            <button id="toggle-iframe-button" onclick="toggleIframe()">交互</button>
+            <button id="copy-button" onclick="copyCurrentTopic()">复制当前题目</button>
+
+<br>
+            <span id="current-mode-display">当前模式: 顺序</span>
+        </div>
+        <div id="scoreboard">现在得分:<span id="score">0</span>,已回答:<span id="answered">0</span></div>
+        <iframe id="iframe-container" src="https://www.geogebra.org/calculator"></iframe>
+        <div id="result-table-container">
+            <table id="result-table">
+                <thead>
+                    <tr>
+                        <th>题目</th>
+                        <th>你的答案</th>
+                        <th>正确答案</th>
+                        <th>结果</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div id="rounds-scoreboard"></div>
+    </div>
+    <script>
+        const 浓度问题10综合测试 = [
+
+
+{equation: "\\[ \\begin{array}{c} 小高将8克糖放入42克水中，糖水的浓度是\\text{_________%}?\\end{array} \\]", correctOption: {single: "16"}},
+{equation: "\\[ \\begin{array}{c} 小高将53克糖放入47克水中，糖水的浓度是\\text{_________%}?\\end{array} \\]", correctOption: {single: "53"}},
+{equation: "\\[ \\begin{array}{c} 小高将130克糖放入120克水中，糖水的浓度是\\text{_________%}?\\end{array} \\]", correctOption: {single: "52"}},
+{equation: "\\[ \\begin{array}{c} 小高将18克糖放入2克水中，糖水的浓度是\\text{_________%}?\\end{array} \\]", correctOption: {single: "90"}},
+{equation: "\\[ \\begin{array}{c} 小高将180克糖放入320克水中，糖水的浓度是\\text{_________%}?\\end{array} \\]", correctOption: {single: "36"}},
+{equation: "\\[ \\begin{array}{c} 小高将116克糖放入284克水中，糖水的浓度是\\text{_________%}?\\end{array} \\]", correctOption: {single: "29"}},
+{equation: "\\[ \\begin{array}{c} 小高将126克糖放入274克水中，糖水的浓度是\\text{_________%}?\\end{array} \\]", correctOption: {single: "31.5"}},
+{equation: "\\[ \\begin{array}{c} 小高将822克糖放入1178克水中，糖水的浓度是\\text{_________%}?\\end{array} \\]", correctOption: {single: "41.1"}},
+{equation: "\\[ \\begin{array}{c} 小高将9克糖放入11克水中，糖水的浓度是\\text{_________%}?\\end{array} \\]", correctOption: {single: "45"}},
+{equation: "\\[ \\begin{array}{c} 小高将34克糖放入6克水中，糖水的浓度是\\text{_________%}?\\end{array} \\]", correctOption: {single: "85"}},
+{equation: "\\[ \\begin{array}{c} 小高将106克糖放入94克水中，糖水的浓度是\\text{_________%}?\\end{array} \\]", correctOption: {single: "53"}},
+{equation: "\\[ \\begin{array}{c} 小高将8克糖放入32克水中，糖水的浓度是\\text{_________%}?\\end{array} \\]", correctOption: {single: "20"}},
+{equation: "\\[ \\begin{array}{c} 小高将7克糖放入3克水中，糖水的浓度是\\text{_________%}?\\end{array} \\]", correctOption: {single: "70"}},
+{equation: "\\[ \\begin{array}{c} 小高将1721克糖放入279克水中，糖水的浓度是\\text{_________%}?\\end{array} \\]", correctOption: {single: "86.05"}},
+{equation: "\\[ \\begin{array}{c} 小高将15克糖放入5克水中，糖水的浓度是\\text{_________%}?\\end{array} \\]", correctOption: {single: "75"}},
+{equation: "\\[ \\begin{array}{c} 小高将16克糖放入34克水中，糖水的浓度是\\text{_________%}?\\end{array} \\]", correctOption: {single: "32"}},
+{equation: "\\[ \\begin{array}{c} 小高将3克糖放入37克水中，糖水的浓度是\\text{_________%}?\\end{array} \\]", correctOption: {single: "7.5"}},
+{equation: "\\[ \\begin{array}{c} 小高将8克糖放入117克水中，糖水的浓度是\\text{_________%}?\\end{array} \\]", correctOption: {single: "6.4"}},
+{equation: "\\[ \\begin{array}{c} 小高将120克糖放入80克水中，糖水的浓度是\\text{_________%}?\\end{array} \\]", correctOption: {single: "60"}},
+{equation: "\\[ \\begin{array}{c} 小高将89克糖放入411克水中，糖水的浓度是\\text{_________%}?\\end{array} \\]", correctOption: {single: "17.8"}},
+{equation: "\\[ \\begin{array}{c} 小高将24克糖放入56克水中，糖水的浓度是\\text{_________%}?\\end{array} \\]", correctOption: {single: "30"}},
+{equation: "\\[ \\begin{array}{c} 小高将103克糖放入297克水中，糖水的浓度是\\text{_________%}?\\end{array} \\]", correctOption: {single: "25.75"}},
+{equation: "\\[ \\begin{array}{c} 小高将64克糖放入61克水中，糖水的浓度是\\text{_________%}?\\end{array} \\]", correctOption: {single: "51.2"}},
+{equation: "\\[ \\begin{array}{c} 小高将14克糖放入36克水中，糖水的浓度是\\text{_________%}?\\end{array} \\]", correctOption: {single: "28"}},
+{equation: "\\[ \\begin{array}{c} 小高将32克糖放入48克水中，糖水的浓度是\\text{_________%}?\\end{array} \\]", correctOption: {single: "40"}},
+{equation: "\\[ \\begin{array}{c} 小高将202克糖放入198克水中，糖水的浓度是\\text{_________%}?\\end{array} \\]", correctOption: {single: "50.5"}},
+{equation: "\\[ \\begin{array}{c} 小高将42克糖放入58克水中，糖水的浓度是\\text{_________%}?\\end{array} \\]", correctOption: {single: "42"}},
+{equation: "\\[ \\begin{array}{c} 小高将35克糖放入90克水中，糖水的浓度是\\text{_________%}?\\end{array} \\]", correctOption: {single: "28"}},
+{equation: "\\[ \\begin{array}{c} 小高将20克糖放入105克水中，糖水的浓度是\\text{_________%}?\\end{array} \\]", correctOption: {single: "16"}},
+{equation: "\\[ \\begin{array}{c} 小高将18克糖放入7克水中，糖水的浓度是\\text{_________%}?\\end{array} \\]", correctOption: {single: "72"}},
+
+
+
+{equation: "\\[ \\begin{array}{c} 一瓶500克的糖水，浓度是40.6\\text{%}，\\\\那么这瓶糖水中含糖x克,含水y克 。\\end{array} \\]", correctOption: {dual:{x: "203", y: "297"}}},
+{equation: "\\[ \\begin{array}{c} 一瓶2000克的糖水，浓度是66.95\\text{%}，\\\\那么这瓶糖水中含糖x克,含水y克 。\\end{array} \\]", correctOption: {dual:{x: "1339", y: "661"}}},
+{equation: "\\[ \\begin{array}{c} 一瓶200克的糖水，浓度是15\\text{%}，\\\\那么这瓶糖水中含糖x克,含水y克 。\\end{array} \\]", correctOption: {dual:{x: "30", y: "170"}}},
+{equation: "\\[ \\begin{array}{c} 一瓶125克的糖水，浓度是26.4\\text{%}，\\\\那么这瓶糖水中含糖x克,含水y克 。\\end{array} \\]", correctOption: {dual:{x: "33", y: "92"}}},
+{equation: "\\[ \\begin{array}{c} 一瓶100克的糖水，浓度是25\\text{%}，\\\\那么这瓶糖水中含糖x克,含水y克 。\\end{array} \\]", correctOption: {dual:{x: "25", y: "75"}}},
+{equation: "\\[ \\begin{array}{c} 一瓶200克的糖水，浓度是2.5\\text{%}，\\\\那么这瓶糖水中含糖x克,含水y克 。\\end{array} \\]", correctOption: {dual:{x: "5", y: "195"}}},
+{equation: "\\[ \\begin{array}{c} 一瓶1000克的糖水，浓度是4.8\\text{%}，\\\\那么这瓶糖水中含糖x克,含水y克 。\\end{array} \\]", correctOption: {dual:{x: "48", y: "952"}}},
+{equation: "\\[ \\begin{array}{c} 一瓶25克的糖水，浓度是36\\text{%}，\\\\那么这瓶糖水中含糖x克,含水y克 。\\end{array} \\]", correctOption: {dual:{x: "9", y: "16"}}},
+{equation: "\\[ \\begin{array}{c} 一瓶400克的糖水，浓度是14.25\\text{%}，\\\\那么这瓶糖水中含糖x克,含水y克 。\\end{array} \\]", correctOption: {dual:{x: "57", y: "343"}}},
+{equation: "\\[ \\begin{array}{c} 一瓶100克的糖水，浓度是51\\text{%}，\\\\那么这瓶糖水中含糖x克,含水y克 。\\end{array} \\]", correctOption: {dual:{x: "51", y: "49"}}},
+{equation: "\\[ \\begin{array}{c} 一瓶2000克的糖水，浓度是95.55\\text{%}，\\\\那么这瓶糖水中含糖x克,含水y克 。\\end{array} \\]", correctOption: {dual:{x: "1911", y: "89"}}},
+{equation: "\\[ \\begin{array}{c} 一瓶1000克的糖水，浓度是9.7\\text{%}，\\\\那么这瓶糖水中含糖x克,含水y克 。\\end{array} \\]", correctOption: {dual:{x: "97", y: "903"}}},
+{equation: "\\[ \\begin{array}{c} 一瓶2000克的糖水，浓度是31.75\\text{%}，\\\\那么这瓶糖水中含糖x克,含水y克 。\\end{array} \\]", correctOption: {dual:{x: "635", y: "1365"}}},
+{equation: "\\[ \\begin{array}{c} 一瓶500克的糖水，浓度是99.6\\text{%}，\\\\那么这瓶糖水中含糖x克,含水y克 。\\end{array} \\]", correctOption: {dual:{x: "498", y: "2"}}},
+{equation: "\\[ \\begin{array}{c} 一瓶40克的糖水，浓度是57.5\\text{%}，\\\\那么这瓶糖水中含糖x克,含水y克 。\\end{array} \\]", correctOption: {dual:{x: "23", y: "17"}}},
+{equation: "\\[ \\begin{array}{c} 一瓶80克的糖水，浓度是40\\text{%}，\\\\那么这瓶糖水中含糖x克,含水y克 。\\end{array} \\]", correctOption: {dual:{x: "32", y: "48"}}},
+{equation: "\\[ \\begin{array}{c} 一瓶40克的糖水，浓度是60\\text{%}，\\\\那么这瓶糖水中含糖x克,含水y克 。\\end{array} \\]", correctOption: {dual:{x: "24", y: "16"}}},
+{equation: "\\[ \\begin{array}{c} 一瓶10克的糖水，浓度是60\\text{%}，\\\\那么这瓶糖水中含糖x克,含水y克 。\\end{array} \\]", correctOption: {dual:{x: "6", y: "4"}}},
+{equation: "\\[ \\begin{array}{c} 一瓶40克的糖水，浓度是90\\text{%}，\\\\那么这瓶糖水中含糖x克,含水y克 。\\end{array} \\]", correctOption: {dual:{x: "36", y: "4"}}},
+{equation: "\\[ \\begin{array}{c} 一瓶25克的糖水，浓度是4\\text{%}，\\\\那么这瓶糖水中含糖x克,含水y克 。\\end{array} \\]", correctOption: {dual:{x: "1", y: "24"}}},
+{equation: "\\[ \\begin{array}{c} 一瓶400克的糖水，浓度是4.5\\text{%}，\\\\那么这瓶糖水中含糖x克,含水y克 。\\end{array} \\]", correctOption: {dual:{x: "18", y: "382"}}},
+{equation: "\\[ \\begin{array}{c} 一瓶125克的糖水，浓度是20\\text{%}，\\\\那么这瓶糖水中含糖x克,含水y克 。\\end{array} \\]", correctOption: {dual:{x: "25", y: "100"}}},
+{equation: "\\[ \\begin{array}{c} 一瓶10克的糖水，浓度是80\\text{%}，\\\\那么这瓶糖水中含糖x克,含水y克 。\\end{array} \\]", correctOption: {dual:{x: "8", y: "2"}}},
+{equation: "\\[ \\begin{array}{c} 一瓶1000克的糖水，浓度是78.6\\text{%}，\\\\那么这瓶糖水中含糖x克,含水y克 。\\end{array} \\]", correctOption: {dual:{x: "786", y: "214"}}},
+{equation: "\\[ \\begin{array}{c} 一瓶200克的糖水，浓度是73\\text{%}，\\\\那么这瓶糖水中含糖x克,含水y克 。\\end{array} \\]", correctOption: {dual:{x: "146", y: "54"}}},
+{equation: "\\[ \\begin{array}{c} 一瓶250克的糖水，浓度是6\\text{%}，\\\\那么这瓶糖水中含糖x克,含水y克 。\\end{array} \\]", correctOption: {dual:{x: "15", y: "235"}}},
+{equation: "\\[ \\begin{array}{c} 一瓶40克的糖水，浓度是37.5\\text{%}，\\\\那么这瓶糖水中含糖x克,含水y克 。\\end{array} \\]", correctOption: {dual:{x: "15", y: "25"}}},
+{equation: "\\[ \\begin{array}{c} 一瓶80克的糖水，浓度是30\\text{%}，\\\\那么这瓶糖水中含糖x克,含水y克 。\\end{array} \\]", correctOption: {dual:{x: "24", y: "56"}}},
+{equation: "\\[ \\begin{array}{c} 一瓶1000克的糖水，浓度是36.7\\text{%}，\\\\那么这瓶糖水中含糖x克,含水y克 。\\end{array} \\]", correctOption: {dual:{x: "367", y: "633"}}},
+{equation: "\\[ \\begin{array}{c} 一瓶200克的糖水，浓度是33.5\\text{%}，\\\\那么这瓶糖水中含糖x克,含水y克 。\\end{array} \\]", correctOption: {dual:{x: "67", y: "133"}}},
+{equation: "\\[ \\begin{array}{c} 一瓶2000克的糖水，浓度是90.45\\text{%}，\\\\那么这瓶糖水中含糖x克,含水y克 。\\end{array} \\]", correctOption: {dual:{x: "1809", y: "191"}}},
+{equation: "\\[ \\begin{array}{c} 一瓶400克的糖水，浓度是81.25\\text{%}，\\\\那么这瓶糖水中含糖x克,含水y克 。\\end{array} \\]", correctOption: {dual:{x: "325", y: "75"}}},
+{equation: "\\[ \\begin{array}{c} 一瓶200克的糖水，浓度是61\\text{%}，\\\\那么这瓶糖水中含糖x克,含水y克 。\\end{array} \\]", correctOption: {dual:{x: "122", y: "78"}}},
+{equation: "\\[ \\begin{array}{c} 一瓶25克的糖水，浓度是24\\text{%}，\\\\那么这瓶糖水中含糖x克,含水y克 。\\end{array} \\]", correctOption: {dual:{x: "6", y: "19"}}},
+{equation: "\\[ \\begin{array}{c} 一瓶50克的糖水，浓度是80\\text{%}，\\\\那么这瓶糖水中含糖x克,含水y克 。\\end{array} \\]", correctOption: {dual:{x: "40", y: "10"}}},
+{equation: "\\[ \\begin{array}{c} 一瓶500克的糖水，浓度是86\\text{%}，\\\\那么这瓶糖水中含糖x克,含水y克 。\\end{array} \\]", correctOption: {dual:{x: "430", y: "70"}}},
+{equation: "\\[ \\begin{array}{c} 一瓶40克的糖水，浓度是7.5\\text{%}，\\\\那么这瓶糖水中含糖x克,含水y克 。\\end{array} \\]", correctOption: {dual:{x: "3", y: "37"}}},
+{equation: "\\[ \\begin{array}{c} 一瓶200克的糖水，浓度是39\\text{%}，\\\\那么这瓶糖水中含糖x克,含水y克 。\\end{array} \\]", correctOption: {dual:{x: "78", y: "122"}}},
+{equation: "\\[ \\begin{array}{c} 一瓶2000克的糖水，浓度是35.05\\text{%}，\\\\那么这瓶糖水中含糖x克,含水y克 。\\end{array} \\]", correctOption: {dual:{x: "701", y: "1299"}}},
+{equation: "\\[ \\begin{array}{c} 一瓶2000克的糖水，浓度是55.65\\text{%}，\\\\那么这瓶糖水中含糖x克,含水y克 。\\end{array} \\]", correctOption: {dual:{x: "1113", y: "887"}}},
+{equation: "\\[ \\begin{array}{c} 一瓶50克的糖水，浓度是22\\text{%}，\\\\那么这瓶糖水中含糖x克,含水y克 。\\end{array} \\]", correctOption: {dual:{x: "11", y: "39"}}},
+{equation: "\\[ \\begin{array}{c} 一瓶20克的糖水，浓度是85\\text{%}，\\\\那么这瓶糖水中含糖x克,含水y克 。\\end{array} \\]", correctOption: {dual:{x: "17", y: "3"}}},
+{equation: "\\[ \\begin{array}{c} 一瓶2000克的糖水，浓度是7.25\\text{%}，\\\\那么这瓶糖水中含糖x克,含水y克 。\\end{array} \\]", correctOption: {dual:{x: "145", y: "1855"}}},
+{equation: "\\[ \\begin{array}{c} 一瓶400克的糖水，浓度是85\\text{%}，\\\\那么这瓶糖水中含糖x克,含水y克 。\\end{array} \\]", correctOption: {dual:{x: "340", y: "60"}}},
+{equation: "\\[ \\begin{array}{c} 一瓶250克的糖水，浓度是14.8\\text{%}，\\\\那么这瓶糖水中含糖x克,含水y克 。\\end{array} \\]", correctOption: {dual:{x: "37", y: "213"}}},
+{equation: "\\[ \\begin{array}{c} 一瓶400克的糖水，浓度是36.25\\text{%}，\\\\那么这瓶糖水中含糖x克,含水y克 。\\end{array} \\]", correctOption: {dual:{x: "145", y: "255"}}},
+{equation: "\\[ \\begin{array}{c} 一瓶50克的糖水，浓度是92\\text{%}，\\\\那么这瓶糖水中含糖x克,含水y克 。\\end{array} \\]", correctOption: {dual:{x: "46", y: "4"}}},
+{equation: "\\[ \\begin{array}{c} 一瓶40克的糖水，浓度是42.5\\text{%}，\\\\那么这瓶糖水中含糖x克,含水y克 。\\end{array} \\]", correctOption: {dual:{x: "17", y: "23"}}},
+{equation: "\\[ \\begin{array}{c} 一瓶500克的糖水，浓度是44.4\\text{%}，\\\\那么这瓶糖水中含糖x克,含水y克 。\\end{array} \\]", correctOption: {dual:{x: "222", y: "278"}}},
+{equation: "\\[ \\begin{array}{c} 一瓶125克的糖水，浓度是66.4\\text{%}，\\\\那么这瓶糖水中含糖x克,含水y克 。\\end{array} \\]", correctOption: {dual:{x: "83", y: "42"}}},
+
+
+{equation: "\\[ \\begin{array}{c} 一瓶80克的糖水，浓度是87.5\\text{%}，\\\\加入120克糖之后浓度变为\\text{_____%}。\\end{array} \\]", correctOption: {single: "95"}},
+{equation: "\\[ \\begin{array}{c} 一瓶200克的糖水，浓度是60\\text{%}，\\\\加入50克糖之后浓度变为\\text{_____%}。\\end{array} \\]", correctOption: {single: "68"}},
+{equation: "\\[ \\begin{array}{c} 一瓶80克的糖水，浓度是75\\text{%}，\\\\加入120克糖之后浓度变为\\text{_____%}。\\end{array} \\]", correctOption: {single: "90"}},
+{equation: "\\[ \\begin{array}{c} 一瓶80克的糖水，浓度是75\\text{%}，\\\\加入20克糖之后浓度变为\\text{_____%}。\\end{array} \\]", correctOption: {single: "80"}},
+{equation: "\\[ \\begin{array}{c} 一瓶150克的糖水，浓度是80\\text{%}，\\\\加入100克糖之后浓度变为\\text{_____%}。\\end{array} \\]", correctOption: {single: "88"}},
+{equation: "\\[ \\begin{array}{c} 一瓶200克的糖水，浓度是55\\text{%}，\\\\加入50克糖之后浓度变为\\text{_____%}。\\end{array} \\]", correctOption: {single: "64"}},
+{equation: "\\[ \\begin{array}{c} 一瓶80克的糖水，浓度是25\\text{%}，\\\\加入20克糖之后浓度变为\\text{_____%}。\\end{array} \\]", correctOption: {single: "40"}},
+{equation: "\\[ \\begin{array}{c} 一瓶80克的糖水，浓度是50\\text{%}，\\\\加入20克糖之后浓度变为\\text{_____%}。\\end{array} \\]", correctOption: {single: "60"}},
+{equation: "\\[ \\begin{array}{c} 一瓶80克的糖水，浓度是37.5\\text{%}，\\\\加入120克糖之后浓度变为\\text{_____%}。\\end{array} \\]", correctOption: {single: "75"}},
+{equation: "\\[ \\begin{array}{c} 一瓶150克的糖水，浓度是20\\text{%}，\\\\加入50克糖之后浓度变为\\text{_____%}。\\end{array} \\]", correctOption: {single: "40"}},
+{equation: "\\[ \\begin{array}{c} 一瓶150克的糖水，浓度是80\\text{%}，\\\\加入50克糖之后浓度变为\\text{_____%}。\\end{array} \\]", correctOption: {single: "85"}},
+{equation: "\\[ \\begin{array}{c} 一瓶200克的糖水，浓度是90\\text{%}，\\\\加入50克糖之后浓度变为\\text{_____%}。\\end{array} \\]", correctOption: {single: "92"}},
+{equation: "\\[ \\begin{array}{c} 一瓶80克的糖水，浓度是87.5\\text{%}，\\\\加入20克糖之后浓度变为\\text{_____%}。\\end{array} \\]", correctOption: {single: "90"}},
+{equation: "\\[ \\begin{array}{c} 一瓶80克的糖水，浓度是50\\text{%}，\\\\加入120克糖之后浓度变为\\text{_____%}。\\end{array} \\]", correctOption: {single: "80"}},
+{equation: "\\[ \\begin{array}{c} 一瓶150克的糖水，浓度是20\\text{%}，\\\\加入100克糖之后浓度变为\\text{_____%}。\\end{array} \\]", correctOption: {single: "52"}},
+{equation: "\\[ \\begin{array}{c} 一瓶80克的糖水，浓度是12.5\\text{%}，\\\\加入120克糖之后浓度变为\\text{_____%}。\\end{array} \\]", correctOption: {single: "65"}},
+{equation: "\\[ \\begin{array}{c} 一瓶150克的糖水，浓度是40\\text{%}，\\\\加入50克糖之后浓度变为\\text{_____%}。\\end{array} \\]", correctOption: {single: "55"}},
+{equation: "\\[ \\begin{array}{c} 一瓶200克的糖水，浓度是80\\text{%}，\\\\加入50克糖之后浓度变为\\text{_____%}。\\end{array} \\]", correctOption: {single: "84"}},
+{equation: "\\[ \\begin{array}{c} 一瓶80克的糖水，浓度是25\\text{%}，\\\\加入120克糖之后浓度变为\\text{_____%}。\\end{array} \\]", correctOption: {single: "70"}},
+{equation: "\\[ \\begin{array}{c} 一瓶200克的糖水，浓度是50\\text{%}，\\\\加入50克糖之后浓度变为\\text{_____%}。\\end{array} \\]", correctOption: {single: "60"}},
+
+
+{equation: "\\[ \\begin{array}{c} 一瓶100克的糖水，浓度为50\\text{%}。\\\\加入多少克糖才能配制成浓度为80\\text{%}的糖水？\\end{array} \\]", correctOption: {single: "150"}},
+{equation: "\\[ \\begin{array}{c} 一瓶100克的糖水，浓度为30\\text{%}。\\\\加入多少克糖才能配制成浓度为72\\text{%}的糖水？\\end{array} \\]", correctOption: {single: "150"}},
+{equation: "\\[ \\begin{array}{c} 一瓶150克的糖水，浓度为50\\text{%}。\\\\加入多少克糖才能配制成浓度为81.25\\text{%}的糖水？\\end{array} \\]", correctOption: {single: "250"}},
+{equation: "\\[ \\begin{array}{c} 一瓶50克的糖水，浓度为40\\text{%}。\\\\加入多少克糖才能配制成浓度为88\\text{%}的糖水？\\end{array} \\]", correctOption: {single: "200"}},
+{equation: "\\[ \\begin{array}{c} 一瓶50克的糖水，浓度为20\\text{%}。\\\\加入多少克糖才能配制成浓度为80\\text{%}的糖水？\\end{array} \\]", correctOption: {single: "150"}},
+{equation: "\\[ \\begin{array}{c} 一瓶50克的糖水，浓度为30\\text{%}。\\\\加入多少克糖才能配制成浓度为91.25\\text{%}的糖水？\\end{array} \\]", correctOption: {single: "350"}},
+{equation: "\\[ \\begin{array}{c} 一瓶100克的糖水，浓度为40\\text{%}。\\\\加入多少克糖才能配制成浓度为76\\text{%}的糖水？\\end{array} \\]", correctOption: {single: "150"}},
+{equation: "\\[ \\begin{array}{c} 一瓶150克的糖水，浓度为30\\text{%}。\\\\加入多少克糖才能配制成浓度为73.75\\text{%}的糖水？\\end{array} \\]", correctOption: {single: "250"}},
+{equation: "\\[ \\begin{array}{c} 一瓶100克的糖水，浓度为60\\text{%}。\\\\加入多少克糖才能配制成浓度为90\\text{%}的糖水？\\end{array} \\]", correctOption: {single: "300"}},
+{equation: "\\[ \\begin{array}{c} 一瓶50克的糖水，浓度为30\\text{%}。\\\\加入多少克糖才能配制成浓度为86\\text{%}的糖水？\\end{array} \\]", correctOption: {single: "200"}},
+{equation: "\\[ \\begin{array}{c} 一瓶50克的糖水，浓度为40\\text{%}。\\\\加入多少克糖才能配制成浓度为92.5\\text{%}的糖水？\\end{array} \\]", correctOption: {single: "350"}},
+{equation: "\\[ \\begin{array}{c} 一瓶100克的糖水，浓度为50\\text{%}。\\\\加入多少克糖才能配制成浓度为87.5\\text{%}的糖水？\\end{array} \\]", correctOption: {single: "300"}},
+{equation: "\\[ \\begin{array}{c} 一瓶100克的糖水，浓度为30\\text{%}。\\\\加入多少克糖才能配制成浓度为82.5\\text{%}的糖水？\\end{array} \\]", correctOption: {single: "300"}},
+{equation: "\\[ \\begin{array}{c} 一瓶50克的糖水，浓度为60\\text{%}。\\\\加入多少克糖才能配制成浓度为92\\text{%}的糖水？\\end{array} \\]", correctOption: {single: "200"}},
+{equation: "\\[ \\begin{array}{c} 一瓶100克的糖水，浓度为20\\text{%}。\\\\加入多少克糖才能配制成浓度为68\\text{%}的糖水？\\end{array} \\]", correctOption: {single: "150"}},
+{equation: "\\[ \\begin{array}{c} 一瓶150克的糖水，浓度为40\\text{%}。\\\\加入多少克糖才能配制成浓度为55\\text{%}的糖水？\\end{array} \\]", correctOption: {single: "50"}},
+{equation: "\\[ \\begin{array}{c} 一瓶150克的糖水，浓度为60\\text{%}。\\\\加入多少克糖才能配制成浓度为70\\text{%}的糖水？\\end{array} \\]", correctOption: {single: "50"}},
+{equation: "\\[ \\begin{array}{c} 一瓶150克的糖水，浓度为60\\text{%}。\\\\加入多少克糖才能配制成浓度为85\\text{%}的糖水？\\end{array} \\]", correctOption: {single: "250"}},
+{equation: "\\[ \\begin{array}{c} 一瓶100克的糖水，浓度为60\\text{%}。\\\\加入多少克糖才能配制成浓度为84\\text{%}的糖水？\\end{array} \\]", correctOption: {single: "150"}},
+{equation: "\\[ \\begin{array}{c} 一瓶150克的糖水，浓度为20\\text{%}。\\\\加入多少克糖才能配制成浓度为40\\text{%}的糖水？\\end{array} \\]", correctOption: {single: "50"}},
+{equation: "\\[ \\begin{array}{c} 一瓶50克的糖水，浓度为60\\text{%}。\\\\加入多少克糖才能配制成浓度为95\\text{%}的糖水？\\end{array} \\]", correctOption: {single: "350"}},
+{equation: "\\[ \\begin{array}{c} 一瓶50克的糖水，浓度为60\\text{%}。\\\\加入多少克糖才能配制成浓度为90\\text{%}的糖水？\\end{array} \\]", correctOption: {single: "150"}},
+
+
+
+{equation: "\\[ \\begin{array}{c} 要将浓度为22.5\\text{％}的酒精溶液100克，配制成浓度为15\\text{％}的酒精溶液，\\\\需加水\\text{_______}克.\\end{array} \\]", correctOption: {single: "50"}},
+{equation: "\\[ \\begin{array}{c} 要将浓度为37.5\\text{％}的酒精溶液300克，配制成浓度为15\\text{％}的酒精溶液，\\\\需加水\\text{_______}克.\\end{array} \\]", correctOption: {single: "450"}},
+{equation: "\\[ \\begin{array}{c} 要将浓度为90\\text{％}的酒精溶液150克，配制成浓度为30\\text{％}的酒精溶液，\\\\需加水\\text{_______}克.\\end{array} \\]", correctOption: {single: "300"}},
+{equation: "\\[ \\begin{array}{c} 要将浓度为40\\text{％}的酒精溶液200克，配制成浓度为20\\text{％}的酒精溶液，\\\\需加水\\text{_______}克.\\end{array} \\]", correctOption: {single: "200"}},
+{equation: "\\[ \\begin{array}{c} 要将浓度为52.5\\text{％}的酒精溶液200克，配制成浓度为15\\text{％}的酒精溶液，\\\\需加水\\text{_______}克.\\end{array} \\]", correctOption: {single: "500"}},
+{equation: "\\[ \\begin{array}{c} 要将浓度为37.5\\text{％}的酒精溶液200克，配制成浓度为25\\text{％}的酒精溶液，\\\\需加水\\text{_______}克.\\end{array} \\]", correctOption: {single: "100"}},
+{equation: "\\[ \\begin{array}{c} 要将浓度为50\\text{％}的酒精溶液150克，配制成浓度为25\\text{％}的酒精溶液，\\\\需加水\\text{_______}克.\\end{array} \\]", correctOption: {single: "150"}},
+{equation: "\\[ \\begin{array}{c} 要将浓度为30\\text{％}的酒精溶液150克，配制成浓度为20\\text{％}的酒精溶液，\\\\需加水\\text{_______}克.\\end{array} \\]", correctOption: {single: "75"}},
+{equation: "\\[ \\begin{array}{c} 要将浓度为30\\text{％}的酒精溶液100克，配制成浓度为15\\text{％}的酒精溶液，\\\\需加水\\text{_______}克.\\end{array} \\]", correctOption: {single: "100"}},
+{equation: "\\[ \\begin{array}{c} 要将浓度为60\\text{％}的酒精溶液250克，配制成浓度为15\\text{％}的酒精溶液，\\\\需加水\\text{_______}克.\\end{array} \\]", correctOption: {single: "750"}},
+{equation: "\\[ \\begin{array}{c} 要将浓度为25\\text{％}的酒精溶液300克，配制成浓度为10\\text{％}的酒精溶液，\\\\需加水\\text{_______}克.\\end{array} \\]", correctOption: {single: "450"}},
+{equation: "\\[ \\begin{array}{c} 要将浓度为40\\text{％}的酒精溶液250克，配制成浓度为20\\text{％}的酒精溶液，\\\\需加水\\text{_______}克.\\end{array} \\]", correctOption: {single: "250"}},
+{equation: "\\[ \\begin{array}{c} 要将浓度为20\\text{％}的酒精溶液200克，配制成浓度为10\\text{％}的酒精溶液，\\\\需加水\\text{_______}克.\\end{array} \\]", correctOption: {single: "200"}},
+{equation: "\\[ \\begin{array}{c} 要将浓度为120\\text{％}的酒精溶液150克，配制成浓度为30\\text{％}的酒精溶液，\\\\需加水\\text{_______}克.\\end{array} \\]", correctOption: {single: "450"}},
+{equation: "\\[ \\begin{array}{c} 要将浓度为22.5\\text{％}的酒精溶液200克，配制成浓度为15\\text{％}的酒精溶液，\\\\需加水\\text{_______}克.\\end{array} \\]", correctOption: {single: "100"}},
+{equation: "\\[ \\begin{array}{c} 要将浓度为75\\text{％}的酒精溶液150克，配制成浓度为25\\text{％}的酒精溶液，\\\\需加水\\text{_______}克.\\end{array} \\]", correctOption: {single: "300"}},
+{equation: "\\[ \\begin{array}{c} 要将浓度为30\\text{％}的酒精溶液200克，配制成浓度为15\\text{％}的酒精溶液，\\\\需加水\\text{_______}克.\\end{array} \\]", correctOption: {single: "200"}},
+{equation: "\\[ \\begin{array}{c} 要将浓度为30\\text{％}的酒精溶液100克，配制成浓度为10\\text{％}的酒精溶液，\\\\需加水\\text{_______}克.\\end{array} \\]", correctOption: {single: "200"}},
+{equation: "\\[ \\begin{array}{c} 要将浓度为50\\text{％}的酒精溶液250克，配制成浓度为25\\text{％}的酒精溶液，\\\\需加水\\text{_______}克.\\end{array} \\]", correctOption: {single: "250"}},
+{equation: "\\[ \\begin{array}{c} 要将浓度为35\\text{％}的酒精溶液300克，配制成浓度为10\\text{％}的酒精溶液，\\\\需加水\\text{_______}克.\\end{array} \\]", correctOption: {single: "750"}},
+{equation: "\\[ \\begin{array}{c} 要将浓度为120\\text{％}的酒精溶液100克，配制成浓度为30\\text{％}的酒精溶液，\\\\需加水\\text{_______}克.\\end{array} \\]", correctOption: {single: "300"}},
+
+
+{equation: "\\[ \\begin{array}{c} 新疆盛产葡萄干，\\\\假如有200千克葡萄，含水率为92\\text{%}，晾晒一周后，含水率降为84\\text{%}，\\\\那么晾晒后这些葡萄的质量是\\text{______}千克？\\end{array} \\]", correctOption: {single: "100"}},
+{equation: "\\[ \\begin{array}{c} 新疆盛产葡萄干，\\\\假如有800千克葡萄，含水率为99.5\\text{%}，晾晒一周后，含水率降为96\\text{%}，\\\\那么晾晒后这些葡萄的质量是\\text{______}千克？\\end{array} \\]", correctOption: {single: "100"}},
+{equation: "\\[ \\begin{array}{c} 新疆盛产葡萄干，\\\\假如有800千克葡萄，含水率为98\\text{%}，晾晒一周后，含水率降为84\\text{%}，\\\\那么晾晒后这些葡萄的质量是\\text{______}千克？\\end{array} \\]", correctOption: {single: "100"}},
+{equation: "\\[ \\begin{array}{c} 新疆盛产葡萄干，\\\\假如有200千克葡萄，含水率为92\\text{%}，晾晒一周后，含水率降为68\\text{%}，\\\\那么晾晒后这些葡萄的质量是\\text{______}千克？\\end{array} \\]", correctOption: {single: "50"}},
+{equation: "\\[ \\begin{array}{c} 新疆盛产葡萄干，\\\\假如有400千克葡萄，含水率为99\\text{%}，晾晒一周后，含水率降为92\\text{%}，\\\\那么晾晒后这些葡萄的质量是\\text{______}千克？\\end{array} \\]", correctOption: {single: "50"}},
+{equation: "\\[ \\begin{array}{c} 新疆盛产葡萄干，\\\\假如有200千克葡萄，含水率为98\\text{%}，晾晒一周后，含水率降为84\\text{%}，\\\\那么晾晒后这些葡萄的质量是\\text{______}千克？\\end{array} \\]", correctOption: {single: "25"}},
+{equation: "\\[ \\begin{array}{c} 新疆盛产葡萄干，\\\\假如有200千克葡萄，含水率为99\\text{%}，晾晒一周后，含水率降为92\\text{%}，\\\\那么晾晒后这些葡萄的质量是\\text{______}千克？\\end{array} \\]", correctOption: {single: "25"}},
+{equation: "\\[ \\begin{array}{c} 新疆盛产葡萄干，\\\\假如有400千克葡萄，含水率为96\\text{%}，晾晒一周后，含水率降为84\\text{%}，\\\\那么晾晒后这些葡萄的质量是\\text{______}千克？\\end{array} \\]", correctOption: {single: "100"}},
+{equation: "\\[ \\begin{array}{c} 新疆盛产葡萄干，\\\\假如有400千克葡萄，含水率为98\\text{%}，晾晒一周后，含水率降为84\\text{%}，\\\\那么晾晒后这些葡萄的质量是\\text{______}千克？\\end{array} \\]", correctOption: {single: "50"}},
+{equation: "\\[ \\begin{array}{c} 新疆盛产葡萄干，\\\\假如有400千克葡萄，含水率为98\\text{%}，晾晒一周后，含水率降为96\\text{%}，\\\\那么晾晒后这些葡萄的质量是\\text{______}千克？\\end{array} \\]", correctOption: {single: "200"}},
+{equation: "\\[ \\begin{array}{c} 新疆盛产葡萄干，\\\\假如有800千克葡萄，含水率为98\\text{%}，晾晒一周后，含水率降为92\\text{%}，\\\\那么晾晒后这些葡萄的质量是\\text{______}千克？\\end{array} \\]", correctOption: {single: "200"}},
+{equation: "\\[ \\begin{array}{c} 新疆盛产葡萄干，\\\\假如有800千克葡萄，含水率为99.75\\text{%}，晾晒一周后，含水率降为99\\text{%}，\\\\那么晾晒后这些葡萄的质量是\\text{______}千克？\\end{array} \\]", correctOption: {single: "200"}},
+{equation: "\\[ \\begin{array}{c} 新疆盛产葡萄干，\\\\假如有400千克葡萄，含水率为99.5\\text{%}，晾晒一周后，含水率降为96\\text{%}，\\\\那么晾晒后这些葡萄的质量是\\text{______}千克？\\end{array} \\]", correctOption: {single: "50"}},
+{equation: "\\[ \\begin{array}{c} 新疆盛产葡萄干，\\\\假如有800千克葡萄，含水率为99.5\\text{%}，晾晒一周后，含水率降为99\\text{%}，\\\\那么晾晒后这些葡萄的质量是\\text{______}千克？\\end{array} \\]", correctOption: {single: "400"}},
+{equation: "\\[ \\begin{array}{c} 新疆盛产葡萄干，\\\\假如有800千克葡萄，含水率为99\\text{%}，晾晒一周后，含水率降为98\\text{%}，\\\\那么晾晒后这些葡萄的质量是\\text{______}千克？\\end{array} \\]", correctOption: {single: "400"}},
+{equation: "\\[ \\begin{array}{c} 新疆盛产葡萄干，\\\\假如有200千克葡萄，含水率为98\\text{%}，晾晒一周后，含水率降为96\\text{%}，\\\\那么晾晒后这些葡萄的质量是\\text{______}千克？\\end{array} \\]", correctOption: {single: "100"}},
+{equation: "\\[ \\begin{array}{c} 新疆盛产葡萄干，\\\\假如有800千克葡萄，含水率为99\\text{%}，晾晒一周后，含水率降为92\\text{%}，\\\\那么晾晒后这些葡萄的质量是\\text{______}千克？\\end{array} \\]", correctOption: {single: "100"}},
+{equation: "\\[ \\begin{array}{c} 新疆盛产葡萄干，\\\\假如有400千克葡萄，含水率为99\\text{%}，晾晒一周后，含水率降为98\\text{%}，\\\\那么晾晒后这些葡萄的质量是\\text{______}千克？\\end{array} \\]", correctOption: {single: "200"}},
+{equation: "\\[ \\begin{array}{c} 新疆盛产葡萄干，\\\\假如有200千克葡萄，含水率为92\\text{%}，晾晒一周后，含水率降为36\\text{%}，\\\\那么晾晒后这些葡萄的质量是\\text{______}千克？\\end{array} \\]", correctOption: {single: "25"}},
+{equation: "\\[ \\begin{array}{c} 新疆盛产葡萄干，\\\\假如有200千克葡萄，含水率为98\\text{%}，晾晒一周后，含水率降为92\\text{%}，\\\\那么晾晒后这些葡萄的质量是\\text{______}千克？\\end{array} \\]", correctOption: {single: "50"}},
+{equation: "\\[ \\begin{array}{c} 新疆盛产葡萄干，\\\\假如有200千克葡萄，含水率为96\\text{%}，晾晒一周后，含水率降为84\\text{%}，\\\\那么晾晒后这些葡萄的质量是\\text{______}千克？\\end{array} \\]", correctOption: {single: "50"}},
+{equation: "\\[ \\begin{array}{c} 新疆盛产葡萄干，\\\\假如有800千克葡萄，含水率为99.75\\text{%}，晾晒一周后，含水率降为98\\text{%}，\\\\那么晾晒后这些葡萄的质量是\\text{______}千克？\\end{array} \\]", correctOption: {single: "100"}},
+{equation: "\\[ \\begin{array}{c} 新疆盛产葡萄干，\\\\假如有200千克葡萄，含水率为96\\text{%}，晾晒一周后，含水率降为68\\text{%}，\\\\那么晾晒后这些葡萄的质量是\\text{______}千克？\\end{array} \\]", correctOption: {single: "25"}},
+{equation: "\\[ \\begin{array}{c} 新疆盛产葡萄干，\\\\假如有200千克葡萄，含水率为99\\text{%}，晾晒一周后，含水率降为98\\text{%}，\\\\那么晾晒后这些葡萄的质量是\\text{______}千克？\\end{array} \\]", correctOption: {single: "100"}},
+{equation: "\\[ \\begin{array}{c} 新疆盛产葡萄干，\\\\假如有800千克葡萄，含水率为99.75\\text{%}，晾晒一周后，含水率降为99.5\\text{%}，\\\\那么晾晒后这些葡萄的质量是\\text{______}千克？\\end{array} \\]", correctOption: {single: "400"}},
+{equation: "\\[ \\begin{array}{c} 新疆盛产葡萄干，\\\\假如有200千克葡萄，含水率为99\\text{%}，晾晒一周后，含水率降为96\\text{%}，\\\\那么晾晒后这些葡萄的质量是\\text{______}千克？\\end{array} \\]", correctOption: {single: "50"}},
+{equation: "\\[ \\begin{array}{c} 新疆盛产葡萄干，\\\\假如有400千克葡萄，含水率为98\\text{%}，晾晒一周后，含水率降为92\\text{%}，\\\\那么晾晒后这些葡萄的质量是\\text{______}千克？\\end{array} \\]", correctOption: {single: "100"}},
+{equation: "\\[ \\begin{array}{c} 新疆盛产葡萄干，\\\\假如有800千克葡萄，含水率为99.5\\text{%}，晾晒一周后，含水率降为98\\text{%}，\\\\那么晾晒后这些葡萄的质量是\\text{______}千克？\\end{array} \\]", correctOption: {single: "200"}},
+{equation: "\\[ \\begin{array}{c} 新疆盛产葡萄干，\\\\假如有400千克葡萄，含水率为99.5\\text{%}，晾晒一周后，含水率降为99\\text{%}，\\\\那么晾晒后这些葡萄的质量是\\text{______}千克？\\end{array} \\]", correctOption: {single: "200"}},
+{equation: "\\[ \\begin{array}{c} 新疆盛产葡萄干，\\\\假如有400千克葡萄，含水率为99.5\\text{%}，晾晒一周后，含水率降为98\\text{%}，\\\\那么晾晒后这些葡萄的质量是\\text{______}千克？\\end{array} \\]", correctOption: {single: "100"}},
+
+
+{equation: "\\[ \\begin{array}{c} 有浓度39\\text{%}溶液30毫升。\\\\浓度35\\text{%}溶液70毫升；\\\\混合后浓度为\\text{______%}.\\end{array} \\]", correctOption: {single: "36.2"}},
+{equation: "\\[ \\begin{array}{c} 有浓度23\\text{%}溶液70毫升。\\\\浓度25\\text{%}溶液30毫升；\\\\混合后浓度为\\text{______%}.\\end{array} \\]", correctOption: {single: "23.6"}},
+{equation: "\\[ \\begin{array}{c} 有浓度65\\text{%}溶液50毫升。\\\\浓度67\\text{%}溶液150毫升；\\\\混合后浓度为\\text{______%}.\\end{array} \\]", correctOption: {single: "66.5"}},
+{equation: "\\[ \\begin{array}{c} 有浓度87\\text{%}溶液30毫升。\\\\浓度86\\text{%}溶液170毫升；\\\\混合后浓度为\\text{______%}.\\end{array} \\]", correctOption: {single: "86.15"}},
+{equation: "\\[ \\begin{array}{c} 有浓度46\\text{%}溶液60毫升。\\\\浓度48\\text{%}溶液140毫升；\\\\混合后浓度为\\text{______%}.\\end{array} \\]", correctOption: {single: "47.4"}},
+{equation: "\\[ \\begin{array}{c} 有浓度57\\text{%}溶液30毫升。\\\\浓度52\\text{%}溶液70毫升；\\\\混合后浓度为\\text{______%}.\\end{array} \\]", correctOption: {single: "53.5"}},
+{equation: "\\[ \\begin{array}{c} 有浓度48\\text{%}溶液90毫升。\\\\浓度42\\text{%}溶液110毫升；\\\\混合后浓度为\\text{______%}.\\end{array} \\]", correctOption: {single: "44.7"}},
+{equation: "\\[ \\begin{array}{c} 有浓度31\\text{%}溶液70毫升。\\\\浓度31\\text{%}溶液130毫升；\\\\混合后浓度为\\text{______%}.\\end{array} \\]", correctOption: {single: "31"}},
+{equation: "\\[ \\begin{array}{c} 有浓度42\\text{%}溶液30毫升。\\\\浓度46\\text{%}溶液170毫升；\\\\混合后浓度为\\text{______%}.\\end{array} \\]", correctOption: {single: "45.4"}},
+{equation: "\\[ \\begin{array}{c} 有浓度46\\text{%}溶液30毫升。\\\\浓度49\\text{%}溶液170毫升；\\\\混合后浓度为\\text{______%}.\\end{array} \\]", correctOption: {single: "48.55"}},
+{equation: "\\[ \\begin{array}{c} 有浓度89\\text{%}溶液30毫升。\\\\浓度87\\text{%}溶液70毫升；\\\\混合后浓度为\\text{______%}.\\end{array} \\]", correctOption: {single: "87.6"}},
+{equation: "\\[ \\begin{array}{c} 有浓度88\\text{%}溶液70毫升。\\\\浓度89\\text{%}溶液130毫升；\\\\混合后浓度为\\text{______%}.\\end{array} \\]", correctOption: {single: "88.65"}},
+{equation: "\\[ \\begin{array}{c} 有浓度82\\text{%}溶液70毫升。\\\\浓度82\\text{%}溶液130毫升；\\\\混合后浓度为\\text{______%}.\\end{array} \\]", correctOption: {single: "82"}},
+{equation: "\\[ \\begin{array}{c} 有浓度82\\text{%}溶液60毫升。\\\\浓度82\\text{%}溶液140毫升；\\\\混合后浓度为\\text{______%}.\\end{array} \\]", correctOption: {single: "82"}},
+{equation: "\\[ \\begin{array}{c} 有浓度76\\text{%}溶液80毫升。\\\\浓度76\\text{%}溶液20毫升；\\\\混合后浓度为\\text{______%}.\\end{array} \\]", correctOption: {single: "76"}},
+{equation: "\\[ \\begin{array}{c} 有浓度52\\text{%}溶液80毫升。\\\\浓度51\\text{%}溶液20毫升；\\\\混合后浓度为\\text{______%}.\\end{array} \\]", correctOption: {single: "51.8"}},
+{equation: "\\[ \\begin{array}{c} 有浓度63\\text{%}溶液70毫升。\\\\浓度62\\text{%}溶液30毫升；\\\\混合后浓度为\\text{______%}.\\end{array} \\]", correctOption: {single: "62.7"}},
+{equation: "\\[ \\begin{array}{c} 有浓度47\\text{%}溶液30毫升。\\\\浓度41\\text{%}溶液70毫升；\\\\混合后浓度为\\text{______%}.\\end{array} \\]", correctOption: {single: "42.8"}},
+{equation: "\\[ \\begin{array}{c} 有浓度49\\text{%}溶液60毫升。\\\\浓度41\\text{%}溶液40毫升；\\\\混合后浓度为\\text{______%}.\\end{array} \\]", correctOption: {single: "45.8"}},
+
+
+{equation: "\\[ \\begin{array}{c} 用浓度为58\\text{%}溶液A和浓度为51\\text{%}溶液B;\\\\配制成55.2\\text{%}浓度100毫升，\\\\需要溶液A\\text{______}毫升.\\end{array} \\]", correctOption: {single: "60"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为88\\text{%}溶液A和浓度为87\\text{%}溶液B;\\\\配制成87.25\\text{%}浓度200毫升，\\\\需要溶液A\\text{______}毫升.\\end{array} \\]", correctOption: {single: "50"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为31\\text{%}溶液A和浓度为33\\text{%}溶液B;\\\\配制成31.8\\text{%}浓度100毫升，\\\\需要溶液A\\text{______}毫升.\\end{array} \\]", correctOption: {single: "60"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为43\\text{%}溶液A和浓度为46\\text{%}溶液B;\\\\配制成45.25\\text{%}浓度200毫升，\\\\需要溶液A\\text{______}毫升.\\end{array} \\]", correctOption: {single: "50"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为45\\text{%}溶液A和浓度为42\\text{%}溶液B;\\\\配制成44.4\\text{%}浓度100毫升，\\\\需要溶液A\\text{______}毫升.\\end{array} \\]", correctOption: {single: "80"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为79\\text{%}溶液A和浓度为73\\text{%}溶液B;\\\\配制成78.4\\text{%}浓度100毫升，\\\\需要溶液A\\text{______}毫升.\\end{array} \\]", correctOption: {single: "90"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为57\\text{%}溶液A和浓度为58\\text{%}溶液B;\\\\配制成57.3\\text{%}浓度100毫升，\\\\需要溶液A\\text{______}毫升.\\end{array} \\]", correctOption: {single: "70"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为52\\text{%}溶液A和浓度为58\\text{%}溶液B;\\\\配制成55.9\\text{%}浓度200毫升，\\\\需要溶液A\\text{______}毫升.\\end{array} \\]", correctOption: {single: "70"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为36\\text{%}溶液A和浓度为35\\text{%}溶液B;\\\\配制成35.45\\text{%}浓度200毫升，\\\\需要溶液A\\text{______}毫升.\\end{array} \\]", correctOption: {single: "90"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为89\\text{%}溶液A和浓度为83\\text{%}溶液B;\\\\配制成85.1\\text{%}浓度200毫升，\\\\需要溶液A\\text{______}毫升.\\end{array} \\]", correctOption: {single: "70"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为72\\text{%}溶液A和浓度为74\\text{%}溶液B;\\\\配制成73.7\\text{%}浓度200毫升，\\\\需要溶液A\\text{______}毫升.\\end{array} \\]", correctOption: {single: "30"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为82\\text{%}溶液A和浓度为81\\text{%}溶液B;\\\\配制成81.3\\text{%}浓度200毫升，\\\\需要溶液A\\text{______}毫升.\\end{array} \\]", correctOption: {single: "60"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为21\\text{%}溶液A和浓度为22\\text{%}溶液B;\\\\配制成21.65\\text{%}浓度200毫升，\\\\需要溶液A\\text{______}毫升.\\end{array} \\]", correctOption: {single: "70"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为84\\text{%}溶液A和浓度为88\\text{%}溶液B;\\\\配制成87.4\\text{%}浓度200毫升，\\\\需要溶液A\\text{______}毫升.\\end{array} \\]", correctOption: {single: "30"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为28\\text{%}溶液A和浓度为23\\text{%}溶液B;\\\\配制成25\\text{%}浓度200毫升，\\\\需要溶液A\\text{______}毫升.\\end{array} \\]", correctOption: {single: "80"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为22\\text{%}溶液A和浓度为26\\text{%}溶液B;\\\\配制成24.8\\text{%}浓度200毫升，\\\\需要溶液A\\text{______}毫升.\\end{array} \\]", correctOption: {single: "60"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为37\\text{%}溶液A和浓度为33\\text{%}溶液B;\\\\配制成34.4\\text{%}浓度200毫升，\\\\需要溶液A\\text{______}毫升.\\end{array} \\]", correctOption: {single: "70"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为35\\text{%}溶液A和浓度为33\\text{%}溶液B;\\\\配制成33.7\\text{%}浓度200毫升，\\\\需要溶液A\\text{______}毫升.\\end{array} \\]", correctOption: {single: "70"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为82\\text{%}溶液A和浓度为81\\text{%}溶液B;\\\\配制成81.7\\text{%}浓度100毫升，\\\\需要溶液A\\text{______}毫升.\\end{array} \\]", correctOption: {single: "70"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为39\\text{%}溶液A和浓度为31\\text{%}溶液B;\\\\配制成33.4\\text{%}浓度100毫升，\\\\需要溶液A\\text{______}毫升.\\end{array} \\]", correctOption: {single: "30"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为55\\text{%}溶液A和浓度为52\\text{%}溶液B;\\\\配制成52.6\\text{%}浓度200毫升，\\\\需要溶液A\\text{______}毫升.\\end{array} \\]", correctOption: {single: "40"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为35\\text{%}溶液A和浓度为38\\text{%}溶液B;\\\\配制成36.65\\text{%}浓度200毫升，\\\\需要溶液A\\text{______}毫升.\\end{array} \\]", correctOption: {single: "90"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为61\\text{%}溶液A和浓度为65\\text{%}溶液B;\\\\配制成64\\text{%}浓度200毫升，\\\\需要溶液A\\text{______}毫升.\\end{array} \\]", correctOption: {single: "50"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为75\\text{%}溶液A和浓度为74\\text{%}溶液B;\\\\配制成74.7\\text{%}浓度100毫升，\\\\需要溶液A\\text{______}毫升.\\end{array} \\]", correctOption: {single: "70"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为56\\text{%}溶液A和浓度为58\\text{%}溶液B;\\\\配制成57.3\\text{%}浓度200毫升，\\\\需要溶液A\\text{______}毫升.\\end{array} \\]", correctOption: {single: "70"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为52\\text{%}溶液A和浓度为55\\text{%}溶液B;\\\\配制成54.4\\text{%}浓度200毫升，\\\\需要溶液A\\text{______}毫升.\\end{array} \\]", correctOption: {single: "40"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为42\\text{%}溶液A和浓度为44\\text{%}溶液B;\\\\配制成43\\text{%}浓度100毫升，\\\\需要溶液A\\text{______}毫升.\\end{array} \\]", correctOption: {single: "50"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为41\\text{%}溶液A和浓度为43\\text{%}溶液B;\\\\配制成41.6\\text{%}浓度100毫升，\\\\需要溶液A\\text{______}毫升.\\end{array} \\]", correctOption: {single: "70"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为42\\text{%}溶液A和浓度为41\\text{%}溶液B;\\\\配制成41.9\\text{%}浓度100毫升，\\\\需要溶液A\\text{______}毫升.\\end{array} \\]", correctOption: {single: "90"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为75\\text{%}溶液A和浓度为78\\text{%}溶液B;\\\\配制成76.5\\text{%}浓度100毫升，\\\\需要溶液A\\text{______}毫升.\\end{array} \\]", correctOption: {single: "50"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为28\\text{%}溶液A和浓度为29\\text{%}溶液B;\\\\配制成28.6\\text{%}浓度200毫升，\\\\需要溶液A\\text{______}毫升.\\end{array} \\]", correctOption: {single: "80"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为34\\text{%}溶液A和浓度为38\\text{%}溶液B;\\\\配制成34.8\\text{%}浓度100毫升，\\\\需要溶液A\\text{______}毫升.\\end{array} \\]", correctOption: {single: "80"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为36\\text{%}溶液A和浓度为35\\text{%}溶液B;\\\\配制成35.9\\text{%}浓度100毫升，\\\\需要溶液A\\text{______}毫升.\\end{array} \\]", correctOption: {single: "90"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为62\\text{%}溶液A和浓度为63\\text{%}溶液B;\\\\配制成62.7\\text{%}浓度100毫升，\\\\需要溶液A\\text{______}毫升.\\end{array} \\]", correctOption: {single: "30"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为69\\text{%}溶液A和浓度为66\\text{%}溶液B;\\\\配制成66.6\\text{%}浓度200毫升，\\\\需要溶液A\\text{______}毫升.\\end{array} \\]", correctOption: {single: "40"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为75\\text{%}溶液A和浓度为74\\text{%}溶液B;\\\\配制成74.2\\text{%}浓度200毫升，\\\\需要溶液A\\text{______}毫升.\\end{array} \\]", correctOption: {single: "40"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为31\\text{%}溶液A和浓度为38\\text{%}溶液B;\\\\配制成36.6\\text{%}浓度200毫升，\\\\需要溶液A\\text{______}毫升.\\end{array} \\]", correctOption: {single: "40"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为24\\text{%}溶液A和浓度为27\\text{%}溶液B;\\\\配制成25.2\\text{%}浓度100毫升，\\\\需要溶液A\\text{______}毫升.\\end{array} \\]", correctOption: {single: "60"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为81\\text{%}溶液A和浓度为87\\text{%}溶液B;\\\\配制成83.4\\text{%}浓度100毫升，\\\\需要溶液A\\text{______}毫升.\\end{array} \\]", correctOption: {single: "60"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为52\\text{%}溶液A和浓度为59\\text{%}溶液B;\\\\配制成56.55\\text{%}浓度200毫升，\\\\需要溶液A\\text{______}毫升.\\end{array} \\]", correctOption: {single: "70"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为47\\text{%}溶液A和浓度为42\\text{%}溶液B;\\\\配制成44\\text{%}浓度100毫升，\\\\需要溶液A\\text{______}毫升.\\end{array} \\]", correctOption: {single: "40"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为81\\text{%}溶液A和浓度为86\\text{%}溶液B;\\\\配制成85\\text{%}浓度200毫升，\\\\需要溶液A\\text{______}毫升.\\end{array} \\]", correctOption: {single: "40"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为29\\text{%}溶液A和浓度为21\\text{%}溶液B;\\\\配制成23.4\\text{%}浓度100毫升，\\\\需要溶液A\\text{______}毫升.\\end{array} \\]", correctOption: {single: "30"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为73\\text{%}溶液A和浓度为78\\text{%}溶液B;\\\\配制成73.5\\text{%}浓度100毫升，\\\\需要溶液A\\text{______}毫升.\\end{array} \\]", correctOption: {single: "90"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为28\\text{%}溶液A和浓度为27\\text{%}溶液B;\\\\配制成27.35\\text{%}浓度200毫升，\\\\需要溶液A\\text{______}毫升.\\end{array} \\]", correctOption: {single: "70"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为55\\text{%}溶液A和浓度为59\\text{%}溶液B;\\\\配制成57.4\\text{%}浓度100毫升，\\\\需要溶液A\\text{______}毫升.\\end{array} \\]", correctOption: {single: "40"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为58\\text{%}溶液A和浓度为56\\text{%}溶液B;\\\\配制成56.5\\text{%}浓度200毫升，\\\\需要溶液A\\text{______}毫升.\\end{array} \\]", correctOption: {single: "50"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为67\\text{%}溶液A和浓度为68\\text{%}溶液B;\\\\配制成67.2\\text{%}浓度100毫升，\\\\需要溶液A\\text{______}毫升.\\end{array} \\]", correctOption: {single: "80"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为53\\text{%}溶液A和浓度为56\\text{%}溶液B;\\\\配制成55.55\\text{%}浓度200毫升，\\\\需要溶液A\\text{______}毫升.\\end{array} \\]", correctOption: {single: "30"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为25\\text{%}溶液A和浓度为23\\text{%}溶液B;\\\\配制成23.7\\text{%}浓度200毫升，\\\\需要溶液A\\text{______}毫升.\\end{array} \\]", correctOption: {single: "70"}},
+
+
+{equation: "\\[ \\begin{array}{c} 用浓度为58\\text{%}溶液A和浓度为51\\text{%}溶液B配制成55.2\\text{%}浓度100毫升，\\\\需要溶液\\text{A______}毫升.\\end{array} \\]", correctOption: {single: "60"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为88\\text{%}溶液A和浓度为87\\text{%}溶液B配制成87.25\\text{%}浓度200毫升，\\\\需要溶液\\text{A______}毫升.\\end{array} \\]", correctOption: {single: "50"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为31\\text{%}溶液A和浓度为33\\text{%}溶液B配制成31.8\\text{%}浓度100毫升，\\\\需要溶液\\text{A______}毫升.\\end{array} \\]", correctOption: {single: "60"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为43\\text{%}溶液A和浓度为46\\text{%}溶液B配制成45.25\\text{%}浓度200毫升，\\\\需要溶液\\text{A______}毫升.\\end{array} \\]", correctOption: {single: "50"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为45\\text{%}溶液A和浓度为42\\text{%}溶液B配制成44.4\\text{%}浓度100毫升，\\\\需要溶液\\text{A______}毫升.\\end{array} \\]", correctOption: {single: "80"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为79\\text{%}溶液A和浓度为73\\text{%}溶液B配制成78.4\\text{%}浓度100毫升，\\\\需要溶液\\text{A______}毫升.\\end{array} \\]", correctOption: {single: "90"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为57\\text{%}溶液A和浓度为58\\text{%}溶液B配制成57.3\\text{%}浓度100毫升，\\\\需要溶液\\text{A______}毫升.\\end{array} \\]", correctOption: {single: "70"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为52\\text{%}溶液A和浓度为58\\text{%}溶液B配制成55.9\\text{%}浓度200毫升，\\\\需要溶液\\text{A______}毫升.\\end{array} \\]", correctOption: {single: "70"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为36\\text{%}溶液A和浓度为35\\text{%}溶液B配制成35.45\\text{%}浓度200毫升，\\\\需要溶液\\text{A______}毫升.\\end{array} \\]", correctOption: {single: "90"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为89\\text{%}溶液A和浓度为83\\text{%}溶液B配制成85.1\\text{%}浓度200毫升，\\\\需要溶液\\text{A______}毫升.\\end{array} \\]", correctOption: {single: "70"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为72\\text{%}溶液A和浓度为74\\text{%}溶液B配制成73.7\\text{%}浓度200毫升，\\\\需要溶液\\text{A______}毫升.\\end{array} \\]", correctOption: {single: "30"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为82\\text{%}溶液A和浓度为81\\text{%}溶液B配制成81.3\\text{%}浓度200毫升，\\\\需要溶液\\text{A______}毫升.\\end{array} \\]", correctOption: {single: "60"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为21\\text{%}溶液A和浓度为22\\text{%}溶液B配制成21.65\\text{%}浓度200毫升，\\\\需要溶液\\text{A______}毫升.\\end{array} \\]", correctOption: {single: "70"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为84\\text{%}溶液A和浓度为88\\text{%}溶液B配制成87.4\\text{%}浓度200毫升，\\\\需要溶液\\text{A______}毫升.\\end{array} \\]", correctOption: {single: "30"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为28\\text{%}溶液A和浓度为23\\text{%}溶液B配制成25\\text{%}浓度200毫升，\\\\需要溶液\\text{A______}毫升.\\end{array} \\]", correctOption: {single: "80"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为22\\text{%}溶液A和浓度为26\\text{%}溶液B配制成24.8\\text{%}浓度200毫升，\\\\需要溶液\\text{A______}毫升.\\end{array} \\]", correctOption: {single: "60"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为37\\text{%}溶液A和浓度为33\\text{%}溶液B配制成34.4\\text{%}浓度200毫升，\\\\需要溶液\\text{A______}毫升.\\end{array} \\]", correctOption: {single: "70"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为35\\text{%}溶液A和浓度为33\\text{%}溶液B配制成33.7\\text{%}浓度200毫升，\\\\需要溶液\\text{A______}毫升.\\end{array} \\]", correctOption: {single: "70"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为82\\text{%}溶液A和浓度为81\\text{%}溶液B配制成81.7\\text{%}浓度100毫升，\\\\需要溶液\\text{A______}毫升.\\end{array} \\]", correctOption: {single: "70"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为39\\text{%}溶液A和浓度为31\\text{%}溶液B配制成33.4\\text{%}浓度100毫升，\\\\需要溶液\\text{A______}毫升.\\end{array} \\]", correctOption: {single: "30"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为55\\text{%}溶液A和浓度为52\\text{%}溶液B配制成52.6\\text{%}浓度200毫升，\\\\需要溶液\\text{A______}毫升.\\end{array} \\]", correctOption: {single: "40"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为35\\text{%}溶液A和浓度为38\\text{%}溶液B配制成36.65\\text{%}浓度200毫升，\\\\需要溶液\\text{A______}毫升.\\end{array} \\]", correctOption: {single: "90"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为61\\text{%}溶液A和浓度为65\\text{%}溶液B配制成64\\text{%}浓度200毫升，\\\\需要溶液\\text{A______}毫升.\\end{array} \\]", correctOption: {single: "50"}},
+{equation: "\\[ \\begin{array}{c} 用浓度为75\\text{%}溶液A和浓度为74\\text{%}溶液B配制成74.7\\text{%}浓度100毫升，\\\\需要溶液\\text{A______}毫升.\\end{array} \\]", correctOption: {single: "70"}},
+
+
+
+
+    
+    ];
+
+        let state = {
+            currentQuestionBank: null,
+            currentEquationSystem: null,
+            score: 0,
+            questionsAnswered: 0,
+            roundsScores: [],
+            currentTopic: '',
+            currentQuestionIndex: 0,
+            isRandomMode: false,
+            isChallengeMode: false,
+        };
+
+        const updateElement = (id, value) => document.getElementById(id).textContent = value;
+
+        const startChallengeMode = () => {
+            state.isChallengeMode = true;
+            resetState();
+            updateElement('current-mode-display', '当前模式: 闯关');
+            startNewRound();
+        };
+
+        const toggleMode = (mode) => {
+            state.isRandomMode = mode;
+            state.isChallengeMode = false;
+            resetState();
+            updateElement('current-mode-display', state.isRandomMode ? '当前模式: 随机' : '当前模式: 顺序');
+            startNewRound();
+        };
+
+        const resetState = () => {
+            state.currentQuestionIndex = 0;
+            state.score = 0;
+            state.questionsAnswered = 0;
+            updateScoreboard();
+        };
+
+        const loadQuestions = (questionBank, topic) => {
+            state.currentQuestionBank = questionBank;
+            state.currentTopic = topic;
+            resetState();
+            updateElement('current-topic', `玖数学: ${state.currentTopic}`);
+            updateElement('current-mode-display', '当前模式: 顺序');
+            startNewRound();
+        };
+
+const toggleIframe = () => {
+    const iframe = document.getElementById('iframe-container');
+    const button = document.getElementById('toggle-iframe-button');
+    if (iframe.style.display === 'none' || iframe.style.display === '') {
+        iframe.style.display = 'block';
+        button.textContent = '隐藏';
+    } else {
+        iframe.style.display = 'none';
+        button.textContent = '显示';
+    }
+};
+
+
+const copyCurrentTopic = () => {
+    const currentTopic = document.getElementById('equation').innerText;
+    navigator.clipboard.writeText(currentTopic).then(() => {
+        showTemporaryMessage('题目已复制!', 1000);
+    }).catch(err => {
+        console.error('复制失败', err);
+    });
+};
+
+const showTemporaryMessage = (message, duration) => {
+    const messageElement = document.createElement('div');
+    messageElement.textContent = message;
+    messageElement.style.position = 'fixed';
+    messageElement.style.top = '50%';
+    messageElement.style.left = '50%';
+    messageElement.style.transform = 'translate(-50%, -50%)';
+    messageElement.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+    messageElement.style.color = 'white';
+    messageElement.style.padding = '10px';
+    messageElement.style.borderRadius = '5px';
+    document.body.appendChild(messageElement);
+
+    setTimeout(() => {
+        document.body.removeChild(messageElement);
+    }, duration);
+};
+
+
+
+
+        const generateEquationSystem = () => {
+            let question = getQuestion();
+
+            const { equation, img, correctOption, incorrectOptions } = question;
+
+            let equationHTML = equation;
+            if (img && img.trim()) equationHTML += `<br><img src="${img}" alt="题目图片">`;
+
+            if (correctOption.single || correctOption.dual) {
+                state.currentEquationSystem = { equationSystem: equationHTML, correctOption };
+                toggleAnswerContainers(correctOption);
+                document.getElementById('submit-button').style.display = 'block';
+            } else {
+                const correctIndex = Math.floor(Math.random() * 4);
+                const options = [...incorrectOptions];
+                options.splice(correctIndex, 0, correctOption);
+
+                state.currentEquationSystem = {
+                    equationSystem: equationHTML,
+                    correctIndex,
+                    options,
+                    correctOption
+                };
+                toggleAnswerContainers(correctOption, true);
+                document.getElementById('submit-button').style.display = 'none';
+            }
+        };
+
+        const toggleAnswerContainers = (correctOption, showOptions = false) => {
+            document.getElementById('options').style.display = showOptions ? 'block' : 'none';
+            document.getElementById('single-answer-container').style.display = correctOption.single ? 'block' : 'none';
+            document.getElementById('dual-answer-container').style.display = correctOption.dual ? 'block' : 'none';
+        };
+
+        const getQuestion = () => {
+            if (state.isRandomMode) {
+                const randomIndex = Math.floor(Math.random() * state.currentQuestionBank.length);
+                return state.currentQuestionBank[randomIndex];
+            } else {
+                if (state.currentQuestionIndex >= state.currentQuestionBank.length) state.currentQuestionIndex = 0;
+                return state.currentQuestionBank[state.currentQuestionIndex++];
+            }
+        };
+
+        const generateOptions = () => {
+            if (state.currentEquationSystem.options) {
+                const labels = ['A', 'B', 'C', 'D'];
+                return state.currentEquationSystem.options.map((option, index) =>
+                    `<div class="option" onclick="checkAnswer(${index}, '${option.replace(/\\/g, '\\\\')}')">
+                        <span>${labels[index]}. \\(${option}\\)</span>
+                    </div>`
+                ).join('');
+            }
+            return '';
+        };
+
+        const displayEquationSystem = () => {
+            generateEquationSystem();
+            document.getElementById('equation').innerHTML = state.currentEquationSystem.equationSystem;
+            if (state.currentEquationSystem.options) {
+                document.getElementById('options').innerHTML = generateOptions();
+            }
+            MathJax.typeset();
+        };
+
+        const startNewRound = () => {
+            if (isRoundComplete()) {
+                state.roundsScores.push({ topic: state.currentTopic, score: state.score, totalQuestions: state.questionsAnswered });
+                resetState();
+                updateRoundsScoreboard();
+            }
+            displayEquationSystem();
+        };
+
+        const isRoundComplete = () => {
+            let totalQuestionsInRound = state.isChallengeMode ? state.currentQuestionBank.length : 10;
+            return state.questionsAnswered >= totalQuestionsInRound;
+        };
+
+        const checkAnswer = (selectedIndex, userAnswer) => {
+            let isCorrect = false;
+            let correctAnswer = '';
+
+            if (state.currentEquationSystem.correctOption.single) {
+                userAnswer = document.getElementById('answer-input').value.trim();
+                correctAnswer = state.currentEquationSystem.correctOption.single;
+                isCorrect = userAnswer === correctAnswer;
+            } else if (state.currentEquationSystem.correctOption.dual) {
+                const userAnswerX = document.getElementById('answer-input-x').value.trim();
+                const userAnswerY = document.getElementById('answer-input-y').value.trim();
+                correctAnswer = `x=${state.currentEquationSystem.correctOption.dual.x}, y=${state.currentEquationSystem.correctOption.dual.y}`;
+                userAnswer = `x=${userAnswerX}, y=${userAnswerY}`;
+                isCorrect = userAnswerX === state.currentEquationSystem.correctOption.dual.x && userAnswerY === state.currentEquationSystem.correctOption.dual.y;
+            } else {
+                isCorrect = selectedIndex === state.currentEquationSystem.correctIndex;
+                correctAnswer = state.currentEquationSystem.correctOption;
+            }
+
+            addResultRow(state.currentEquationSystem.equationSystem, userAnswer, correctAnswer, isCorrect);
+            if (isCorrect) state.score++;
+            state.questionsAnswered++;
+            updateScoreboard();
+            startNewRound();
+            MathJax.typeset();
+        };
+
+        const addResultRow = (equation, userAnswer, correctAnswer, isCorrect) => {
+            let resultRow = document.createElement('tr');
+            resultRow.innerHTML = `
+                <td>${equation}</td>
+                <td>\\(${userAnswer}\\)</td>
+                <td>\\(${correctAnswer}\\)</td>
+                <td style="color: ${isCorrect ? 'green' : 'red'};">${isCorrect ? '正确' : '错误'}</td>
+            `;
+            document.querySelector('#result-table tbody').insertBefore(resultRow, document.querySelector('#result-table tbody').firstChild);
+        };
+
+        const handleKeyUp = (event, nextInputId = null) => {
+            if (event.key === 'Enter') {
+                if (nextInputId) {
+                    document.getElementById(nextInputId).focus();
+                } else {
+                    checkAnswer();
+                }
+            }
+        };
+
+        const updateScoreboard = () => {
+            updateElement('score', state.score);
+            updateElement('answered', state.questionsAnswered);
+        };
+
+        const updateRoundsScoreboard = () => {
+            const roundsScoresText = state.roundsScores.map((round, index) =>
+                `第${index + 1}轮 (${round.topic}): ${round.score}分共${round.totalQuestions}题`
+            ).join('<br>');
+            document.getElementById('rounds-scoreboard').innerHTML = roundsScoresText;
+        };
+
+window.onload = () => {
+    loadQuestions(浓度问题10综合测试, '浓度问题10综合测试');
+    state.isRandomMode = true;  // 初始化为随机模式
+    state.isChallengeMode = false;
+    startNewRound();
+};
+
+    </script>
+</body>
+</html>

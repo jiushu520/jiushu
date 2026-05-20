@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <title>玖数学练习</title>
+    <style>
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: lightblue;
+        }
+
+        #navigation {
+            display: none;
+        }
+
+        #game-container {
+            width: 100%;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #equation, #answer-input {
+            text-align: center;
+            width: 100%;
+            font-size: 20px;
+        }
+
+        #answer-input {
+            margin: 20px 0;
+        }
+
+        #button-container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <h3>玖数学测训系统</h3>
+        <div id="current-topic"></div>
+        <div id="equation"></div>
+         
+        <input type="text" id="answer-input" placeholder="输入你的答案：y=kx+b" onkeyup="handleKeyUp(event)">
+        <button onclick="checkAnswer()">提交答案</button>
+        <iframe id="myframe" style="display: none;" width="100%" height="600"></iframe>
+        <div id="button-container">
+            <button onclick="toggleMode(false)">顺序</button>
+            <button onclick="toggleMode(true)">随机</button>
+            <button onclick="startChallengeMode()">闯关</button><br>
+            <span id="current-mode-display">当前模式: 顺序</span>
+        </div>
+        <div id="scoreboard">现在得分:<span id="score">0</span>,已回答:<span id="answered">0</span></div>
+<div style="width: 100%; height: 100vh;">
+
+</div>
+        <div id="rounds-scoreboard"></div>
+    </div>
+    <script>
+       
+const 二次函数切线方程 = 
+
+[
+    {"equation": "\\begin{gather}f(x)=-3x^2-x-8,\\\\求过点(1,-12)的切线方程。\\\\f(x,y)=0则在(x_0,y_0)的切线方程:\\\\f_{x_0}(x-x_0)+f_{y_0}(y-y_0)=0 \\end{gather}", "correctOption": "y=-7x-5"},
+    
+    {"equation": "\\begin{gather}f(x)=-5x^2-x+7,\\\\求过点(-3,-35)的切线方程。\\\\f(x,y)=0则在(x_0,y_0)的切线方程:\\\\f_{x_0}(x-x_0)+f_{y_0}(y-y_0)=0 \\end{gather}", "correctOption": "y=29x+52"},
+    
+    {"equation": "\\begin{gather}f(x)=x^2+3x,\\\\求过点(-4,4)的切线方程。\\\\f(x,y)=0则在(x_0,y_0)的切线方程:\\\\f_{x_0}(x-x_0)+f_{y_0}(y-y_0)=0 \\end{gather}", "correctOption": "y=-5x-16"},
+    
+    {"equation": "\\begin{gather}f(x)=-2x^2+6,\\\\求过点(-5,-44)的切线方程。\\\\f(x,y)=0则在(x_0,y_0)的切线方程:\\\\f_{x_0}(x-x_0)+f_{y_0}(y-y_0)=0 \\end{gather}", "correctOption": "y=20x+56"},
+    
+    {"equation": "\\begin{gather}f(x)=-x^2+x+3,\\\\求过点(3,-3)的切线方程。\\\\f(x,y)=0则在(x_0,y_0)的切线方程:\\\\f_{x_0}(x-x_0)+f_{y_0}(y-y_0)=0 \\end{gather}", "correctOption": "y=-5x+12"},
+    
+    {"equation": "\\begin{gather}f(x)=-x^2-2x+2,\\\\求过点(2,-6)的切线方程。\\\\f(x,y)=0则在(x_0,y_0)的切线方程:\\\\f_{x_0}(x-x_0)+f_{y_0}(y-y_0)=0 \\end{gather}", "correctOption": "y=-6x+6"},
+    
+    {"equation": "\\begin{gather}f(x)=x^2-3,\\\\求过点(-2,1)的切线方程。\\\\f(x,y)=0则在(x_0,y_0)的切线方程:\\\\f_{x_0}(x-x_0)+f_{y_0}(y-y_0)=0 \\end{gather}", "correctOption": "y=-4x-7"},
+    
+    {"equation": "\\begin{gather}f(x)=2x^2-3x-10,\\\\求过点(-4,34)的切线方程。\\\\f(x,y)=0则在(x_0,y_0)的切线方程:\\\\f_{x_0}(x-x_0)+f_{y_0}(y-y_0)=0 \\end{gather}", "correctOption": "y=-19x-42"},
+    
+    {"equation": "\\begin{gather}f(x)=-x^2+x+5,\\\\求过点(3,-1)的切线方程。\\\\f(x,y)=0则在(x_0,y_0)的切线方程:\\\\f_{x_0}(x-x_0)+f_{y_0}(y-y_0)=0 \\end{gather}", "correctOption": "y=-5x+14"},
+    
+    {"equation": "\\begin{gather}f(x)=3x^2-1,\\\\求过点(0,-1)的切线方程。\\\\f(x,y)=0则在(x_0,y_0)的切线方程:\\\\f_{x_0}(x-x_0)+f_{y_0}(y-y_0)=0 \\end{gather}", "correctOption": "y=-1"},
+    
+    {"equation": "\\begin{gather}f(x)=-2x^2-4x-4,\\\\求过点(3,-34)的切线方程。\\\\f(x,y)=0则在(x_0,y_0)的切线方程:\\\\f_{x_0}(x-x_0)+f_{y_0}(y-y_0)=0 \\end{gather}", "correctOption": "y=-16x+14"},
+    
+    {"equation": "\\begin{gather}f(x)=-3x^2-x-2,\\\\求过点(-1,-4)的切线方程。\\\\f(x,y)=0则在(x_0,y_0)的切线方程:\\\\f_{x_0}(x-x_0)+f_{y_0}(y-y_0)=0 \\end{gather}", "correctOption": "y=5x+1"},
+    
+    {"equation": "\\begin{gather}f(x)=-5x^2-x+3,\\\\求过点(0,3)的切线方程。\\\\f(x,y)=0则在(x_0,y_0)的切线方程:\\\\f_{x_0}(x-x_0)+f_{y_0}(y-y_0)=0 \\end{gather}", "correctOption": "y=-x+3"},
+    
+    {"equation": "\\begin{gather}f(x)=-3x^2-x-1,\\\\求过点(-5,-71)的切线方程。\\\\f(x,y)=0则在(x_0,y_0)的切线方程:\\\\f_{x_0}(x-x_0)+f_{y_0}(y-y_0)=0 \\end{gather}", "correctOption": "y=29x+74"},
+    
+    {"equation": "\\begin{gather}f(x)=-x^2+2x-1,\\\\求过点(2,-1)的切线方程。\\\\f(x,y)=0则在(x_0,y_0)的切线方程:\\\\f_{x_0}(x-x_0)+f_{y_0}(y-y_0)=0 \\end{gather}", "correctOption": "y=-2x+3"},
+    
+    {"equation": "\\begin{gather}f(x)=-2x^2+3x-8,\\\\求过点(-1,-13)的切线方程。\\\\f(x,y)=0则在(x_0,y_0)的切线方程:\\\\f_{x_0}(x-x_0)+f_{y_0}(y-y_0)=0 \\end{gather}", "correctOption": "y=7x-6"},
+    
+    {"equation": "\\begin{gather}f(x)=-5x^2+3x+1,\\\\求过点(-1,-7)的切线方程。\\\\f(x,y)=0则在(x_0,y_0)的切线方程:\\\\f_{x_0}(x-x_0)+f_{y_0}(y-y_0)=0 \\end{gather}", "correctOption": "y=13x+6"},
+    
+    {"equation": "\\begin{gather}f(x)=-3x^2-5x-9,\\\\求过点(2,-31)的切线方程。\\\\f(x,y)=0则在(x_0,y_0)的切线方程:\\\\f_{x_0}(x-x_0)+f_{y_0}(y-y_0)=0 \\end{gather}", "correctOption": "y=-17x+3"},
+    
+    {"equation": "\\begin{gather}f(x)=x^2-4x-4,\\\\求过点(-1,1)的切线方程。\\\\f(x,y)=0则在(x_0,y_0)的切线方程:\\\\f_{x_0}(x-x_0)+f_{y_0}(y-y_0)=0 \\end{gather}", "correctOption": "y=-6x-5"},
+    
+    {"equation": "\\begin{gather}f(x)=-5x^2+2x-10,\\\\求过点(-3,-61)的切线方程。\\\\f(x,y)=0则在(x_0,y_0)的切线方程:\\\\f_{x_0}(x-x_0)+f_{y_0}(y-y_0)=0 \\end{gather}", "correctOption": "y=32x+35"},
+    
+    {"equation": "\\begin{gather}f(x)=3x^2-5x-3,\\\\求过点(-5,97)的切线方程。\\\\f(x,y)=0则在(x_0,y_0)的切线方程:\\\\f_{x_0}(x-x_0)+f_{y_0}(y-y_0)=0 \\end{gather}", "correctOption": "y=-35x-78"},
+    
+    {"equation": "\\begin{gather}f(x)=x^2+3x-2,\\\\求过点(3,16)的切线方程。\\\\f(x,y)=0则在(x_0,y_0)的切线方程:\\\\f_{x_0}(x-x_0)+f_{y_0}(y-y_0)=0 \\end{gather}", "correctOption": "y=9x-11"},
+    
+    {"equation": "\\begin{gather}f(x)=-4x^2-3x+6,\\\\求过点(-1,5)的切线方程。\\\\f(x,y)=0则在(x_0,y_0)的切线方程:\\\\f_{x_0}(x-x_0)+f_{y_0}(y-y_0)=0 \\end{gather}", "correctOption": "y=5x+10"},
+    
+    {"equation": "\\begin{gather}f(x)=-2x^2+2x-1,\\\\求过点(-5,-61)的切线方程。\\\\f(x,y)=0则在(x_0,y_0)的切线方程:\\\\f_{x_0}(x-x_0)+f_{y_0}(y-y_0)=0 \\end{gather}", "correctOption": "y=22x+49"},
+    
+    {"equation": "\\begin{gather}f(x)=-4x^2-3x+8,\\\\求过点(-1,7)的切线方程。\\\\f(x,y)=0则在(x_0,y_0)的切线方程:\\\\f_{x_0}(x-x_0)+f_{y_0}(y-y_0)=0 \\end{gather}", "correctOption": "y=5x+12"},
+    
+    {"equation": "\\begin{gather}f(x)=x^2-x+3,\\\\求过点(-4,23)的切线方程。\\\\f(x,y)=0则在(x_0,y_0)的切线方程:\\\\f_{x_0}(x-x_0)+f_{y_0}(y-y_0)=0 \\end{gather}", "correctOption": "y=-9x-13"},
+    
+    {"equation": "\\begin{gather}f(x)=x^2-4x+3,\\\\求过点(-3,24)的切线方程。\\\\f(x,y)=0则在(x_0,y_0)的切线方程:\\\\f_{x_0}(x-x_0)+f_{y_0}(y-y_0)=0 \\end{gather}", "correctOption": "y=-10x-6"},
+    
+    {"equation": "\\begin{gather}f(x)=3x^2-3x-8,\\\\求过点(-4,52)的切线方程。\\\\f(x,y)=0则在(x_0,y_0)的切线方程:\\\\f_{x_0}(x-x_0)+f_{y_0}(y-y_0)=0 \\end{gather}", "correctOption": "y=-27x-56"},
+    
+    {"equation": "\\begin{gather}f(x)=-x^2+x+2,\\\\求过点(-3,-10)的切线方程。\\\\f(x,y)=0则在(x_0,y_0)的切线方程:\\\\f_{x_0}(x-x_0)+f_{y_0}(y-y_0)=0 \\end{gather}", "correctOption": "y=7x+11"},
+    
+    {"equation": "\\begin{gather}f(x)=-5x^2-2x-6,\\\\求过点(-2,-22)的切线方程。\\\\f(x,y)=0则在(x_0,y_0)的切线方程:\\\\f_{x_0}(x-x_0)+f_{y_0}(y-y_0)=0 \\end{gather}", "correctOption": "y=18x+14"}
+];
+
+        let currentQuestionBank;
+        let currentEquationSystem;
+        let score = 0;
+        let questionsAnswered = 0;
+        let roundsScores = [];
+        let currentTopic = '';
+        let currentQuestionIndex = 0;
+        let isRandomMode = false;
+
+        function startChallengeMode() {
+            isChallengeMode = true;
+            currentQuestionIndex = 0;
+            score = 0;
+            questionsAnswered = 0;
+            updateScoreboard();
+            updateRoundsScoreboard();
+            document.getElementById('current-mode-display').textContent = '当前模式: 闯关';
+            startNewRound();
+        }
+
+        function toggleMode(mode) {
+            isRandomMode = mode;
+            isChallengeMode = false;
+            currentQuestionIndex = 0;
+            score = 0;
+            questionsAnswered = 0;
+            updateScoreboard();
+            const modeDisplay = document.getElementById('current-mode-display');
+            modeDisplay.textContent = isRandomMode ? '当前模式: 随机' : '当前模式: 顺序';
+            startNewRound();
+        }
+
+        function loadQuestions(questionBank, topic) {
+            currentQuestionBank = questionBank;
+            currentTopic = topic;
+            currentQuestionIndex = 0;
+            score = 0;
+            questionsAnswered = 0;
+            isRandomMode = false;
+            isChallengeMode = false;
+            updateScoreboard();
+            document.getElementById('current-topic').textContent = `玖数学: ${currentTopic}`;
+            document.getElementById('current-mode-display').textContent = '当前模式: 顺序';
+            startNewRound();
+        }
+
+        function generateEquationSystem() {
+            let question;
+
+            if (isRandomMode) {
+                const randomIndex = Math.floor(Math.random() * currentQuestionBank.length);
+                question = currentQuestionBank[randomIndex];
+            } else {
+                if (currentQuestionIndex >= currentQuestionBank.length) {
+                    currentQuestionIndex = 0;
+                }
+                question = currentQuestionBank[currentQuestionIndex];
+                currentQuestionIndex++;
+            }
+
+            const { equation, img, correctOption } = question;
+
+            let equationHTML = equation;
+
+            if (img && img.trim() !== '') {
+                equationHTML += `<br><img src="${img}" alt="题目图片">`;
+            }
+
+            currentEquationSystem = {
+                equationSystem: equationHTML,
+                correctOption
+            };
+        }
+
+        function displayEquationSystem() {
+            generateEquationSystem();
+            document.getElementById('equation').innerHTML = currentEquationSystem.equationSystem;
+            document.getElementById('answer-input').value = '';
+            MathJax.typeset();
+        }
+
+        function startNewRound() {
+            let roundComplete = false;
+            let totalQuestionsInRound = isChallengeMode ? currentQuestionBank.length : 10;
+
+            if (isChallengeMode) {
+                roundComplete = questionsAnswered >= currentQuestionBank.length;
+            } else {
+                roundComplete = questionsAnswered >= 10;
+            }
+
+            if (roundComplete) {
+                roundsScores.push({ topic: currentTopic, score: score, totalQuestions: totalQuestionsInRound });
+                score = 0;
+                questionsAnswered = 0;
+                updateRoundsScoreboard();
+                if (!isChallengeMode && currentQuestionIndex >= currentQuestionBank.length) {
+                    currentQuestionIndex = 0;
+                }
+            }
+
+            displayEquationSystem();
+        }
+
+        function checkAnswer() {
+            const userAnswer = document.getElementById('answer-input').value.trim();
+            if (userAnswer === currentEquationSystem.correctOption) {
+                score++;
+            } else if (isChallengeMode) {
+                score = 0;
+                questionsAnswered = 0;
+                currentQuestionIndex = 0;
+                updateScoreboard();
+                startNewRound();
+                return;
+            }
+            questionsAnswered++;
+            updateScoreboard();
+            startNewRound();
+        }
+
+        function handleKeyUp(event) {
+            if (event.key === 'Enter') {
+                checkAnswer();
+            }
+        }
+
+        function updateScoreboard() {
+            document.getElementById('score').textContent = score;
+            document.getElementById('answered').textContent = questionsAnswered;
+        }
+
+        function updateRoundsScoreboard() {
+            let roundsScoresText = roundsScores.map((round, index) => `第${index + 1}轮 (${round.topic}): ${round.score}分共${round.totalQuestions}题`).join('<br>');
+            document.getElementById('rounds-scoreboard').innerHTML = roundsScoresText;
+        }
+
+        window.onload = () => {
+            loadQuestions(二次函数切线方程, '二次函数切线方程');
+            isChallengeMode = false;
+            startNewRound();
+        };
+    </script>
+</body>
+</html>

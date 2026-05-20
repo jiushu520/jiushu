@@ -3,39 +3,452 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <title>玖数学 — 交互式数学测训主控台</title>
+    <!-- 引入高雅的 Google 字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Noto+Sans+SC:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- 引入本地菜单数据以绕过 CORS 限制 -->
+    <script src="config/menu.js"></script>
     <style>
-        body, html {
+        :root {
+            --primary: #0288d1;
+            --primary-gradient: linear-gradient(135deg, #0288d1 0%, #26c6da 100%);
+            --sidebar-bg: rgba(255, 255, 255, 0.85);
+            --content-bg: #f4f7f9;
+            --text-dark: #2c3e50;
+            --text-light: #7f8c8d;
+            --border-color: rgba(2, 136, 209, 0.12);
+            --border-radius: 12px;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        body {
+            display: flex;
+            height: 100vh;
             margin: 0;
-            padding: 0;
-            height: 100%;
+            font-family: 'Outfit', 'Noto Sans SC', -apple-system, sans-serif;
+            background-color: var(--content-bg);
+            color: var(--text-dark);
             overflow: hidden;
         }
+
+        /* 左侧边栏 - 玻璃化设计 */
+        .left {
+            width: 320px;
+            min-width: 320px;
+            background: var(--sidebar-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            box-sizing: border-box;
+            box-shadow: 4px 0 24px rgba(0, 0, 0, 0.02);
+            z-index: 10;
+        }
+
+        /* 侧边栏头部 LOGO */
+        .sidebar-header {
+            padding: 24px 20px 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .sidebar-header h1 {
+            margin: 0;
+            font-size: 26px;
+            font-weight: 900;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sidebar-header p {
+            margin: 0;
+            font-size: 12px;
+            color: var(--text-light);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* 搜索框美化 */
+        .search-container {
+            padding: 10px 20px 20px;
+            position: relative;
+        }
+
+        #search {
+            width: 100%;
+            padding: 12px 16px 12px 42px;
+            border: 2px solid rgba(2, 136, 209, 0.15);
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-dark);
+            outline: none;
+            box-sizing: border-box;
+            transition: var(--transition);
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        #search:focus {
+            border-color: var(--primary);
+            background: #ffffff;
+            box-shadow: 0 0 0 4px rgba(2, 136, 209, 0.15);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 34px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+            font-size: 16px;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+        }
+
+        /* 折叠菜单滚动区域 */
+        .menu-scroll {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 0 16px 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        /* 自定义滚动条 */
+        .menu-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .menu-scroll::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .menu-scroll::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.08);
+            border-radius: 10px;
+        }
+        .menu-scroll::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 0, 0, 0.15);
+        }
+
+        /* 折叠按钮 */
+        .collapsible {
+            background: rgba(255, 255, 255, 0.6);
+            color: var(--text-dark);
+            cursor: pointer;
+            padding: 14px 18px;
+            width: 100%;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+            font-weight: 700;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.01);
+        }
+
+        .collapsible:hover {
+            background: rgba(2, 136, 209, 0.05);
+            border-color: rgba(2, 136, 209, 0.2);
+            color: var(--primary);
+        }
+
+        .collapsible::after {
+            content: '▼';
+            font-size: 10px;
+            color: var(--text-light);
+            transition: var(--transition);
+        }
+
+        .collapsible.active {
+            background: var(--primary-light, rgba(2, 136, 209, 0.08));
+            color: var(--primary);
+            border-color: rgba(2, 136, 209, 0.2);
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        .collapsible.active::after {
+            transform: rotate(-180deg);
+            color: var(--primary);
+        }
+
+        /* 折叠展开的专题面板 */
+        .content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            background: rgba(255, 255, 255, 0.35);
+            border-bottom-left-radius: var(--border-radius);
+            border-bottom-right-radius: var(--border-radius);
+            border: 0 solid var(--border-color);
+            border-top: none;
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+        }
+
+        .collapsible.active + .content {
+            border-width: 1px;
+            border-top: none;
+            padding: 8px 0;
+            margin-bottom: 8px;
+            max-height: 8000px;
+        }
+
+        /* 专题菜单子链接 */
+        .menu-item {
+            cursor: pointer;
+            padding: 10px 20px 10px 24px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .menu-item::before {
+            content: '';
+            position: absolute;
+            left: 12px;
+            width: 4px;
+            height: 4px;
+            background: var(--text-light);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .menu-item:hover {
+            color: var(--primary);
+            padding-left: 28px;
+            background: rgba(2, 136, 209, 0.06);
+        }
+
+        .menu-item:hover::before {
+            background: var(--primary);
+            transform: scale(1.5);
+        }
+
+        .menu-item-active {
+            color: var(--primary) !important;
+            font-weight: 700;
+            background: rgba(2, 136, 209, 0.08) !important;
+            padding-left: 28px;
+        }
+
+        .menu-item-active::before {
+            background: var(--primary) !important;
+            transform: scale(2) !important;
+        }
+
+        /* 右侧主视口 */
+        .center {
+            flex-grow: 1;
+            height: 100vh;
+            border: none;
+            background: var(--content-bg);
+            position: relative;
+        }
+
         iframe {
             width: 100%;
             height: 100%;
-            border: none;
+            border: 0;
+            background: var(--content-bg);
         }
     </style>
 </head>
-<body oncontextmenu="return false">
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const iframe = document.createElement('iframe');
-            iframe.src = atob("aHR0cHM6Ly9iaXQubHkvNGY1RDBLZw=="); // 
-            iframe.allowFullscreen = true;
-            document.body.appendChild(iframe);
-        });
+<body>
+    <!-- 左侧导航栏 -->
+    <div class="left">
+        <!-- 侧栏头部 -->
+        <div class="sidebar-header">
+            <h1>📐 玖数学</h1>
+            <p>Interactive Training Console</p>
+        </div>
 
-        // 禁用右键菜单和开发者工具
-        document.addEventListener('contextmenu', e => e.preventDefault());
-        document.addEventListener('keydown', e => {
-            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I') || 
-                (e.ctrlKey && e.shiftKey && e.key === 'J') || 
-                (e.ctrlKey && e.key === 'U')) {
-                e.preventDefault();
+        <!-- 侧栏搜索 -->
+        <div class="search-container">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="search" placeholder="搜索目录与专题..." onkeyup="filterMenu()">
+        </div>
+
+        <!-- 折叠菜单滚动区域 -->
+        <div class="menu-scroll" id="menu-container">
+            <!-- 菜单通过 JS 动态异步渲染 -->
+        </div>
+    </div>
+
+    <!-- 右侧内容视口 -->
+    <div class="center" id="content-container">
+        <!-- 默认在引擎中载入第一个推荐练习 -->
+        <iframe id="content-iframe" src="quiz_engine.html?topic=二元一次方程组填空01" frameborder="0"></iframe>
+    </div>
+
+    <script>
+        // 当前激活的子项 DOM 引用
+        let activeMenuItem = null;
+
+        // 获取配置并动态生成菜单
+        window.onload = () => {
+            const menuContainer = document.getElementById('menu-container');
+            menuContainer.innerHTML = `<div style="text-align:center; padding:20px; color:var(--text-light); font-size:14px; font-weight:600;">正在加载菜单...</div>`;
+
+            try {
+                if (typeof window.JIUSHU_MENU === 'undefined' || !window.JIUSHU_MENU) {
+                    throw new Error('未检测到全局变量 window.JIUSHU_MENU，请确保 config/menu.js 正确引入并存在数据。');
+                }
+                
+                renderMenu(window.JIUSHU_MENU);
+                initAccordion();
+            } catch (err) {
+                console.error(err);
+                menuContainer.innerHTML = `<div style="text-align:center; padding:20px; color:var(--error); font-size:14px; font-weight:700;">⚠️ 目录配置加载失败，请检查 config/menu.js</div>`;
             }
-        });
+        };
+
+        // 渲染 HTML 菜单结构
+        function renderMenu(menuData) {
+            const menuContainer = document.getElementById('menu-container');
+            menuContainer.innerHTML = ''; // 清空
+
+            menuData.forEach((section, index) => {
+                const categoryBtn = document.createElement('button');
+                categoryBtn.className = 'collapsible';
+                categoryBtn.textContent = section.category;
+
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'content';
+
+                section.items.forEach(item => {
+                    const itemLink = document.createElement('a');
+                    itemLink.className = 'menu-item';
+                    itemLink.href = 'javascript:void(0);';
+                    itemLink.textContent = item.name;
+
+                    // 获取计算后的点击加载路径
+                    const clickUrl = getQuizUrl(item);
+                    itemLink.onclick = (e) => {
+                        e.preventDefault();
+                        showContent(clickUrl, itemLink);
+                    };
+
+                    contentDiv.appendChild(itemLink);
+                });
+
+                menuContainer.appendChild(categoryBtn);
+                menuContainer.appendChild(contentDiv);
+            });
+        }
+
+        // 精密路由地址判定，支持 external 纠错与特例 fallback
+        function getQuizUrl(item) {
+            // 特例 egame 直接指向原单体网页
+            if (item.file === 'egame') {
+                return 'egame.html';
+            }
+            if (item.isExternal) {
+                if (String(item.file).startsWith('http')) {
+                    return item.file; // 外部链接
+                }
+                // F09 等由于拼写失误被解析为 external 的本地专题，重定向到新引擎
+                return `quiz_engine.html?topic=${encodeURIComponent(item.file)}`;
+            }
+            // 本地专题全部使用万能引擎
+            return `quiz_engine.html?topic=${encodeURIComponent(item.file)}`;
+        }
+
+        // 加载内容并高亮链接
+        function showContent(url, element) {
+            document.getElementById('content-iframe').src = url;
+
+            // 切换高亮样式
+            if (activeMenuItem) {
+                activeMenuItem.classList.remove('menu-item-active');
+            }
+            if (element) {
+                element.classList.add('menu-item-active');
+                activeMenuItem = element;
+            }
+        }
+
+        // 初始化手风琴组件折叠与展开动效
+        function initAccordion() {
+            const collapsibles = document.getElementsByClassName('collapsible');
+            for (let i = 0; i < collapsibles.length; i++) {
+                collapsibles[i].addEventListener('click', function() {
+                    this.classList.toggle('active');
+                });
+            }
+        }
+
+        // 搜索过滤逻辑
+        function filterMenu() {
+            const input = document.getElementById('search');
+            const filter = input.value.toLowerCase().trim();
+            const container = document.getElementById('menu-container');
+            const collapsibles = container.getElementsByClassName('collapsible');
+            const contents = container.getElementsByClassName('content');
+
+            for (let i = 0; i < collapsibles.length; i++) {
+                const btn = collapsibles[i];
+                const panel = contents[i];
+                const items = panel.getElementsByClassName('menu-item');
+                let anyVisible = false;
+
+                // 如果搜索框为空，恢复初始折叠状态
+                if (filter === '') {
+                    btn.classList.remove('active');
+                    for (let j = 0; j < items.length; j++) {
+                        items[j].style.display = '';
+                    }
+                    btn.style.display = '';
+                    continue;
+                }
+
+                // 筛选子专题
+                for (let j = 0; j < items.length; j++) {
+                    const item = items[j];
+                    const text = item.textContent.toLowerCase();
+                    if (text.indexOf(filter) > -1) {
+                        item.style.display = '';
+                        anyVisible = true;
+                    } else {
+                        item.style.display = 'none';
+                    }
+                }
+
+                // 如果有任何子项可见，则展开该分类并显示；否则隐藏整个分类
+                if (anyVisible) {
+                    btn.style.display = '';
+                    btn.classList.add('active');
+                } else {
+                    btn.style.display = 'none';
+                    btn.classList.remove('active');
+                }
+            }
+        }
     </script>
 </body>
 </html>

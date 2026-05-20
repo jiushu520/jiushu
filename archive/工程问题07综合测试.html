@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <title>玖数学练习</title>
+    <style>
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: lightblue;
+        }
+
+        #game-container {
+            width: 100%;
+            height: 100%;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #equation, #answer-input, #answer-input-x, #answer-input-y, #options {
+            text-align: center;
+            width: 100%;
+            font-size: 20px;
+        }
+
+        #answer-input, #answer-input-x, #answer-input-y {
+            margin: 20px 0;
+        }
+
+        .option {
+            display: inline-block;
+            margin: 0 10px;
+            padding: 10px;
+            border: 1px solid #000;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        #button-container {
+            margin-top: 20px;
+        }
+
+        #result-table-container {
+            margin-top: 20px;
+            width: 100%;
+            height: calc(50% - 60px); /* 调整高度以适应 */
+                    }
+
+        #result-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        #result-table th, #result-table td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: center;
+        }
+        iframe#iframe-container {
+        width: 100%; /* 设置全屏宽度 */
+        height: 500px; /* 设置高度为500px */
+        border: none; /* 去掉边框 */
+        display: none; /* 初始隐藏iframe */
+    }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <h3>玖数学测训系统</h3>
+        <div id="current-topic"></div>
+        <div id="equation"></div>
+        <div id="options" style="display: none;"></div>
+        <div id="single-answer-container" style="display: none;">
+            <input type="text" id="answer-input" placeholder="输入你的答案" onkeyup="handleKeyUp(event)">
+        </div>
+        <div id="dual-answer-container" style="display: none;">
+                x=<input type="text" id="answer-input-x" placeholder="x的值" onkeyup="handleKeyUp(event, 'answer-input-y')">
+                y=<input type="text" id="answer-input-y" placeholder="y的值" onkeyup="handleKeyUp(event)">
+        </div>
+        <button id="submit-button" onclick="checkAnswer()">提交答案</button>
+        <div id="button-container">
+            <button onclick="toggleMode(false)">顺序</button>
+            <button onclick="toggleMode(true)">随机</button>
+            <button onclick="startChallengeMode()">闯关</button>
+            <button id="toggle-iframe-button" onclick="toggleIframe()">交互</button>
+            <button id="copy-button" onclick="copyCurrentTopic()">复制当前题目</button>
+
+<br>
+            <span id="current-mode-display">当前模式: 顺序</span>
+        </div>
+        <div id="scoreboard">现在得分:<span id="score">0</span>,已回答:<span id="answered">0</span></div>
+        <iframe id="iframe-container" src="https://www.geogebra.org/classic"></iframe>
+        <div id="result-table-container">
+            <table id="result-table">
+                <thead>
+                    <tr>
+                        <th>题目</th>
+                        <th>你的答案</th>
+                        <th>正确答案</th>
+                        <th>结果</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div id="rounds-scoreboard"></div>
+    </div>
+    <script>
+        const 工程问题07综合测试 = [
+
+{equation: "\\[ \\begin{array}{c} \\text{单独完成一项工作，甲需要130天，乙需要78天。} \\\\ \\text{现在两人按甲2天、乙4天、甲2天、乙4天、……的顺序工作，轮番交替。} \\\\ \\text{那么完成这项工作需要几天？（周期性无余数）} \\end{array} \\]", correctOption: {single: "90"}},
+{equation: "\\[ \\begin{array}{c} \\text{单独完成一项工作，甲需要78天，乙需要52天。} \\\\ \\text{现在两人按甲2天、乙3天、甲2天、乙3天、……的顺序工作，轮番交替。} \\\\ \\text{那么完成这项工作需要几天？（周期性无余数）} \\end{array} \\]", correctOption: {single: "60"}},
+{equation: "\\[ \\begin{array}{c} \\text{单独完成一项工作，甲需要105天，乙需要63天。} \\\\ \\text{现在两人按甲2天、乙3天、甲2天、乙3天、……的顺序工作，轮番交替。} \\\\ \\text{那么完成这项工作需要几天？（周期性无余数）} \\end{array} \\]", correctOption: {single: "75"}},
+{equation: "\\[ \\begin{array}{c} \\text{单独完成一项工作，甲需要90天，乙需要54天。} \\\\ \\text{现在两人按甲1天、乙3天、甲1天、乙3天、……的顺序工作，轮番交替。} \\\\ \\text{那么完成这项工作需要几天？（周期性无余数）} \\end{array} \\]", correctOption: {single: "60"}},
+{equation: "\\[ \\begin{array}{c} \\text{单独完成一项工作，甲需要66天，乙需要44天。} \\\\ \\text{现在两人按甲1天、乙3天、甲1天、乙3天、……的顺序工作，轮番交替。} \\\\ \\text{那么完成这项工作需要几天？（周期性无余数）} \\end{array} \\]", correctOption: {single: "48"}},
+{equation: "\\[ \\begin{array}{c} \\text{单独完成一项工作，甲需要140天，乙需要112天。} \\\\ \\text{现在两人按甲2天、乙4天、甲2天、乙4天、……的顺序工作，轮番交替。} \\\\ \\text{那么完成这项工作需要几天？（周期性无余数）} \\end{array} \\]", correctOption: {single: "120"}},
+{equation: "\\[ \\begin{array}{c} \\text{单独完成一项工作，甲需要115天，乙需要92天。} \\\\ \\text{现在两人按甲2天、乙3天、甲2天、乙3天、……的顺序工作，轮番交替。} \\\\ \\text{那么完成这项工作需要几天？（周期性无余数）} \\end{array} \\]", correctOption: {single: "100"}},
+{equation: "\\[ \\begin{array}{c} \\text{单独完成一项工作，甲需要60天，乙需要45天。} \\\\ \\text{现在两人按甲1天、乙3天、甲1天、乙3天、……的顺序工作，轮番交替。} \\\\ \\text{那么完成这项工作需要几天？（周期性无余数）} \\end{array} \\]", correctOption: {single: "48"}},
+{equation: "\\[ \\begin{array}{c} \\text{单独完成一项工作，甲需要88天，乙需要66天。} \\\\ \\text{现在两人按甲2天、乙4天、甲2天、乙4天、……的顺序工作，轮番交替。} \\\\ \\text{那么完成这项工作需要几天？（周期性无余数）} \\end{array} \\]", correctOption: {single: "72"}},
+{equation: "\\[ \\begin{array}{c} \\text{单独完成一项工作，甲需要60天，乙需要45天。} \\\\ \\text{现在两人按甲1天、乙3天、甲1天、乙3天、……的顺序工作，轮番交替。} \\\\ \\text{那么完成这项工作需要几天？（周期性无余数）} \\end{array} \\]", correctOption: {single: "48"}},
+{equation: "\\[ \\begin{array}{c} \\text{单独完成一项工作，甲需要20天，乙需要10天。} \\\\ \\text{现在两人按甲1天、乙2天、甲1天、乙2天、……的顺序工作，轮番交替。} \\\\ \\text{那么完成这项工作需要几天？（周期性无余数）} \\end{array} \\]", correctOption: {single: "12"}},
+{equation: "\\[ \\begin{array}{c} \\text{单独完成一项工作，甲需要60天，乙需要45天。} \\\\ \\text{现在两人按甲1天、乙3天、甲1天、乙3天、……的顺序工作，轮番交替。} \\\\ \\text{那么完成这项工作需要几天？（周期性无余数）} \\end{array} \\]", correctOption: {single: "48"}},
+{equation: "\\[ \\begin{array}{c} \\text{单独完成一项工作，甲需要78天，乙需要52天。} \\\\ \\text{现在两人按甲2天、乙3天、甲2天、乙3天、……的顺序工作，轮番交替。} \\\\ \\text{那么完成这项工作需要几天？（周期性无余数）} \\end{array} \\]", correctOption: {single: "60"}},
+{equation: "\\[ \\begin{array}{c} \\text{单独完成一项工作，甲需要105天，乙需要63天。} \\\\ \\text{现在两人按甲2天、乙3天、甲2天、乙3天、……的顺序工作，轮番交替。} \\\\ \\text{那么完成这项工作需要几天？（周期性无余数）} \\end{array} \\]", correctOption: {single: "75"}},
+{equation: "\\[ \\begin{array}{c} \\text{单独完成一项工作，甲需要24天，乙需要16天。} \\\\ \\text{现在两人按甲1天、乙2天、甲1天、乙2天、……的顺序工作，轮番交替。} \\\\ \\text{那么完成这项工作需要几天？（周期性无余数）} \\end{array} \\]", correctOption: {single: "18"}},
+{equation: "\\[ \\begin{array}{c} \\text{单独完成一项工作，甲需要28天，乙需要14天。} \\\\ \\text{现在两人按甲1天、乙3天、甲1天、乙3天、……的顺序工作，轮番交替。} \\\\ \\text{那么完成这项工作需要几天？（周期性无余数）} \\end{array} \\]", correctOption: {single: "16"}},
+{equation: "\\[ \\begin{array}{c} \\text{单独完成一项工作，甲需要72天，乙需要54天。} \\\\ \\text{现在两人按甲2天、乙3天、甲2天、乙3天、……的顺序工作，轮番交替。} \\\\ \\text{那么完成这项工作需要几天？（周期性无余数）} \\end{array} \\]", correctOption: {single: "60"}},
+{equation: "\\[ \\begin{array}{c} \\text{单独完成一项工作，甲需要105天，乙需要63天。} \\\\ \\text{现在两人按甲2天、乙3天、甲2天、乙3天、……的顺序工作，轮番交替。} \\\\ \\text{那么完成这项工作需要几天？（周期性无余数）} \\end{array} \\]", correctOption: {single: "75"}},
+
+
+{equation: "\\[ \\begin{array}{c} \\text{有A、B两个仓库，A仓库的货物是B仓库的2倍。}\\\\ \\text{搬运完A仓库的货物，甲需要16小时；}\\\\ \\text{搬运完B仓库的货物，乙单干需要12小时，丙单干需要6小时。}\\\\ \\text{刚开始甲搬运A仓库，乙搬运B仓库，丙帮甲，后来丙又去帮乙，}\\\\ \\text{直到最后两个仓库的货物同时搬完。则丙帮了乙几个小时？} \\end{array} \\]", correctOption: {single: "2"}},
+{equation: "\\[ \\begin{array}{c} \\text{有A、B两个仓库，A仓库的货物是B仓库的2倍。}\\\\ \\text{搬运完A仓库的货物，甲需要32小时；}\\\\ \\text{搬运完B仓库的货物，乙单干需要24小时，丙单干需要12小时。}\\\\ \\text{刚开始甲搬运A仓库，乙搬运B仓库，丙帮甲，后来丙又去帮乙，}\\\\ \\text{直到最后两个仓库的货物同时搬完。则丙帮了乙几个小时？} \\end{array} \\]", correctOption: {single: "4"}},
+{equation: "\\[ \\begin{array}{c} \\text{有A、B两个仓库，A仓库的货物是B仓库的2倍。}\\\\ \\text{搬运完A仓库的货物，甲需要32小时；}\\\\ \\text{搬运完B仓库的货物，乙单干需要24小时，丙单干需要12小时。}\\\\ \\text{刚开始甲搬运A仓库，乙搬运B仓库，丙帮甲，后来丙又去帮乙，}\\\\ \\text{直到最后两个仓库的货物同时搬完。则丙帮了甲几个小时？} \\end{array} \\]", correctOption: {single: "12"}},
+{equation: "\\[ \\begin{array}{c} \\text{有A、B两个同样的仓库，搬运一个仓库里的货物，甲需要10小时，乙需要12小时，丙需要15小时。若一开始甲和丙在A仓库，乙在B仓库，同时开始搬运。中途丙又到B仓库帮助乙搬运，最后两个仓库同时搬完。丙帮助甲多少小时？（分对象）} \\end{array} \\]", correctOption: {single: "3"}},
+{equation: "\\[ \\begin{array}{c} \\text{有A、B两个同样的仓库，搬运一个仓库里的货物，甲需要20小时，乙需要24小时，丙需要30小时。若一开始甲和丙在A仓库，乙在B仓库，同时开始搬运。中途丙又到B仓库帮助乙搬运，最后两个仓库同时搬完。丙帮助甲多少小时？（分对象）} \\end{array} \\]", correctOption: {single: "6"}},
+
+
+
+
+{equation: "\\[ \\begin{array}{c} \\text{有一条公路，甲队单独修需要105天，乙队单独修需要120天。}\\\\ \\text{一开始两队一起修路，但是中间乙队因其他任务离开了，}\\\\ \\text{结果前后一共用了63天才把整条公路修完。}\\\\ \\text{请问乙队修了几天？（分对象1）} \\end{array} \\]", correctOption: {single: "48"}},
+{equation: "\\[ \\begin{array}{c} \\text{有一条公路，甲队单独修需要28天，乙队单独修需要21天。}\\\\ \\text{一开始两队一起修路，但是中间乙队因其他任务离开了，}\\\\ \\text{结果前后一共用了24天才把整条公路修完。}\\\\ \\text{请问乙队修了几天？（分对象1）} \\end{array} \\]", correctOption: {single: "3"}},
+{equation: "\\[ \\begin{array}{c} \\text{有一条公路，甲队单独修需要27天，乙队单独修需要54天。}\\\\ \\text{一开始两队一起修路，但是中间乙队因其他任务离开了，}\\\\ \\text{结果前后一共用了24天才把整条公路修完。}\\\\ \\text{请问乙队修了几天？（分对象1）} \\end{array} \\]", correctOption: {single: "6"}},
+{equation: "\\[ \\begin{array}{c} \\text{有一条公路，甲队单独修需要78天，乙队单独修需要91天。}\\\\ \\text{一开始两队一起修路，但是中间乙队因其他任务离开了，}\\\\ \\text{结果前后一共用了54天才把整条公路修完。}\\\\ \\text{请问乙队修了几天？（分对象1）} \\end{array} \\]", correctOption: {single: "28"}},
+{equation: "\\[ \\begin{array}{c} \\text{有一条公路，甲队单独修需要65天，乙队单独修需要104天。}\\\\ \\text{一开始两队一起修路，但是中间乙队因其他任务离开了，}\\\\ \\text{结果前后一共用了40天才把整条公路修完。}\\\\ \\text{请问乙队修了几天？（分对象1）} \\end{array} \\]", correctOption: {single: "40"}},
+{equation: "\\[ \\begin{array}{c} \\text{有一条公路，甲队单独修需要104天，乙队单独修需要65天。}\\\\ \\text{一开始两队一起修路，但是中间乙队因其他任务离开了，}\\\\ \\text{结果前后一共用了40天才把整条公路修完。}\\\\ \\text{请问乙队修了几天？（分对象1）} \\end{array} \\]", correctOption: {single: "40"}},
+{equation: "\\[ \\begin{array}{c} \\text{有一条公路，甲队单独修需要130天，乙队单独修需要39天。}\\\\ \\text{一开始两队一起修路，但是中间乙队因其他任务离开了，}\\\\ \\text{结果前后一共用了60天才把整条公路修完。}\\\\ \\text{请问乙队修了几天？（分对象1）} \\end{array} \\]", correctOption: {single: "21"}},
+{equation: "\\[ \\begin{array}{c} \\text{有一条公路，甲队单独修需要78天，乙队单独修需要91天。}\\\\ \\text{一开始两队一起修路，但是中间乙队因其他任务离开了，}\\\\ \\text{结果前后一共用了42天才把整条公路修完。}\\\\ \\text{请问乙队修了几天？（分对象1）} \\end{array} \\]", correctOption: {single: "42"}},
+{equation: "\\[ \\begin{array}{c} \\text{有一条公路，甲队单独修需要90天，乙队单独修需要135天。}\\\\ \\text{一开始两队一起修路，但是中间乙队因其他任务离开了，}\\\\ \\text{结果前后一共用了72天才把整条公路修完。}\\\\ \\text{请问乙队修了几天？（分对象1）} \\end{array} \\]", correctOption: {single: "27"}},
+{equation: "\\[ \\begin{array}{c} \\text{有一条公路，甲队单独修需要45天，乙队单独修需要36天。}\\\\ \\text{一开始两队一起修路，但是中间乙队因其他任务离开了，}\\\\ \\text{结果前后一共用了30天才把整条公路修完。}\\\\ \\text{请问乙队修了几天？（分对象1）} \\end{array} \\]", correctOption: {single: "12"}},
+{equation: "\\[ \\begin{array}{c} \\text{有一条公路，甲队单独修需要15天，乙队单独修需要10天。}\\\\ \\text{一开始两队一起修路，但是中间乙队因其他任务离开了，}\\\\ \\text{结果前后一共用了12天才把整条公路修完。}\\\\ \\text{请问乙队修了几天？（分对象1）} \\end{array} \\]", correctOption: {single: "2"}},
+{equation: "\\[ \\begin{array}{c} \\text{有一条公路，甲队单独修需要45天，乙队单独修需要36天。}\\\\ \\text{一开始两队一起修路，但是中间乙队因其他任务离开了，}\\\\ \\text{结果前后一共用了30天才把整条公路修完。}\\\\ \\text{请问乙队修了几天？（分对象1）} \\end{array} \\]", correctOption: {single: "12"}},
+{equation: "\\[ \\begin{array}{c} \\text{有一条公路，甲队单独修需要143天，乙队单独修需要26天。}\\\\ \\text{一开始两队一起修路，但是中间乙队因其他任务离开了，}\\\\ \\text{结果前后一共用了55天才把整条公路修完。}\\\\ \\text{请问乙队修了几天？（分对象1）} \\end{array} \\]", correctOption: {single: "16"}},
+{equation: "\\[ \\begin{array}{c} \\text{有一条公路，甲队单独修需要21天，乙队单独修需要28天。}\\\\ \\text{一开始两队一起修路，但是中间乙队因其他任务离开了，}\\\\ \\text{结果前后一共用了12天才把整条公路修完。}\\\\ \\text{请问乙队修了几天？（分对象1）} \\end{array} \\]", correctOption: {single: "12"}},
+{equation: "\\[ \\begin{array}{c} \\text{有一条公路，甲队单独修需要45天，乙队单独修需要36天。}\\\\ \\text{一开始两队一起修路，但是中间乙队因其他任务离开了，}\\\\ \\text{结果前后一共用了35天才把整条公路修完。}\\\\ \\text{请问乙队修了几天？（分对象1）} \\end{array} \\]", correctOption: {single: "8"}},
+{equation: "\\[ \\begin{array}{c} \\text{有一条公路，甲队单独修需要18天，乙队单独修需要63天。}\\\\ \\text{一开始两队一起修路，但是中间乙队因其他任务离开了，}\\\\ \\text{结果前后一共用了14天才把整条公路修完。}\\\\ \\text{请问乙队修了几天？（分对象1）} \\end{array} \\]", correctOption: {single: "14"}},
+{equation: "\\[ \\begin{array}{c} \\text{有一条公路，甲队单独修需要10天，乙队单独修需要15天。}\\\\ \\text{一开始两队一起修路，但是中间乙队因其他任务离开了，}\\\\ \\text{结果前后一共用了6天才把整条公路修完。}\\\\ \\text{请问乙队修了几天？（分对象1）} \\end{array} \\]", correctOption: {single: "6"}},
+{equation: "\\[ \\begin{array}{c} \\text{有一条公路，甲队单独修需要22天，乙队单独修需要99天。}\\\\ \\text{一开始两队一起修路，但是中间乙队因其他任务离开了，}\\\\ \\text{结果前后一共用了18天才把整条公路修完。}\\\\ \\text{请问乙队修了几天？（分对象1）} \\end{array} \\]", correctOption: {single: "18"}},
+
+
+
+
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作15天完成， 乙单干则工作10天完成。}\\\\ \\text{如果甲先干5天，接着乙加入，}\\\\ \\text{那么一起完成剩余工作还需多少天？（分段2）} \\end{array} \\]", correctOption: {single: "4"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作150天完成， 乙单干则工作75天完成。}\\\\ \\text{如果甲先干15天，接着乙加入，}\\\\ \\text{那么一起完成剩余工作还需多少天？（分段2）} \\end{array} \\]", correctOption: {single: "45"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作55天完成， 乙单干则工作66天完成。}\\\\ \\text{如果甲先干11天，接着乙加入，}\\\\ \\text{那么一起完成剩余工作还需多少天？（分段2）} \\end{array} \\]", correctOption: {single: "24"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作39天完成， 乙单干则工作130天完成。}\\\\ \\text{如果甲先干13天，接着乙加入，}\\\\ \\text{那么一起完成剩余工作还需多少天？（分段2）} \\end{array} \\]", correctOption: {single: "20"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作91天完成， 乙单干则工作78天完成。}\\\\ \\text{如果甲先干13天，接着乙加入，}\\\\ \\text{那么一起完成剩余工作还需多少天？（分段2）} \\end{array} \\]", correctOption: {single: "36"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作45天完成， 乙单干则工作36天完成。}\\\\ \\text{如果甲先干9天，接着乙加入，}\\\\ \\text{那么一起完成剩余工作还需多少天？（分段2）} \\end{array} \\]", correctOption: {single: "16"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作21天完成， 乙单干则工作28天完成。}\\\\ \\text{如果甲先干7天，接着乙加入，}\\\\ \\text{那么一起完成剩余工作还需多少天？（分段2）} \\end{array} \\]", correctOption: {single: "8"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作10天完成， 乙单干则工作15天完成。}\\\\ \\text{如果甲先干5天，接着乙加入，}\\\\ \\text{那么一起完成剩余工作还需多少天？（分段2）} \\end{array} \\]", correctOption: {single: "3"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作33天完成， 乙单干则工作88天完成。}\\\\ \\text{如果甲先干11天，接着乙加入，}\\\\ \\text{那么一起完成剩余工作还需多少天？（分段2）} \\end{array} \\]", correctOption: {single: "16"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作63天完成， 乙单干则工作18天完成。}\\\\ \\text{如果甲先干9天，接着乙加入，}\\\\ \\text{那么一起完成剩余工作还需多少天？（分段2）} \\end{array} \\]", correctOption: {single: "12"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作10天完成， 乙单干则工作15天完成。}\\\\ \\text{如果甲先干5天，接着乙加入，}\\\\ \\text{那么一起完成剩余工作还需多少天？（分段2）} \\end{array} \\]", correctOption: {single: "3"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作10天完成， 乙单干则工作15天完成。}\\\\ \\text{如果甲先干5天，接着乙加入，}\\\\ \\text{那么一起完成剩余工作还需多少天？（分段2）} \\end{array} \\]", correctOption: {single: "3"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作15天完成， 乙单干则工作10天完成。}\\\\ \\text{如果甲先干5天，接着乙加入，}\\\\ \\text{那么一起完成剩余工作还需多少天？（分段2）} \\end{array} \\]", correctOption: {single: "4"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作195天完成， 乙单干则工作30天完成。}\\\\ \\text{如果甲先干15天，接着乙加入，}\\\\ \\text{那么一起完成剩余工作还需多少天？（分段2）} \\end{array} \\]", correctOption: {single: "24"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作15天完成， 乙单干则工作10天完成。}\\\\ \\text{如果甲先干5天，接着乙加入，}\\\\ \\text{那么一起完成剩余工作还需多少天？（分段2）} \\end{array} \\]", correctOption: {single: "4"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作165天完成， 乙单干则工作60天完成。}\\\\ \\text{如果甲先干15天，接着乙加入，}\\\\ \\text{那么一起完成剩余工作还需多少天？（分段2）} \\end{array} \\]", correctOption: {single: "40"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作28天完成， 乙单干则工作21天完成。}\\\\ \\text{如果甲先干7天，接着乙加入，}\\\\ \\text{那么一起完成剩余工作还需多少天？（分段2）} \\end{array} \\]", correctOption: {single: "9"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作26天完成， 乙单干则工作143天完成。}\\\\ \\text{如果甲先干13天，接着乙加入，}\\\\ \\text{那么一起完成剩余工作还需多少天？（分段2）} \\end{array} \\]", correctOption: {single: "11"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作44天完成， 乙单干则工作77天完成。}\\\\ \\text{如果甲先干11天，接着乙加入，}\\\\ \\text{那么一起完成剩余工作还需多少天？（分段2）} \\end{array} \\]", correctOption: {single: "21"}},
+
+
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作70天完成， 乙单干则工作30天完成。}\\\\ \\text{如果甲乙一起工作了9天后，乙辞职离开，}\\\\ \\text{那么甲单独完成剩余工作还需多少天？（休息请假型）} \\end{array} \\]", correctOption: {single: "40"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作84天完成， 乙单干则工作112天完成。}\\\\ \\text{如果甲乙一起工作了24天后，乙辞职离开，}\\\\ \\text{那么甲单独完成剩余工作还需多少天？（休息请假型）} \\end{array} \\]", correctOption: {single: "42"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作44天完成， 乙单干则工作77天完成。}\\\\ \\text{如果甲乙一起工作了21天后，乙辞职离开，}\\\\ \\text{那么甲单独完成剩余工作还需多少天？（休息请假型）} \\end{array} \\]", correctOption: {single: "11"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作30天完成， 乙单干则工作70天完成。}\\\\ \\text{如果甲乙一起工作了7天后，乙辞职离开，}\\\\ \\text{那么甲单独完成剩余工作还需多少天？（休息请假型）} \\end{array} \\]", correctOption: {single: "20"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作60天完成， 乙单干则工作40天完成。}\\\\ \\text{如果甲乙一起工作了8天后，乙辞职离开，}\\\\ \\text{那么甲单独完成剩余工作还需多少天？（休息请假型）} \\end{array} \\]", correctOption: {single: "40"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作48天完成， 乙单干则工作16天完成。}\\\\ \\text{如果甲乙一起工作了2天后，乙辞职离开，}\\\\ \\text{那么甲单独完成剩余工作还需多少天？（休息请假型）} \\end{array} \\]", correctOption: {single: "40"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作55天完成， 乙单干则工作66天完成。}\\\\ \\text{如果甲乙一起工作了6天后，乙辞职离开，}\\\\ \\text{那么甲单独完成剩余工作还需多少天？（休息请假型）} \\end{array} \\]", correctOption: {single: "44"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作84天完成， 乙单干则工作112天完成。}\\\\ \\text{如果甲乙一起工作了8天后，乙辞职离开，}\\\\ \\text{那么甲单独完成剩余工作还需多少天？（休息请假型）} \\end{array} \\]", correctOption: {single: "70"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作15天完成， 乙单干则工作10天完成。}\\\\ \\text{如果甲乙一起工作了4天后，乙辞职离开，}\\\\ \\text{那么甲单独完成剩余工作还需多少天？（休息请假型）} \\end{array} \\]", correctOption: {single: "5"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作60天完成， 乙单干则工作40天完成。}\\\\ \\text{如果甲乙一起工作了20天后，乙辞职离开，}\\\\ \\text{那么甲单独完成剩余工作还需多少天？（休息请假型）} \\end{array} \\]", correctOption: {single: "10"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作21天完成， 乙单干则工作28天完成。}\\\\ \\text{如果甲乙一起工作了4天后，乙辞职离开，}\\\\ \\text{那么甲单独完成剩余工作还需多少天？（休息请假型）} \\end{array} \\]", correctOption: {single: "14"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作63天完成， 乙单干则工作18天完成。}\\\\ \\text{如果甲乙一起工作了2天后，乙辞职离开，}\\\\ \\text{那么甲单独完成剩余工作还需多少天？（休息请假型）} \\end{array} \\]", correctOption: {single: "54"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作84天完成， 乙单干则工作60天完成。}\\\\ \\text{如果甲乙一起工作了20天后，乙辞职离开，}\\\\ \\text{那么甲单独完成剩余工作还需多少天？（休息请假型）} \\end{array} \\]", correctOption: {single: "36"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作63天完成， 乙单干则工作18天完成。}\\\\ \\text{如果甲乙一起工作了8天后，乙辞职离开，}\\\\ \\text{那么甲单独完成剩余工作还需多少天？（休息请假型）} \\end{array} \\]", correctOption: {single: "27"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作60天完成， 乙单干则工作40天完成。}\\\\ \\text{如果甲乙一起工作了12天后，乙辞职离开，}\\\\ \\text{那么甲单独完成剩余工作还需多少天？（休息请假型）} \\end{array} \\]", correctOption: {single: "30"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作55天完成， 乙单干则工作66天完成。}\\\\ \\text{如果甲乙一起工作了18天后，乙辞职离开，}\\\\ \\text{那么甲单独完成剩余工作还需多少天？（休息请假型）} \\end{array} \\]", correctOption: {single: "22"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作40天完成， 乙单干则工作60天完成。}\\\\ \\text{如果甲乙一起工作了12天后，乙辞职离开，}\\\\ \\text{那么甲单独完成剩余工作还需多少天？（休息请假型）} \\end{array} \\]", correctOption: {single: "20"}},
+
+
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单独干需要54天可以完成，乙单独干需要27天可以完成，}\\\\ \\text{则甲乙一起工作，则需要几天一起完成？} \\end{array} \\]", correctOption: {single: "18"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单独干需要33天可以完成，乙单独干需要88天可以完成，}\\\\ \\text{则甲乙一起工作，则需要几天一起完成？} \\end{array} \\]", correctOption: {single: "24"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单独干需要14天可以完成，乙单独干需要35天可以完成，}\\\\ \\text{则甲乙一起工作，则需要几天一起完成？} \\end{array} \\]", correctOption: {single: "10"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单独干需要3天可以完成，乙单独干需要6天可以完成，}\\\\ \\text{则甲乙一起工作，则需要几天一起完成？} \\end{array} \\]", correctOption: {single: "2"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单独干需要45天可以完成，乙单独干需要36天可以完成，}\\\\ \\text{则甲乙一起工作，则需要几天一起完成？} \\end{array} \\]", correctOption: {single: "20"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单独干需要33天可以完成，乙单独干需要88天可以完成，}\\\\ \\text{则甲乙一起工作，则需要几天一起完成？} \\end{array} \\]", correctOption: {single: "24"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单独干需要5天可以完成，乙单独干需要20天可以完成，}\\\\ \\text{则甲乙一起工作，则需要几天一起完成？} \\end{array} \\]", correctOption: {single: "4"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单独干需要66天可以完成，乙单独干需要55天可以完成，}\\\\ \\text{则甲乙一起工作，则需要几天一起完成？} \\end{array} \\]", correctOption: {single: "30"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单独干需要6天可以完成，乙单独干需要3天可以完成，}\\\\ \\text{则甲乙一起工作，则需要几天一起完成？} \\end{array} \\]", correctOption: {single: "2"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单独干需要10天可以完成，乙单独干需要15天可以完成，}\\\\ \\text{则甲乙一起工作，则需要几天一起完成？} \\end{array} \\]", correctOption: {single: "6"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单独干需要15天可以完成，乙单独干需要10天可以完成，}\\\\ \\text{则甲乙一起工作，则需要几天一起完成？} \\end{array} \\]", correctOption: {single: "6"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单独干需要3天可以完成，乙单独干需要6天可以完成，}\\\\ \\text{则甲乙一起工作，则需要几天一起完成？} \\end{array} \\]", correctOption: {single: "2"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单独干需要20天可以完成，乙单独干需要5天可以完成，}\\\\ \\text{则甲乙一起工作，则需要几天一起完成？} \\end{array} \\]", correctOption: {single: "4"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单独干需要44天可以完成，乙单独干需要77天可以完成，}\\\\ \\text{则甲乙一起工作，则需要几天一起完成？} \\end{array} \\]", correctOption: {single: "28"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单独干需要20天可以完成，乙单独干需要5天可以完成，}\\\\ \\text{则甲乙一起工作，则需要几天一起完成？} \\end{array} \\]", correctOption: {single: "4"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单独干需要54天可以完成，乙单独干需要27天可以完成，}\\\\ \\text{则甲乙一起工作，则需要几天一起完成？} \\end{array} \\]", correctOption: {single: "18"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单独干需要18天可以完成，乙单独干需要63天可以完成，}\\\\ \\text{则甲乙一起工作，则需要几天一起完成？} \\end{array} \\]", correctOption: {single: "14"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单独干需要6天可以完成，乙单独干需要3天可以完成，}\\\\ \\text{则甲乙一起工作，则需要几天一起完成？} \\end{array} \\]", correctOption: {single: "2"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单独干需要72天可以完成，乙单独干需要9天可以完成，}\\\\ \\text{则甲乙一起工作，则需要几天一起完成？} \\end{array} \\]", correctOption: {single: "8"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单独干需要35天可以完成，乙单独干需要14天可以完成，}\\\\ \\text{则甲乙一起工作，则需要几天一起完成？} \\end{array} \\]", correctOption: {single: "10"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单独干需要21天可以完成，乙单独干需要28天可以完成，}\\\\ \\text{则甲乙一起工作，则需要几天一起完成？} \\end{array} \\]", correctOption: {single: "12"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单独干需要66天可以完成，乙单独干需要55天可以完成，}\\\\ \\text{则甲乙一起工作，则需要几天一起完成？} \\end{array} \\]", correctOption: {single: "30"}},
+
+
+
+
+
+
+
+        ];
+
+        let state = {
+            currentQuestionBank: null,
+            currentEquationSystem: null,
+            score: 0,
+            questionsAnswered: 0,
+            roundsScores: [],
+            currentTopic: '',
+            currentQuestionIndex: 0,
+            isRandomMode: false,
+            isChallengeMode: false,
+        };
+
+        const updateElement = (id, value) => document.getElementById(id).textContent = value;
+
+        const startChallengeMode = () => {
+            state.isChallengeMode = true;
+            resetState();
+            updateElement('current-mode-display', '当前模式: 闯关');
+            startNewRound();
+        };
+
+        const toggleMode = (mode) => {
+            state.isRandomMode = mode;
+            state.isChallengeMode = false;
+            resetState();
+            updateElement('current-mode-display', state.isRandomMode ? '当前模式: 随机' : '当前模式: 顺序');
+            startNewRound();
+        };
+
+        const resetState = () => {
+            state.currentQuestionIndex = 0;
+            state.score = 0;
+            state.questionsAnswered = 0;
+            updateScoreboard();
+        };
+
+        const loadQuestions = (questionBank, topic) => {
+            state.currentQuestionBank = questionBank;
+            state.currentTopic = topic;
+            resetState();
+            updateElement('current-topic', `玖数学: ${state.currentTopic}`);
+            updateElement('current-mode-display', '当前模式: 顺序');
+            startNewRound();
+        };
+
+const toggleIframe = () => {
+    const iframe = document.getElementById('iframe-container');
+    const button = document.getElementById('toggle-iframe-button');
+    if (iframe.style.display === 'none' || iframe.style.display === '') {
+        iframe.style.display = 'block';
+        button.textContent = '隐藏';
+    } else {
+        iframe.style.display = 'none';
+        button.textContent = '显示';
+    }
+};
+
+
+const copyCurrentTopic = () => {
+    const currentTopic = document.getElementById('equation').innerText;
+    navigator.clipboard.writeText(currentTopic).then(() => {
+        showTemporaryMessage('题目已复制!', 1000);
+    }).catch(err => {
+        console.error('复制失败', err);
+    });
+};
+
+const showTemporaryMessage = (message, duration) => {
+    const messageElement = document.createElement('div');
+    messageElement.textContent = message;
+    messageElement.style.position = 'fixed';
+    messageElement.style.top = '50%';
+    messageElement.style.left = '50%';
+    messageElement.style.transform = 'translate(-50%, -50%)';
+    messageElement.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+    messageElement.style.color = 'white';
+    messageElement.style.padding = '10px';
+    messageElement.style.borderRadius = '5px';
+    document.body.appendChild(messageElement);
+
+    setTimeout(() => {
+        document.body.removeChild(messageElement);
+    }, duration);
+};
+
+
+
+
+        const generateEquationSystem = () => {
+            let question = getQuestion();
+
+            const { equation, img, correctOption, incorrectOptions } = question;
+
+            let equationHTML = equation;
+            if (img && img.trim()) equationHTML += `<br><img src="${img}" alt="题目图片">`;
+
+            if (correctOption.single || correctOption.dual) {
+                state.currentEquationSystem = { equationSystem: equationHTML, correctOption };
+                toggleAnswerContainers(correctOption);
+                document.getElementById('submit-button').style.display = 'block';
+            } else {
+                const correctIndex = Math.floor(Math.random() * 4);
+                const options = [...incorrectOptions];
+                options.splice(correctIndex, 0, correctOption);
+
+                state.currentEquationSystem = {
+                    equationSystem: equationHTML,
+                    correctIndex,
+                    options,
+                    correctOption
+                };
+                toggleAnswerContainers(correctOption, true);
+                document.getElementById('submit-button').style.display = 'none';
+            }
+        };
+
+        const toggleAnswerContainers = (correctOption, showOptions = false) => {
+            document.getElementById('options').style.display = showOptions ? 'block' : 'none';
+            document.getElementById('single-answer-container').style.display = correctOption.single ? 'block' : 'none';
+            document.getElementById('dual-answer-container').style.display = correctOption.dual ? 'block' : 'none';
+        };
+
+        const getQuestion = () => {
+            if (state.isRandomMode) {
+                const randomIndex = Math.floor(Math.random() * state.currentQuestionBank.length);
+                return state.currentQuestionBank[randomIndex];
+            } else {
+                if (state.currentQuestionIndex >= state.currentQuestionBank.length) state.currentQuestionIndex = 0;
+                return state.currentQuestionBank[state.currentQuestionIndex++];
+            }
+        };
+
+        const generateOptions = () => {
+            if (state.currentEquationSystem.options) {
+                const labels = ['A', 'B', 'C', 'D'];
+                return state.currentEquationSystem.options.map((option, index) =>
+                    `<div class="option" onclick="checkAnswer(${index}, '${option.replace(/\\/g, '\\\\')}')">
+                        <span>${labels[index]}. \\(${option}\\)</span>
+                    </div>`
+                ).join('');
+            }
+            return '';
+        };
+
+        const displayEquationSystem = () => {
+            generateEquationSystem();
+            document.getElementById('equation').innerHTML = state.currentEquationSystem.equationSystem;
+            if (state.currentEquationSystem.options) {
+                document.getElementById('options').innerHTML = generateOptions();
+            }
+            MathJax.typeset();
+        };
+
+        const startNewRound = () => {
+            if (isRoundComplete()) {
+                state.roundsScores.push({ topic: state.currentTopic, score: state.score, totalQuestions: state.questionsAnswered });
+                resetState();
+                updateRoundsScoreboard();
+            }
+            displayEquationSystem();
+        };
+
+        const isRoundComplete = () => {
+            let totalQuestionsInRound = state.isChallengeMode ? state.currentQuestionBank.length : 10;
+            return state.questionsAnswered >= totalQuestionsInRound;
+        };
+
+        const checkAnswer = (selectedIndex, userAnswer) => {
+            let isCorrect = false;
+            let correctAnswer = '';
+
+            if (state.currentEquationSystem.correctOption.single) {
+                userAnswer = document.getElementById('answer-input').value.trim();
+                correctAnswer = state.currentEquationSystem.correctOption.single;
+                isCorrect = userAnswer === correctAnswer;
+            } else if (state.currentEquationSystem.correctOption.dual) {
+                const userAnswerX = document.getElementById('answer-input-x').value.trim();
+                const userAnswerY = document.getElementById('answer-input-y').value.trim();
+                correctAnswer = `x=${state.currentEquationSystem.correctOption.dual.x}, y=${state.currentEquationSystem.correctOption.dual.y}`;
+                userAnswer = `x=${userAnswerX}, y=${userAnswerY}`;
+                isCorrect = userAnswerX === state.currentEquationSystem.correctOption.dual.x && userAnswerY === state.currentEquationSystem.correctOption.dual.y;
+            } else {
+                isCorrect = selectedIndex === state.currentEquationSystem.correctIndex;
+                correctAnswer = state.currentEquationSystem.correctOption;
+            }
+
+            addResultRow(state.currentEquationSystem.equationSystem, userAnswer, correctAnswer, isCorrect);
+            if (isCorrect) state.score++;
+            state.questionsAnswered++;
+            updateScoreboard();
+            startNewRound();
+            MathJax.typeset();
+        };
+
+        const addResultRow = (equation, userAnswer, correctAnswer, isCorrect) => {
+            let resultRow = document.createElement('tr');
+            resultRow.innerHTML = `
+                <td>${equation}</td>
+                <td>\\(${userAnswer}\\)</td>
+                <td>\\(${correctAnswer}\\)</td>
+                <td style="color: ${isCorrect ? 'green' : 'red'};">${isCorrect ? '正确' : '错误'}</td>
+            `;
+            document.querySelector('#result-table tbody').insertBefore(resultRow, document.querySelector('#result-table tbody').firstChild);
+        };
+
+        const handleKeyUp = (event, nextInputId = null) => {
+            if (event.key === 'Enter') {
+                if (nextInputId) {
+                    document.getElementById(nextInputId).focus();
+                } else {
+                    checkAnswer();
+                }
+            }
+        };
+
+        const updateScoreboard = () => {
+            updateElement('score', state.score);
+            updateElement('answered', state.questionsAnswered);
+        };
+
+        const updateRoundsScoreboard = () => {
+            const roundsScoresText = state.roundsScores.map((round, index) =>
+                `第${index + 1}轮 (${round.topic}): ${round.score}分共${round.totalQuestions}题`
+            ).join('<br>');
+            document.getElementById('rounds-scoreboard').innerHTML = roundsScoresText;
+        };
+
+window.onload = () => {
+    loadQuestions(工程问题07综合测试, '工程问题07综合测试');
+    state.isRandomMode = true;  // 初始化为随机模式
+    state.isChallengeMode = false;
+    startNewRound();
+};
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <title>玖数学练习</title>
+    <style>
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: lightblue;
+        }
+
+        #game-container {
+            width: 100%;
+            height: 100%;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #equation, #answer-input, #answer-input-x, #answer-input-y, #options {
+            text-align: center;
+            width: 100%;
+            font-size: 20px;
+        }
+
+        #answer-input, #answer-input-x, #answer-input-y {
+            margin: 20px 0;
+        }
+
+        .option {
+            display: inline-block;
+            margin: 0 10px;
+            padding: 10px;
+            border: 1px solid #000;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        #button-container {
+            margin-top: 20px;
+        }
+
+        #result-table-container {
+            margin-top: 20px;
+            width: 100%;
+            height: calc(50% - 60px); /* 调整高度以适应 */
+                    }
+
+        #result-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        #result-table th, #result-table td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: center;
+        }
+        iframe#iframe-container {
+        width: 100%; /* 设置全屏宽度 */
+        height: 500px; /* 设置高度为500px */
+        border: none; /* 去掉边框 */
+        display: none; /* 初始隐藏iframe */
+    }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <h3>玖数学测训系统</h3>
+        <div id="current-topic"></div>
+        <div id="equation"></div>
+        <div id="options" style="display: none;"></div>
+        <div id="single-answer-container" style="display: none;">
+            <input type="text" id="answer-input" placeholder="输入你的答案" onkeyup="handleKeyUp(event)">
+        </div>
+        <div id="dual-answer-container" style="display: none;">
+                x=<input type="text" id="answer-input-x" placeholder="x的值" onkeyup="handleKeyUp(event, 'answer-input-y')">
+                y=<input type="text" id="answer-input-y" placeholder="y的值" onkeyup="handleKeyUp(event)">
+        </div>
+        <button id="submit-button" onclick="checkAnswer()">提交答案</button>
+        <div id="button-container">
+            <button onclick="toggleMode(false)">顺序</button>
+            <button onclick="toggleMode(true)">随机</button>
+            <button onclick="startChallengeMode()">闯关</button>
+            <button id="toggle-iframe-button" onclick="toggleIframe()">交互</button>
+            <button id="copy-button" onclick="copyCurrentTopic()">复制当前题目</button>
+
+<br>
+            <span id="current-mode-display">当前模式: 顺序</span>
+        </div>
+        <div id="scoreboard">现在得分:<span id="score">0</span>,已回答:<span id="answered">0</span></div>
+        <iframe id="iframe-container" src="https://www.geogebra.org/calculator"></iframe>
+        <div id="result-table-container">
+            <table id="result-table">
+                <thead>
+                    <tr>
+                        <th>题目</th>
+                        <th>你的答案</th>
+                        <th>正确答案</th>
+                        <th>结果</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div id="rounds-scoreboard"></div>
+    </div>
+    <script>
+        const 年龄问题05综合测试 = [
+
+    
+{equation: "\\[ \\begin{array}{c} \\text{小鲸鱼说：“妈妈，我长到您现在这么大时，您就48岁了！”}\\\\\\text{鲸鱼妈妈说：“我像你这么大时，你只有9岁.”}\\\\\\text{请问鲸鱼妈妈现在多少岁？}\\end{array} \\]", correctOption: {single: "35"}},
+{equation: "\\[ \\begin{array}{c} \\text{小鲸鱼说：“妈妈，我长到您现在这么大时，您就36岁了！”}\\\\\\text{鲸鱼妈妈说：“我像你这么大时，你只有6岁.”}\\\\\\text{请问鲸鱼妈妈现在多少岁？}\\end{array} \\]", correctOption: {single: "26"}},
+{equation: "\\[ \\begin{array}{c} \\text{小鲸鱼说：“妈妈，我长到您现在这么大时，您就51岁了！”}\\\\\\text{鲸鱼妈妈说：“我像你这么大时，你只有9岁.”}\\\\\\text{请问鲸鱼妈妈现在多少岁？}\\end{array} \\]", correctOption: {single: "37"}},
+{equation: "\\[ \\begin{array}{c} \\text{小鲸鱼说：“妈妈，我长到您现在这么大时，您就49岁了！”}\\\\\\text{鲸鱼妈妈说：“我像你这么大时，你只有7岁.”}\\\\\\text{请问鲸鱼妈妈现在多少岁？}\\end{array} \\]", correctOption: {single: "35"}},
+{equation: "\\[ \\begin{array}{c} \\text{小鲸鱼说：“妈妈，我长到您现在这么大时，您就41岁了！”}\\\\\\text{鲸鱼妈妈说：“我像你这么大时，你只有8岁.”}\\\\\\text{请问鲸鱼妈妈现在多少岁？}\\end{array} \\]", correctOption: {single: "30"}},
+{equation: "\\[ \\begin{array}{c} \\text{小鲸鱼说：“妈妈，我长到您现在这么大时，您就46岁了！”}\\\\\\text{鲸鱼妈妈说：“我像你这么大时，你只有4岁.”}\\\\\\text{请问鲸鱼妈妈现在多少岁？}\\end{array} \\]", correctOption: {single: "32"}},
+{equation: "\\[ \\begin{array}{c} \\text{小鲸鱼说：“妈妈，我长到您现在这么大时，您就42岁了！”}\\\\\\text{鲸鱼妈妈说：“我像你这么大时，你只有3岁.”}\\\\\\text{请问鲸鱼妈妈现在多少岁？}\\end{array} \\]", correctOption: {single: "29"}},
+{equation: "\\[ \\begin{array}{c} \\text{小鲸鱼说：“妈妈，我长到您现在这么大时，您就52岁了！”}\\\\\\text{鲸鱼妈妈说：“我像你这么大时，你只有7岁.”}\\\\\\text{请问鲸鱼妈妈现在多少岁？}\\end{array} \\]", correctOption: {single: "37"}},
+{equation: "\\[ \\begin{array}{c} \\text{小鲸鱼说：“妈妈，我长到您现在这么大时，您就29岁了！”}\\\\\\text{鲸鱼妈妈说：“我像你这么大时，你只有2岁.”}\\\\\\text{请问鲸鱼妈妈现在多少岁？}\\end{array} \\]", correctOption: {single: "20"}},
+{equation: "\\[ \\begin{array}{c} \\text{小鲸鱼说：“妈妈，我长到您现在这么大时，您就49岁了！”}\\\\\\text{鲸鱼妈妈说：“我像你这么大时，你只有4岁.”}\\\\\\text{请问鲸鱼妈妈现在多少岁？}\\end{array} \\]", correctOption: {single: "34"}},
+{equation: "\\[ \\begin{array}{c} \\text{小鲸鱼说：“妈妈，我长到您现在这么大时，您就33岁了！”}\\\\\\text{鲸鱼妈妈说：“我像你这么大时，你只有6岁.”}\\\\\\text{请问鲸鱼妈妈现在多少岁？}\\end{array} \\]", correctOption: {single: "24"}},
+{equation: "\\[ \\begin{array}{c} \\text{小鲸鱼说：“妈妈，我长到您现在这么大时，您就31岁了！”}\\\\\\text{鲸鱼妈妈说：“我像你这么大时，你只有4岁.”}\\\\\\text{请问鲸鱼妈妈现在多少岁？}\\end{array} \\]", correctOption: {single: "22"}},
+{equation: "\\[ \\begin{array}{c} \\text{小鲸鱼说：“妈妈，我长到您现在这么大时，您就54岁了！”}\\\\\\text{鲸鱼妈妈说：“我像你这么大时，你只有9岁.”}\\\\\\text{请问鲸鱼妈妈现在多少岁？}\\end{array} \\]", correctOption: {single: "39"}},
+{equation: "\\[ \\begin{array}{c} \\text{小鲸鱼说：“妈妈，我长到您现在这么大时，您就41岁了！”}\\\\\\text{鲸鱼妈妈说：“我像你这么大时，你只有5岁.”}\\\\\\text{请问鲸鱼妈妈现在多少岁？}\\end{array} \\]", correctOption: {single: "29"}},
+{equation: "\\[ \\begin{array}{c} \\text{小鲸鱼说：“妈妈，我长到您现在这么大时，您就40岁了！”}\\\\\\text{鲸鱼妈妈说：“我像你这么大时，你只有4岁.”}\\\\\\text{请问鲸鱼妈妈现在多少岁？}\\end{array} \\]", correctOption: {single: "28"}},
+{equation: "\\[ \\begin{array}{c} \\text{小鲸鱼说：“妈妈，我长到您现在这么大时，您就42岁了！”}\\\\\\text{鲸鱼妈妈说：“我像你这么大时，你只有9岁.”}\\\\\\text{请问鲸鱼妈妈现在多少岁？}\\end{array} \\]", correctOption: {single: "31"}},
+{equation: "\\[ \\begin{array}{c} \\text{小鲸鱼说：“妈妈，我长到您现在这么大时，您就37岁了！”}\\\\\\text{鲸鱼妈妈说：“我像你这么大时，你只有4岁.”}\\\\\\text{请问鲸鱼妈妈现在多少岁？}\\end{array} \\]", correctOption: {single: "26"}},
+{equation: "\\[ \\begin{array}{c} \\text{小鲸鱼说：“妈妈，我长到您现在这么大时，您就45岁了！”}\\\\\\text{鲸鱼妈妈说：“我像你这么大时，你只有9岁.”}\\\\\\text{请问鲸鱼妈妈现在多少岁？}\\end{array} \\]", correctOption: {single: "33"}},
+{equation: "\\[ \\begin{array}{c} \\text{小鲸鱼说：“妈妈，我长到您现在这么大时，您就35岁了！”}\\\\\\text{鲸鱼妈妈说：“我像你这么大时，你只有8岁.”}\\\\\\text{请问鲸鱼妈妈现在多少岁？}\\end{array} \\]", correctOption: {single: "26"}},
+{equation: "\\[ \\begin{array}{c} \\text{小鲸鱼说：“妈妈，我长到您现在这么大时，您就48岁了！”}\\\\\\text{鲸鱼妈妈说：“我像你这么大时，你只有3岁.”}\\\\\\text{请问鲸鱼妈妈现在多少岁？}\\end{array} \\]", correctOption: {single: "33"}},
+{equation: "\\[ \\begin{array}{c} \\text{小鲸鱼说：“妈妈，我长到您现在这么大时，您就37岁了！”}\\\\\\text{鲸鱼妈妈说：“我像你这么大时，你只有7岁.”}\\\\\\text{请问鲸鱼妈妈现在多少岁？}\\end{array} \\]", correctOption: {single: "27"}},
+{equation: "\\[ \\begin{array}{c} \\text{小鲸鱼说：“妈妈，我长到您现在这么大时，您就51岁了！”}\\\\\\text{鲸鱼妈妈说：“我像你这么大时，你只有6岁.”}\\\\\\text{请问鲸鱼妈妈现在多少岁？}\\end{array} \\]", correctOption: {single: "36"}},
+{equation: "\\[ \\begin{array}{c} \\text{小鲸鱼说：“妈妈，我长到您现在这么大时，您就36岁了！”}\\\\\\text{鲸鱼妈妈说：“我像你这么大时，你只有9岁.”}\\\\\\text{请问鲸鱼妈妈现在多少岁？}\\end{array} \\]", correctOption: {single: "27"}},
+{equation: "\\[ \\begin{array}{c} \\text{小鲸鱼说：“妈妈，我长到您现在这么大时，您就40岁了！”}\\\\\\text{鲸鱼妈妈说：“我像你这么大时，你只有7岁.”}\\\\\\text{请问鲸鱼妈妈现在多少岁？}\\end{array} \\]", correctOption: {single: "29"}},
+{equation: "\\[ \\begin{array}{c} \\text{小鲸鱼说：“妈妈，我长到您现在这么大时，您就33岁了！”}\\\\\\text{鲸鱼妈妈说：“我像你这么大时，你只有3岁.”}\\\\\\text{请问鲸鱼妈妈现在多少岁？}\\end{array} \\]", correctOption: {single: "23"}},
+{equation: "\\[ \\begin{array}{c} \\text{小鲸鱼说：“妈妈，我长到您现在这么大时，您就34岁了！”}\\\\\\text{鲸鱼妈妈说：“我像你这么大时，你只有7岁.”}\\\\\\text{请问鲸鱼妈妈现在多少岁？}\\end{array} \\]", correctOption: {single: "25"}},
+{equation: "\\[ \\begin{array}{c} \\text{小鲸鱼说：“妈妈，我长到您现在这么大时，您就50岁了！”}\\\\\\text{鲸鱼妈妈说：“我像你这么大时，你只有5岁.”}\\\\\\text{请问鲸鱼妈妈现在多少岁？}\\end{array} \\]", correctOption: {single: "35"}},
+{equation: "\\[ \\begin{array}{c} \\text{小鲸鱼说：“妈妈，我长到您现在这么大时，您就38岁了！”}\\\\\\text{鲸鱼妈妈说：“我像你这么大时，你只有2岁.”}\\\\\\text{请问鲸鱼妈妈现在多少岁？}\\end{array} \\]", correctOption: {single: "26"}},
+{equation: "\\[ \\begin{array}{c} \\text{小鲸鱼说：“妈妈，我长到您现在这么大时，您就48岁了！”}\\\\\\text{鲸鱼妈妈说：“我像你这么大时，你只有6岁.”}\\\\\\text{请问鲸鱼妈妈现在多少岁？}\\end{array} \\]", correctOption: {single: "34"}},
+{equation: "\\[ \\begin{array}{c} \\text{小鲸鱼说：“妈妈，我长到您现在这么大时，您就39岁了！”}\\\\\\text{鲸鱼妈妈说：“我像你这么大时，你只有9岁.”}\\\\\\text{请问鲸鱼妈妈现在多少岁？}\\end{array} \\]", correctOption: {single: "29"}},
+{equation: "\\[ \\begin{array}{c} \\text{小鲸鱼说：“妈妈，我长到您现在这么大时，您就42岁了！”}\\\\\\text{鲸鱼妈妈说：“我像你这么大时，你只有6岁.”}\\\\\\text{请问鲸鱼妈妈现在多少岁？}\\end{array} \\]", correctOption: {single: "30"}},
+{equation: "\\[ \\begin{array}{c} \\text{小鲸鱼说：“妈妈，我长到您现在这么大时，您就45岁了！”}\\\\\\text{鲸鱼妈妈说：“我像你这么大时，你只有6岁.”}\\\\\\text{请问鲸鱼妈妈现在多少岁？}\\end{array} \\]", correctOption: {single: "32"}},
+{equation: "\\[ \\begin{array}{c} \\text{小鲸鱼说：“妈妈，我长到您现在这么大时，您就32岁了！”}\\\\\\text{鲸鱼妈妈说：“我像你这么大时，你只有5岁.”}\\\\\\text{请问鲸鱼妈妈现在多少岁？}\\end{array} \\]", correctOption: {single: "23"}},
+{equation: "\\[ \\begin{array}{c} \\text{小鲸鱼说：“妈妈，我长到您现在这么大时，您就46岁了！”}\\\\\\text{鲸鱼妈妈说：“我像你这么大时，你只有7岁.”}\\\\\\text{请问鲸鱼妈妈现在多少岁？}\\end{array} \\]", correctOption: {single: "33"}},
+{equation: "\\[ \\begin{array}{c} \\text{小鲸鱼说：“妈妈，我长到您现在这么大时，您就44岁了！”}\\\\\\text{鲸鱼妈妈说：“我像你这么大时，你只有5岁.”}\\\\\\text{请问鲸鱼妈妈现在多少岁？}\\end{array} \\]", correctOption: {single: "31"}},
+{equation: "\\[ \\begin{array}{c} \\text{小鲸鱼说：“妈妈，我长到您现在这么大时，您就35岁了！”}\\\\\\text{鲸鱼妈妈说：“我像你这么大时，你只有5岁.”}\\\\\\text{请问鲸鱼妈妈现在多少岁？}\\end{array} \\]", correctOption: {single: "25"}},
+{equation: "\\[ \\begin{array}{c} \\text{小鲸鱼说：“妈妈，我长到您现在这么大时，您就47岁了！”}\\\\\\text{鲸鱼妈妈说：“我像你这么大时，你只有8岁.”}\\\\\\text{请问鲸鱼妈妈现在多少岁？}\\end{array} \\]", correctOption: {single: "34"}},
+{equation: "\\[ \\begin{array}{c} \\text{小鲸鱼说：“妈妈，我长到您现在这么大时，您就44岁了！”}\\\\\\text{鲸鱼妈妈说：“我像你这么大时，你只有2岁.”}\\\\\\text{请问鲸鱼妈妈现在多少岁？}\\end{array} \\]", correctOption: {single: "30"}},
+{equation: "\\[ \\begin{array}{c} \\text{小鲸鱼说：“妈妈，我长到您现在这么大时，您就34岁了！”}\\\\\\text{鲸鱼妈妈说：“我像你这么大时，你只有4岁.”}\\\\\\text{请问鲸鱼妈妈现在多少岁？}\\end{array} \\]", correctOption: {single: "24"}},
+{equation: "\\[ \\begin{array}{c} \\text{小鲸鱼说：“妈妈，我长到您现在这么大时，您就44岁了！”}\\\\\\text{鲸鱼妈妈说：“我像你这么大时，你只有8岁.”}\\\\\\text{请问鲸鱼妈妈现在多少岁？}\\end{array} \\]", correctOption: {single: "32"}},
+{equation: "\\[ \\begin{array}{c} \\text{小鲸鱼说：“妈妈，我长到您现在这么大时，您就50岁了！”}\\\\\\text{鲸鱼妈妈说：“我像你这么大时，你只有8岁.”}\\\\\\text{请问鲸鱼妈妈现在多少岁？}\\end{array} \\]", correctOption: {single: "36"}},
+{equation: "\\[ \\begin{array}{c} \\text{小鲸鱼说：“妈妈，我长到您现在这么大时，您就38岁了！”}\\\\\\text{鲸鱼妈妈说：“我像你这么大时，你只有5岁.”}\\\\\\text{请问鲸鱼妈妈现在多少岁？}\\end{array} \\]", correctOption: {single: "27"}},
+{equation: "\\[ \\begin{array}{c} \\text{小鲸鱼说：“妈妈，我长到您现在这么大时，您就32岁了！”}\\\\\\text{鲸鱼妈妈说：“我像你这么大时，你只有2岁.”}\\\\\\text{请问鲸鱼妈妈现在多少岁？}\\end{array} \\]", correctOption: {single: "22"}},
+{equation: "\\[ \\begin{array}{c} \\text{小鲸鱼说：“妈妈，我长到您现在这么大时，您就43岁了！”}\\\\\\text{鲸鱼妈妈说：“我像你这么大时，你只有4岁.”}\\\\\\text{请问鲸鱼妈妈现在多少岁？}\\end{array} \\]", correctOption: {single: "30"}},
+{equation: "\\[ \\begin{array}{c} \\text{小鲸鱼说：“妈妈，我长到您现在这么大时，您就47岁了！”}\\\\\\text{鲸鱼妈妈说：“我像你这么大时，你只有5岁.”}\\\\\\text{请问鲸鱼妈妈现在多少岁？}\\end{array} \\]", correctOption: {single: "33"}},
+{equation: "\\[ \\begin{array}{c} \\text{小鲸鱼说：“妈妈，我长到您现在这么大时，您就35岁了！”}\\\\\\text{鲸鱼妈妈说：“我像你这么大时，你只有2岁.”}\\\\\\text{请问鲸鱼妈妈现在多少岁？}\\end{array} \\]", correctOption: {single: "24"}},
+
+{equation: "\\[ \\begin{array}{c} 今年大象的年龄是小象的5倍，\\\\8年后大象的年龄是小象的3倍，\\\\小象今年多少岁？\\end{array} \\]", correctOption: {single: "8"}},
+{equation: "\\[ \\begin{array}{c} 今年大象的年龄是小象的9倍，\\\\15年后大象的年龄是小象的4倍，\\\\小象今年多少岁？\\end{array} \\]", correctOption: {single: "9"}},
+{equation: "\\[ \\begin{array}{c} 今年大象的年龄是小象的6倍，\\\\3年后大象的年龄是小象的3倍，\\\\小象今年多少岁？\\end{array} \\]", correctOption: {single: "2"}},
+{equation: "\\[ \\begin{array}{c} 今年大象的年龄是小象的5倍，\\\\10年后大象的年龄是小象的3倍，\\\\小象今年多少岁？\\end{array} \\]", correctOption: {single: "10"}},
+{equation: "\\[ \\begin{array}{c} 今年大象的年龄是小象的7倍，\\\\10年后大象的年龄是小象的2倍，\\\\小象今年多少岁？\\end{array} \\]", correctOption: {single: "2"}},
+{equation: "\\[ \\begin{array}{c} 今年大象的年龄是小象的8倍，\\\\9年后大象的年龄是小象的5倍，\\\\小象今年多少岁？\\end{array} \\]", correctOption: {single: "12"}},
+{equation: "\\[ \\begin{array}{c} 今年大象的年龄是小象的6倍，\\\\9年后大象的年龄是小象的3倍，\\\\小象今年多少岁？\\end{array} \\]", correctOption: {single: "6"}},
+{equation: "\\[ \\begin{array}{c} 今年大象的年龄是小象的6倍，\\\\3年后大象的年龄是小象的5倍，\\\\小象今年多少岁？\\end{array} \\]", correctOption: {single: "12"}},
+{equation: "\\[ \\begin{array}{c} 今年大象的年龄是小象的7倍，\\\\3年后大象的年龄是小象的6倍，\\\\小象今年多少岁？\\end{array} \\]", correctOption: {single: "15"}},
+{equation: "\\[ \\begin{array}{c} 今年大象的年龄是小象的8倍，\\\\4年后大象的年龄是小象的7倍，\\\\小象今年多少岁？\\end{array} \\]", correctOption: {single: "24"}},
+{equation: "\\[ \\begin{array}{c} 今年大象的年龄是小象的9倍，\\\\2年后大象的年龄是小象的7倍，\\\\小象今年多少岁？\\end{array} \\]", correctOption: {single: "6"}},
+{equation: "\\[ \\begin{array}{c} 今年大象的年龄是小象的9倍，\\\\24年后大象的年龄是小象的3倍，\\\\小象今年多少岁？\\end{array} \\]", correctOption: {single: "8"}},
+{equation: "\\[ \\begin{array}{c} 今年大象的年龄是小象的9倍，\\\\14年后大象的年龄是小象的2倍，\\\\小象今年多少岁？\\end{array} \\]", correctOption: {single: "2"}},
+{equation: "\\[ \\begin{array}{c} 今年大象的年龄是小象的6倍，\\\\15年后大象的年龄是小象的3倍，\\\\小象今年多少岁？\\end{array} \\]", correctOption: {single: "10"}},
+{equation: "\\[ \\begin{array}{c} 今年大象的年龄是小象的9倍，\\\\4年后大象的年龄是小象的5倍，\\\\小象今年多少岁？\\end{array} \\]", correctOption: {single: "4"}},
+{equation: "\\[ \\begin{array}{c} 今年大象的年龄是小象的6倍，\\\\2年后大象的年龄是小象的4倍，\\\\小象今年多少岁？\\end{array} \\]", correctOption: {single: "3"}},
+{equation: "\\[ \\begin{array}{c} 今年大象的年龄是小象的9倍，\\\\12年后大象的年龄是小象的6倍，\\\\小象今年多少岁？\\end{array} \\]", correctOption: {single: "20"}},
+{equation: "\\[ \\begin{array}{c} 今年大象的年龄是小象的5倍，\\\\15年后大象的年龄是小象的2倍，\\\\小象今年多少岁？\\end{array} \\]", correctOption: {single: "5"}},
+{equation: "\\[ \\begin{array}{c} 今年大象的年龄是小象的6倍，\\\\8年后大象的年龄是小象的2倍，\\\\小象今年多少岁？\\end{array} \\]", correctOption: {single: "2"}},
+{equation: "\\[ \\begin{array}{c} 今年大象的年龄是小象的9倍，\\\\4年后大象的年龄是小象的8倍，\\\\小象今年多少岁？\\end{array} \\]", correctOption: {single: "28"}},
+{equation: "\\[ \\begin{array}{c} 今年大象的年龄是小象的6倍，\\\\4年后大象的年龄是小象的4倍，\\\\小象今年多少岁？\\end{array} \\]", correctOption: {single: "6"}},
+{equation: "\\[ \\begin{array}{c} 今年大象的年龄是小象的9倍，\\\\6年后大象的年龄是小象的3倍，\\\\小象今年多少岁？\\end{array} \\]", correctOption: {single: "2"}},
+{equation: "\\[ \\begin{array}{c} 今年大象的年龄是小象的9倍，\\\\21年后大象的年龄是小象的2倍，\\\\小象今年多少岁？\\end{array} \\]", correctOption: {single: "3"}},
+{equation: "\\[ \\begin{array}{c} 今年大象的年龄是小象的6倍，\\\\16年后大象的年龄是小象的2倍，\\\\小象今年多少岁？\\end{array} \\]", correctOption: {single: "4"}},
+{equation: "\\[ \\begin{array}{c} 今年大象的年龄是小象的7倍，\\\\3年后大象的年龄是小象的4倍，\\\\小象今年多少岁？\\end{array} \\]", correctOption: {single: "3"}},
+{equation: "\\[ \\begin{array}{c} 今年大象的年龄是小象的7倍，\\\\15年后大象的年龄是小象的2倍，\\\\小象今年多少岁？\\end{array} \\]", correctOption: {single: "3"}},
+{equation: "\\[ \\begin{array}{c} 今年大象的年龄是小象的6倍，\\\\12年后大象的年龄是小象的2倍，\\\\小象今年多少岁？\\end{array} \\]", correctOption: {single: "3"}},
+{equation: "\\[ \\begin{array}{c} 今年大象的年龄是小象的5倍，\\\\15年后大象的年龄是小象的2倍，\\\\小象今年多少岁？\\end{array} \\]", correctOption: {single: "5"}},
+{equation: "\\[ \\begin{array}{c} 今年大象的年龄是小象的7倍，\\\\12年后大象的年龄是小象的4倍，\\\\小象今年多少岁？\\end{array} \\]", correctOption: {single: "12"}},
+{equation: "\\[ \\begin{array}{c} 今年大象的年龄是小象的8倍，\\\\4年后大象的年龄是小象的4倍，\\\\小象今年多少岁？\\end{array} \\]", correctOption: {single: "3"}},
+{equation: "\\[ \\begin{array}{c} 今年大象的年龄是小象的9倍，\\\\21年后大象的年龄是小象的2倍，\\\\小象今年多少岁？\\end{array} \\]", correctOption: {single: "3"}},
+{equation: "\\[ \\begin{array}{c} 今年大象的年龄是小象的9倍，\\\\10年后大象的年龄是小象的4倍，\\\\小象今年多少岁？\\end{array} \\]", correctOption: {single: "6"}},
+{equation: "\\[ \\begin{array}{c} 今年大象的年龄是小象的8倍，\\\\12年后大象的年龄是小象的5倍，\\\\小象今年多少岁？\\end{array} \\]", correctOption: {single: "16"}},
+{equation: "\\[ \\begin{array}{c} 今年大象的年龄是小象的9倍，\\\\28年后大象的年龄是小象的2倍，\\\\小象今年多少岁？\\end{array} \\]", correctOption: {single: "4"}},
+{equation: "\\[ \\begin{array}{c} 今年大象的年龄是小象的6倍，\\\\9年后大象的年龄是小象的3倍，\\\\小象今年多少岁？\\end{array} \\]", correctOption: {single: "6"}},
+{equation: "\\[ \\begin{array}{c} 今年大象的年龄是小象的7倍，\\\\6年后大象的年龄是小象的4倍，\\\\小象今年多少岁？\\end{array} \\]", correctOption: {single: "6"}},
+{equation: "\\[ \\begin{array}{c} 今年大象的年龄是小象的9倍，\\\\5年后大象的年龄是小象的8倍，\\\\小象今年多少岁？\\end{array} \\]", correctOption: {single: "35"}},
+{equation: "\\[ \\begin{array}{c} 今年大象的年龄是小象的5倍，\\\\5年后大象的年龄是小象的4倍，\\\\小象今年多少岁？\\end{array} \\]", correctOption: {single: "15"}},
+{equation: "\\[ \\begin{array}{c} 今年大象的年龄是小象的5倍，\\\\12年后大象的年龄是小象的2倍，\\\\小象今年多少岁？\\end{array} \\]", correctOption: {single: "4"}},
+{equation: "\\[ \\begin{array}{c} 今年大象的年龄是小象的7倍，\\\\12年后大象的年龄是小象的4倍，\\\\小象今年多少岁？\\end{array} \\]", correctOption: {single: "12"}},
+{equation: "\\[ \\begin{array}{c} 今年大象的年龄是小象的5倍，\\\\4年后大象的年龄是小象的3倍，\\\\小象今年多少岁？\\end{array} \\]", correctOption: {single: "4"}},
+{equation: "\\[ \\begin{array}{c} 今年大象的年龄是小象的6倍，\\\\5年后大象的年龄是小象的5倍，\\\\小象今年多少岁？\\end{array} \\]", correctOption: {single: "20"}},
+{equation: "\\[ \\begin{array}{c} 今年大象的年龄是小象的9倍，\\\\2年后大象的年龄是小象的7倍，\\\\小象今年多少岁？\\end{array} \\]", correctOption: {single: "6"}},
+{equation: "\\[ \\begin{array}{c} 今年大象的年龄是小象的9倍，\\\\12年后大象的年龄是小象的5倍，\\\\小象今年多少岁？\\end{array} \\]", correctOption: {single: "12"}},
+{equation: "\\[ \\begin{array}{c} 今年大象的年龄是小象的5倍，\\\\15年后大象的年龄是小象的2倍，\\\\小象今年多少岁？\\end{array} \\]", correctOption: {single: "5"}},
+{equation: "\\[ \\begin{array}{c} 今年大象的年龄是小象的9倍，\\\\8年后大象的年龄是小象的7倍，\\\\小象今年多少岁？\\end{array} \\]", correctOption: {single: "24"}},
+{equation: "\\[ \\begin{array}{c} 今年大象的年龄是小象的6倍，\\\\6年后大象的年龄是小象的4倍，\\\\小象今年多少岁？\\end{array} \\]", correctOption: {single: "9"}},
+{equation: "\\[ \\begin{array}{c} 今年大象的年龄是小象的8倍，\\\\12年后大象的年龄是小象的5倍，\\\\小象今年多少岁？\\end{array} \\]", correctOption: {single: "16"}},
+{equation: "\\[ \\begin{array}{c} 今年大象的年龄是小象的9倍，\\\\28年后大象的年龄是小象的2倍，\\\\小象今年多少岁？\\end{array} \\]", correctOption: {single: "4"}},
+{equation: "\\[ \\begin{array}{c} 今年大象的年龄是小象的6倍，\\\\10年后大象的年龄是小象的4倍，\\\\小象今年多少岁？\\end{array} \\]", correctOption: {single: "15"}},
+{equation: "\\[ \\begin{array}{c} (年龄中的和倍问题)老乌龟今年的年龄是小乌龟的3倍，\\\\8年前老乌龟与小乌龟年龄之和是20岁，\\\\小乌龟今年多少岁？\\end{array} \\]", correctOption: {single: "9"}},
+{equation: "\\[ \\begin{array}{c} (年龄中的和倍问题)老乌龟今年的年龄是小乌龟的5倍，\\\\6年前老乌龟与小乌龟年龄之和是84岁，\\\\小乌龟今年多少岁？\\end{array} \\]", correctOption: {single: "16"}},
+{equation: "\\[ \\begin{array}{c} (年龄中的和倍问题)老乌龟今年的年龄是小乌龟的5倍，\\\\14年前老乌龟与小乌龟年龄之和是68岁，\\\\小乌龟今年多少岁？\\end{array} \\]", correctOption: {single: "16"}},
+{equation: "\\[ \\begin{array}{c} (年龄中的和倍问题)老乌龟今年的年龄是小乌龟的5倍，\\\\13年前老乌龟与小乌龟年龄之和是70岁，\\\\小乌龟今年多少岁？\\end{array} \\]", correctOption: {single: "16"}},
+{equation: "\\[ \\begin{array}{c} (年龄中的和倍问题)老乌龟今年的年龄是小乌龟的3倍，\\\\12年前老乌龟与小乌龟年龄之和是32岁，\\\\小乌龟今年多少岁？\\end{array} \\]", correctOption: {single: "14"}},
+{equation: "\\[ \\begin{array}{c} (年龄中的和倍问题)老乌龟今年的年龄是小乌龟的4倍，\\\\3年前老乌龟与小乌龟年龄之和是64岁，\\\\小乌龟今年多少岁？\\end{array} \\]", correctOption: {single: "14"}},
+{equation: "\\[ \\begin{array}{c} (年龄中的和倍问题)老乌龟今年的年龄是小乌龟的4倍，\\\\2年前老乌龟与小乌龟年龄之和是51岁，\\\\小乌龟今年多少岁？\\end{array} \\]", correctOption: {single: "11"}},
+{equation: "\\[ \\begin{array}{c} (年龄中的和倍问题)老乌龟今年的年龄是小乌龟的3倍，\\\\9年前老乌龟与小乌龟年龄之和是38岁，\\\\小乌龟今年多少岁？\\end{array} \\]", correctOption: {single: "14"}},
+{equation: "\\[ \\begin{array}{c} (年龄中的和倍问题)老乌龟今年的年龄是小乌龟的5倍，\\\\3年前老乌龟与小乌龟年龄之和是66岁，\\\\小乌龟今年多少岁？\\end{array} \\]", correctOption: {single: "12"}},
+{equation: "\\[ \\begin{array}{c} (年龄中的和倍问题)老乌龟今年的年龄是小乌龟的3倍，\\\\3年前老乌龟与小乌龟年龄之和是46岁，\\\\小乌龟今年多少岁？\\end{array} \\]", correctOption: {single: "13"}},
+{equation: "\\[ \\begin{array}{c} (年龄中的和倍问题)老乌龟今年的年龄是小乌龟的4倍，\\\\3年前老乌龟与小乌龟年龄之和是74岁，\\\\小乌龟今年多少岁？\\end{array} \\]", correctOption: {single: "16"}},
+{equation: "\\[ \\begin{array}{c} (年龄中的和倍问题)老乌龟今年的年龄是小乌龟的5倍，\\\\3年前老乌龟与小乌龟年龄之和是72岁，\\\\小乌龟今年多少岁？\\end{array} \\]", correctOption: {single: "13"}},
+{equation: "\\[ \\begin{array}{c} (年龄中的和倍问题)老乌龟今年的年龄是小乌龟的4倍，\\\\3年前老乌龟与小乌龟年龄之和是59岁，\\\\小乌龟今年多少岁？\\end{array} \\]", correctOption: {single: "13"}},
+{equation: "\\[ \\begin{array}{c} (年龄中的和倍问题)老乌龟今年的年龄是小乌龟的3倍，\\\\10年前老乌龟与小乌龟年龄之和是44岁，\\\\小乌龟今年多少岁？\\end{array} \\]", correctOption: {single: "16"}},
+{equation: "\\[ \\begin{array}{c} (年龄中的和倍问题)老乌龟今年的年龄是小乌龟的4倍，\\\\5年前老乌龟与小乌龟年龄之和是65岁，\\\\小乌龟今年多少岁？\\end{array} \\]", correctOption: {single: "15"}},
+{equation: "\\[ \\begin{array}{c} (年龄中的和倍问题)老乌龟今年的年龄是小乌龟的3倍，\\\\4年前老乌龟与小乌龟年龄之和是32岁，\\\\小乌龟今年多少岁？\\end{array} \\]", correctOption: {single: "10"}},
+{equation: "\\[ \\begin{array}{c} (年龄中的和倍问题)老乌龟今年的年龄是小乌龟的4倍，\\\\9年前老乌龟与小乌龟年龄之和是42岁，\\\\小乌龟今年多少岁？\\end{array} \\]", correctOption: {single: "12"}},
+{equation: "\\[ \\begin{array}{c} (年龄中的和倍问题)老乌龟今年的年龄是小乌龟的3倍，\\\\4年前老乌龟与小乌龟年龄之和是36岁，\\\\小乌龟今年多少岁？\\end{array} \\]", correctOption: {single: "11"}},
+{equation: "\\[ \\begin{array}{c} (年龄中的和倍问题)老乌龟今年的年龄是小乌龟的5倍，\\\\4年前老乌龟与小乌龟年龄之和是64岁，\\\\小乌龟今年多少岁？\\end{array} \\]", correctOption: {single: "12"}},
+{equation: "\\[ \\begin{array}{c} (年龄中的和倍问题)老乌龟今年的年龄是小乌龟的3倍，\\\\2年前老乌龟与小乌龟年龄之和是56岁，\\\\小乌龟今年多少岁？\\end{array} \\]", correctOption: {single: "15"}},
+{equation: "\\[ \\begin{array}{c} (年龄中的和倍问题)老乌龟今年的年龄是小乌龟的4倍，\\\\11年前老乌龟与小乌龟年龄之和是58岁，\\\\小乌龟今年多少岁？\\end{array} \\]", correctOption: {single: "16"}},
+{equation: "\\[ \\begin{array}{c} (年龄中的和倍问题)老乌龟今年的年龄是小乌龟的5倍，\\\\6年前老乌龟与小乌龟年龄之和是54岁，\\\\小乌龟今年多少岁？\\end{array} \\]", correctOption: {single: "11"}},
+{equation: "\\[ \\begin{array}{c} (年龄中的和倍问题)老乌龟今年的年龄是小乌龟的5倍，\\\\4年前老乌龟与小乌龟年龄之和是70岁，\\\\小乌龟今年多少岁？\\end{array} \\]", correctOption: {single: "13"}},
+{equation: "\\[ \\begin{array}{c} (年龄中的和倍问题)老乌龟今年的年龄是小乌龟的3倍，\\\\15年前老乌龟与小乌龟年龄之和是34岁，\\\\小乌龟今年多少岁？\\end{array} \\]", correctOption: {single: "16"}},
+{equation: "\\[ \\begin{array}{c} (年龄中的和倍问题)老乌龟今年的年龄是小乌龟的3倍，\\\\6年前老乌龟与小乌龟年龄之和是24岁，\\\\小乌龟今年多少岁？\\end{array} \\]", correctOption: {single: "9"}},
+{equation: "\\[ \\begin{array}{c} (年龄中的和倍问题)老乌龟今年的年龄是小乌龟的3倍，\\\\9年前老乌龟与小乌龟年龄之和是42岁，\\\\小乌龟今年多少岁？\\end{array} \\]", correctOption: {single: "15"}},
+{equation: "\\[ \\begin{array}{c} (年龄中的和倍问题)老乌龟今年的年龄是小乌龟的5倍，\\\\3年前老乌龟与小乌龟年龄之和是54岁，\\\\小乌龟今年多少岁？\\end{array} \\]", correctOption: {single: "10"}},
+{equation: "\\[ \\begin{array}{c} (年龄中的和倍问题)老乌龟今年的年龄是小乌龟的4倍，\\\\4年前老乌龟与小乌龟年龄之和是57岁，\\\\小乌龟今年多少岁？\\end{array} \\]", correctOption: {single: "13"}},
+{equation: "\\[ \\begin{array}{c} (年龄中的和倍问题)老乌龟今年的年龄是小乌龟的4倍，\\\\2年前老乌龟与小乌龟年龄之和是41岁，\\\\小乌龟今年多少岁？\\end{array} \\]", correctOption: {single: "9"}},
+{equation: "\\[ \\begin{array}{c} (年龄中的和倍问题)老乌龟今年的年龄是小乌龟的5倍，\\\\10年前老乌龟与小乌龟年龄之和是46岁，\\\\小乌龟今年多少岁？\\end{array} \\]", correctOption: {single: "11"}},
+{equation: "\\[ \\begin{array}{c} (年龄中的和倍问题)老乌龟今年的年龄是小乌龟的4倍，\\\\10年前老乌龟与小乌龟年龄之和是40岁，\\\\小乌龟今年多少岁？\\end{array} \\]", correctOption: {single: "12"}},
+{equation: "\\[ \\begin{array}{c} (年龄中的和倍问题)老乌龟今年的年龄是小乌龟的3倍，\\\\5年前老乌龟与小乌龟年龄之和是30岁，\\\\小乌龟今年多少岁？\\end{array} \\]", correctOption: {single: "10"}},
+{equation: "\\[ \\begin{array}{c} (年龄中的和倍问题)老乌龟今年的年龄是小乌龟的3倍，\\\\9年前老乌龟与小乌龟年龄之和是22岁，\\\\小乌龟今年多少岁？\\end{array} \\]", correctOption: {single: "10"}},
+{equation: "\\[ \\begin{array}{c} (年龄中的和倍问题)老乌龟今年的年龄是小乌龟的3倍，\\\\8年前老乌龟与小乌龟年龄之和是48岁，\\\\小乌龟今年多少岁？\\end{array} \\]", correctOption: {single: "16"}},
+{equation: "\\[ \\begin{array}{c} (年龄中的和倍问题)老乌龟今年的年龄是小乌龟的5倍，\\\\10年前老乌龟与小乌龟年龄之和是70岁，\\\\小乌龟今年多少岁？\\end{array} \\]", correctOption: {single: "15"}},
+{equation: "\\[ \\begin{array}{c} (年龄中的和倍问题)老乌龟今年的年龄是小乌龟的4倍，\\\\14年前老乌龟与小乌龟年龄之和是47岁，\\\\小乌龟今年多少岁？\\end{array} \\]", correctOption: {single: "15"}},
+{equation: "\\[ \\begin{array}{c} (年龄中的和倍问题)老乌龟今年的年龄是小乌龟的4倍，\\\\7年前老乌龟与小乌龟年龄之和是46岁，\\\\小乌龟今年多少岁？\\end{array} \\]", correctOption: {single: "12"}},
+{equation: "\\[ \\begin{array}{c} (年龄中的和倍问题)老乌龟今年的年龄是小乌龟的3倍，\\\\6年前老乌龟与小乌龟年龄之和是28岁，\\\\小乌龟今年多少岁？\\end{array} \\]", correctOption: {single: "10"}},
+{equation: "\\[ \\begin{array}{c} (年龄中的和倍问题)老乌龟今年的年龄是小乌龟的3倍，\\\\12年前老乌龟与小乌龟年龄之和是28岁，\\\\小乌龟今年多少岁？\\end{array} \\]", correctOption: {single: "13"}},
+{equation: "\\[ \\begin{array}{c} (年龄中的和倍问题)老乌龟今年的年龄是小乌龟的5倍，\\\\5年前老乌龟与小乌龟年龄之和是44岁，\\\\小乌龟今年多少岁？\\end{array} \\]", correctOption: {single: "9"}},
+{equation: "\\[ \\begin{array}{c} (年龄中的和倍问题)老乌龟今年的年龄是小乌龟的5倍，\\\\2年前老乌龟与小乌龟年龄之和是56岁，\\\\小乌龟今年多少岁？\\end{array} \\]", correctOption: {single: "10"}},
+{equation: "\\[ \\begin{array}{c} (年龄中的和倍问题)老乌龟今年的年龄是小乌龟的5倍，\\\\2年前老乌龟与小乌龟年龄之和是86岁，\\\\小乌龟今年多少岁？\\end{array} \\]", correctOption: {single: "15"}},
+{equation: "\\[ \\begin{array}{c} (年龄中的和倍问题)老乌龟今年的年龄是小乌龟的4倍，\\\\5年前老乌龟与小乌龟年龄之和是40岁，\\\\小乌龟今年多少岁？\\end{array} \\]", correctOption: {single: "10"}},
+{equation: "\\[ \\begin{array}{c} (年龄中的和倍问题)老乌龟今年的年龄是小乌龟的4倍，\\\\6年前老乌龟与小乌龟年龄之和是33岁，\\\\小乌龟今年多少岁？\\end{array} \\]", correctOption: {single: "9"}},
+{equation: "\\[ \\begin{array}{c} (年龄中的和倍问题)老乌龟今年的年龄是小乌龟的3倍，\\\\3年前老乌龟与小乌龟年龄之和是38岁，\\\\小乌龟今年多少岁？\\end{array} \\]", correctOption: {single: "11"}},
+{equation: "\\[ \\begin{array}{c} (年龄中的和倍问题)老乌龟今年的年龄是小乌龟的5倍，\\\\9年前老乌龟与小乌龟年龄之和是54岁，\\\\小乌龟今年多少岁？\\end{array} \\]", correctOption: {single: "12"}},
+{equation: "\\[ \\begin{array}{c} (年龄中的和倍问题)老乌龟今年的年龄是小乌龟的3倍，\\\\11年前老乌龟与小乌龟年龄之和是38岁，\\\\小乌龟今年多少岁？\\end{array} \\]", correctOption: {single: "15"}},
+{equation: "\\[ \\begin{array}{c} (年龄中的和倍问题)老乌龟今年的年龄是小乌龟的3倍，\\\\2年前老乌龟与小乌龟年龄之和是48岁，\\\\小乌龟今年多少岁？\\end{array} \\]", correctOption: {single: "13"}},
+{equation: "\\[ \\begin{array}{c} (年龄中的和倍问题)老乌龟今年的年龄是小乌龟的3倍，\\\\10年前老乌龟与小乌龟年龄之和是40岁，\\\\小乌龟今年多少岁？\\end{array} \\]", correctOption: {single: "15"}},
+{equation: "\\[ \\begin{array}{c} (年龄中的和倍问题)老乌龟今年的年龄是小乌龟的3倍，\\\\7年前老乌龟与小乌龟年龄之和是50岁，\\\\小乌龟今年多少岁？\\end{array} \\]", correctOption: {single: "16"}},
+
+
+{equation: "\\[ \\begin{array}{c} 今年小高3岁，父亲47岁，\\\\请问：多少年后，父亲年龄是小高的5倍？\\end{array} \\]", correctOption: {single: "8"}},
+{equation: "\\[ \\begin{array}{c} 今年小高7岁，父亲47岁，\\\\请问：多少年后，父亲年龄是小高的5倍？\\end{array} \\]", correctOption: {single: "3"}},
+{equation: "\\[ \\begin{array}{c} 今年小高13岁，父亲58岁，\\\\请问：多少年后，父亲年龄是小高的4倍？\\end{array} \\]", correctOption: {single: "2"}},
+{equation: "\\[ \\begin{array}{c} 今年小高11岁，父亲43岁，\\\\请问：多少年后，父亲年龄是小高的3倍？\\end{array} \\]", correctOption: {single: "5"}},
+{equation: "\\[ \\begin{array}{c} 今年小高8岁，父亲56岁，\\\\请问：多少年后，父亲年龄是小高的5倍？\\end{array} \\]", correctOption: {single: "4"}},
+{equation: "\\[ \\begin{array}{c} 今年小高5岁，父亲41岁，\\\\请问：多少年后，父亲年龄是小高的5倍？\\end{array} \\]", correctOption: {single: "4"}},
+
+{equation: "\\[ \\begin{array}{c} 今年小高4岁，父亲52岁，\\\\请问：多少年后，父亲年龄是小高的4倍？\\end{array} \\]", correctOption: {single: "12"}},
+{equation: "\\[ \\begin{array}{c} 今年小高5岁，父亲47岁，\\\\请问：多少年后，父亲年龄是小高的4倍？\\end{array} \\]", correctOption: {single: "9"}},
+{equation: "\\[ \\begin{array}{c} 今年小高5岁，父亲49岁，\\\\请问：多少年后，父亲年龄是小高的5倍？\\end{array} \\]", correctOption: {single: "6"}},
+{equation: "\\[ \\begin{array}{c} 今年小高2岁，父亲44岁，\\\\请问：多少年后，父亲年龄是小高的4倍？\\end{array} \\]", correctOption: {single: "12"}},
+{equation: "\\[ \\begin{array}{c} 今年小高11岁，父亲39岁，\\\\请问：多少年后，父亲年龄是小高的3倍？\\end{array} \\]", correctOption: {single: "3"}},
+{equation: "\\[ \\begin{array}{c} 今年小高4岁，父亲43岁，\\\\请问：多少年后，父亲年龄是小高的4倍？\\end{array} \\]", correctOption: {single: "9"}},
+{equation: "\\[ \\begin{array}{c} 今年小高7岁，父亲51岁，\\\\请问：多少年后，父亲年龄是小高的5倍？\\end{array} \\]", correctOption: {single: "4"}},
+{equation: "\\[ \\begin{array}{c} 今年小高7岁，父亲37岁，\\\\请问：多少年后，父亲年龄是小高的4倍？\\end{array} \\]", correctOption: {single: "3"}},
+{equation: "\\[ \\begin{array}{c} 今年小高1岁，父亲46岁，\\\\请问：多少年后，父亲年龄是小高的4倍？\\end{array} \\]", correctOption: {single: "14"}},
+
+{equation: "\\[ \\begin{array}{c} 今年小高1岁，父亲40岁，\\\\请问：多少年后，父亲年龄是小高的4倍？\\end{array} \\]", correctOption: {single: "12"}},
+{equation: "\\[ \\begin{array}{c} 今年小高7岁，父亲37岁，\\\\请问：多少年后，父亲年龄是小高的3倍？\\end{array} \\]", correctOption: {single: "8"}},
+{equation: "\\[ \\begin{array}{c} 今年小高10岁，父亲49岁，\\\\请问：多少年后，父亲年龄是小高的4倍？\\end{array} \\]", correctOption: {single: "3"}},
+{equation: "\\[ \\begin{array}{c} 今年小高5岁，父亲35岁，\\\\请问：多少年后，父亲年龄是小高的3倍？\\end{array} \\]", correctOption: {single: "10"}},
+{equation: "\\[ \\begin{array}{c} 今年小高7岁，父亲43岁，\\\\请问：多少年后，父亲年龄是小高的4倍？\\end{array} \\]", correctOption: {single: "5"}},
+{equation: "\\[ \\begin{array}{c} 今年小高8岁，父亲53岁，\\\\请问：多少年后，父亲年龄是小高的4倍？\\end{array} \\]", correctOption: {single: "7"}},
+
+
+{equation: "\\[ \\begin{array}{c} 今年小高1岁，父亲37岁，\\\\请问：多少年后，父亲年龄是小高的5倍？\\end{array} \\]", correctOption: {single: "8"}},
+{equation: "\\[ \\begin{array}{c} 今年小高9岁，父亲53岁，\\\\请问：多少年后，父亲年龄是小高的5倍？\\end{array} \\]", correctOption: {single: "2"}},
+{equation: "\\[ \\begin{array}{c} 今年小高4岁，父亲26岁，\\\\请问：多少年后，父亲年龄是小高的3倍？\\end{array} \\]", correctOption: {single: "7"}},
+{equation: "\\[ \\begin{array}{c} 今年小高6岁，父亲54岁，\\\\请问：多少年后，父亲年龄是小高的5倍？\\end{array} \\]", correctOption: {single: "6"}},
+{equation: "\\[ \\begin{array}{c} 今年小高5岁，父亲38岁，\\\\请问：多少年后，父亲年龄是小高的4倍？\\end{array} \\]", correctOption: {single: "6"}},
+{equation: "\\[ \\begin{array}{c} 今年小高1岁，父亲31岁，\\\\请问：多少年后，父亲年龄是小高的4倍？\\end{array} \\]", correctOption: {single: "9"}},
+{equation: "\\[ \\begin{array}{c} 今年小高11岁，父亲50岁，\\\\请问：多少年后，父亲年龄是小高的4倍？\\end{array} \\]", correctOption: {single: "2"}},
+{equation: "\\[ \\begin{array}{c} 今年小高1岁，父亲34岁，\\\\请问：多少年后，父亲年龄是小高的4倍？\\end{array} \\]", correctOption: {single: "10"}},
+
+{equation: "\\[ \\begin{array}{c} 今年小高1岁，父亲49岁，\\\\请问：多少年后，父亲年龄是小高的4倍？\\end{array} \\]", correctOption: {single: "15"}},
+{equation: "\\[ \\begin{array}{c} 今年小高5岁，父亲32岁，\\\\请问：多少年后，父亲年龄是小高的4倍？\\end{array} \\]", correctOption: {single: "4"}},
+{equation: "\\[ \\begin{array}{c} 今年小高10岁，父亲52岁，\\\\请问：多少年后，父亲年龄是小高的4倍？\\end{array} \\]", correctOption: {single: "4"}},
+
+
+
+{equation: "\\[ \\begin{array}{c} 今年小高9岁，父亲54岁，\\\\请问：多少年后，父亲年龄是小高的4倍？\\end{array} \\]", correctOption: {single: "6"}},
+{equation: "\\[ \\begin{array}{c} 今年小高6岁，父亲36岁，\\\\请问：多少年后，父亲年龄是小高的3倍？\\end{array} \\]", correctOption: {single: "9"}},
+{equation: "\\[ \\begin{array}{c} 今年小高4岁，父亲34岁，\\\\请问：多少年后，父亲年龄是小高的4倍？\\end{array} \\]", correctOption: {single: "6"}},
+{equation: "\\[ \\begin{array}{c} 今年小高12岁，父亲44岁，\\\\请问：多少年后，父亲年龄是小高的3倍？\\end{array} \\]", correctOption: {single: "4"}},
+{equation: "\\[ \\begin{array}{c} 今年小高10岁，父亲58岁，\\\\请问：多少年后，父亲年龄是小高的5倍？\\end{array} \\]", correctOption: {single: "2"}},
+
+{equation: "\\[ \\begin{array}{c} 今年小高5岁，父亲35岁，\\\\请问：多少年后，父亲年龄是小高的4倍？\\end{array} \\]", correctOption: {single: "5"}},
+
+
+
+
+
+
+
+
+
+
+    
+    ];
+
+        let state = {
+            currentQuestionBank: null,
+            currentEquationSystem: null,
+            score: 0,
+            questionsAnswered: 0,
+            roundsScores: [],
+            currentTopic: '',
+            currentQuestionIndex: 0,
+            isRandomMode: false,
+            isChallengeMode: false,
+        };
+
+        const updateElement = (id, value) => document.getElementById(id).textContent = value;
+
+        const startChallengeMode = () => {
+            state.isChallengeMode = true;
+            resetState();
+            updateElement('current-mode-display', '当前模式: 闯关');
+            startNewRound();
+        };
+
+        const toggleMode = (mode) => {
+            state.isRandomMode = mode;
+            state.isChallengeMode = false;
+            resetState();
+            updateElement('current-mode-display', state.isRandomMode ? '当前模式: 随机' : '当前模式: 顺序');
+            startNewRound();
+        };
+
+        const resetState = () => {
+            state.currentQuestionIndex = 0;
+            state.score = 0;
+            state.questionsAnswered = 0;
+            updateScoreboard();
+        };
+
+        const loadQuestions = (questionBank, topic) => {
+            state.currentQuestionBank = questionBank;
+            state.currentTopic = topic;
+            resetState();
+            updateElement('current-topic', `玖数学: ${state.currentTopic}`);
+            updateElement('current-mode-display', '当前模式: 顺序');
+            startNewRound();
+        };
+
+const toggleIframe = () => {
+    const iframe = document.getElementById('iframe-container');
+    const button = document.getElementById('toggle-iframe-button');
+    if (iframe.style.display === 'none' || iframe.style.display === '') {
+        iframe.style.display = 'block';
+        button.textContent = '隐藏';
+    } else {
+        iframe.style.display = 'none';
+        button.textContent = '显示';
+    }
+};
+
+
+const copyCurrentTopic = () => {
+    const currentTopic = document.getElementById('equation').innerText;
+    navigator.clipboard.writeText(currentTopic).then(() => {
+        showTemporaryMessage('题目已复制!', 1000);
+    }).catch(err => {
+        console.error('复制失败', err);
+    });
+};
+
+const showTemporaryMessage = (message, duration) => {
+    const messageElement = document.createElement('div');
+    messageElement.textContent = message;
+    messageElement.style.position = 'fixed';
+    messageElement.style.top = '50%';
+    messageElement.style.left = '50%';
+    messageElement.style.transform = 'translate(-50%, -50%)';
+    messageElement.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+    messageElement.style.color = 'white';
+    messageElement.style.padding = '10px';
+    messageElement.style.borderRadius = '5px';
+    document.body.appendChild(messageElement);
+
+    setTimeout(() => {
+        document.body.removeChild(messageElement);
+    }, duration);
+};
+
+
+
+
+        const generateEquationSystem = () => {
+            let question = getQuestion();
+
+            const { equation, img, correctOption, incorrectOptions } = question;
+
+            let equationHTML = equation;
+            if (img && img.trim()) equationHTML += `<br><img src="${img}" alt="题目图片">`;
+
+            if (correctOption.single || correctOption.dual) {
+                state.currentEquationSystem = { equationSystem: equationHTML, correctOption };
+                toggleAnswerContainers(correctOption);
+                document.getElementById('submit-button').style.display = 'block';
+            } else {
+                const correctIndex = Math.floor(Math.random() * 4);
+                const options = [...incorrectOptions];
+                options.splice(correctIndex, 0, correctOption);
+
+                state.currentEquationSystem = {
+                    equationSystem: equationHTML,
+                    correctIndex,
+                    options,
+                    correctOption
+                };
+                toggleAnswerContainers(correctOption, true);
+                document.getElementById('submit-button').style.display = 'none';
+            }
+        };
+
+        const toggleAnswerContainers = (correctOption, showOptions = false) => {
+            document.getElementById('options').style.display = showOptions ? 'block' : 'none';
+            document.getElementById('single-answer-container').style.display = correctOption.single ? 'block' : 'none';
+            document.getElementById('dual-answer-container').style.display = correctOption.dual ? 'block' : 'none';
+        };
+
+        const getQuestion = () => {
+            if (state.isRandomMode) {
+                const randomIndex = Math.floor(Math.random() * state.currentQuestionBank.length);
+                return state.currentQuestionBank[randomIndex];
+            } else {
+                if (state.currentQuestionIndex >= state.currentQuestionBank.length) state.currentQuestionIndex = 0;
+                return state.currentQuestionBank[state.currentQuestionIndex++];
+            }
+        };
+
+        const generateOptions = () => {
+            if (state.currentEquationSystem.options) {
+                const labels = ['A', 'B', 'C', 'D'];
+                return state.currentEquationSystem.options.map((option, index) =>
+                    `<div class="option" onclick="checkAnswer(${index}, '${option.replace(/\\/g, '\\\\')}')">
+                        <span>${labels[index]}. \\(${option}\\)</span>
+                    </div>`
+                ).join('');
+            }
+            return '';
+        };
+
+        const displayEquationSystem = () => {
+            generateEquationSystem();
+            document.getElementById('equation').innerHTML = state.currentEquationSystem.equationSystem;
+            if (state.currentEquationSystem.options) {
+                document.getElementById('options').innerHTML = generateOptions();
+            }
+            MathJax.typeset();
+        };
+
+        const startNewRound = () => {
+            if (isRoundComplete()) {
+                state.roundsScores.push({ topic: state.currentTopic, score: state.score, totalQuestions: state.questionsAnswered });
+                resetState();
+                updateRoundsScoreboard();
+            }
+            displayEquationSystem();
+        };
+
+        const isRoundComplete = () => {
+            let totalQuestionsInRound = state.isChallengeMode ? state.currentQuestionBank.length : 10;
+            return state.questionsAnswered >= totalQuestionsInRound;
+        };
+
+        const checkAnswer = (selectedIndex, userAnswer) => {
+            let isCorrect = false;
+            let correctAnswer = '';
+
+            if (state.currentEquationSystem.correctOption.single) {
+                userAnswer = document.getElementById('answer-input').value.trim();
+                correctAnswer = state.currentEquationSystem.correctOption.single;
+                isCorrect = userAnswer === correctAnswer;
+            } else if (state.currentEquationSystem.correctOption.dual) {
+                const userAnswerX = document.getElementById('answer-input-x').value.trim();
+                const userAnswerY = document.getElementById('answer-input-y').value.trim();
+                correctAnswer = `x=${state.currentEquationSystem.correctOption.dual.x}, y=${state.currentEquationSystem.correctOption.dual.y}`;
+                userAnswer = `x=${userAnswerX}, y=${userAnswerY}`;
+                isCorrect = userAnswerX === state.currentEquationSystem.correctOption.dual.x && userAnswerY === state.currentEquationSystem.correctOption.dual.y;
+            } else {
+                isCorrect = selectedIndex === state.currentEquationSystem.correctIndex;
+                correctAnswer = state.currentEquationSystem.correctOption;
+            }
+
+            addResultRow(state.currentEquationSystem.equationSystem, userAnswer, correctAnswer, isCorrect);
+            if (isCorrect) state.score++;
+            state.questionsAnswered++;
+            updateScoreboard();
+            startNewRound();
+            MathJax.typeset();
+        };
+
+        const addResultRow = (equation, userAnswer, correctAnswer, isCorrect) => {
+            let resultRow = document.createElement('tr');
+            resultRow.innerHTML = `
+                <td>${equation}</td>
+                <td>\\(${userAnswer}\\)</td>
+                <td>\\(${correctAnswer}\\)</td>
+                <td style="color: ${isCorrect ? 'green' : 'red'};">${isCorrect ? '正确' : '错误'}</td>
+            `;
+            document.querySelector('#result-table tbody').insertBefore(resultRow, document.querySelector('#result-table tbody').firstChild);
+        };
+
+        const handleKeyUp = (event, nextInputId = null) => {
+            if (event.key === 'Enter') {
+                if (nextInputId) {
+                    document.getElementById(nextInputId).focus();
+                } else {
+                    checkAnswer();
+                }
+            }
+        };
+
+        const updateScoreboard = () => {
+            updateElement('score', state.score);
+            updateElement('answered', state.questionsAnswered);
+        };
+
+        const updateRoundsScoreboard = () => {
+            const roundsScoresText = state.roundsScores.map((round, index) =>
+                `第${index + 1}轮 (${round.topic}): ${round.score}分共${round.totalQuestions}题`
+            ).join('<br>');
+            document.getElementById('rounds-scoreboard').innerHTML = roundsScoresText;
+        };
+
+window.onload = () => {
+    loadQuestions(年龄问题05综合测试, '年龄问题05综合测试');
+    state.isRandomMode = true;  // 初始化为随机模式
+    state.isChallengeMode = false;
+    startNewRound();
+};
+
+    </script>
+</body>
+</html>

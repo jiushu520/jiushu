@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <title>玖数学练习</title>
+    <style>
+        body {
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: lightblue;
+        }
+        #game-container {
+            width: 90%;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #equation, #answer-input {
+            text-align: center;
+            width: 100%;
+            font-size: 20px;
+        }
+        #answer-input {
+            margin: 20px 0;
+        }
+        #button-container {
+            margin-top: 20px;
+        }
+        #result-table, #history-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: center;
+        }
+        iframe#iframe-container {
+            width: 100%;
+            height: 300px;
+            border: none;
+            display: none;
+        }
+        .correct {
+            color: green;
+        }
+        .incorrect {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <h3>玖数学测训系统</h3>
+        <div id="equation"></div>
+        <input type="text" id="answer-input" placeholder="输入你的答案">
+        <button id="submit-button">提交答案</button>
+        <div id="button-container">
+            <button onclick="generateEquation()">生成随机方程</button>
+            <button id="toggle-iframe-button" onclick="toggleIframe()">交互</button>
+            <button id="copy-button" onclick="copyCurrentTopic()">复制当前题目</button>
+        </div>
+        <div id="scoreboard">
+            现在得分: <span id="score">0</span>,
+            已回答: <span id="answered">0</span>
+        </div>
+        <iframe id="iframe-container" src="https://www.geogebra.org/classic"></iframe>
+        <table id="result-table">
+            <thead>
+                <tr>
+                    <th>题目</th>
+                    <th>你的答案</th>
+                    <th>正确答案</th>
+                    <th>结果</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <script>
+        let answeredCount = 0;
+
+        window.onload = function() {
+            generateEquation();
+            document.getElementById('submit-button').addEventListener('click', submitAnswer);
+            document.getElementById('answer-input').addEventListener('keydown', function(event) {
+                if (event.key === 'Enter') {
+                    submitAnswer();
+                }
+            });
+        };
+
+        function generateEquation() {
+            const a = Math.floor(Math.random() * 10);
+            const b = Math.floor(Math.random() * 10);
+            const equation = `${a} + ${b} = ?`;
+            document.getElementById('equation').textContent = equation;
+            document.getElementById('answer-input').value = '';
+            document.getElementById('answer-input').focus();
+        }
+
+        function submitAnswer() {
+            const userAnswer = parseInt(document.getElementById('answer-input').value);
+            const equation = document.getElementById('equation').textContent;
+            const [part1, part2] = equation.split(' + ');
+            const a = parseInt(part1);
+            const b = parseInt(part2.split(' = ')[0]);
+            const correctAnswer = a + b;
+
+            const result = userAnswer === correctAnswer ? '正确' : '错误';
+            const resultClass = userAnswer === correctAnswer ? 'correct' : 'incorrect';
+            updateScore(result === '正确');
+            updateResultTable(equation, userAnswer, correctAnswer, result, resultClass);
+
+            answeredCount++;
+            if (answeredCount >= 10) {
+                setTimeout(() => {
+                    const currentScore = parseInt(document.getElementById('score').textContent);
+                    alert(`本轮结束！本轮得分：${currentScore}`);
+                    resetGame();  // 重置游戏
+                }, 100);  // 延迟以确保最后一道题目被正确记录
+            } else {
+                generateEquation();
+            }
+        }
+
+        function updateScore(isCorrect) {
+            const score = parseInt(document.getElementById('score').textContent);
+            const answered = parseInt(document.getElementById('answered').textContent);
+            document.getElementById('score').textContent = isCorrect ? score + 1 : score;
+            document.getElementById('answered').textContent = answered + 1;
+        }
+
+
+function updateResultTable(equation, userAnswer, correctAnswer, result, resultClass) {
+    const tbody = document.getElementById('result-table').querySelector('tbody');
+    const row = tbody.insertRow(0);  // 修改为插入到表格顶部
+    row.insertCell(0).textContent = equation;
+    row.insertCell(1).textContent = userAnswer;
+    row.insertCell(2).textContent = correctAnswer;
+    const resultCell = row.insertCell(3);
+    resultCell.textContent = result;
+    resultCell.classList.add(resultClass);
+}
+
+
+
+        function resetGame() {
+            document.getElementById('score').textContent = '0';  // 重置本轮得分
+            document.getElementById('answered').textContent = '0';  // 重置已回答计数
+            const tbody = document.getElementById('result-table').querySelector('tbody');
+            tbody.innerHTML = '';  // 清空表格内容
+            answeredCount = 0;
+            generateEquation();
+        }
+
+        function toggleIframe() {
+            const iframe = document.getElementById('iframe-container');
+            iframe.style.display = iframe.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function copyCurrentTopic() {
+            const equationText = document.getElementById('equation').textContent;
+            navigator.clipboard.writeText(equationText).then(() => {
+                alert('题目已复制到剪贴板');
+            }, () => {
+                alert('复制失败');
+            });
+        }
+    </script>
+</body>
+</html>

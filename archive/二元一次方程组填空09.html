@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <title>玖数学练习</title>
+    <style>
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: lightblue;
+        }
+
+        #game-container {
+            width: 100%;
+            height: 100%;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #equation, #answer-input, #answer-input-x, #answer-input-y, #options {
+            text-align: center;
+            width: 100%;
+            font-size: 20px;
+        }
+
+        #answer-input, #answer-input-x, #answer-input-y {
+            margin: 20px 0;
+        }
+
+        .option {
+            display: inline-block;
+            margin: 0 10px;
+            padding: 10px;
+            border: 1px solid #000;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        #button-container {
+            margin-top: 20px;
+        }
+
+        #result-table-container {
+            margin-top: 20px;
+            width: 100%;
+            height: calc(50% - 60px); /* 调整高度以适应 */
+                    }
+
+        #result-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        #result-table th, #result-table td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: center;
+        }
+        iframe#iframe-container {
+        width: 100%; /* 设置全屏宽度 */
+        height: 500px; /* 设置高度为500px */
+        border: none; /* 去掉边框 */
+        display: none; /* 初始隐藏iframe */
+    }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <h3>玖数学测训系统</h3>
+        <div id="current-topic"></div>
+        <div id="equation"></div>
+        <div id="options" style="display: none;"></div>
+        <div id="single-answer-container" style="display: none;">
+            <input type="text" id="answer-input" placeholder="输入你的答案" onkeyup="handleKeyUp(event)">
+        </div>
+        <div id="dual-answer-container" style="display: none;">
+                x=<input type="text" id="answer-input-x" placeholder="x的值" onkeyup="handleKeyUp(event, 'answer-input-y')">
+                y=<input type="text" id="answer-input-y" placeholder="y的值" onkeyup="handleKeyUp(event)">
+        </div>
+        <button id="submit-button" onclick="checkAnswer()">提交答案</button>
+        <div id="button-container">
+            <button onclick="toggleMode(false)">顺序</button>
+            <button onclick="toggleMode(true)">随机</button>
+            <button onclick="startChallengeMode()">闯关</button>
+            <button id="toggle-iframe-button" onclick="toggleIframe()">交互</button>
+            <button id="copy-button" onclick="copyCurrentTopic()">复制当前题目</button>
+
+<br>
+            <span id="current-mode-display">当前模式: 顺序</span>
+        </div>
+        <div id="scoreboard">现在得分:<span id="score">0</span>,已回答:<span id="answered">0</span></div>
+        <iframe id="iframe-container" src="https://www.geogebra.org/classic"></iframe>
+        <div id="result-table-container">
+            <table id="result-table">
+                <thead>
+                    <tr>
+                        <th>题目</th>
+                        <th>你的答案</th>
+                        <th>正确答案</th>
+                        <th>结果</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div id="rounds-scoreboard"></div>
+    </div>
+    <script>
+        const 二元一次方程组填空09 = [
+
+
+
+
+
+
+ {
+        equation: "\\[ \\begin{array}{c} \\text{队长给战士们发糖果．} \\\\ \\text{如果发给每名战士5颗糖果，还剩下108颗糖果；} \\\\ \\text{如果发给每名战士13颗糖果，就会缺4颗糖果．} \\\\ \\text{那么一共有____名战士。} \\end{array} \\]",
+       correctOption: {single: "14"}
+    },
+
+{equation: "\\[ \\begin{array}{c} \\text{用浓度为88%溶液A和浓度为87%溶液B,配制成87.25%浓度200毫升；} \\\\ \\text{需要溶液A______毫升.} \\end{array} \\]", correctOption: {single: "50"}},
+
+{equation: "\\[ \\begin{array}{c} \\text{一条小河上,A在B上游416千米处。甲、乙两船分别从A、B两地同时出发，}\\\\ \\text{若相向而行，8小时后相遇；若同方而行，13小时后甲被乙追上。}\\\\ \\text{则甲船的静水速度是每小时____千米？} \\end{array} \\]", correctOption: {single: "10"}},
+
+
+{equation: "\\[ \\begin{array}{c} \\text{有一片牧场，每天都在均匀地生长草，每头牛每天吃1份草。}\\\\ \\text{如果在牧场上放养10头牛，那么7天能把草吃完；} \\\\ \\text{如果只放养30头牛，那么2天能把草吃完。如果一开始放养16头牛，几天吃完？} \\end{array} \\]", correctOption: {single: "4"}},
+
+
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作91天完成，乙单干则工作78天完成。} \\\\ \\text{如果甲先干13天，接着乙加入，那么一起完成剩余工作还需多少天？} \\end{array} \\]", correctOption: {single: "50"}},
+
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共40个头;鸡比兔多22只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "31", "y": "9"}}} ,
+
+  { "equation": "\\[ \\begin{array}{cc}鸡兔同笼共34个头;有96只脚，\\\\ 请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": { "dual": { "x": "20", "y": "14" } } },
+
+
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为7:3。}\\\\ \\text{阿土伯给小山羊26元后，阿土伯与小山羊的钱数比变为3:5。}\\\\ \\text{那么阿土伯原来有多少元钱？} \\end{array} \\]", correctOption: {single: "56"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为7:6。}\\\\ \\text{阿土伯给小山羊57元后，阿土伯与小山羊的钱数比变为5:7。}\\\\ \\text{那么阿土伯原来有多少元钱？} \\end{array} \\]", correctOption: {single: "252"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为6:5。}\\\\ \\text{阿土伯给小山羊24元后，阿土伯与小山羊的钱数比变为2:3。}\\\\ \\text{那么阿土伯原来有多少元钱？} \\end{array} \\]", correctOption: {single: "90"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为3:2。}\\\\ \\text{阿土伯给小山羊8元后，阿土伯与小山羊的钱数比变为5:6。}\\\\ \\text{那么阿土伯原来有多少元钱？} \\end{array} \\]", correctOption: {single: "33"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为2:1。}\\\\ \\text{阿土伯给小山羊27元后，阿土伯与小山羊的钱数比变为1:5。}\\\\ \\text{那么阿土伯原来有多少元钱？} \\end{array} \\]", correctOption: {single: "36"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为4:1。}\\\\ \\text{阿土伯给小山羊20元后，阿土伯与小山羊的钱数比变为2:3。}\\\\ \\text{那么阿土伯原来有多少元钱？} \\end{array} \\]", correctOption: {single: "40"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为7:5。}\\\\ \\text{阿土伯给小山羊16元后，阿土伯与小山羊的钱数比变为1:3。}\\\\ \\text{那么阿土伯原来有多少元钱？} \\end{array} \\]", correctOption: {single: "28"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为7:2。}\\\\ \\text{阿土伯给小山羊68元后，阿土伯与小山羊的钱数比变为2:3。}\\\\ \\text{那么阿土伯原来有多少元钱？} \\end{array} \\]", correctOption: {single: "140"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为5:3。}\\\\ \\text{阿土伯给小山羊52元后，阿土伯与小山羊的钱数比变为3:7。}\\\\ \\text{那么阿土伯原来有多少元钱？} \\end{array} \\]", correctOption: {single: "100"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为7:3。}\\\\ \\text{阿土伯给小山羊22元后，阿土伯与小山羊的钱数比变为1:2。}\\\\ \\text{那么阿土伯原来有多少元钱？} \\end{array} \\]", correctOption: {single: "42"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为5:4。}\\\\ \\text{阿土伯给小山羊105元后，阿土伯与小山羊的钱数比变为1:5。}\\\\ \\text{那么阿土伯原来有多少元钱？} \\end{array} \\]", correctOption: {single: "150"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为5:4。}\\\\ \\text{阿土伯给小山羊68元后，阿土伯与小山羊的钱数比变为2:5。}\\\\ \\text{那么阿土伯原来有多少元钱？} \\end{array} \\]", correctOption: {single: "140"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为7:6。}\\\\ \\text{阿土伯给小山羊15元后，阿土伯与小山羊的钱数比变为1:3。}\\\\ \\text{那么阿土伯原来有多少元钱？} \\end{array} \\]", correctOption: {single: "28"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为4:3。}\\\\ \\text{阿土伯给小山羊18元后，阿土伯与小山羊的钱数比变为2:3。}\\\\ \\text{那么阿土伯原来有多少元钱？} \\end{array} \\]", correctOption: {single: "60"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为6:5。}\\\\ \\text{阿土伯给小山羊124元后，阿土伯与小山羊的钱数比变为1:6。}\\\\ \\text{那么阿土伯原来有多少元钱？} \\end{array} \\]", correctOption: {single: "168"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为5:4。}\\\\ \\text{阿土伯给小山羊12元后，阿土伯与小山羊的钱数比变为1:2。}\\\\ \\text{那么阿土伯原来有多少元钱？} \\end{array} \\]", correctOption: {single: "30"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为6:1。}\\\\ \\text{阿土伯给小山羊48元后，阿土伯与小山羊的钱数比变为2:3。}\\\\ \\text{那么阿土伯原来有多少元钱？} \\end{array} \\]", correctOption: {single: "90"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为2:1。}\\\\ \\text{阿土伯给小山羊20元后，阿土伯与小山羊的钱数比变为1:3。}\\\\ \\text{那么阿土伯原来有多少元钱？} \\end{array} \\]", correctOption: {single: "32"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为5:1。}\\\\ \\text{阿土伯给小山羊110元后，阿土伯与小山羊的钱数比变为3:5。}\\\\ \\text{那么阿土伯原来有多少元钱？} \\end{array} \\]", correctOption: {single: "200"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为6:1。}\\\\ \\text{阿土伯给小山羊21元后，阿土伯与小山羊的钱数比变为3:4。}\\\\ \\text{那么阿土伯原来有多少元钱？} \\end{array} \\]", correctOption: {single: "42"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为3:2。}\\\\ \\text{阿土伯给小山羊65元后，阿土伯与小山羊的钱数比变为1:5。}\\\\ \\text{那么阿土伯原来有多少元钱？} \\end{array} \\]", correctOption: {single: "90"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为7:5。}\\\\ \\text{阿土伯给小山羊55元后，阿土伯与小山羊的钱数比变为2:3。}\\\\ \\text{那么阿土伯原来有多少元钱？} \\end{array} \\]", correctOption: {single: "175"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为3:1。}\\\\ \\text{阿土伯给小山羊45元后，阿土伯与小山羊的钱数比变为3:4。}\\\\ \\text{那么阿土伯原来有多少元钱？} \\end{array} \\]", correctOption: {single: "105"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为5:1。}\\\\ \\text{阿土伯给小山羊75元后，阿土伯与小山羊的钱数比变为5:6。}\\\\ \\text{那么阿土伯原来有多少元钱？} \\end{array} \\]", correctOption: {single: "165"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为7:3。}\\\\ \\text{阿土伯给小山羊29元后，阿土伯与小山羊的钱数比变为2:5。}\\\\ \\text{那么阿土伯原来有多少元钱？} \\end{array} \\]", correctOption: {single: "49"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为5:3。}\\\\ \\text{阿土伯给小山羊60元后，阿土伯与小山羊的钱数比变为1:3。}\\\\ \\text{那么阿土伯原来有多少元钱？} \\end{array} \\]", correctOption: {single: "100"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为6:5。}\\\\ \\text{阿土伯给小山羊11元后，阿土伯与小山羊的钱数比变为5:6。}\\\\ \\text{那么阿土伯原来有多少元钱？} \\end{array} \\]", correctOption: {single: "66"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为2:1。}\\\\ \\text{阿土伯给小山羊5元后，阿土伯与小山羊的钱数比变为1:3。}\\\\ \\text{那么阿土伯原来有多少元钱？} \\end{array} \\]", correctOption: {single: "8"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为7:5。}\\\\ \\text{阿土伯给小山羊51元后，阿土伯与小山羊的钱数比变为5:6。}\\\\ \\text{那么阿土伯原来有多少元钱？} \\end{array} \\]", correctOption: {single: "231"}},
+{equation: "\\[ \\begin{array}{c} \\text{(和不变)阿土伯与小山羊的钱数比为3:2。}\\\\ \\text{阿土伯给小山羊51元后，阿土伯与小山羊的钱数比变为2:7。}\\\\ \\text{那么阿土伯原来有多少元钱？} \\end{array} \\]", correctOption: {single: "81"}},
+
+            
+
+
+
+ {
+        equation: "\\[ \\begin{array}{c} \\text{队长给战士们发糖果．} \\\\ \\text{如果发给每名战士5颗糖果，还剩下108颗糖果；} \\\\ \\text{如果发给每名战士13颗糖果，就会缺4颗糖果．} \\\\ \\text{那么一共有____名战士。} \\end{array} \\]",
+       correctOption: {single: "14"}
+    },
+    {
+        equation: "\\[ \\begin{array}{c} \\text{队长给战士们发糖果．} \\\\ \\text{如果发给每名战士2颗糖果，还剩下46颗糖果；} \\\\ \\text{如果发给每名战士8颗糖果，就会缺2颗糖果．} \\\\ \\text{那么一共有____名战士。} \\end{array} \\]",
+       correctOption: {single: "8"}
+    },
+    {
+        equation: "\\[ \\begin{array}{c} \\text{队长给战士们发糖果．} \\\\ \\text{如果发给每名战士3颗糖果，还剩下61颗糖果；} \\\\ \\text{如果发给每名战士9颗糖果，就会缺5颗糖果．} \\\\ \\text{那么一共有____名战士。} \\end{array} \\]",
+       correctOption: {single: "11"}
+    },
+    {
+        equation: "\\[ \\begin{array}{c} \\text{队长给战士们发糖果．} \\\\ \\text{如果发给每名战士6颗糖果，还剩下76颗糖果；} \\\\ \\text{如果发给每名战士12颗糖果，就会缺2颗糖果．} \\\\ \\text{那么一共有____名战士。} \\end{array} \\]",
+       correctOption: {single: "13"}
+    },
+    {
+        equation: "\\[ \\begin{array}{c} \\text{队长给战士们发糖果．} \\\\ \\text{如果发给每名战士4颗糖果，还剩下5颗糖果；} \\\\ \\text{如果发给每名战士5颗糖果，就会缺6颗糖果．} \\\\ \\text{那么一共有____名战士。} \\end{array} \\]",
+       correctOption: {single: "11"}
+    },
+    {
+        equation: "\\[ \\begin{array}{c} \\text{队长给战士们发糖果．} \\\\ \\text{如果发给每名战士2颗糖果，还剩下25颗糖果；} \\\\ \\text{如果发给每名战士5颗糖果，就会缺5颗糖果．} \\\\ \\text{那么一共有____名战士。} \\end{array} \\]",
+       correctOption: {single: "10"}
+    },
+    {
+        equation: "\\[ \\begin{array}{c} \\text{队长给战士们发糖果．} \\\\ \\text{如果发给每名战士5颗糖果，还剩下21颗糖果；} \\\\ \\text{如果发给每名战士10颗糖果，就会缺4颗糖果．} \\\\ \\text{那么一共有____名战士。} \\end{array} \\]",
+       correctOption: {single: "5"}
+    },
+    {
+        equation: "\\[ \\begin{array}{c} \\text{队长给战士们发糖果．} \\\\ \\text{如果发给每名战士2颗糖果，还剩下88颗糖果；} \\\\ \\text{如果发给每名战士9颗糖果，就会缺3颗糖果．} \\\\ \\text{那么一共有____名战士。} \\end{array} \\]",
+       correctOption: {single: "13"}
+    },
+    {
+        equation: "\\[ \\begin{array}{c} \\text{队长给战士们发糖果．} \\\\ \\text{如果发给每名战士2颗糖果，还剩下24颗糖果；} \\\\ \\text{如果发给每名战士4颗糖果，就会缺2颗糖果．} \\\\ \\text{那么一共有____名战士。} \\end{array} \\]",
+       correctOption: {single: "13"}
+    },
+    {
+        equation: "\\[ \\begin{array}{c} \\text{队长给战士们发糖果．} \\\\ \\text{如果发给每名战士4颗糖果，还剩下86颗糖果；} \\\\ \\text{如果发给每名战士11颗糖果，就会缺5颗糖果．} \\\\ \\text{那么一共有____名战士。} \\end{array} \\]",
+       correctOption: {single: "13"}
+    },
+    {
+        equation: "\\[ \\begin{array}{c} \\text{队长给战士们发糖果．} \\\\ \\text{如果发给每名战士3颗糖果，还剩下41颗糖果；} \\\\ \\text{如果发给每名战士8颗糖果，就会缺4颗糖果．} \\\\ \\text{那么一共有____名战士。} \\end{array} \\]",
+       correctOption: {single: "9"}
+    },
+    {
+        equation: "\\[ \\begin{array}{c} \\text{队长给战士们发糖果．} \\\\ \\text{如果发给每名战士4颗糖果，还剩下31颗糖果；} \\\\ \\text{如果发给每名战士8颗糖果，就会缺5颗糖果．} \\\\ \\text{那么一共有____名战士。} \\end{array} \\]",
+       correctOption: {single: "9"}
+    },
+    {
+        equation: "\\[ \\begin{array}{c} \\text{队长给战士们发糖果．} \\\\ \\text{如果发给每名战士5颗糖果，还剩下102颗糖果；} \\\\ \\text{如果发给每名战士12颗糖果，就会缺3颗糖果．} \\\\ \\text{那么一共有____名战士。} \\end{array} \\]",
+       correctOption: {single: "15"}
+    },
+    {
+        equation: "\\[ \\begin{array}{c} \\text{队长给战士们发糖果．} \\\\ \\text{如果发给每名战士4颗糖果，还剩下37颗糖果；} \\\\ \\text{如果发给每名战士12颗糖果，就会缺3颗糖果．} \\\\ \\text{那么一共有____名战士。} \\end{array} \\]",
+       correctOption: {single: "5"}
+    },
+    {
+        equation: "\\[ \\begin{array}{c} \\text{队长给战士们发糖果．} \\\\ \\text{如果发给每名战士5颗糖果，还剩下30颗糖果；} \\\\ \\text{如果发给每名战士14颗糖果，就会缺6颗糖果．} \\\\ \\text{那么一共有____名战士。} \\end{array} \\]",
+       correctOption: {single: "4"}
+    },
+    {
+        equation: "\\[ \\begin{array}{c} \\text{队长给战士们发糖果．} \\\\ \\text{如果发给每名战士6颗糖果，还剩下70颗糖果；} \\\\ \\text{如果发给每名战士14颗糖果，就会缺2颗糖果．} \\\\ \\text{那么一共有____名战士。} \\end{array} \\]",
+       correctOption: {single: "9"}
+    },
+    {
+        equation: "\\[ \\begin{array}{c} \\text{队长给战士们发糖果．} \\\\ \\text{如果发给每名战士3颗糖果，还剩下40颗糖果；} \\\\ \\text{如果发给每名战士7颗糖果，就会缺4颗糖果．} \\\\ \\text{那么一共有____名战士。} \\end{array} \\]",
+       correctOption: {single: "11"}
+    },
+    {
+        equation: "\\[ \\begin{array}{c} \\text{队长给战士们发糖果．} \\\\ \\text{如果发给每名战士5颗糖果，还剩下51颗糖果；} \\\\ \\text{如果发给每名战士13颗糖果，就会缺5颗糖果．} \\\\ \\text{那么一共有____名战士。} \\end{array} \\]",
+       correctOption: {single: "7"}
+    },
+    {
+        equation: "\\[ \\begin{array}{c} \\text{队长给战士们发糖果．} \\\\ \\text{如果发给每名战士6颗糖果，还剩下103颗糖果；} \\\\ \\text{如果发给每名战士15颗糖果，就会缺5颗糖果．} \\\\ \\text{那么一共有____名战士。} \\end{array} \\]",
+       correctOption: {single: "12"}
+    },
+    {
+        equation: "\\[ \\begin{array}{c} \\text{队长给战士们发糖果．} \\\\ \\text{如果发给每名战士3颗糖果，还剩下14颗糖果；} \\\\ \\text{如果发给每名战士6颗糖果，就会缺4颗糖果．} \\\\ \\text{那么一共有____名战士。} \\end{array} \\]",
+       correctOption: {single: "6"}
+    },
+    {
+        equation: "\\[ \\begin{array}{c} \\text{队长给战士们发糖果．} \\\\ \\text{如果发给每名战士6颗糖果，还剩下32颗糖果；} \\\\ \\text{如果发给每名战士10颗糖果，就会缺4颗糖果．} \\\\ \\text{那么一共有____名战士。} \\end{array} \\]",
+       correctOption: {single: "9"}
+    },
+    {
+        equation: "\\[ \\begin{array}{c} \\text{队长给战士们发糖果．} \\\\ \\text{如果发给每名战士2颗糖果，还剩下17颗糖果；} \\\\ \\text{如果发给每名战士7颗糖果，就会缺3颗糖果．} \\\\ \\text{那么一共有____名战士。} \\end{array} \\]",
+       correctOption: {single: "4"}
+    },
+    {
+        equation: "\\[ \\begin{array}{c} \\text{队长给战士们发糖果．} \\\\ \\text{如果发给每名战士6颗糖果，还剩下107颗糖果；} \\\\ \\text{如果发给每名战士14颗糖果，就会缺5颗糖果．} \\\\ \\text{那么一共有____名战士。} \\end{array} \\]",
+       correctOption: {single: "14"}
+    },
+    {
+        equation: "\\[ \\begin{array}{c} \\text{队长给战士们发糖果．} \\\\ \\text{如果发给每名战士5颗糖果，还剩下8颗糖果；} \\\\ \\text{如果发给每名战士7颗糖果，就会缺2颗糖果．} \\\\ \\text{那么一共有____名战士。} \\end{array} \\]",
+       correctOption: {single: "5"}
+    },
+    {
+        equation: "\\[ \\begin{array}{c} \\text{队长给战士们发糖果．} \\\\ \\text{如果发给每名战士3颗糖果，还剩下30颗糖果；} \\\\ \\text{如果发给每名战士12颗糖果，就会缺6颗糖果．} \\\\ \\text{那么一共有____名战士。} \\end{array} \\]",
+       correctOption: {single: "4"}
+    },
+    {
+        equation: "\\[ \\begin{array}{c} \\text{队长给战士们发糖果．} \\\\ \\text{如果发给每名战士3颗糖果，还剩下34颗糖果；} \\\\ \\text{如果发给每名战士8颗糖果，就会缺6颗糖果．} \\\\ \\text{那么一共有____名战士。} \\end{array} \\]",
+       correctOption: {single: "8"}
+    },
+    {
+        equation: "\\[ \\begin{array}{c} \\text{队长给战士们发糖果．} \\\\ \\text{如果发给每名战士6颗糖果，还剩下43颗糖果；} \\\\ \\text{如果发给每名战士15颗糖果，就会缺2颗糖果．} \\\\ \\text{那么一共有____名战士。} \\end{array} \\]",
+       correctOption: {single: "5"}
+    },
+    {
+        equation: "\\[ \\begin{array}{c} \\text{队长给战士们发糖果．} \\\\ \\text{如果发给每名战士3颗糖果，还剩下38颗糖果；} \\\\ \\text{如果发给每名战士7颗糖果，就会缺6颗糖果．} \\\\ \\text{那么一共有____名战士。} \\end{array} \\]",
+       correctOption: {single: "11"}
+    },
+    {
+        equation: "\\[ \\begin{array}{c} \\text{队长给战士们发糖果．} \\\\ \\text{如果发给每名战士2颗糖果，还剩下37颗糖果；} \\\\ \\text{如果发给每名战士5颗糖果，就会缺5颗糖果．} \\\\ \\text{那么一共有____名战士。} \\end{array} \\]",
+       correctOption: {single: "14"}
+    },
+    {
+        equation: "\\[ \\begin{array}{c} \\text{队长给战士们发糖果．} \\\\ \\text{如果发给每名战士4颗糖果，还剩下81颗糖果；} \\\\ \\text{如果发给每名战士11颗糖果，就会缺3颗糖果．} \\\\ \\text{那么一共有____名战士。} \\end{array} \\]",
+       correctOption: {single: "12"}
+    },
+
+
+
+
+
+
+
+
+
+{equation: "\\[ \\begin{array}{c} \\text{用浓度为88%溶液A和浓度为87%溶液B,配制成87.25%浓度200毫升；} \\\\ \\text{需要溶液A______毫升.} \\end{array} \\]", correctOption: {single: "50"}},
+{equation: "\\[ \\begin{array}{c} \\text{用浓度为31%溶液A和浓度为33%溶液B,配制成31.8%浓度100毫升；} \\\\ \\text{需要溶液A______毫升.} \\end{array} \\]", correctOption: {single: "60"}},
+{equation: "\\[ \\begin{array}{c} \\text{用浓度为43%溶液A和浓度为46%溶液B,配制成45.25%浓度200毫升；} \\\\ \\text{需要溶液A______毫升.} \\end{array} \\]", correctOption: {single: "50"}},
+{equation: "\\[ \\begin{array}{c} \\text{用浓度为45%溶液A和浓度为42%溶液B,配制成44.4%浓度100毫升；} \\\\ \\text{需要溶液A______毫升.} \\end{array} \\]", correctOption: {single: "80"}},
+{equation: "\\[ \\begin{array}{c} \\text{用浓度为79%溶液A和浓度为73%溶液B,配制成78.4%浓度100毫升；} \\\\ \\text{需要溶液A______毫升.} \\end{array} \\]", correctOption: {single: "90"}},
+{equation: "\\[ \\begin{array}{c} \\text{用浓度为57%溶液A和浓度为58%溶液B,配制成57.3%浓度100毫升；} \\\\ \\text{需要溶液A______毫升.} \\end{array} \\]", correctOption: {single: "70"}},
+{equation: "\\[ \\begin{array}{c} \\text{用浓度为52%溶液A和浓度为58%溶液B,配制成55.9%浓度200毫升；} \\\\ \\text{需要溶液A______毫升.} \\end{array} \\]", correctOption: {single: "70"}},
+{equation: "\\[ \\begin{array}{c} \\text{用浓度为36%溶液A和浓度为35%溶液B,配制成35.45%浓度200毫升；} \\\\ \\text{需要溶液A______毫升.} \\end{array} \\]", correctOption: {single: "90"}},
+{equation: "\\[ \\begin{array}{c} \\text{用浓度为89%溶液A和浓度为83%溶液B,配制成85.1%浓度200毫升；} \\\\ \\text{需要溶液A______毫升.} \\end{array} \\]", correctOption: {single: "70"}},
+{equation: "\\[ \\begin{array}{c} \\text{用浓度为72%溶液A和浓度为74%溶液B,配制成73.7%浓度200毫升；} \\\\ \\text{需要溶液A______毫升.} \\end{array} \\]", correctOption: {single: "30"}},
+{equation: "\\[ \\begin{array}{c} \\text{用浓度为82%溶液A和浓度为81%溶液B,配制成81.3%浓度200毫升；} \\\\ \\text{需要溶液A______毫升.} \\end{array} \\]", correctOption: {single: "60"}},
+{equation: "\\[ \\begin{array}{c} \\text{用浓度为21%溶液A和浓度为22%溶液B,配制成21.65%浓度200毫升；} \\\\ \\text{需要溶液A______毫升.} \\end{array} \\]", correctOption: {single: "70"}},
+{equation: "\\[ \\begin{array}{c} \\text{用浓度为84%溶液A和浓度为88%溶液B,配制成87.4%浓度200毫升；} \\\\ \\text{需要溶液A______毫升.} \\end{array} \\]", correctOption: {single: "30"}},
+{equation: "\\[ \\begin{array}{c} \\text{用浓度为28%溶液A和浓度为23%溶液B,配制成25%浓度200毫升；} \\\\ \\text{需要溶液A______毫升.} \\end{array} \\]", correctOption: {single: "80"}},
+{equation: "\\[ \\begin{array}{c} \\text{用浓度为22%溶液A和浓度为26%溶液B,配制成24.8%浓度200毫升；} \\\\ \\text{需要溶液A______毫升.} \\end{array} \\]", correctOption: {single: "60"}},
+{equation: "\\[ \\begin{array}{c} \\text{用浓度为37%溶液A和浓度为33%溶液B,配制成34.4%浓度200毫升；} \\\\ \\text{需要溶液A______毫升.} \\end{array} \\]", correctOption: {single: "70"}},
+{equation: "\\[ \\begin{array}{c} \\text{用浓度为35%溶液A和浓度为33%溶液B,配制成33.7%浓度200毫升；} \\\\ \\text{需要溶液A______毫升.} \\end{array} \\]", correctOption: {single: "70"}},
+{equation: "\\[ \\begin{array}{c} \\text{用浓度为82%溶液A和浓度为81%溶液B,配制成81.7%浓度100毫升；} \\\\ \\text{需要溶液A______毫升.} \\end{array} \\]", correctOption: {single: "70"}},
+{equation: "\\[ \\begin{array}{c} \\text{用浓度为39%溶液A和浓度为31%溶液B,配制成33.4%浓度100毫升；} \\\\ \\text{需要溶液A______毫升.} \\end{array} \\]", correctOption: {single: "30"}},
+{equation: "\\[ \\begin{array}{c} \\text{用浓度为55%溶液A和浓度为52%溶液B,配制成52.6%浓度200毫升；} \\\\ \\text{需要溶液A______毫升.} \\end{array} \\]", correctOption: {single: "40"}},
+{equation: "\\[ \\begin{array}{c} \\text{用浓度为35%溶液A和浓度为38%溶液B,配制成36.65%浓度200毫升；} \\\\ \\text{需要溶液A______毫升.} \\end{array} \\]", correctOption: {single: "90"}},
+{equation: "\\[ \\begin{array}{c} \\text{用浓度为61%溶液A和浓度为65%溶液B,配制成64%浓度200毫升；} \\\\ \\text{需要溶液A______毫升.} \\end{array} \\]", correctOption: {single: "50"}},
+{equation: "\\[ \\begin{array}{c} \\text{用浓度为75%溶液A和浓度为74%溶液B,配制成74.7%浓度100毫升；} \\\\ \\text{需要溶液A______毫升.} \\end{array} \\]", correctOption: {single: "70"}},
+{equation: "\\[ \\begin{array}{c} \\text{用浓度为56%溶液A和浓度为58%溶液B,配制成57.3%浓度200毫升；} \\\\ \\text{需要溶液A______毫升.} \\end{array} \\]", correctOption: {single: "70"}},
+{equation: "\\[ \\begin{array}{c} \\text{用浓度为52%溶液A和浓度为55%溶液B,配制成54.4%浓度200毫升；} \\\\ \\text{需要溶液A______毫升.} \\end{array} \\]", correctOption: {single: "40"}},
+{equation: "\\[ \\begin{array}{c} \\text{用浓度为42%溶液A和浓度为44%溶液B,配制成43%浓度100毫升；} \\\\ \\text{需要溶液A______毫升.} \\end{array} \\]", correctOption: {single: "50"}},
+{equation: "\\[ \\begin{array}{c} \\text{用浓度为41%溶液A和浓度为43%溶液B,配制成41.6%浓度100毫升；} \\\\ \\text{需要溶液A______毫升.} \\end{array} \\]", correctOption: {single: "70"}},
+{equation: "\\[ \\begin{array}{c} \\text{用浓度为42%溶液A和浓度为41%溶液B,配制成41.9%浓度100毫升；} \\\\ \\text{需要溶液A______毫升.} \\end{array} \\]", correctOption: {single: "90"}},
+{equation: "\\[ \\begin{array}{c} \\text{用浓度为75%溶液A和浓度为78%溶液B,配制成76.5%浓度100毫升；} \\\\ \\text{需要溶液A______毫升.} \\end{array} \\]", correctOption: {single: "50"}},
+{equation: "\\[ \\begin{array}{c} \\text{用浓度为28%溶液A和浓度为29%溶液B,配制成28.6%浓度200毫升；} \\\\ \\text{需要溶液A______毫升.} \\end{array} \\]", correctOption: {single: "80"}},
+{equation: "\\[ \\begin{array}{c} \\text{用浓度为34%溶液A和浓度为38%溶液B,配制成34.8%浓度100毫升；} \\\\ \\text{需要溶液A______毫升.} \\end{array} \\]", correctOption: {single: "80"}},
+{equation: "\\[ \\begin{array}{c} \\text{用浓度为36%溶液A和浓度为35%溶液B,配制成35.9%浓度100毫升；} \\\\ \\text{需要溶液A______毫升.} \\end{array} \\]", correctOption: {single: "90"}},
+{equation: "\\[ \\begin{array}{c} \\text{用浓度为62%溶液A和浓度为63%溶液B,配制成62.7%浓度100毫升；} \\\\ \\text{需要溶液A______毫升.} \\end{array} \\]", correctOption: {single: "30"}},
+{equation: "\\[ \\begin{array}{c} \\text{用浓度为69%溶液A和浓度为66%溶液B,配制成66.6%浓度200毫升；} \\\\ \\text{需要溶液A______毫升.} \\end{array} \\]", correctOption: {single: "40"}},
+{equation: "\\[ \\begin{array}{c} \\text{用浓度为75%溶液A和浓度为74%溶液B,配制成74.2%浓度200毫升；} \\\\ \\text{需要溶液A______毫升.} \\end{array} \\]", correctOption: {single: "40"}},
+{equation: "\\[ \\begin{array}{c} \\text{用浓度为31%溶液A和浓度为38%溶液B,配制成36.6%浓度200毫升；} \\\\ \\text{需要溶液A______毫升.} \\end{array} \\]", correctOption: {single: "40"}},
+{equation: "\\[ \\begin{array}{c} \\text{用浓度为24%溶液A和浓度为27%溶液B,配制成25.2%浓度100毫升；} \\\\ \\text{需要溶液A______毫升.} \\end{array} \\]", correctOption: {single: "60"}},
+{equation: "\\[ \\begin{array}{c} \\text{用浓度为81%溶液A和浓度为87%溶液B,配制成83.4%浓度100毫升；} \\\\ \\text{需要溶液A______毫升.} \\end{array} \\]", correctOption: {single: "60"}},
+{equation: "\\[ \\begin{array}{c} \\text{用浓度为52%溶液A和浓度为59%溶液B,配制成56.55%浓度200毫升；} \\\\ \\text{需要溶液A______毫升.} \\end{array} \\]", correctOption: {single: "70"}},
+{equation: "\\[ \\begin{array}{c} \\text{用浓度为47%溶液A和浓度为42%溶液B,配制成44%浓度100毫升；} \\\\ \\text{需要溶液A______毫升.} \\end{array} \\]", correctOption: {single: "40"}},
+{equation: "\\[ \\begin{array}{c} \\text{用浓度为81%溶液A和浓度为86%溶液B,配制成85%浓度200毫升；} \\\\ \\text{需要溶液A______毫升.} \\end{array} \\]", correctOption: {single: "40"}},
+{equation: "\\[ \\begin{array}{c} \\text{用浓度为29%溶液A和浓度为21%溶液B,配制成23.4%浓度100毫升；} \\\\ \\text{需要溶液A______毫升.} \\end{array} \\]", correctOption: {single: "30"}},
+{equation: "\\[ \\begin{array}{c} \\text{用浓度为73%溶液A和浓度为78%溶液B,配制成73.5%浓度100毫升；} \\\\ \\text{需要溶液A______毫升.} \\end{array} \\]", correctOption: {single: "90"}},
+{equation: "\\[ \\begin{array}{c} \\text{用浓度为28%溶液A和浓度为27%溶液B,配制成27.35%浓度200毫升；} \\\\ \\text{需要溶液A______毫升.} \\end{array} \\]", correctOption: {single: "70"}},
+{equation: "\\[ \\begin{array}{c} \\text{用浓度为55%溶液A和浓度为59%溶液B,配制成57.4%浓度100毫升；} \\\\ \\text{需要溶液A______毫升.} \\end{array} \\]", correctOption: {single: "40"}},
+{equation: "\\[ \\begin{array}{c} \\text{用浓度为58%溶液A和浓度为56%溶液B,配制成56.5%浓度200毫升；} \\\\ \\text{需要溶液A______毫升.} \\end{array} \\]", correctOption: {single: "50"}},
+{equation: "\\[ \\begin{array}{c} \\text{用浓度为67%溶液A和浓度为68%溶液B,配制成67.2%浓度100毫升；} \\\\ \\text{需要溶液A______毫升.} \\end{array} \\]", correctOption: {single: "80"}},
+{equation: "\\[ \\begin{array}{c} \\text{用浓度为53%溶液A和浓度为56%溶液B,配制成55.55%浓度200毫升；} \\\\ \\text{需要溶液A______毫升.} \\end{array} \\]", correctOption: {single: "30"}},
+{equation: "\\[ \\begin{array}{c} \\text{用浓度为25%溶液A和浓度为23%溶液B,配制成23.7%浓度200毫升；} \\\\ \\text{需要溶液A______毫升.} \\end{array} \\]", correctOption: {single: "70"}},
+
+
+
+
+{equation: "\\[ \\begin{array}{c} \\text{一条小河上,A在B上游416千米处。甲、乙两船分别从A、B两地同时出发，}\\\\ \\text{若相向而行，8小时后相遇；若同方而行，13小时后甲被乙追上。}\\\\ \\text{则甲船的静水速度是每小时____千米？} \\end{array} \\]", correctOption: {single: "10"}},
+
+
+{equation: "\\[ \\begin{array}{c} \\text{一条小河上,A在B上游192千米处。甲、乙两船分别从A、B两地同时出发，}\\\\ \\text{若相向而行，12小时后相遇；若同方而行，32小时后甲被乙追上。}\\\\ \\text{则甲船的静水速度是每小时____千米？} \\end{array} \\]", correctOption: {single: "5"}},
+
+
+{equation: "\\[ \\begin{array}{c} \\text{一条小河上,A在B上游48千米处。甲、乙两船分别从A、B两地同时出发，}\\\\ \\text{若相向而行，2小时后相遇；若同方而行，8小时后甲被乙追上。}\\\\ \\text{则甲船的静水速度是每小时____千米？} \\end{array} \\]", correctOption: {single: "9"}},
+
+
+{equation: "\\[ \\begin{array}{c} \\text{一条小河上,A在B上游45千米处。甲、乙两船分别从A、B两地同时出发，}\\\\ \\text{若相向而行，3小时后相遇；若同方而行，9小时后甲被乙追上。}\\\\ \\text{则甲船的静水速度是每小时____千米？} \\end{array} \\]", correctOption: {single: "5"}},
+
+{equation: "\\[ \\begin{array}{c} \\text{一条小河上,A在B上游288千米处。甲、乙两船分别从A、B两地同时出发，}\\\\ \\text{若相向而行，9小时后相遇；若同方而行，24小时后甲被乙追上。}\\\\ \\text{则甲船的静水速度是每小时____千米？} \\end{array} \\]", correctOption: {single: "10"}},
+
+
+{equation: "\\[ \\begin{array}{c} \\text{一条小河上,A在B上游504千米处。甲、乙两船分别从A、B两地同时出发，}\\\\ \\text{若相向而行，12小时后相遇；若同方而行，28小时后甲被乙追上。}\\\\ \\text{则甲船的静水速度是每小时____千米？} \\end{array} \\]", correctOption: {single: "12"}},
+
+
+{equation: "\\[ \\begin{array}{c} \\text{一条小河上,A在B上游210千米处。甲、乙两船分别从A、B两地同时出发，}\\\\ \\text{若相向而行，5小时后相遇；若同方而行，21小时后甲被乙追上。}\\\\ \\text{则甲船的静水速度是每小时____千米？} \\end{array} \\]", correctOption: {single: "16"}},
+
+
+{equation: "\\[ \\begin{array}{c} \\text{一条小河上,A在B上游672千米处。甲、乙两船分别从A、B两地同时出发，}\\\\ \\text{若相向而行，12小时后相遇；若同方而行，28小时后甲被乙追上。}\\\\ \\text{则甲船的静水速度是每小时____千米？} \\end{array} \\]", correctOption: {single: "16"}},
+
+
+{equation: "\\[ \\begin{array}{c} \\text{一条小河上,A在B上游297千米处。甲、乙两船分别从A、B两地同时出发，}\\\\ \\text{若相向而行，9小时后相遇；若同方而行，11小时后甲被乙追上。}\\\\ \\text{则甲船的静水速度是每小时____千米？} \\end{array} \\]", correctOption: {single: "3"}},
+
+
+{equation: "\\[ \\begin{array}{c} \\text{一条小河上,A在B上游672千米处。甲、乙两船分别从A、B两地同时出发，}\\\\ \\text{若相向而行，12小时后相遇；若同方而行，21小时后甲被乙追上。}\\\\ \\text{则甲船的静水速度是每小时____千米？} \\end{array} \\]", correctOption: {single: "12"}},
+
+
+{equation: "\\[ \\begin{array}{c} \\text{一条小河上,A在B上游240千米处。甲、乙两船分别从A、B两地同时出发，}\\\\ \\text{若相向而行，20小时后相遇；若同方而行，40小时后甲被乙追上。}\\\\ \\text{则甲船的静水速度是每小时____千米？} \\end{array} \\]", correctOption: {single: "3"}},
+
+
+{equation: "\\[ \\begin{array}{c} \\text{一条小河上,A在B上游36千米处。甲、乙两船分别从A、B两地同时出发，}\\\\ \\text{若相向而行，2小时后相遇；若同方而行，6小时后甲被乙追上。}\\\\ \\text{则甲船的静水速度是每小时____千米？} \\end{array} \\]", correctOption: {single: "6"}},
+
+
+{equation: "\\[ \\begin{array}{c} \\text{一条小河上,A在B上游144千米处。甲、乙两船分别从A、B两地同时出发，}\\\\ \\text{若相向而行，8小时后相遇；若同方而行，12小时后甲被乙追上。}\\\\ \\text{则甲船的静水速度是每小时____千米？} \\end{array} \\]", correctOption: {single: "3"}},
+
+
+{equation: "\\[ \\begin{array}{c} \\text{一条小河上,A在B上游96千米处。甲、乙两船分别从A、B两地同时出发，}\\\\ \\text{若相向而行，16小时后相遇；若同方而行，24小时后甲被乙追上。}\\\\ \\text{则甲船的静水速度是每小时____千米？} \\end{array} \\]", correctOption: {single: "1"}},
+
+
+{equation: "\\[ \\begin{array}{c} \\text{一条小河上,A在B上游300千米处。甲、乙两船分别从A、B两地同时出发，}\\\\ \\text{若相向而行，10小时后相遇；若同方而行，25小时后甲被乙追上。}\\\\ \\text{则甲船的静水速度是每小时____千米？} \\end{array} \\]", correctOption: {single: "9"}},
+
+
+{equation: "\\[ \\begin{array}{c} \\text{一条小河上,A在B上游855千米处。甲、乙两船分别从A、B两地同时出发，}\\\\ \\text{若相向而行，9小时后相遇；若同方而行，19小时后甲被乙追上。}\\\\ \\text{则甲船的静水速度是每小时____千米？} \\end{array} \\]", correctOption: {single: "25"}},
+
+
+{equation: "\\[ \\begin{array}{c} \\text{一条小河上,A在B上游156千米处。甲、乙两船分别从A、B两地同时出发，}\\\\ \\text{若相向而行，6小时后相遇；若同方而行，26小时后甲被乙追上。}\\\\ \\text{则甲船的静水速度是每小时____千米？} \\end{array} \\]", correctOption: {single: "10"}},
+
+
+{equation: "\\[ \\begin{array}{c} \\text{一条小河上,A在B上游400千米处。甲、乙两船分别从A、B两地同时出发，}\\\\ \\text{若相向而行，20小时后相遇；若同方而行，25小时后甲被乙追上。}\\\\ \\text{则甲船的静水速度是每小时____千米？} \\end{array} \\]", correctOption: {single: "2"}},
+
+
+{equation: "\\[ \\begin{array}{c} \\text{一条小河上,A在B上游320千米处。甲、乙两船分别从A、B两地同时出发，}\\\\ \\text{若相向而行，20小时后相遇；若同方而行，40小时后甲被乙追上。}\\\\ \\text{则甲船的静水速度是每小时____千米？} \\end{array} \\]", correctOption: {single: "4"}},
+
+
+{equation: "\\[ \\begin{array}{c} \\text{一条小河上,A在B上游60千米处。甲、乙两船分别从A、B两地同时出发，}\\\\ \\text{若相向而行，2小时后相遇；若同方而行，10小时后甲被乙追上。}\\\\ \\text{则甲船的静水速度是每小时____千米？} \\end{array} \\]", correctOption: {single: "12"}},
+
+
+{equation: "\\[ \\begin{array}{c} \\text{一条小河上,A在B上游216千米处。甲、乙两船分别从A、B两地同时出发，}\\\\ \\text{若相向而行，12小时后相遇；若同方而行，18小时后甲被乙追上。}\\\\ \\text{则甲船的静水速度是每小时____千米？} \\end{array} \\]", correctOption: {single: "3"}},
+
+
+{equation: "\\[ \\begin{array}{c} \\text{一条小河上,A在B上游288千米处。甲、乙两船分别从A、B两地同时出发，}\\\\ \\text{若相向而行，16小时后相遇；若同方而行，18小时后甲被乙追上。}\\\\ \\text{则甲船的静水速度是每小时____千米？} \\end{array} \\]", correctOption: {single: "1"}},
+
+
+{equation: "\\[ \\begin{array}{c} \\text{一条小河上,A在B上游288千米处。甲、乙两船分别从A、B两地同时出发，}\\\\ \\text{若相向而行，8小时后相遇；若同方而行，18小时后甲被乙追上。}\\\\ \\text{则甲船的静水速度是每小时____千米？} \\end{array} \\]", correctOption: {single: "10"}},
+
+
+{equation: "\\[ \\begin{array}{c} \\text{一条小河上,A在B上游224千米处。甲、乙两船分别从A、B两地同时出发，}\\\\ \\text{若相向而行，4小时后相遇；若同方而行，7小时后甲被乙追上。}\\\\ \\text{则甲船的静水速度是每小时____千米？} \\end{array} \\]", correctOption: {single: "12"}},
+
+
+{equation: "\\[ \\begin{array}{c} \\text{一条小河上,A在B上游32千米处。甲、乙两船分别从A、B两地同时出发，}\\\\ \\text{若相向而行，4小时后相遇；若同方而行，8小时后甲被乙追上。}\\\\ \\text{则甲船的静水速度是每小时____千米？} \\end{array} \\]", correctOption: {single: "2"}},
+
+
+{equation: "\\[ \\begin{array}{c} \\text{一条小河上,A在B上游108千米处。甲、乙两船分别从A、B两地同时出发，}\\\\ \\text{若相向而行，6小时后相遇；若同方而行，9小时后甲被乙追上。}\\\\ \\text{则甲船的静水速度是每小时____千米？} \\end{array} \\]", correctOption: {single: "3"}},
+
+
+{equation: "\\[ \\begin{array}{c} \\text{一条小河上,A在B上游351千米处。甲、乙两船分别从A、B两地同时出发，}\\\\ \\text{若相向而行，9小时后相遇；若同方而行，13小时后甲被乙追上。}\\\\ \\text{则甲船的静水速度是每小时____千米？} \\end{array} \\]", correctOption: {single: "6"}},
+
+
+{equation: "\\[ \\begin{array}{c} \\text{一条小河上,A在B上游120千米处。甲、乙两船分别从A、B两地同时出发，}\\\\ \\text{若相向而行，12小时后相遇；若同方而行，15小时后甲被乙追上。}\\\\ \\text{则甲船的静水速度是每小时____千米？} \\end{array} \\]", correctOption: {single: "1"}},
+
+
+{equation: "\\[ \\begin{array}{c} \\text{一条小河上,A在B上游1216千米处。甲、乙两船分别从A、B两地同时出发，}\\\\ \\text{若相向而行，16小时后相遇；若同方而行，19小时后甲被乙追上。}\\\\ \\text{则甲船的静水速度是每小时____千米？} \\end{array} \\]", correctOption: {single: "6"}},
+
+
+{equation: "\\[ \\begin{array}{c} \\text{一条小河上,A在B上游342千米处。甲、乙两船分别从A、B两地同时出发，}\\\\ \\text{若相向而行，3小时后相遇；若同方而行，19小时后甲被乙追上。}\\\\ \\text{则甲船的静水速度是每小时____千米？} \\end{array} \\]", correctOption: {single: "48"}},
+
+
+{equation: "\\[ \\begin{array}{c} \\text{一条小河上,A在B上游960千米处。甲、乙两船分别从A、B两地同时出发，}\\\\ \\text{若相向而行，20小时后相遇；若同方而行，24小时后甲被乙追上。}\\\\ \\text{则甲船的静水速度是每小时____千米？} \\end{array} \\]", correctOption: {single: "4"}},
+
+
+{equation: "\\[ \\begin{array}{c} \\text{有一片牧场，每天都在均匀地生长草，每头牛每天吃1份草。}\\\\ \\text{如果在牧场上放养10头牛，那么7天能把草吃完；} \\\\ \\text{如果只放养30头牛，那么2天能把草吃完。如果一开始放养16头牛，几天吃完？} \\end{array} \\]", correctOption: {single: "4"}},
+
+{equation: "\\[ \\begin{array}{c} \\text{有一片牧场，每天都在均匀地生长草，每头牛每天吃1份草。}\\\\ \\text{如果在牧场上放养21头牛，那么9天能把草吃完；} \\\\ \\text{如果只放养51头牛，那么3天能把草吃完。如果一开始放养33头牛，几天吃完？} \\end{array} \\]", correctOption: {single: "5"}},
+
+{equation: "\\[ \\begin{array}{c} \\text{有一片牧场，每天都在均匀地生长草，每头牛每天吃1份草。}\\\\ \\text{如果在牧场上放养15头牛，那么9天能把草吃完；} \\\\ \\text{如果只放养43头牛，那么2天能把草吃完。如果一开始放养25头牛，几天吃完？} \\end{array} \\]", correctOption: {single: "4"}},
+
+{equation: "\\[ \\begin{array}{c} \\text{有一片牧场，每天都在均匀地生长草，每头牛每天吃1份草。}\\\\ \\text{如果在牧场上放养17头牛，那么9天能把草吃完；} \\\\ \\text{如果只放养47头牛，那么3天能把草吃完。如果一开始放养29头牛，几天吃完？} \\end{array} \\]", correctOption: {single: "5"}},
+
+{equation: "\\[ \\begin{array}{c} \\text{有一片牧场，每天都在均匀地生长草，每头牛每天吃1份草。}\\\\ \\text{如果在牧场上放养24头牛，那么8天能把草吃完；} \\\\ \\text{如果只放养49头牛，那么3天能把草吃完。如果一开始放养33头牛，几天吃完？} \\end{array} \\]", correctOption: {single: "5"}},
+
+{equation: "\\[ \\begin{array}{c} \\text{有一片牧场，每天都在均匀地生长草，每头牛每天吃1份草。}\\\\ \\text{如果在牧场上放养20头牛，那么7天能把草吃完；} \\\\ \\text{如果只放养40头牛，那么3天能把草吃完。如果一开始放养26头牛，几天吃完？} \\end{array} \\]", correctOption: {single: "5"}},
+
+{equation: "\\[ \\begin{array}{c} \\text{有一片牧场，每天都在均匀地生长草，每头牛每天吃1份草。}\\\\ \\text{如果在牧场上放养18头牛，那么7天能把草吃完；} \\\\ \\text{如果只放养34头牛，那么3天能把草吃完。如果一开始放养27头牛，几天吃完？} \\end{array} \\]", correctOption: {single: "4"}},
+
+{equation: "\\[ \\begin{array}{c} \\text{有一片牧场，每天都在均匀地生长草，每头牛每天吃1份草。}\\\\ \\text{如果在牧场上放养10头牛，那么9天能把草吃完；} \\\\ \\text{如果只放养38头牛，那么2天能把草吃完。如果一开始放养20头牛，几天吃完？} \\end{array} \\]", correctOption: {single: "4"}},
+
+{equation: "\\[ \\begin{array}{c} \\text{有一片牧场，每天都在均匀地生长草，每头牛每天吃1份草。}\\\\ \\text{如果在牧场上放养17头牛，那么7天能把草吃完；} \\\\ \\text{如果只放养37头牛，那么3天能把草吃完。如果一开始放养23头牛，几天吃完？} \\end{array} \\]", correctOption: {single: "5"}},
+
+
+{equation: "\\[ \\begin{array}{c} \\text{有一片牧场，每天都在均匀地生长草，每头牛每天吃1份草。}\\\\ \\text{如果在牧场上放养15头牛，那么8天能把草吃完；} \\\\ \\text{如果只放养45头牛，那么2天能把草吃完。如果一开始放养21头牛，几天吃完？} \\end{array} \\]", correctOption: {single: "5"}},
+
+{equation: "\\[ \\begin{array}{c} \\text{有一片牧场，每天都在均匀地生长草，每头牛每天吃1份草。}\\\\ \\text{如果在牧场上放养17头牛，那么8天能把草吃完；} \\\\ \\text{如果只放养37头牛，那么3天能把草吃完。如果一开始放养29头牛，几天吃完？} \\end{array} \\]", correctOption: {single: "4"}},
+
+{equation: "\\[ \\begin{array}{c} \\text{有一片牧场，每天都在均匀地生长草，每头牛每天吃1份草。}\\\\ \\text{如果在牧场上放养22头牛，那么7天能把草吃完；} \\\\ \\text{如果只放养46头牛，那么3天能把草吃完。如果一开始放养25头牛，几天吃完？} \\end{array} \\]", correctOption: {single: "6"}},
+
+{equation: "\\[ \\begin{array}{c} \\text{有一片牧场，每天都在均匀地生长草，每头牛每天吃1份草。}\\\\ \\text{如果在牧场上放养20头牛，那么9天能把草吃完；} \\\\ \\text{如果只放养56头牛，那么3天能把草吃完。如果一开始放养29头牛，几天吃完？} \\end{array} \\]", correctOption: {single: "6"}},
+
+{equation: "\\[ \\begin{array}{c} \\text{有一片牧场，每天都在均匀地生长草，每头牛每天吃1份草。}\\\\ \\text{如果在牧场上放养21头牛，那么9天能把草吃完；} \\\\ \\text{如果只放养45头牛，那么3天能把草吃完。如果一开始放养36头牛，几天吃完？} \\end{array} \\]", correctOption: {single: "4"}},
+
+
+{equation: "\\[ \\begin{array}{c} \\text{有一片牧场，每天都在均匀地生长草，每头牛每天吃1份草。}\\\\ \\text{如果在牧场上放养23头牛，那么8天能把草吃完；} \\\\ \\text{如果只放养48头牛，那么3天能把草吃完。如果一开始放养32头牛，几天吃完？} \\end{array} \\]", correctOption: {single: "5"}},
+
+{equation: "\\[ \\begin{array}{c} \\text{有一片牧场，每天都在均匀地生长草，每头牛每天吃1份草。}\\\\ \\text{如果在牧场上放养14头牛，那么8天能把草吃完；} \\\\ \\text{如果只放养34头牛，那么3天能把草吃完。如果一开始放养26头牛，几天吃完？} \\end{array} \\]", correctOption: {single: "4"}},
+
+{equation: "\\[ \\begin{array}{c} \\text{有一片牧场，每天都在均匀地生长草，每头牛每天吃1份草。}\\\\ \\text{如果在牧场上放养23头牛，那么9天能把草吃完；} \\\\ \\text{如果只放养53头牛，那么3天能把草吃完。如果一开始放养35头牛，几天吃完？} \\end{array} \\]", correctOption: {single: "5"}},
+
+{equation: "\\[ \\begin{array}{c} \\text{有一片牧场，每天都在均匀地生长草，每头牛每天吃1份草。}\\\\ \\text{如果在牧场上放养18头牛，那么8天能把草吃完；} \\\\ \\text{如果只放养48头牛，那么2天能把草吃完。如果一开始放养24头牛，几天吃完？} \\end{array} \\]", correctOption: {single: "5"}},
+
+{equation: "\\[ \\begin{array}{c} \\text{有一片牧场，每天都在均匀地生长草，每头牛每天吃1份草。}\\\\ \\text{如果在牧场上放养22头牛，那么7天能把草吃完；} \\\\ \\text{如果只放养42头牛，那么3天能把草吃完。如果一开始放养28头牛，几天吃完？} \\end{array} \\]", correctOption: {single: "5"}},
+
+
+
+
+{equation: "\\[ \\begin{array}{c} \\text{有一片牧场，每天都在均匀地生长草，每头牛每天吃1份草。}\\\\ \\text{如果在牧场上放养15头牛，那么9天能把草吃完；} \\\\ \\text{如果只放养43头牛，那么2天能把草吃完。如果一开始放养25头牛，几天吃完？} \\end{array} \\]", correctOption: {single: "4"}},
+
+{equation: "\\[ \\begin{array}{c} \\text{有一片牧场，每天都在均匀地生长草，每头牛每天吃1份草。}\\\\ \\text{如果在牧场上放养17头牛，那么9天能把草吃完；} \\\\ \\text{如果只放养47头牛，那么3天能把草吃完。如果一开始放养29头牛，几天吃完？} \\end{array} \\]", correctOption: {single: "5"}},
+
+{equation: "\\[ \\begin{array}{c} \\text{有一片牧场，每天都在均匀地生长草，每头牛每天吃1份草。}\\\\ \\text{如果在牧场上放养24头牛，那么8天能把草吃完；} \\\\ \\text{如果只放养49头牛，那么3天能把草吃完。如果一开始放养33头牛，几天吃完？} \\end{array} \\]", correctOption: {single: "5"}},
+
+
+
+
+{equation: "\\[ \\begin{array}{c} \\text{有一片牧场，每天都在均匀地生长草，每头牛每天吃1份草。}\\\\ \\text{如果在牧场上放养10头牛，那么7天能把草吃完；如果只放养30头牛，那么2天能把草吃完。} \\\\ \\text{如果一开始放养16头牛，几天吃完？} \\end{array} \\]", correctOption: {single: "4"}},
+
+{equation: "\\[ \\begin{array}{c} \\text{有一片牧场，每天都在均匀地生长草，每头牛每天吃1份草。}\\\\ \\text{如果在牧场上放养10头牛，那么7天能把草吃完；} \\\\ \\text{如果只放养30头牛，那么2天能把草吃完。如果一开始放养16头牛，几天吃完？} \\end{array} \\]", correctOption: {single: "4"}},
+
+{equation: "\\[ \\begin{array}{c} \\text{有一片牧场，每天都在均匀地生长草，每头牛每天吃1份草。}\\\\ \\text{如果在牧场上放养21头牛，那么9天能把草吃完；} \\\\ \\text{如果只放养51头牛，那么3天能把草吃完。如果一开始放养33头牛，几天吃完？} \\end{array} \\]", correctOption: {single: "5"}},
+
+
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作15天完成，乙单干则工作10天完成。} \\\\ \\text{如果甲先干5天，接着乙加入，那么一起完成剩余工作还需多少天？} \\end{array} \\]", correctOption: {single: "4"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作150天完成，乙单干则工作75天完成。} \\\\ \\text{如果甲先干15天，接着乙加入，那么一起完成剩余工作还需多少天？} \\end{array} \\]", correctOption: {single: "45"}},
+
+
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作91天完成，乙单干则工作78天完成。} \\\\ \\text{如果甲先干13天，接着乙加入，那么一起完成剩余工作还需多少天？} \\end{array} \\]", correctOption: {single: "50"}},
+
+
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作15天完成，乙单干则工作10天完成。} \\\\ \\text{如果甲先干5天，接着乙加入，那么一起完成剩余工作还需多少天？} \\end{array} \\]", correctOption: {single: "4"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作150天完成，乙单干则工作75天完成。} \\\\ \\text{如果甲先干15天，接着乙加入，那么一起完成剩余工作还需多少天？} \\end{array} \\]", correctOption: {single: "45"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作55天完成，乙单干则工作66天完成。} \\\\ \\text{如果甲先干11天，接着乙加入，那么一起完成剩余工作还需多少天？} \\end{array} \\]", correctOption: {single: "24"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作39天完成，乙单干则工作130天完成。} \\\\ \\text{如果甲先干13天，接着乙加入，那么一起完成剩余工作还需多少天？} \\end{array} \\]", correctOption: {single: "20"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作91天完成，乙单干则工作78天完成。} \\\\ \\text{如果甲先干13天，接着乙加入，那么一起完成剩余工作还需多少天？} \\end{array} \\]", correctOption: {single: "36"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作45天完成，乙单干则工作36天完成。} \\\\ \\text{如果甲先干9天，接着乙加入，那么一起完成剩余工作还需多少天？} \\end{array} \\]", correctOption: {single: "16"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作21天完成，乙单干则工作28天完成。} \\\\ \\text{如果甲先干7天，接着乙加入，那么一起完成剩余工作还需多少天？} \\end{array} \\]", correctOption: {single: "8"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作10天完成，乙单干则工作15天完成。} \\\\ \\text{如果甲先干5天，接着乙加入，那么一起完成剩余工作还需多少天？} \\end{array} \\]", correctOption: {single: "3"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作33天完成，乙单干则工作88天完成。} \\\\ \\text{如果甲先干11天，接着乙加入，那么一起完成剩余工作还需多少天？} \\end{array} \\]", correctOption: {single: "16"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作63天完成，乙单干则工作18天完成。} \\\\ \\text{如果甲先干9天，接着乙加入，那么一起完成剩余工作还需多少天？} \\end{array} \\]", correctOption: {single: "12"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作10天完成，乙单干则工作15天完成。} \\\\ \\text{如果甲先干5天，接着乙加入，那么一起完成剩余工作还需多少天？} \\end{array} \\]", correctOption: {single: "3"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作10天完成，乙单干则工作15天完成。} \\\\ \\text{如果甲先干5天，接着乙加入，那么一起完成剩余工作还需多少天？} \\end{array} \\]", correctOption: {single: "3"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作15天完成，乙单干则工作10天完成。} \\\\ \\text{如果甲先干5天，接着乙加入，那么一起完成剩余工作还需多少天？} \\end{array} \\]", correctOption: {single: "4"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作195天完成，乙单干则工作30天完成。} \\\\ \\text{如果甲先干15天，接着乙加入，那么一起完成剩余工作还需多少天？} \\end{array} \\]", correctOption: {single: "24"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作15天完成，乙单干则工作10天完成。} \\\\ \\text{如果甲先干5天，接着乙加入，那么一起完成剩余工作还需多少天？} \\end{array} \\]", correctOption: {single: "4"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作165天完成，乙单干则工作60天完成。} \\\\ \\text{如果甲先干15天，接着乙加入，那么一起完成剩余工作还需多少天？} \\end{array} \\]", correctOption: {single: "40"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作28天完成，乙单干则工作21天完成。} \\\\ \\text{如果甲先干7天，接着乙加入，那么一起完成剩余工作还需多少天？} \\end{array} \\]", correctOption: {single: "9"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作26天完成，乙单干则工作143天完成。} \\\\ \\text{如果甲先干13天，接着乙加入，那么一起完成剩余工作还需多少天？} \\end{array} \\]", correctOption: {single: "11"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作44天完成，乙单干则工作77天完成。} \\\\ \\text{如果甲先干11天，接着乙加入，那么一起完成剩余工作还需多少天？} \\end{array} \\]", correctOption: {single: "21"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作99天完成，乙单干则工作22天完成。} \\\\ \\text{如果甲先干11天，接着乙加入，那么一起完成剩余工作还需多少天？} \\end{array} \\]", correctOption: {single: "16"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作33天完成，乙单干则工作88天完成。} \\\\ \\text{如果甲先干11天，接着乙加入，那么一起完成剩余工作还需多少天？} \\end{array} \\]", correctOption: {single: "16"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作52天完成，乙单干则工作117天完成。} \\\\ \\text{如果甲先干13天，接着乙加入，那么一起完成剩余工作还需多少天？} \\end{array} \\]", correctOption: {single: "27"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作15天完成，乙单干则工作10天完成。} \\\\ \\text{如果甲先干5天，接着乙加入，那么一起完成剩余工作还需多少天？} \\end{array} \\]", correctOption: {single: "4"}},
+{equation: "\\[ \\begin{array}{c} \\text{一项工程，甲单干则工作44天完成，乙单干则工作77天完成。} \\\\ \\text{如果甲先干11天，接着乙加入，那么一起完成剩余工作还需多少天？} \\end{array} \\]", correctOption: {single: "21"}},
+
+
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共40个头;鸡比兔多22只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "31", "y": "9"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共25个头;鸡比兔少1只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "12", "y": "13"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共37个头;鸡比兔少25只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "6", "y": "31"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共42个头;鸡比兔少34只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "4", "y": "38"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共42个头;鸡比兔少16只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "13", "y": "29"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共11个头;鸡比兔少9只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "1", "y": "10"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共11个头;鸡比兔少3只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "4", "y": "7"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共12个头;鸡比兔少10只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "1", "y": "11"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共50个头;鸡比兔多6只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "28", "y": "22"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共39个头;鸡比兔少35只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "2", "y": "37"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共49个头;鸡比兔多39只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "44", "y": "5"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共27个头;鸡比兔少13只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "7", "y": "20"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共27个头;鸡比兔多25只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "26", "y": "1"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共33个头;鸡比兔少27只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "3", "y": "30"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共32个头;鸡比兔少2只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "15", "y": "17"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共24个头;鸡比兔多2只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "13", "y": "11"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共33个头;鸡比兔少17只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "8", "y": "25"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共48个头;鸡比兔多34只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "41", "y": "7"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共15个头;鸡比兔多5只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "10", "y": "5"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共17个头;鸡比兔少17只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "0", "y": "17"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共41个头;鸡比兔少41只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "0", "y": "41"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共49个头;鸡比兔少27只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "11", "y": "38"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共30个头;鸡比兔少14只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "8", "y": "22"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共27个头;鸡比兔多13只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "20", "y": "7"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共25个头;鸡比兔多15只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "20", "y": "5"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共25个头;鸡比兔少3只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "11", "y": "14"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共24个头;鸡和兔一样多。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "12", "y": "12"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共39个头;鸡比兔多3只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "21", "y": "18"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共11个头;鸡比兔少5只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "3", "y": "8"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共23个头;鸡比兔多5只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "14", "y": "9"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共14个头;鸡比兔多6只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "10", "y": "4"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共24个头;鸡和兔一样多。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "12", "y": "12"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共11个头;鸡比兔多1只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "6", "y": "5"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共29个头;鸡比兔多1只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "15", "y": "14"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共18个头;鸡比兔多2只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "10", "y": "8"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共25个头;鸡比兔多5只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "15", "y": "10"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共39个头;鸡比兔多5只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "22", "y": "17"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共27个头;鸡比兔多13只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "20", "y": "7"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共35个头;鸡比兔多23只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "29", "y": "6"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共18个头;鸡比兔多6只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "12", "y": "6"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共39个头;鸡比兔多9只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "24", "y": "15"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共29个头;鸡比兔多5只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "17", "y": "12"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共23个头;鸡比兔多21只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "22", "y": "1"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共38个头;鸡比兔多10只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "24", "y": "14"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共19个头;鸡比兔多5只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "12", "y": "7"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共17个头;鸡比兔多1只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "9", "y": "8"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共24个头;鸡比兔多2只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "13", "y": "11"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共31个头;鸡比兔多11只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "21", "y": "10"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共47个头;鸡比兔多37只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "42", "y": "5"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共37个头;鸡比兔多15只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "26", "y": "11"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共25个头;鸡比兔多5只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "15", "y": "10"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共44个头;鸡比兔多34只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "39", "y": "5"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共43个头;鸡比兔多3只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "23", "y": "20"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共23个头;鸡比兔多11只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "17", "y": "6"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共20个头;鸡比兔多4只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "12", "y": "8"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共24个头;鸡比兔多2只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "13", "y": "11"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共29个头;鸡比兔多27只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "28", "y": "1"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共33个头;鸡比兔多25只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "29", "y": "4"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共49个头;鸡比兔多39只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "44", "y": "5"}}} ,
+
+{"equation": "\\[ \\begin{array}{cc}鸡兔同笼共14个头;鸡比兔多8只。 \\\\请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": {"dual": {"x": "11", "y": "3"}}} ,
+
+
+  { "equation": "\\[ \\begin{array}{cc}鸡兔同笼共23个头;有74只脚，\\\\ 请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": { "dual": { "x": "9", "y": "14" } } },
+  { "equation": "\\[ \\begin{array}{cc}鸡兔同笼共24个头;有72只脚，\\\\ 请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": { "dual": { "x": "12", "y": "12" } } },
+  { "equation": "\\[ \\begin{array}{cc}鸡兔同笼共22个头;有72只脚，\\\\ 请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": { "dual": { "x": "8", "y": "14" } } },
+  { "equation": "\\[ \\begin{array}{cc}鸡兔同笼共13个头;有38只脚，\\\\ 请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": { "dual": { "x": "7", "y": "6" } } },
+  { "equation": "\\[ \\begin{array}{cc}鸡兔同笼共16个头;有46只脚，\\\\ 请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": { "dual": { "x": "9", "y": "7" } } },
+  { "equation": "\\[ \\begin{array}{cc}鸡兔同笼共35个头;有108只脚，\\\\ 请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": { "dual": { "x": "16", "y": "19" } } },
+  { "equation": "\\[ \\begin{array}{cc}鸡兔同笼共10个头;有26只脚，\\\\ 请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": { "dual": { "x": "7", "y": "3" } } },
+  { "equation": "\\[ \\begin{array}{cc}鸡兔同笼共23个头;有58只脚，\\\\ 请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": { "dual": { "x": "17", "y": "6" } } },
+  { "equation": "\\[ \\begin{array}{cc}鸡兔同笼共8个头;有20只脚，\\\\ 请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": { "dual": { "x": "6", "y": "2" } } },
+  { "equation": "\\[ \\begin{array}{cc}鸡兔同笼共29个头;有82只脚，\\\\ 请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": { "dual": { "x": "17", "y": "12" } } },
+  { "equation": "\\[ \\begin{array}{cc}鸡兔同笼共38个头;有114只脚，\\\\ 请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": { "dual": { "x": "19", "y": "19" } } },
+  { "equation": "\\[ \\begin{array}{cc}鸡兔同笼共5个头;有16只脚，\\\\ 请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": { "dual": { "x": "2", "y": "3" } } },
+  { "equation": "\\[ \\begin{array}{cc}鸡兔同笼共8个头;有18只脚，\\\\ 请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": { "dual": { "x": "7", "y": "1" } } },
+  { "equation": "\\[ \\begin{array}{cc}鸡兔同笼共24个头;有58只脚，\\\\ 请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": { "dual": { "x": "19", "y": "5" } } },
+  { "equation": "\\[ \\begin{array}{cc}鸡兔同笼共29个头;有84只脚，\\\\ 请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": { "dual": { "x": "16", "y": "13" } } },
+  { "equation": "\\[ \\begin{array}{cc}鸡兔同笼共23个头;有82只脚，\\\\ 请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": { "dual": { "x": "5", "y": "18" } } },
+  { "equation": "\\[ \\begin{array}{cc}鸡兔同笼共14个头;有44只脚，\\\\ 请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": { "dual": { "x": "6", "y": "8" } } },
+  { "equation": "\\[ \\begin{array}{cc}鸡兔同笼共14个头;有48只脚，\\\\ 请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": { "dual": { "x": "4", "y": "10" } } },
+  { "equation": "\\[ \\begin{array}{cc}鸡兔同笼共34个头;有96只脚，\\\\ 请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": { "dual": { "x": "20", "y": "14" } } },
+  { "equation": "\\[ \\begin{array}{cc}鸡兔同笼共25个头;有80只脚，\\\\ 请问有多少只鸡，有多少只兔？\\\\设鸡有x头，兔有y头。\\end{array}  \\]", "correctOption": { "dual": { "x": "10", "y": "15" } } }
+
+
+
+
+
+
+  ];
+
+        let state = {
+            currentQuestionBank: null,
+            currentEquationSystem: null,
+            score: 0,
+            questionsAnswered: 0,
+            roundsScores: [],
+            currentTopic: '',
+            currentQuestionIndex: 0,
+            isRandomMode: false,
+            isChallengeMode: false,
+        };
+
+        const updateElement = (id, value) => document.getElementById(id).textContent = value;
+
+        const startChallengeMode = () => {
+            state.isChallengeMode = true;
+            resetState();
+            updateElement('current-mode-display', '当前模式: 闯关');
+            startNewRound();
+        };
+
+        const toggleMode = (mode) => {
+            state.isRandomMode = mode;
+            state.isChallengeMode = false;
+            resetState();
+            updateElement('current-mode-display', state.isRandomMode ? '当前模式: 随机' : '当前模式: 顺序');
+            startNewRound();
+        };
+
+        const resetState = () => {
+            state.currentQuestionIndex = 0;
+            state.score = 0;
+            state.questionsAnswered = 0;
+            updateScoreboard();
+        };
+
+        const loadQuestions = (questionBank, topic) => {
+            state.currentQuestionBank = questionBank;
+            state.currentTopic = topic;
+            resetState();
+            updateElement('current-topic', `玖数学: ${state.currentTopic}`);
+            updateElement('current-mode-display', '当前模式: 顺序');
+            startNewRound();
+        };
+
+const toggleIframe = () => {
+    const iframe = document.getElementById('iframe-container');
+    const button = document.getElementById('toggle-iframe-button');
+    if (iframe.style.display === 'none' || iframe.style.display === '') {
+        iframe.style.display = 'block';
+        button.textContent = '隐藏';
+    } else {
+        iframe.style.display = 'none';
+        button.textContent = '显示';
+    }
+};
+
+
+const copyCurrentTopic = () => {
+    const currentTopic = document.getElementById('equation').innerText;
+    navigator.clipboard.writeText(currentTopic).then(() => {
+        showTemporaryMessage('题目已复制!', 1000);
+    }).catch(err => {
+        console.error('复制失败', err);
+    });
+};
+
+const showTemporaryMessage = (message, duration) => {
+    const messageElement = document.createElement('div');
+    messageElement.textContent = message;
+    messageElement.style.position = 'fixed';
+    messageElement.style.top = '50%';
+    messageElement.style.left = '50%';
+    messageElement.style.transform = 'translate(-50%, -50%)';
+    messageElement.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+    messageElement.style.color = 'white';
+    messageElement.style.padding = '10px';
+    messageElement.style.borderRadius = '5px';
+    document.body.appendChild(messageElement);
+
+    setTimeout(() => {
+        document.body.removeChild(messageElement);
+    }, duration);
+};
+
+
+
+
+        const generateEquationSystem = () => {
+            let question = getQuestion();
+
+            const { equation, img, correctOption, incorrectOptions } = question;
+
+            let equationHTML = equation;
+            if (img && img.trim()) equationHTML += `<br><img src="${img}" alt="题目图片">`;
+
+            if (correctOption.single || correctOption.dual) {
+                state.currentEquationSystem = { equationSystem: equationHTML, correctOption };
+                toggleAnswerContainers(correctOption);
+                document.getElementById('submit-button').style.display = 'block';
+            } else {
+                const correctIndex = Math.floor(Math.random() * 4);
+                const options = [...incorrectOptions];
+                options.splice(correctIndex, 0, correctOption);
+
+                state.currentEquationSystem = {
+                    equationSystem: equationHTML,
+                    correctIndex,
+                    options,
+                    correctOption
+                };
+                toggleAnswerContainers(correctOption, true);
+                document.getElementById('submit-button').style.display = 'none';
+            }
+        };
+
+        const toggleAnswerContainers = (correctOption, showOptions = false) => {
+            document.getElementById('options').style.display = showOptions ? 'block' : 'none';
+            document.getElementById('single-answer-container').style.display = correctOption.single ? 'block' : 'none';
+            document.getElementById('dual-answer-container').style.display = correctOption.dual ? 'block' : 'none';
+        };
+
+        const getQuestion = () => {
+            if (state.isRandomMode) {
+                const randomIndex = Math.floor(Math.random() * state.currentQuestionBank.length);
+                return state.currentQuestionBank[randomIndex];
+            } else {
+                if (state.currentQuestionIndex >= state.currentQuestionBank.length) state.currentQuestionIndex = 0;
+                return state.currentQuestionBank[state.currentQuestionIndex++];
+            }
+        };
+
+        const generateOptions = () => {
+            if (state.currentEquationSystem.options) {
+                const labels = ['A', 'B', 'C', 'D'];
+                return state.currentEquationSystem.options.map((option, index) =>
+                    `<div class="option" onclick="checkAnswer(${index}, '${option.replace(/\\/g, '\\\\')}')">
+                        <span>${labels[index]}. \\(${option}\\)</span>
+                    </div>`
+                ).join('');
+            }
+            return '';
+        };
+
+        const displayEquationSystem = () => {
+            generateEquationSystem();
+            document.getElementById('equation').innerHTML = state.currentEquationSystem.equationSystem;
+            if (state.currentEquationSystem.options) {
+                document.getElementById('options').innerHTML = generateOptions();
+            }
+            MathJax.typeset();
+        };
+
+        const startNewRound = () => {
+            if (isRoundComplete()) {
+                state.roundsScores.push({ topic: state.currentTopic, score: state.score, totalQuestions: state.questionsAnswered });
+                resetState();
+                updateRoundsScoreboard();
+            }
+            displayEquationSystem();
+        };
+
+        const isRoundComplete = () => {
+            let totalQuestionsInRound = state.isChallengeMode ? state.currentQuestionBank.length : 10;
+            return state.questionsAnswered >= totalQuestionsInRound;
+        };
+
+        const checkAnswer = (selectedIndex, userAnswer) => {
+            let isCorrect = false;
+            let correctAnswer = '';
+
+            if (state.currentEquationSystem.correctOption.single) {
+                userAnswer = document.getElementById('answer-input').value.trim();
+                correctAnswer = state.currentEquationSystem.correctOption.single;
+                isCorrect = userAnswer === correctAnswer;
+            } else if (state.currentEquationSystem.correctOption.dual) {
+                const userAnswerX = document.getElementById('answer-input-x').value.trim();
+                const userAnswerY = document.getElementById('answer-input-y').value.trim();
+                correctAnswer = `x=${state.currentEquationSystem.correctOption.dual.x}, y=${state.currentEquationSystem.correctOption.dual.y}`;
+                userAnswer = `x=${userAnswerX}, y=${userAnswerY}`;
+                isCorrect = userAnswerX === state.currentEquationSystem.correctOption.dual.x && userAnswerY === state.currentEquationSystem.correctOption.dual.y;
+            } else {
+                isCorrect = selectedIndex === state.currentEquationSystem.correctIndex;
+                correctAnswer = state.currentEquationSystem.correctOption;
+            }
+
+            addResultRow(state.currentEquationSystem.equationSystem, userAnswer, correctAnswer, isCorrect);
+            if (isCorrect) state.score++;
+            state.questionsAnswered++;
+            updateScoreboard();
+            startNewRound();
+            MathJax.typeset();
+        };
+
+        const addResultRow = (equation, userAnswer, correctAnswer, isCorrect) => {
+            let resultRow = document.createElement('tr');
+            resultRow.innerHTML = `
+                <td>${equation}</td>
+                <td>\\(${userAnswer}\\)</td>
+                <td>\\(${correctAnswer}\\)</td>
+                <td style="color: ${isCorrect ? 'green' : 'red'};">${isCorrect ? '正确' : '错误'}</td>
+            `;
+            document.querySelector('#result-table tbody').insertBefore(resultRow, document.querySelector('#result-table tbody').firstChild);
+        };
+
+        const handleKeyUp = (event, nextInputId = null) => {
+            if (event.key === 'Enter') {
+                if (nextInputId) {
+                    document.getElementById(nextInputId).focus();
+                } else {
+                    checkAnswer();
+                }
+            }
+        };
+
+        const updateScoreboard = () => {
+            updateElement('score', state.score);
+            updateElement('answered', state.questionsAnswered);
+        };
+
+        const updateRoundsScoreboard = () => {
+            const roundsScoresText = state.roundsScores.map((round, index) =>
+                `第${index + 1}轮 (${round.topic}): ${round.score}分共${round.totalQuestions}题`
+            ).join('<br>');
+            document.getElementById('rounds-scoreboard').innerHTML = roundsScoresText;
+        };
+
+window.onload = () => {
+    loadQuestions(二元一次方程组填空09, '二元一次方程组填空09');
+    state.isRandomMode = true;  // 初始化为随机模式
+    state.isChallengeMode = false;
+    startNewRound();
+};
+
+    </script>
+</body>
+</html>
