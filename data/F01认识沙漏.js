@@ -12,7 +12,7 @@ window.JIUSHU_QUIZ = {
     "equation": "\\begin{gather}2、如图，DC平行AB，AC和DB交于点O，\\\\AB:DC=3:1，则DO:OB=\\_:\\_\\end{gather}",
     "img": "images/053701001.png",
     "correctOption": {
-      "single": "3:1 "
+      "single": "1:3 "
     }
   },
   {

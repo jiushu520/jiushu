@@ -7,6 +7,7 @@
     <!-- MathJax 渲染公式 -->
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="config/ai_config.js"></script>
+    <script src="config/geometry_svgs.js"></script>
     <style>
         :root {
             --primary: #0288d1;
@@ -136,6 +137,29 @@
             margin-top: 15px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
             border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .question-svg {
+            max-width: 92%;
+            margin: 16px auto 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(2, 136, 209, 0.12);
+            background: rgba(255, 255, 255, 0.72);
+            box-shadow: 0 4px 14px rgba(2, 136, 209, 0.08);
+        }
+
+        .question-svg svg {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        #equation > div svg,
+        #equation svg {
+            max-width: min(100%, 520px);
+            height: auto;
+            vertical-align: middle;
         }
 
         /* 答题交互区域 (MCQ / 填空) */
@@ -863,10 +887,45 @@
             }
         }
 
+        function renderQuestionVisual(img, question) {
+            if (!img || !img.trim()) return '';
+            const svgFactory = window.JIUSHU_GEOMETRY_SVGS;
+            const svg = svgFactory && typeof svgFactory.get === 'function' ? svgFactory.get(img, question) : '';
+            if (svg) {
+                return `<div class="question-svg" aria-label="几何 SVG 图">${svg}</div>`;
+            }
+            return `<br><img src="${img}" alt="题目图片">`;
+        }
+
+        function normalizeAcceptedAnswer(value) {
+            return String(value ?? '')
+                .trim()
+                .replace(/：/g, ':')
+                .replace(/\s+/g, '')
+                .replace(/^\\\(|\\\)$/g, '');
+        }
+
+        function normalizeLibraryQuestion(rawQuestion) {
+            const answer = rawQuestion.answer || {};
+            const solutions = Array.isArray(answer.solution) ? answer.solution : [];
+            const firstSolution = solutions[0];
+
+            return {
+                ...rawQuestion,
+                equation: rawQuestion.equation || rawQuestion.text || '',
+                correctOption: rawQuestion.correctOption || (
+                    firstSolution !== undefined ? { single: String(firstSolution) } : undefined
+                ),
+                acceptedAnswers: rawQuestion.acceptedAnswers || solutions.map(String),
+                answerType: rawQuestion.answerType || answer.type || 'text'
+            };
+        }
+
         // 核心渲染引擎：根据题目类型生成界面
         function generateEquationSystem() {
             let question = getQuestion();
             if (!question) return;
+            question = normalizeLibraryQuestion(question);
             state.currentRawQuestion = question;
             resetAIPanel(false);
 
@@ -874,9 +933,7 @@
 
             // 处理 LaTeX 和图片路径
             let equationHTML = equation;
-            if (img && img.trim()) {
-                equationHTML += `<br><img src="${img}" alt="题目图片">`;
-            }
+            equationHTML += renderQuestionVisual(img, question);
 
             // 更新 DOM 显示题目内容
             $('equation').innerHTML = equationHTML;
@@ -884,7 +941,11 @@
             // 题型判定与 DOM 展示切换
             if (correctOption && (correctOption.single !== undefined || correctOption.dual !== undefined)) {
                 // ---- 填空题型 ----
-                state.currentEquationSystem = { equationSystem: equationHTML, correctOption };
+                state.currentEquationSystem = {
+                    equationSystem: equationHTML,
+                    correctOption,
+                    acceptedAnswers: question.acceptedAnswers || []
+                };
                 
                 // 隐藏选项区，显示对应的输入框和提交按钮
                 $('options').style.display = 'none';
@@ -906,7 +967,7 @@
             } else {
                 // ---- 选择题型 ----
                 const correctIndex = Math.floor(Math.random() * 4);
-                const options = [...incorrectOptions];
+                const options = [...(incorrectOptions || [])];
                 options.splice(correctIndex, 0, correctOption);
 
                 state.currentEquationSystem = {
@@ -967,7 +1028,13 @@
                 // 单填空校验
                 userAnswer = $('answer-input').value.trim();
                 correctAnswer = correctOpt.single.trim();
-                isCorrect = (userAnswer === correctAnswer);
+                const acceptedAnswers = state.currentEquationSystem.acceptedAnswers?.length
+                    ? state.currentEquationSystem.acceptedAnswers
+                    : [correctAnswer];
+                correctAnswer = acceptedAnswers.join(' 或 ');
+                isCorrect = acceptedAnswers.some(answer =>
+                    normalizeAcceptedAnswer(userAnswer) === normalizeAcceptedAnswer(answer)
+                );
             } else if (correctOpt && correctOpt.dual !== undefined) {
                 // 双填空校验
                 const userAnswerX = $('answer-input-x').value.trim();
@@ -1074,7 +1141,10 @@
         function getCorrectAnswerText(correctOption) {
             if (!correctOption) return '';
             if (correctOption.single !== undefined) {
-                return correctOption.single;
+                const acceptedAnswers = state.currentEquationSystem?.acceptedAnswers || [];
+                return acceptedAnswers.length > 1
+                    ? acceptedAnswers.join(' 或 ')
+                    : correctOption.single;
             }
             if (correctOption.dual !== undefined) {
                 return `x = ${correctOption.dual.x}, y = ${correctOption.dual.y}`;
@@ -1094,7 +1164,7 @@
                 '1. 直接输出完整 HTML，不要 Markdown 代码块或解释前后缀，第一个字符必须是 <。',
                 '2. 自动识别适合可视化的数学原理：如分数通分、比例不变量、方程组消元、工程效率、浓度混合、行船速度、鸡兔同笼、几何面积关系、坐标/函数图象等。',
                 '3. html、body、主容器、canvas/svg 和绘图区背景必须 transparent；不要外层卡片、阴影、白色底板或整屏色块；如果用 canvas，不要 fillRect 铺背景。',
-                '4. 首屏直接呈现原理图或过程动画，用箭头、数轴、面积块、线段图、天平、表格或坐标系说明关键关系，不要写长篇解释。',
+                '4. 首屏直接呈现原理图或过程动画，用 SVG 优先绘制几何图、箭头、数轴、面积块、线段图、天平、表格或坐标系说明关键关系，不要写长篇解释。',
                 '5. 至少提供一种交互：播放/暂停、步骤切换、滑块改变数值、显示隐藏辅助线，或小按钮切换方法。',
                 '6. JS 使用 addEventListener，不要写 onclick/oninput 内联事件。',
                 '7. 所有 CSS 和 JS 内联，自包含，不依赖外部 CDN。',

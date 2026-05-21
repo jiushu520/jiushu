@@ -125,6 +125,36 @@ window.JIUSHU_MENU = [
     ]
   },
   {
+    "category": "小学奥数拓展",
+    "items": [
+      {
+        "name": "周期问题01基础周期",
+        "file": "周期问题01基础周期",
+        "isExternal": false
+      },
+      {
+        "name": "植树问题01两端与间隔",
+        "file": "植树问题01两端与间隔",
+        "isExternal": false
+      },
+      {
+        "name": "数列规律01找规律",
+        "file": "数列规律01找规律",
+        "isExternal": false
+      },
+      {
+        "name": "抽屉原理01保证问题",
+        "file": "抽屉原理01保证问题",
+        "isExternal": false
+      },
+      {
+        "name": "容斥计数01两集合",
+        "file": "容斥计数01两集合",
+        "isExternal": false
+      }
+    ]
+  },
+  {
     "category": "盈亏问题",
     "items": [
       {
@@ -645,61 +675,61 @@ window.JIUSHU_MENU = [
     ]
   },
   {
-    "category": "几何",
+    "category": "几何（SVG）",
     "items": [
       {
-        "name": "F01认识沙漏",
-        "file": "F01认识沙漏",
+        "name": "F0101底高模型求面积1（SVG）",
+        "file": "题库中心F0101底高模型求面积1",
         "isExternal": false
       },
       {
-        "name": "F02梯形中的沙漏",
-        "file": "F02梯形中的沙漏",
+        "name": "F0102底高模型求底边（SVG）",
+        "file": "题库中心F0102底高模型求底边",
         "isExternal": false
       },
       {
-        "name": "F03平行线中的沙漏",
-        "file": "F03平行线中的沙漏",
+        "name": "F0103底高模型求面积2（SVG）",
+        "file": "题库中心F0103底高模型求面积2",
         "isExternal": false
       },
       {
-        "name": "F04认识金字塔",
-        "file": "F04认识金字塔",
+        "name": "F0104底高模型上下比（SVG）",
+        "file": "题库中心F0104底高模型上下比",
         "isExternal": false
       },
       {
-        "name": "F05沙漏与金字塔综合",
-        "file": "F05沙漏与金字塔综合",
+        "name": "F0105鸟头模型1（SVG）",
+        "file": "题库中心F0105鸟头模型1",
         "isExternal": false
       },
       {
-        "name": "F07燕尾模型两外比的应用",
-        "file": "F07燕尾模型两外比的应用",
+        "name": "F0106鸟头模型2（SVG）",
+        "file": "题库中心F0106鸟头模型2",
         "isExternal": false
       },
       {
-        "name": "F07燕尾模型两外比的应用",
-        "file": "F07燕尾模型两外比的应用",
+        "name": "F0301燕尾模型（SVG）",
+        "file": "题库中心F0301燕尾模型",
         "isExternal": false
       },
       {
-        "name": "F08燕尾模型一外一内比的应用上",
-        "file": "F08燕尾模型一外一内比的应用上",
+        "name": "F0302燕尾模型两外比（SVG）",
+        "file": "题库中心F0302燕尾模型两外比",
         "isExternal": false
       },
       {
-        "name": "F09燕尾模型一外一内比的应用下",
-        "file": "F09燕尾模型一外一内比的应用下",
-        "isExternal": true
-      },
-      {
-        "name": "F10燕尾模型两内比的应用",
-        "file": "F10燕尾模型两内比的应用",
+        "name": "F0303燕尾模型一内一外求面积（SVG）",
+        "file": "题库中心F0303燕尾模型一内一外求面积",
         "isExternal": false
       },
       {
-        "name": "F11鸟头模型",
-        "file": "F11鸟头模型",
+        "name": "F0304燕尾模型两内比求面积（SVG）",
+        "file": "题库中心F0304燕尾模型两内比求面积",
+        "isExternal": false
+      },
+      {
+        "name": "F0305矩形中的燕尾模型（SVG）",
+        "file": "题库中心F0305矩形中的燕尾模型",
         "isExternal": false
       }
     ]
